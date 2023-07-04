@@ -17,3 +17,6 @@ target/site
 */src/main/java/resources/hiddenConfig.properties
 
 allure-results
+
+### Mac OS ###
+.DS_Store
