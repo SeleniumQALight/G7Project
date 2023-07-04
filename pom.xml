@@ -23,6 +23,11 @@
     <module>kovalenkoProj</module>
     <module>kropivtsevaProj</module>
     <module>lastovenkoProj</module>
+    <module>lubynetsProj</module>
+    <module>morozProj</module>
+    <module>morozovaProj</module>
+    <module>navrotskaProj</module>
+    <module>osipovProj</module>
   </modules>
 
   <properties>
