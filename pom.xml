@@ -19,6 +19,10 @@
     <module>brounProj</module>
     <module>haponenkoProj</module>
     <module>zholobProj</module>
+    <module>kletsProj</module>
+    <module>kovalenkoProj</module>
+    <module>kropivtsevaProj</module>
+    <module>lastovenkoProj</module>
   </modules>
 
   <properties>
