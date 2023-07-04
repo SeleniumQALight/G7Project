@@ -13,6 +13,12 @@
     <module>overAll</module>
     <module>nalbatovProj</module>
       <module>kalinichenkoProj</module>
+      <module>artsishevskaProj</module>
+    <module>botsuliakProj</module>
+    <module>borodynskaProj</module>
+    <module>brounProj</module>
+    <module>haponenkoProj</module>
+    <module>zholobProj</module>
   </modules>
 
   <properties>
