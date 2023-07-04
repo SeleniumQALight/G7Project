@@ -28,6 +28,9 @@
     <module>morozovaProj</module>
     <module>navrotskaProj</module>
     <module>osipovProj</module>
+    <module>pikhterovaProj</module>
+    <module>prydkyiProj</module>
+    <module>seliukProj</module>
   </modules>
 
   <properties>
