@@ -22,11 +22,11 @@ Profile.tabs.Followers = //*[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[@
 Profile.tabs.Following = //*[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[contains(text(),'Following')]
 
 #Home/ProfilePageHeader
-Header.icon.Profile =
+Header.icon.Profile = //*[@class = 'mr-2']
 Header.button.CreatePost = //*[@class = 'btn btn-sm btn-success mr-2']
 Header.button.SignOut = //*[@class = 'btn btn-sm btn-secondary']
 Header.icon.Search = //*[@class = 'svg-inline--fa fa-search fa-w-16']
-Header.icon.Chat =
+Header.icon.Chat = //*[@class = 'svg-inline--fa fa-comment fa-w-16']
 
 #CreatePostPage
 CreatePost.input.Title = //*[@name = 'title']
