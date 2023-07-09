@@ -1,8 +1,83 @@
-01 Name case
-1. Step
-2. Step
-3. Step
+01. Check sign up flow with valid entered data
+    Steps:
+        1. Open https://qa-complexapp.onrender.com/
+        2. Type valid username into field 'Username' (should be unique, at least 3 chars, only letters and numbers)
+        3. Type valid email into field 'Email'
+        4. Type valid password into field 'Password' (at least 12 chars)
 
-Expected result:
+    Expected result:
+        1. User is created and automatically signed in
+        2. Displayed proper message that feed is empty
 
-002 Name case
+
+02. Check sign in flow with valid credentials
+    Preconditions:
+        1. User has created account [C01]
+        2. User has opened https://qa-complexapp.onrender.com/ and not signed in yet
+
+    Steps:
+        1. On the top bar type valid username into 'Username' field
+        2. On the top bar type valid password into 'Password' field
+        3. Click on 'Sign in' button
+
+    Expected result:
+        1. User is signed in
+        2. Displayed Feed page
+
+03. Check creating unique post with private message
+    Preconditions:
+        1. User has created account [C01]
+        2. User has signed in [C02]
+
+    Steps:
+        1. On the top bar click on 'Create post' button
+        2. Type valid title into 'Title' field (ex. "My Title")
+        3. Type valid body content into 'Body content' field (ex. "Some text")
+        4. Check the 'Is this post unique?' checkbox
+        5. Click on 'Select value' dropdown and select 'Private message'
+        6. Click on button 'Save New Post'
+
+    Expected result:
+        1. Detailed post page is opened
+        2. Displayed 'New post successfully created.' message
+        3. New post is created
+        4. Displayed:
+            a. title of post
+            b. body content
+            c. Is this post unique? : yes
+            d. Note: This post was written for One Person
+            e. [User avatar] Posted by [username] on [dd/mm/yyyy]
+        5. Displayed active 'edit' and 'delete' buttons on the right side
+
+04. Check editing title of the created post
+    Preconditions:
+        1. User has created account [C01]
+        2. User has signed in [C02]
+        3. User has created a post [С03]
+        4. (OPTIONAL) Click on 'My Profile' button on the top bar and click on created post
+
+    Steps:
+        1. Click on 'edit' post button on the right side
+        2. Edit title in the "Title" field (ex. "My edited Title 2")
+        3. Click on button 'Save Updates'
+
+    Expected result:
+        1. Displayed edit page of the post
+        2. Displayed 'Post successfully updated.' message
+        3. If user click on 'Back to post permalink' the will be displayed updated post with properly updated info
+
+05. Check deleting created post
+    Preconditions:
+        1. User has created account [C01]
+        2. User has signed in [C02]
+        3. User has created a post [С03]
+        4. (OPTIONAL) Click on 'My Profile' button on the top bar and click on created post
+
+    Steps:
+        1. Click on 'delete' post button on the right side
+
+    Expected result:
+        1. Post is deleted
+        2. Displayed "Post successfully deleted." message
+        3. Displayed profile page of user
+        4. Posts counter decreased by 1
