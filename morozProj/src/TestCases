@@ -1,0 +1,74 @@
+TestCase001: Create new user in the system
+
+Steps:
+    1. Enter the correct username into the "username" input on the registration form
+    2. Enter the correct email into the "email" input on the registration form
+    3. Enter the correct password into the "password" input on the registration form
+    4. Click the "submit" button type on the registration form
+
+ER: User with correct data created in the system. User sees the empty feed and "Create post" and "Sign out" buttons.
+    The entered on the "Step 1" username is shown on the header.
+
+
+TestCase002: Login to the system via username and password
+
+Pre-conditions: User "Kostia" exits in the system(Username: "kostia" Password: kostia123456).
+                if "Kostia" user isn't exists in the system create new user.(TestCase001)
+                User has no one following users
+
+Steps:
+    1. Enter the user's username into the "Username" field on the header
+    2. Enter the user's password into the "Password" field on the header
+    3. Click the login button on the header
+
+ER: User sees the "Sign out" and "Create Post" button. User sees the feed without any posts.
+
+
+TestCase003: Sign out from the system
+
+Pre-conditions: Log in the system by "Kostia" user (Username: "kostia" Password: kostia123456),
+                if "Kostia" user isn't exists in the system create new user.(TestCase001)
+
+Steps:
+    1. Click the "Sign Out" button on the header
+
+ER: User sees the main page, user sees the "Sign In" and "Sign up for OurApp" buttons, registration form,
+    "Username" and "Password" field on the header.
+
+
+TestCase004: Create a unique public post
+
+Pre-conditions:  Log in the system by "Kostia" user (Username: "Kostia" Password: kostia123456),
+                 if "Kostia" user isn't exists in the system create new user.(TestCase001)
+
+Steps:
+    1. Click the "Create Post" button
+    2. Enter at least one character on the "Title" field
+    3. Enter at least one character on the "Body Content" field
+    4. Check the "Is this post unique?" checkbox
+    5. Select the "Загальнодоступне" value on the "Select value" dropdown
+    6. Click the "Save New Post" button
+
+ER: New unique public post is created with entered title on the "Step 2" and entered body content on the "Step 3",
+    with correct date and correct author
+
+
+TestCase005: Edit the post
+
+Pre-conditions: Log in the system by "Kostia" user (Username: "kostia" Password: kostia123456),
+                if "Kostia" user isn't exists in the system create new user.(TestCase001)
+                User has at least one created post, if post ins't exists create new post.(TestCase004)
+
+Steps:
+    1. Click the "My profile" button on the header
+    2. Click on the created post by current user
+    3. Click the "Edit button"
+    4. Update text on the "Title" field
+    5. Update text on the "Body Content" field
+    6. Click the submit button
+
+ER: User sees the green toaster with "Post successfully updated" text. On the user profile edited post updated correctly,
+    new entered title on the "Step 4" and entered body content on the "Step 4" is shown, correct date and correct author
+    is shown on the post info
+
+
