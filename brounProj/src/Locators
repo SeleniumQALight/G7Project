@@ -1,0 +1,7 @@
+
+Приклад
+#Login Page
+Login.input.UserNameLogin=//*[@id='username']
+
+#HomePage
+HomePage.text.UserName=
