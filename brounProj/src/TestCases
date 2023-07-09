@@ -1,18 +1,62 @@
-#001 Name Case
-Steps
-1.
-2.
-3.
-4.
 
-ER
+#001 Test case Successful registration
+Preconditions: without preconditions
+Steps to reproduce:
+1. Go for Complex app link
+2. Fill in the fields Username, Email, Password in sign up form with the valid values
+3. Tap to the Sign up for OurApp button
 
-Треба 5 тесткейсів
-https://qa-complexapp.onrender.com
-позитивні кейси
-для цих 5 тесткейсів
-різні кейси
+ER: Login to the OurApp with new credentials happens
 
+#002 Test case Create a new post
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Steps to reproduce:
+1. Tap to the Create post button
+2. Fill in the fields Title, Body content
+3. Tap to mark the checkbox Is this post unique?
+4. Select the Value "Загальнодоступне"
+5. Tap to the button Save new post
 
-взяти сайт для екзамену
-без капчі
+ER: Alert New post successfully created is displayed, test title and the test body are displayed in the desk.
+
+#003 Test case Deleting post from the desk
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Make the post to the board
+Steps to reproduce:
+1. Tap to My profile button
+2. Tap to one of the your post
+3. Tap to the recycle bean icon to delete the current post
+
+ER: Alert Post successfully deleted is displayed, post has been deleted from list of posts
+
+#004 Test case Search field
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Steps to reproduce:
+1. Tap to Search button the search form opens
+2. Fill in the form with any word, like Post
+
+ER: Search gives you the result of search
+
+#005 Test case Follow for another user posts
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Steps to reproduce:
+1. Tap to Search button the search form opens
+2. Fill in the form with any word, like Post, Search gives you the result of search
+3. Tap to the first row of the search results
+4. Tap to the user name of the post author, his posts page opens
+5. Tap to the button Follow, to follow this users posts
+
+ER: Alert Successfully followed "User" displays, page with users post opened.
+
