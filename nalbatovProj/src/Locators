@@ -1,8 +1,8 @@
 #LoginPage
 
-Login.input.UserName = //input[@name='username']
+Login.input.UserName = //input[contains(@name, 'username') and contains(@placeholder, 'Username')]
 
-Login.input.password = //input[@name='password']
+Login.input.password = //input[contains(@name, 'password') and contains(@placeholder, 'Password')]
 
 Login.button.SignIn = //button[contains(text(), 'Sign In')]
 
