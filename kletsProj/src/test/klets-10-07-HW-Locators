@@ -1,0 +1,73 @@
+#registration-form
+Registration.form.SignUp = //*[@action="/register" and @id="registration-form"]
+Registration.input.UserName = //*[@name="username" and @id="username-register"]
+Registration.input.UserName = //*[@name="email" and @id="email-register"]
+Registration.input.Password = //*[@name="password" and @id="password-register"]
+Registration.button.SignUp = //*[@id="registration-form"]/button OR
+//*[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
+
+#login-form
+Login.header = //*[@class ="header-bar mb-3"]
+Login.input.UserName = //*[@name ="username" and @class="form-control form-control-sm input-dark"]
+Login.input.Password = //*[@name ="password" and @class="form-control form-control-sm input-dark"]
+Logon.button.SignIn = //*[@class="btn btn-primary btn-sm"]
+
+#MyProfile
+MyProfile.container.UserName = //*[@class='container py-md-5 container--narrow']
+MyProfile.avatar.AvatarSmall = //*[@class='avatar-small' and @alt='small avatar img']
+MyProfile.container.Tabs = //*[@class='profile-nav nav nav-tabs pt-2 mb-4']
+MyProfile.link.Posts = //*[@class='profile-nav-link nav-item nav-link active']
+MyProfile.link.Followers =
+= //*[@class='profile-nav nav nav-tabs pt-2 mb-4']//a[contains(@class, "profile-nav-link") and contains(text(), "Followers")]
+MyProfile.link.Following =
+= //*[@class='profile-nav nav nav-tabs pt-2 mb-4']//a[contains(@class, "profile-nav-link") and contains(text(), "Following")]
+MyProfile.list.ListPosts = //*[@class='list-group']
+MyProfile.link.Post = //*[contains(@class, 'list-group-item') and contains(@class, 'list-group-item-action') and strong[text()='aaa1']]
+
+
+#HomePage
+HomePage.link.SearchHeader = //*[@class='text-white mr-2 header-search-icon']
+HomePage.icon.ChatIconHeader = //*[@class='text-white mr-2 header-chat-icon']
+HomePage.link.AvatarHeader = //*[@class="mr-2"]
+HomePage.text.UserNameHeader = //*[@class='text-white mr-2']
+HomePage.link.CratePostHeader = //*[@class='btn btn-sm btn-success mr-2']
+HomePage.link.SignOutHeader = //*[@class='btn btn-sm btn-secondary']
+
+#CreatePostPage
+CreatePostPage.input.Title = //*[@name='title' and @id='post-title']
+CreatePostPage.textarea.BodyContent= //*[@name='body' and @id='post-body']
+CreatePostPage.input.Checkbox = //*[@name='uniquePost']
+CreatePostPage.select.DropDownList= //*[@name='select1' and @id='select1']
+CreatePostPage.button.SaveNewPost = //*[@class='btn btn-primary']
+
+#SearchPage
+SearchPage.label.IconSearch = //*[@class='search-overlay-icon']
+SearchPage.input.LiveSearchField = //*[@class='live-search-field' and @id='live-search-field']
+SearchPage.button.CloseLiveSearch = //*[@class='close-live-search']
+
+#NewPostPage
+NewPostPage.alert.SuccessAlert = //*[@class='alert alert-success text-center']
+NewPostPage.text.Title = //*[@class='d-flex justify-content-between']
+NewPostPage.link.EditPost = //*[@class='text-primary mr-2']
+NewPostPage.button.DeletePost = //*[@class='delete-post-button text-danger']
+NewPostPage.text.PostedBy = //*[@class='text-muted small mb-4']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
