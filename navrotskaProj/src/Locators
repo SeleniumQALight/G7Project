@@ -16,7 +16,11 @@
     PostLoginHdr.button.SignOut=//button[@class='btn btn-sm btn-secondary']
     PostLoginHdr.span.UserName=//body/header/div/div/span[2]
 
-#FeedPage
+#EmptyFeedPage
+    EmptyFeedPage.div.UserName=//div[@class='text-center']/h2/strong
+    EmptyFeedPage.div.TitleText1=//div[@class='text-center']/h2[contains(text(),'Hello ')]
+    EmptyFeedPage.div.TitleText2=??
+    EmptyFeedPage.p.DescriptionBody=//p[@class='lead text-muted']
 
 #MyProfilePage
     MyProfile.a.PostCounter =//a[@class='profile-nav-link nav-item nav-link active']
@@ -34,9 +38,9 @@
     OpenPost.text.PostIsCreatedMessage=//div[text()='New post successfully created.']
     OpenPost.header.PostTitle = //h2
     OpenPost.image.PostProfileImage=//p/a/img[@class='avatar-tiny']
-    OpenPost..PostedByUserName=
-    OpenPost..PostDate=
-    OpenPost..PostedByText=
+    OpenPost..PostedByUserName=??
+    OpenPost..PostDate=??
+    OpenPost..PostedByText=??
     OpenPost.svg.EditPost=//*[@data-icon='edit']
     OpenPost.svg.DeletePost=//*[@data-icon='trash']
     OpenPost.i.AccessText=//i[text()=' Note: This post was written for ']
