@@ -1,19 +1,26 @@
-#Login/SignUp page
+#SignUp page
 
     SignUp.input.UserName=//*[@id='username-register']
     SignUp.input.Email=//*[@id='email-register']
     SignUp.input.Password=//*[@id='password-register']
     SignUp.button.SignUp=//button[@type='submit']
 
-    Login.input.Username=//*[@name='username' and @placeholder='Username']
-    Login.input.Password=//header//input[@name='password']
-    Login.button.SignIn=//header//button[@class='btn btn-primary btn-sm']
+#PreLoginHeader
+    PreLoginHdr.input.Username=//*[@name='username' and @placeholder='Username']
+    PreLoginHdr.input.Password=//header//input[@name='password']
+    PreLoginHdr.button.SignIn=//header//button[@class='btn btn-primary btn-sm']
+
+#PostLoginHeader
+    PostLoginHdr.a.MyProfileButton =//body//header/div/div/a[2]
+    PostLoginHdr.a.CreatePost=//body/header/div/div/a[3]
+    PostLoginHdr.button.SignOut=//button[@class='btn btn-sm btn-secondary']
+    PostLoginHdr.span.UserName=//body/header/div/div/span[2]
 
 #FeedPage
 
 #MyProfilePage
-    MyProfile..PostCounter
-
+    MyProfile.a.PostCounter =//a[@class='profile-nav-link nav-item nav-link active']
+    MyProfile.a.FirstPostInList = //div[@class='list-group']/a[1]
 
 
 #CreatePostPage
