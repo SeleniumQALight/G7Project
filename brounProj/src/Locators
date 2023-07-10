@@ -1,7 +1,24 @@
 
-Приклад
-#Login Page
-Login.input.UserNameLogin=//*[@id='username']
+#HomePage EmailRegister
+HomePage.EmailRegister= //input[@id='email-register']
 
-#HomePage
-HomePage.text.UserName=
+##HomePage UsernameRegister
+HomePage.UsernameRegister= //input[@id='username-register']
+
+##HomePage UsernameRegister
+HomePage.PasswordRegister= //input[@id='password-register']
+
+#Success login
+LoginSuccess= //img[@alt='My profile']
+
+#New post successfully created
+NewPost.Created= //div[@class= 'alert alert-success text-center']
+
+#Recycle bin for posts
+RecycleBin.ForPosts= //button[@class="delete-post-button text-danger"]
+
+#SearchResults
+Search.Results= *//body//div//div//div[@class='list-group-item active']
+
+#Successful following
+Successful.Following= //body//div//div[@class='alert alert-success text-center']
