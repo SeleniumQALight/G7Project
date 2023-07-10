@@ -4,6 +4,7 @@
         2. Type valid username into field 'Username' (should be unique, at least 3 chars, only letters and numbers)
         3. Type valid email into field 'Email'
         4. Type valid password into field 'Password' (at least 12 chars)
+        5. Click on Sign Up button
 
     Expected result:
         1. Displayed 'Sign out' button on the top right corner

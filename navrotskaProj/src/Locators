@@ -1,0 +1,13 @@
+#Login/SignUp page
+
+    SignUp.input.UserName=//*[@id='username-register']
+    SignUp.input.Email=//*[@id='email-register']
+    SignUp.input.Password=//*[@id='password-register']
+    SignUp.button.SignUp=//button[@type="submit"]
+
+    Login.input.Username=//*[@name="username" and @placeholder="Username"]
+    Login.input.Password=//header//input[@name='password']
+    Login.button.SignIn=//header//button[@class='btn btn-primary btn-sm']
+
+
+
