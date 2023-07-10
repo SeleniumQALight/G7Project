@@ -6,8 +6,9 @@
         4. Type valid password into field 'Password' (at least 12 chars)
 
     Expected result:
-        1. User is created and automatically signed in
-        2. Displayed proper message that feed is empty
+        1. Displayed 'Sign out' button on the top right corner
+        2. Displayed username on the top bar
+        3. Displayed "Hello [username], your feed is empty." message
 
 
 02. Check sign in flow with valid credentials
@@ -21,8 +22,9 @@
         3. Click on 'Sign in' button
 
     Expected result:
-        1. User is signed in
-        2. Displayed Feed page
+        1. Displayed 'Sign out' button on the top right corner
+        2. Displayed username on the top bar
+        3. User is on https://qa-complexapp.onrender.com/ page
 
 03. Check creating unique post with private message
     Preconditions:
@@ -48,6 +50,9 @@
             d. Note: This post was written for One Person
             e. [User avatar] Posted by [username] on [dd/mm/yyyy]
         5. Displayed active 'edit' and 'delete' buttons on the right side
+
+    Post-conditions:
+          1. Post is deleted
 
 04. Check editing title of the created post
     Preconditions:
