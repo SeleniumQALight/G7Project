@@ -15,7 +15,7 @@
 02. Check sign in flow with valid credentials
     Preconditions:
         1. User has created account [C01]
-        2. User has opened https://qa-complexapp.onrender.com/ and not signed in yet
+        2. User has opened https://qa-complexapp.onrender.com/ and Sign in button is displayed
 
     Steps:
         1. On the top bar type valid username into 'Username' field
