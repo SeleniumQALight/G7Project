@@ -1,4 +1,4 @@
-001 Registration
+001 Success registration
 1. Open main page
 2. Enter valid name in Username field
 3. Enter valid email in Email field
@@ -9,9 +9,20 @@ ER
 Registration is success. There is message "Hello <Username>, your feed is empty."
 
 
-002 Unique public post creation
+002 Success sign out
 Precondition
-Account is created. User is logged in to the account. Main account page is opened.
+Account is created. User is logged into the account.
+
+Steps
+1. Click on the "Sign Out" button
+
+ER
+Sign out is success. There is "Sign In" button
+
+
+003 Success unique public post creation
+Precondition
+Account is created. User is logged into the account. Main account page is opened.
 
 Steps
 1. Click on the "Create post" button
@@ -24,5 +35,35 @@ Steps
 ER
 Post creating is success. There is message "New post successfully created."
 Created title and content are showed. There are "Note: This post was written for All Users" and "Is this post unique? : yes" notes on opened page
+
+
+004 Success post edition (title change of unique public post)
+Precondition
+Account is created. User is logged into the account. Main account page is opened. Unique public post is created.
+
+Steps
+1. Click on the "My profile" button
+2. Click on exist post
+3. Click on the "Edit" button
+4. Enter new text in title field
+5. Click the check mark in the "Is this post unique" check box
+6. Select a public message from the "Select value" pop-up window
+7. Click on the "Save Updates" button
+
+ER
+Updating is success. There is message "Post successfully updated."
+
+
+005 Success stop following
+Precondition
+Account is created. User is logged into the account. User has following. Main account page is opened.
+
+Steps
+1. Click on the "Following" button
+2. Click on following user
+3. Click on the "Stop following" button
+
+ER
+Stop following is success. There is message "Successfully stopped following <Username>."
 
 
