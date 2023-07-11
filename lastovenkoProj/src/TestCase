@@ -1,0 +1,67 @@
+Test case 1
+When authorizing on the site https://qa-complexapp.onrender.com/, a valid username and password must be requested
+Preconditions:
+Given: site https://qa-complexapp.onrender.com/, fields for authorization: login and password.
+Execution steps:
+1. Enter a valid login: LastovenkoqaAuto
+2. Enter email: o.lastovenko@medzakupivli.com
+2. Enter invalid
+password...1224556666666.
+Click the sign up for our App button
+
+3. Enter an invalid login: TAZIK1985. Click the sign up for our App button
+4. Enter a valid password: 123@qaLightLastovenko.Click the sign up for our App button
+5. Enter invalid email: aaaaaa@&&&&&&&&&&&&.maillll.com.Click the sign up for our App button
+6. Enter a valid username and password, do not enter email.Click the sign up for our App button
+7. Enter a valid login and email, do not enter a password.Click the sign up for our App button
+8. Enter a valid password and emaill. Do not enter login: Click the sign up for our App button
+Expected result: entrance to the site is possible only if the login is valid. mail, password
+
+
+Test case 2
+After authorization on the site https://qa-complexapp.onrender.com/ may be the following notice:
+"Hello lastovenkoqaauto (otherwise valid name of user), your feed is empty.
+Your feed displays the latest posts from the people you follow. If you don't have any friends to follow that's okay;
+you can use the “Search” feature in the top menu bar to find content written by people with similar interests and
+then follow them"
+Given: site.. User of authorizated on the site.
+Steps:
+1. Sign in to the site https://qa-complexapp.onrender.com/ .
+Scoring result:
+Advice:
+"Hello lastovenkoqaauto, your feed is empty.
+Your feed displays the latest posts from the people you follow. If you don't have any friends to follow that's okay;
+you can use the “Search” feature in the top menu bar to find content written by people with similar interests and
+ then follow them".
+
+Test case 3:
+On the site https://qa-complexapp.onrender.com/, check the possibility of creating a new post after the authorization
+of this correspondent
+Given: website https://qa-complexapp.onrender.com/.
+Steps:
+1.Authorize on the site https://qa-complexapp.onrender.com/.
+2. The "Create post" button appears. Press the button
+4. There is a page for creating a post with the fields Title, Body content, Save post, as well as the possibility
+of choosing a public, private or group announcement (dropdown list), as well as with the check "Is this post unique?".
+Fill in all the fields and place a check by selecting the required option from the drop-down list
+5. Click the Save this post button
+Scoring result: public, private or group post created and saved.
+
+Test-case 4
+On the site https://qa-complexapp.onrender.com/ may be chat for authorized correspondents
+Given: website https://qa-complexapp.onrender.com/
+steps:
+1. Sign in to the site https://qa-complexapp.onrender.com/  The "Chat" button will appear
+2. Press the ""Chat" button. The chat field will appear
+3. Enter a reminder, for example "aaaaaa".
+Scoring result: open the chat field, edit notifications.
+
+Test case 5:
+On the website.https://qa-complexapp.onrender.com/.. for authorized users it is possible to switch to the profile of
+user. "My profile" button
+Preconditions: given site https://qa-complexapp.onrender.com/
+Steps:
+1. Sign in to the site https://qa-complexapp.onrender.com/
+2. Click the "My profile" button.
+Scoring result: the profile of the user is displayed with the given name of the koristuvach and the names
+of the user's Posts, Followers, Following
