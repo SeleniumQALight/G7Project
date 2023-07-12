@@ -52,7 +52,7 @@ password: 123Qwertyasd
 4. At the create post page click Save new post button
 
 ER: You are at your post page. New post successfully created message appears
-Postconditions: delete previously created post
+Postconditions: delete previously created post  (in order to delete post perform steps of Test case 006)
 
 005 Editing post
 Preconditions:
@@ -63,5 +63,5 @@ Preconditions:
 3. Click Save updates button
 
 ER: You are at the edit post page. Post successfully updated message appears
-Postconditions: delete previously created post
+Postconditions: delete previously created post (in order to delete post perform steps of Test case 006)
 
