@@ -7,6 +7,8 @@ Steps to reproduce:
 3. Tap to the Sign up for OurApp button
 
 ER: Login to the OurApp with new credentials happens
+Postcondition: Logout
+
 
 #002 Test case Create a new post
 Preconditions:
@@ -21,30 +23,34 @@ Steps to reproduce:
 5. Tap to the button Save new post
 
 ER: Alert New post successfully created is displayed, test title and the test body are displayed in the desk.
+Postcondition: Logout
 
 #003 Test case Deleting post from the desk
 Preconditions:
 Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
 login : dodobird
 password: **********
-Make the post to the board
+Make the post to the board with text: "Post for autotest"
 Steps to reproduce:
 1. Tap to My profile button
-2. Tap to one of the your post
-3. Tap to the recycle bean icon to delete the current post
+2. Tap to one of the your post with Title: "Post for autotest"
+3. Tap to the recycle bin icon to delete the current post
 
 ER: Alert Post successfully deleted is displayed, post has been deleted from list of posts
+Postcondition: Logout
 
 #004 Test case Search field
 Preconditions:
 Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
 login : dodobird
 password: **********
+Make the post to the board with text: "Post for autotest"
 Steps to reproduce:
-1. Tap to Search button the search form opens
-2. Fill in the form with any word, like Post
+1. Tap to Search button, the search form opens
+2. Fill in the form with text: "Post for autotest"
 
-ER: Search gives you the result of search
+ER: Search gives you the result of search, text: "Post for autotest" exists
+Postcondition: Logout
 
 #005 Test case Follow for another user posts
 Preconditions:
