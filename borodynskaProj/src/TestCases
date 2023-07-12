@@ -2,12 +2,12 @@
 Preconditions:
 - you are at the home page (https://qa-complexapp.onrender.com/)
 
-1. In the Username input field enter valid username (yuliiaborodynska)
-2. In the Email input field enter valid email (yuliia@mail.com)
-3. In the Password input field enter valid pasword (123Qwertyasd)
+1. In the Username input field enter valid username (for example, yuliiaborodynska. each time unique)
+2. In the Email input field enter valid email (for example, yuliia@mail.com. each time unique)
+3. In the Password input field enter valid pasword (for example, 123Qwertyasd)
 4. Click Sign up for OurApp button
 
-ER: You are redirected to your account page at the OurApp
+ER: You are redirected to your account page. Create post and Sign out buttons appears
 
 
 002 Sign in
@@ -22,7 +22,7 @@ password: 123Qwertyasd
 2. In the Password input field enter valid pasword (123Qwertyasd)
 3. Click Sign in button
 
-ER: You are redirected to your account page at the OurApp
+ER: You are redirected to your account page at the OurApp. Create post and Sign out buttons appears
 
 
 003 Sign out
@@ -35,10 +35,10 @@ password: 123Qwertyasd
 
 1. In the top right corner of the page click Sign out button
 
-ER:  you are signed out and redirected to the home page (https://qa-complexapp.onrender.com/)
+ER:  you are signed out and redirected to the home page (https://qa-complexapp.onrender.com/). Sign in and Sign up for OurApp buttons appears
 
 
-004 Creating post
+004 Checking that creating post success message appears after post is created
 Preconditions:
 - you are signed in with credentials:
 username: yuliiaborodynska
@@ -52,6 +52,7 @@ password: 123Qwertyasd
 4. At the create post page click Save new post button
 
 ER: You are at your post page. New post successfully created message appears
+Postconditions: delete previously created post
 
 005 Editing post
 Preconditions:
@@ -62,5 +63,5 @@ Preconditions:
 3. Click Save updates button
 
 ER: You are at the edit post page. Post successfully updated message appears
-
+Postconditions: delete previously created post
 
