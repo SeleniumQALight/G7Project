@@ -40,8 +40,6 @@ public class LoginTest {
         Assert.assertTrue("Button is not displayed",buttonSignOut.isDisplayed());
 
 
-
-
         webDriver.quit();
         System.out.println("browser was closed");
 
