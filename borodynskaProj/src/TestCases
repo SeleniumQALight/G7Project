@@ -1,0 +1,66 @@
+001 Sign up
+Preconditions:
+- you are at the home page (https://qa-complexapp.onrender.com/)
+
+1. In the Username input field enter valid username (yuliiaborodynska)
+2. In the Email input field enter valid email (yuliia@mail.com)
+3. In the Password input field enter valid pasword (123Qwertyasd)
+4. Click Sign up for OurApp button
+
+ER: You are redirected to your account page at the OurApp
+
+
+002 Sign in
+Preconditions:
+- you are at the home page (https://qa-complexapp.onrender.com/)
+- user is already signed up with credentials:
+username: yuliiaborodynska
+password: 123Qwertyasd
+(in order to sign up perform steps of Test case 001)
+
+1. In the Username input field enter valid username (yuliiaborodynska)
+2. In the Password input field enter valid pasword (123Qwertyasd)
+3. Click Sign in button
+
+ER: You are redirected to your account page at the OurApp
+
+
+003 Sign out
+Preconditions:
+- you are signed in with credentials:
+username: yuliiaborodynska
+password: 123Qwertyasd
+(in order to sign in perform steps of Test case 002)
+- you are at your account page at the OurApp
+
+1. In the top right corner of the page click Sign out button
+
+ER:  you are signed out and redirected to the home page (https://qa-complexapp.onrender.com/)
+
+
+004 Creating post
+Preconditions:
+- you are signed in with credentials:
+username: yuliiaborodynska
+password: 123Qwertyasd
+(in order to sign in perform steps of Test case 002)
+- you are at your account page at the OurApp
+
+1. At the top of the page click Create Post button
+2. At the create post page fill in Title (for example, New post)
+3. At the create post page fill in  Body Content (for example, This post is about...)
+4. At the create post page click Save new post button
+
+ER: You are at your post page. New post successfully created message appears
+
+005 Editing post
+Preconditions:
+- your post is created. (in order to create post perform steps of Test case 004)
+
+1. At your post page click pencil (edit) icon
+2. Edit Title to Yuliia's new post
+3. Click Save updates button
+
+ER: You are at the edit post page. Post successfully updated message appears
+
+
