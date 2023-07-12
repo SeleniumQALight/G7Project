@@ -42,9 +42,6 @@ public class LoginTest {
 
 
 
-
-
-
         webDriver.quit();
         System.out.println("browser was closed");
 
