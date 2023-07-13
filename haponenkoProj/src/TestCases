@@ -3,8 +3,8 @@ Preconditions:
 Launch the website "https://qa-complexapp.onrender.com"
 
 Valid data:
-    - username: min 3 characters (IrynaG7)
-    - email: valid email address e.g. you@example.com (irynag7@mailinator.com)
+    - username: min 3 characters (e.g. IrynaG7). Username must be unique
+    - email: valid email address e.g. you@example.com (irynag7@mailinator.com). email must be unique
     - password: at least 12 characters (123456789123)
 
 STR:
@@ -14,6 +14,9 @@ STR:
 
 ER:
 The user's name, profile icon and sign out button is shown in the header
+
+Post Conditions:
+User must be signed out after session
 
 
 002 Login Check
@@ -30,6 +33,9 @@ STR:
 
 ER:
 The user's profile icon and sign out button is shown in the header
+
+Post Conditions:
+User must be signed out after session
 
 
 003 Profile Check
