@@ -1,17 +1,75 @@
-001 Name Case
-1. Step bla bla
-2.
-3.
-4.
+-----------------1 Sign up
+1. Open the site https://qa-complexapp.onrender.com/
+2. Find the "Username" field in the "Sign up" block
+3. Enter the valid username (only latin letters and numbers)
+4. Find the "Email" field in the "Sign up" block
+5. Enter valid email
+6. Find the "Password" field in the "Sign up" block
+7. Enter valid password (min 12 letters)
+8. Find the "Sign up for OurApp" button
+9. Click the "Sign up for OurApp" button
 
-ER:
+ER: The text from step #3 is displayed in the header
+------------------------------------------------------------------
 
-002 Name
+-----------------2 Create a post
+Preconditions:
+* the user is logged in
+Steps:
+1. Open the site https://qa-complexapp.onrender.com/
+2. Find the "Create post" button in the header
+3. Click the "Create post" button
+4. Find the "Title" field
+5. Enter the data (at least 1 character)
+6. Find the "Body content" field
+7. Enter the data (at least 1 character)
 
-003 Name
+ER: The "New post successfully created." successful alert is displayed
+------------------------------------------------------------------
 
-003 Name
+-----------------3 Edit a post
+Preconditions:
+* the user is logged in
+* the user created a post
+* the user opened created post
+Steps:
+1. Open the site https://qa-complexapp.onrender.com/
+2. Find the "Edit" button
+3. Click the "Edit" button
+4. Find the "Title" field
+5. Enter the data (at least 1 character)
+6. Find the "Body content" field
+7. Enter the data (at least 1 character)
+8. Find the "Save updates" button
+9. Click the "Save updates" button
 
-004 Name
+ER: The "Post successfully updated." successful alert is displayed
+------------------------------------------------------------------
 
-005 Name
+-----------------4 Find post via search
+Preconditions:
+* the post with "X" word is created
+* the user is logged in
+Steps:
+1. Find the "Search" field
+2. Click the "Search" field
+3. Enter the "X" word
+4. Observe the Search Results (Y items found)
+5. Click item from the search list
+
+ER: The "Posted by" is displayed below the title
+The "X" word is in the post
+
+------------------------------------------------------------------
+
+-----------------5 Sign out
+Preconditions:
+* the user is logged in
+Steps:
+1. Open the site https://qa-complexapp.onrender.com/
+2. Find the "Sign out" button in the header
+3. Click the "Sign out" button
+
+ER: The "Sign in" button is displayed in the header
+
+------------------------------------------------------------------
