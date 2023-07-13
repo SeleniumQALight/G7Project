@@ -1,42 +1,42 @@
 #LoginPage
-Login.form.SignUp = //*[@action='/register']
-Login.input.UserNameSignUp = //*[@name='username' and @id='username-register']
-Logi.input.EmailSignUp = //*[@name='email' and @id='email-register']
-Login.input.PasswordSignUp = //*[@name='password' and @id='password-register']
-Login.button.SignUp = //*[@type='submit' and @class='py-3 mt-4 btn btn-lg btn-success btn-block']
+Login.form.SignUp = //form[@action='/register']
+Login.input.UserNameSignUp = //input[@name='username' and @id='username-register']
+Logi.input.EmailSignUp = //input[@name='email' and @id='email-register']
+Login.input.PasswordSignUp = //input[@name='password' and @id='password-register']
+Login.button.SignUp = //button[@type='submit' and @class='py-3 mt-4 btn btn-lg btn-success btn-block']
 
 #LoginPageHeader
-Login.form.Login = //*[@action='/login']
-Login.input.UserNameLogin = //*[@name='username' and @id='username6']
-Login.input.PasswordLogin = //*[@name='password' and @class='form-control form-control-sm input-dark']
-Login.button.SignIn = //*[@class='btn btn-primary btn-sm']
+Login.form.Login = //form[@action='/login']
+Login.input.UserNameLogin = //input[@name='username' and @class='form-control form-control-sm input-dark']
+Login.input.PasswordLogin = //input[@name='password' and @class='form-control form-control-sm input-dark']
+Login.button.SignIn = //button[@class='btn btn-primary btn-sm']
 
 #HomePage
 HomePage.text.UserName = //*[@class='text-white mr-2']
 
 #ProfilePage
-Profile.Avatar = //*[@class='avatar-small']
+Profile.Avatar = //img[@class='avatar-small']
 Profile.Name = //h2
-Profile.tabs.Posts = //*[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[@class='profile-nav-link nav-item nav-link active']
-Profile.tabs.Followers = //*[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[@class='profile-nav-link nav-item nav-link ']
+Profile.tabs.Posts = //div[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[@class='profile-nav-link nav-item nav-link active']
+Profile.tabs.Followers = //*[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[contains(text(),'Followers')]
 Profile.tabs.Following = //*[@class = 'profile-nav nav nav-tabs pt-2 mb-4']//a[contains(text(),'Following')]
 
 #Home/ProfilePageHeader
-Header.icon.Profile = //*[@class = 'mr-2']
+Header.icon.Profile = //a[@class = 'mr-2']
 Header.button.CreatePost = //*[@class = 'btn btn-sm btn-success mr-2']
-Header.button.SignOut = //*[@class = 'btn btn-sm btn-secondary']
-Header.icon.Search = //*[@class = 'svg-inline--fa fa-search fa-w-16']
+Header.button.SignOut = //a[@class = 'btn btn-sm btn-secondary']
+Header.icon.Search = //a[@class = 'text-white mr-2 header-search-icon']//*[@class = 'svg-inline--fa fa-search fa-w-16']
 Header.icon.Chat = //*[@class = 'svg-inline--fa fa-comment fa-w-16']
 
 #CreatePostPage
-CreatePost.input.Title = //*[@name = 'title']
-CreatePost.textarea.Body = //*[@name = 'body']
-CreatePost.checkbox.Unique = //*[@type = 'checkbox']
+CreatePost.input.Title = //input[@name = 'title']
+CreatePost.textarea.Body = //textarea[@name = 'body']
+CreatePost.checkbox.Unique = //input[@type = 'checkbox']
 
-#PostPage
-Post.message.Success = //*[@class = 'alert alert-success text-center']
-Post.Title = //*[@class = 'd-flex justify-content-between']//h2
-Post.ProfileIcon = //*[@class = 'avatar-tiny']
+#MyPostPage
+Post.message.Success = //div[@class = 'alert alert-success text-center']
+Post.Title = //div[@class = 'd-flex justify-content-between']//h2
+Post.ProfileIcon = //img[@class = 'avatar-tiny']
 Post.ProfileAuthor = //*[@class = 'text-muted small mb-4']/a
 Post.button.Edit = //*[@class = 'svg-inline--fa fa-edit fa-w-18']
 Post.button.Delete = //*[@class = 'svg-inline--fa fa-trash fa-w-14']
