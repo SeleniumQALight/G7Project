@@ -1,0 +1,77 @@
+1.Test Case name: Successful login at the “ https://qa-complexapp.onrender.com/ “login page.
+Preconditions: User has a valid Username “maveris1995” and password “12345678912345” .
+The website “https://qa-complexapp.onrender.com/“ is accessible.
+
+Steps to Reproduce:
+1)Enter valid username - “maveris1995”
+2)Enter valid password - “12345678912345”
+3)Click on the “Sign In” button.
+
+Expected Result: User is successfully logged in and redirected to the page with the text in the middle of the page “Hello , “username” , your feed is empty.
+Postconditions: User logs out of the website by clicking “Sign out” button and redirected to the page with empty “Username” and “Password” fields.
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+2.Test Case name : Create Post with Empty Title and “Body Content”.
+Preconditions: User is logged in with valid credentials (Username “maveris1995” and password “12345678912345” ).
+User is redirected on page where the green button “Create post”.
+
+Steps to Reproduce:
+1)Click on the green button “Create post” which is located on top of the screen.
+2)Leave the “title” field empty.
+3)Leave the “Body content” field empty.
+4)Click the “Save new post” button on the bottom of the page.
+
+Expected Result: An error message “Please fill in in this field.” is displayed below the “Title” field .
+Postconditions: The post is not created, and the user remains on the "Create Post" page.
+User logs out of the website by clicking “Sign out” button and redirected to the page with empty “Username” and “Password” fields.
+
+---------------------------------------------------------------------------------------------------------------------
+
+3.Test Case name: Search for a specific post in the profile.
+Preconditions: User is logged in with valid credentials (Username “maveris1995” and password “12345678912345” ).
+User has at least one created post in its profile. (Example:“First title” with text “ Random text”)
+User remembers at least one word of the post content(contained in title or body fields).
+
+Steps to reproduce:
+1)Click on the Search button on the top of the screen.
+2)Enter at least one full word of the content - “Random” in the search field.
+
+
+Expected Result: The search results display the post(s) matching the entered keywords/content.( Example: “Title:First title;Random”
+Postconditions: The search results are visible, and the user can interact with the post(s) as expected by requirements.
+User logs out of the website by clicking “Sign out” button and redirected to the page with empty “Username” and “Password” fields.
+
+---------------------------------------------------------------------------------------------------------------------
+
+4.Test Case name: Successful logout from the "https://qa-complexapp.onrender.com/" website.
+Preconditions:User is logged in to the website with creds - Username “maveris1995” and password “12345678912345” .
+The website “https://qa-complexapp.onrender.com/“ is accessible.
+Steps to Reproduce:
+1)Verify that the user is logged in to the website by appearance the name of the login - “maveris1995” in the right-top of the screen.
+2)Click on the "Sign out" button.
+
+Expected Result:
+User should be logged out and redirected to the page with empty "Username" and "Password" fields.
+Postconditions:
+The user is logged out of the website.
+The "Username" and "Password" fields are empty.
+
+---------------------------------------------------------------------------------------------------------------------
+
+5.Test case name: User Sends Message “Hello im Oleg” Successfully
+Preconditions:User is logged in to the website with creds - Username “maveris1995” and password “12345678912345” .
+The chat feature is accesible.
+Steps to Reproduce:
+1)Verify that the user is logged in to the website by appearance the name of the login - “maveris1995” in the right-top of the screen.
+2)Click on the message logo which is located next to the search logo.
+3)Identify the chat is opened in right bottom of the screen.
+4)Click on the text field “Type a message” in chat feature.
+5)Write the text “ Hello im Oleg”
+
+Expected Result: The message “ Hello im Oleg” is sent successfully and appears in the chat conversation.
+Postconditions: The message is visible to the recipient(s) in the chat conversation who online at the moment of posting it.  The user is logged out of the website.
+The "Username" and "Password" fields are empty.
+
+
