@@ -1,0 +1,44 @@
+001 User authorization on https://qa-complexapp.onrender.com/
+Precondition: //button [contains (text(),'Sign In')]
+1.//input [@id="username-register"]
+2.//input [@id="email-register"]
+3.//input [@id="password-register"]
+4.//button [contains (text(),'Sign up for OurApp')]
+Postcondition:
+ER: //span [contains (text(),'mmm')]
+
+002 Sign in
+Precondition:
+1.//input[ @id="username1"]
+2.
+3.
+4.
+Postcondition:
+ER:
+
+003
+Precondition:
+1.
+2.
+3.
+4.
+Postcondition:
+ER:
+
+004
+Precondition:
+1.
+2.
+3.
+4.
+Postcondition:
+ER:
+
+005
+Precondition:
+1.
+2.
+3.
+4.
+Postcondition:
+ER:
