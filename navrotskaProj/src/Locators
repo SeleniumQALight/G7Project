@@ -1,0 +1,56 @@
+#SignUp page
+
+    SignUp.input.UserName=//*[@id='username-register']
+    SignUp.input.Email=//*[@id='email-register']
+    SignUp.input.Password=//*[@id='password-register']
+    SignUp.button.SignUp=//button[@type='submit']
+
+#PreLoginHeader
+    PreLoginHdr.input.Username=//*[@name='username' and @placeholder='Username']
+    PreLoginHdr.input.Password=//header//input[@name='password']
+    PreLoginHdr.button.SignIn=//header//button[@class='btn btn-primary btn-sm']
+
+#PostLoginHeader
+    PostLoginHdr.a.MyProfileButton =//body//header/div/div/a[2]
+    PostLoginHdr.a.CreatePost=//body/header/div/div/a[3]
+    PostLoginHdr.button.SignOut=//button[@class='btn btn-sm btn-secondary']
+    PostLoginHdr.span.UserName=//body/header/div/div/span[2]
+
+#EmptyFeedPage
+    EmptyFeedPage.div.UserName=//div[@class='text-center']/h2/strong
+    EmptyFeedPage.div.TitleText1=//div[@class='text-center']/h2[contains(text(),'Hello ')]
+    EmptyFeedPage.div.TitleText2=??
+    EmptyFeedPage.p.DescriptionBody=//p[@class='lead text-muted']
+
+#MyProfilePage
+    MyProfile.a.PostCounter =//a[@class='profile-nav-link nav-item nav-link active']
+    MyProfile.a.FirstPostInList = //div[@class='list-group']/a[1]
+
+
+#CreatePostPage
+    CreatePost.input.Title=//*[@id='post-title']
+    CreatePost.textarea.BodyContent=//textarea[@name='body']
+    CreatePost.input.IsUnique=//*[@type='checkbox']
+    CreatePost.select.PrivateAccess=//div[@class='form-group']/select/option[@value='One Person']
+    CreatePost.button.SaveNewPost=//button[@class='btn btn-primary']
+
+#OpenedPostPage
+    OpenPost.text.PostIsCreatedMessage=//div[text()='New post successfully created.']
+    OpenPost.header.PostTitle = //h2
+    OpenPost.image.PostProfileImage=//p/a/img[@class='avatar-tiny']
+    OpenPost..PostedByUserName=??
+    OpenPost..PostDate=??
+    OpenPost..PostedByText=??
+    OpenPost.svg.EditPost=//*[@data-icon='edit']
+    OpenPost.svg.DeletePost=//*[@data-icon='trash']
+    OpenPost.i.AccessText=//i[text()=' Note: This post was written for ']
+    OpenPost.i.GlobalAccess=//i/u[text()=' All Users']
+    OpenPost.i.PrivateAccess=//i/u[text()=' One Person']
+    OpenPost.p.IsUnique=//p[text()='Is this post unique? : yes']
+    OpenPost.p.IsNotUnique=//p[text()='Is this post unique? : no']
+    OpenPost.p.BodyContent=//body/div[2]/div[4][@class='body-content']/p
+
+
+
+
+
