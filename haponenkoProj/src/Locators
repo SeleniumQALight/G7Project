@@ -37,6 +37,6 @@ CreatePost.checkbox.Unique = //input[@type = 'checkbox']
 Post.message.Success = //div[@class = 'alert alert-success text-center']
 Post.Title = //div[@class = 'd-flex justify-content-between']//h2
 Post.ProfileIcon = //img[@class = 'avatar-tiny']
-Post.ProfileAuthor = //*[@class = 'text-muted small mb-4']/a
+Post.ProfileAuthor = //p//a[contains(@href,'profile')][2]
 Post.button.Edit = //*[@class = 'svg-inline--fa fa-edit fa-w-18']
 Post.button.Delete = //*[@class = 'svg-inline--fa fa-trash fa-w-14']
