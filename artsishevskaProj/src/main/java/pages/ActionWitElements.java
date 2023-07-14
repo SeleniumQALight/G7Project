@@ -4,11 +4,11 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ActionsWithElements {
+public class ActionWitElements {
     protected WebDriver webDriver;
 
 
-    public ActionsWithElements(WebDriver webDriver) {
+    public void ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
@@ -51,5 +51,4 @@ public class ActionsWithElements {
         System.out.println("Can not work with element");
         Assert.fail("Can not work with element");
     }
-    }
-
+}
