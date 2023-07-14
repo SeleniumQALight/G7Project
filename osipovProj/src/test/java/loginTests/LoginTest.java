@@ -8,19 +8,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.ActionsWithElements;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
     WebDriver webDriver;
+    ActionsWithElements actions = new ActionsWithElements(webDriver);
 
-    @Test
-    public void validLoginIn() {
+    public void prepForTest() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was opened");
+    }
+
+    @Test
+    public void validLoginIn() {
+        prepForTest();
 
         webDriver.get("https://qa-complexapp.onrender.com/");
         System.out.println("site was opened");
@@ -53,5 +59,19 @@ public class LoginTest {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Test
+    public void invalidLoginIn() {
+        prepForTest();
+
+        actions.openPage("https://qa-complexapp.onrender.com/", webDriver);
+        actions.enterTextIntoInput(webDriver.findElement(By.xpath("//input[@placeholder='Username']")), "qaauto");
+        actions.enterTextIntoInput(webDriver.findElement(By.xpath("//input[@placeholder='Password']")), "123456qwert");
+        actions.clickOnElement(webDriver.findElement(By.xpath("//button[@class='btn btn-primary btn-sm']")));
+
+        Assert.assertTrue(actions.isElementDisplayed(webDriver.findElement(By.xpath("//button[text()='Sign In']"))));
+        Assert.assertFalse(actions.isElementNotDisplayed(webDriver, "//button[text()='Sign Out']"));
+        Assert.assertTrue(actions.isElementDisplayed(webDriver.findElement(By.xpath("//div[text()='Invalid username/password.']"))));
     }
 }
