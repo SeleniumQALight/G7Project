@@ -57,12 +57,25 @@ Preconditions:
 Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
 login : dodobird
 password: **********
+Create a new post, with Title "Test555" and body "Test555"
+Logout from the site
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird1
+password: **********
 Steps to reproduce:
 1. Tap to Search button the search form opens
-2. Fill in the form with any word, like Post, Search gives you the result of search
-3. Tap to the first row of the search results
-4. Tap to the user name of the post author, his posts page opens
+2. Fill in the form with the word "Test555", Search gives you the result of search
+3. Tap to the row of the search results
+4. Tap to the user name button the post author, his posts page opens
 5. Tap to the button Follow, to follow this users posts
 
 ER: Alert Successfully followed "User" displays, page with users post opened.
+
+Postcondition: Logout
+login : dodobird
+password: **********
+Go to the page with users posts
+Delete the post with Title "Test555" and body "Test555"
+logout
+
 

@@ -58,12 +58,12 @@ SearchButton= //a[@data-original-title='Search']
 ##InputSearchField
 InputSearchField= //input[@id='live-search-field']
 
+##SearchResult for "Test555"
+SearchResultForTestCase5= //*[text()='Test555']
 
+##FollowForUserButton
+FollowForUser= //img[@class='avatar-tiny']
 
-#SearchResults
-Search.Results= *//body//div//div//div[@class='list-group-item active']
+##FollowConfirmationButton
+FollowConfirmationButton= //button[@class='btn btn-primary btn-sm']
 
-#Successful following
-Successful.Following= //body//div//div[@class='alert alert-success text-center']
-
-//* [text()='Test Post4'] Пошук тексту
