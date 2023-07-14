@@ -110,11 +110,11 @@ public class LoginTest {
         if (!errorMessages.isEmpty()) {
             WebElement errorMessage = errorMessages.get(0);
             Assert.assertTrue("The 'Invalid username/password' message is displayed", errorMessage.isDisplayed());
-            System.out.println("The 'Invalid username/password' message is displayed");
+            System.out.println(errorMessages.get(0).getText());
         } else {
             String errorMessage = "The 'Invalid username/password' message isn't displayed";
             System.out.println(errorMessage);
-            throw new AssertionError(errorMessage); // Throw an assertion error to mark the test as "failed"
+            throw new AssertionError(errorMessage); 
         }
     }
 
