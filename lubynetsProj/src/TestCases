@@ -21,13 +21,18 @@ Precondition: User must be logged in.
 3.	Enter the post content in the "Body Content" field.
 4.	Select a value in the "Select value" field.
 5.	Click the "Save New Post" button.
-Expected Result: The message "New post successfully created." is displayed on the screen
+6.	Verify that the message "New post successfully created." is displayed on the screen.
+7.	 Click the "my profile" to Verify that the created post is displayed in the list of posts
+Expected Result: The post will be in the post list
 
 004 Deleting a Post
 Precondition: User must be logged in and have created posts.
-1.Click the delete icon (trash can icon) next to the post.
-2.Verify that the message "Post successfully deleted." is displayed on the screen.
-Expected Result: You go to the main page with existing posts
+1.	Go to the My Profile page.
+2.	Locate the post that you want to delete.
+3.	Click the delete icon (trash can icon) next to the post.
+4.	Verify that the message "Post successfully deleted." is displayed on the screen.
+5.	Verify that the deleted post is no longer visible in the list of posts.
+Expected Result:the deleted post is no longer visible in the list of posts.
 
 005 Logout
 Precondition: User must be logged in.
