@@ -1,0 +1,91 @@
+001 Registration Check
+Preconditions:
+Launch the website "https://qa-complexapp.onrender.com"
+
+Valid data:
+    - username: min 3 characters (e.g. IrynaG7). Username must be unique
+    - email: valid email address e.g. you@example.com (irynag7@mailinator.com). email must be unique
+    - password: at least 12 characters (123456789123)
+
+STR:
+1. Look for the registration form
+2. Fill in the required fields in the registration form with valid data from preconditions
+3. Click on the submit button
+
+ER:
+The user's name, profile icon and sign out button is shown in the header
+
+Post Conditions:
+User must be signed out after session
+
+
+002 Login Check
+Preconditions:
+Launch the website "https://qa-complexapp.onrender.com"
+
+Valid data:
+    - registered in the system user (TC 001  Registration Check)
+
+STR:
+1. Find the login form in the header
+2. Fill in the form with the valid data
+3. Click on the submit button
+
+ER:
+The user's profile icon and sign out button is shown in the header
+
+Post Conditions:
+User must be signed out after session
+
+
+003 Profile Check
+Preconditions:
+Launch the website "https://qa-complexapp.onrender.com"
+Log in to the website as a registered user (TC 002 Login Check)
+
+STR:
+1. Find the user's profile icon in the header
+2. Click on user's profile icon in the header
+
+ER:
+User sees his avatar, name and next tabs:
+    - Posts
+    - Followers
+    - Following
+If the user has posts, followers and follows sb, counter is shown next to the corresponding tab
+
+
+004 Create Post Check
+Preconditions:
+Launch the website "https://qa-complexapp.onrender.com"
+Log in to the website as a registered user (TC 002 Login Check)
+
+Required fields:
+    - Title
+    - Body
+
+STR:
+1. Find the create post button in the header
+2. Click on it
+3. Fill in required fields
+4. Mark the unique checkbox
+5. Select value from the dropdown
+6. Click on the submit button
+
+ER:
+Page post opened. Success message, all provided data, edit and delete buttons are shown.
+
+005 Search Post Check
+Preconditions:
+Launch the website "https://qa-complexapp.onrender.com"
+Log in to the website as a registered user (TC 002 Login Check)
+Posts are created i the system
+
+STR:
+1. Find the search button in the header
+2. Click on it
+3. Type search request (e.g. "post")
+4. Click on a post prom the list (if any)
+
+ER:
+List of posts is shown if any. Error message is shown if there's no posts.
