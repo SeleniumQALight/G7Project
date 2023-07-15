@@ -31,7 +31,7 @@ public class LoginTest {
         System.out.println("UserName was inputted");
         WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         inputPassword.clear();
-        inputPassword.sendKeys("123456qwerty");
+        inputPassword.sendKeys("123456qwert");
         System.out.println("Password was inputted");
 
         webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).click();
