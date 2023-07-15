@@ -19,6 +19,10 @@ ER: // //button[contains(text(), "Sign Out")]
 5.  //button[contains(text(), "Save New Post")]
 6. //a[contains(@href, "/profile/") and contains(@class, "mr-2")]
 ER: //div[contains( @class, "list-group")]
+PC:
+1.0 //div[contains( @class, "list-group")]
+1.1 //button[@class='delete-post-button text-danger']
+1.2 //div[contains(@class, "alert alert-success") and contains(text(), "Post successfully deleted")]
 
 
 004 Deleting a Post
