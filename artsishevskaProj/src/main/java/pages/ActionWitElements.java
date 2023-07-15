@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ActionWitElements {
     protected WebDriver webDriver;
-
-
-    public void ActionsWithElements(WebDriver webDriver) {
+    public ActionWitElements(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 

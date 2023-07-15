@@ -42,7 +42,7 @@ public class LoginTest {
 
 
     }
-        // webDriver.quit();
+    // webDriver.quit();
         //System.out.println("browser was closed");
         @After//this
         public void tearDown(){
