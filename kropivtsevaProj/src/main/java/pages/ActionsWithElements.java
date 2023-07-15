@@ -29,8 +29,7 @@ public class ActionsWithElements {
             input.sendKeys(text);
             System.out.println(text + " was inputted into input");
         } catch (Exception e) {
-//            System.out.println("Can not work with element " + e);
-//            Assert.fail("Can not work with element " + e);
+            printErrorAndStopTest(e);
         }
     }
 
