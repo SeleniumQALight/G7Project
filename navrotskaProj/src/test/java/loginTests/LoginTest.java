@@ -1,4 +1,4 @@
-package loginTest;
+package loginTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -9,49 +9,52 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
     WebDriver webDriver;
 
     @Test
-    public void validLogin() {
+    public void validLoginIn() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was opened");
 
-        webDriver.get("https://qa-complexapp.onrender.com");
-        System.out.println("Site was opened");
+        webDriver.get("https://qa-complexapp.onrender.com/");
+        System.out.println("website was opened");
 
-        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        WebElement inputUserName =
+                webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         inputUserName.clear();
         inputUserName.sendKeys("qaauto");
-        System.out.println("UserName was inputted");
+        System.out.println("Username was inputed");
 
-        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        WebElement inputPassword =
+                webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         inputPassword.clear();
         inputPassword.sendKeys("123456qwerty");
-        System.out.println("Password was inputted");
+        System.out.println("Password was inputed");
 
         webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).click();
         System.out.println("Button was clicked");
 
 //        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
 
-        Assert.assertTrue("Button is not displayed", isButtonSignOutVisible());
+        Assert.assertTrue("Sign out button is not displayed", isButtonSignOutVisible());
 
 //        webDriver.quit();
 //        System.out.println("Browser was closed");
+
     }
 
-    @After // this method will be executed after each test
+    @After // runs after each test
     public void tearDown() {
         webDriver.quit();
         System.out.println("Browser was closed");
     }
-
 
     private boolean isButtonSignOutVisible() {
         try {
@@ -60,6 +63,4 @@ public class LoginTest {
             return false;
         }
     }
-
-
 }
