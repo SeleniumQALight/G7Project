@@ -1,0 +1,35 @@
+#Registration
+- Registration.input.Username=.//input[@name='username' and @id='username-register']
+- Registration.input.Email=.//input[@name='email' and @id='email-register']
+- Registration.input.Password=.//input[@name='password' and @id='password-register']
+- Registration.button.SignUpButton=.//button[contains(text(), 'Sign Up') and @id='signup-button']
+
+
+#Authorization
+- Authorization.input.Username=.//input[@name='username' and @id='username-login']
+- Authorization.input.Password=.//input[@name='password' and @id='password-login']
+- Authorization.button.LoginButton=.//button[contains(text(), 'Login') and @id='login-button']
+
+#MainPage
+- MainPage.text=.//*[contains(text(), 'Hello') and contains(text(), 'your feed is empty')]
+
+#CreatePostPage
+- CreatePostPage.button.CreatePost=.//button[contains(text(), 'Create Post') and @id='create-post-button']
+- CreatePostPage.input.Title=.//input[@name='title' and @id='post-title']
+- CreatePostPage.textarea.BodyContent=.//textarea[@name='body' and @id='post-body']
+- CreatePostPage.checkbox.IsUniquePost=.//input[@name='unique' and @id='post-unique']
+- CreatePostPage.select.Visibility=.//select[@name='visibility' and @id='post-visibility']
+- CreatePostPage.button.SaveNewPost=.//button[contains(text(), 'Save New Post') and @id='save-post-button']
+- CreatePostPage.text.PostCreationConfirmation=.//*[contains(text(), 'New post successfully created.')]
+- CreatePostPage.postTitle=.//*[contains(@class, 'post-title') and contains(text(), '[name title]')]
+
+#Search
+- Search.input.Search=.//input[@name='search' and @id='search']
+- Search.button=.//button[contains(text(), 'Search') and @id='search-button']
+- Search.postTitle=.//*[contains(@class, 'post-title') and contains(text(), 'test')]
+
+#SubscribeUserProfile
+- SubscribeUserProfile.userProfilePage=.//*[contains(@class, 'user-profile') and @id='user-profile']
+- SubscribeUserProfile.userNameLink=.//*[contains(@class, 'user-profile')]//a
+- SubscribeUserProfile.button.Subscribe=.//*[contains(@class, 'subscribe-button') and @id='subscribe-button']
+- SubscribeUserProfile.subscriptionConfirmation=.//*[contains(text(), 'Successfully followed') and contains(@class, 'subscription-success')]
