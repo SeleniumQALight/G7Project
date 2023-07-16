@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -12,7 +11,7 @@ public class ActionsWithElements {
         this.webDriver = webDriver;
     }
 
-    public void openPage(String url, WebDriver webDriver) {
+    public void openPage(String url) {
         try {
             webDriver.get(url);
             System.out.println("Page was opened");
@@ -54,12 +53,4 @@ public class ActionsWithElements {
         Assert.fail("Can not work with element");
     }
 
-    public boolean isElementNotDisplayed(WebDriver webDriver, String element) {
-        try {
-            return webDriver.findElement(By.xpath(element)).isDisplayed();
-        } catch (Exception e) {
-            System.out.println("Element is not displayed");
-            return false;
-        }
-    }
 }
