@@ -3,10 +3,14 @@
 Preconditions: without preconditions
 Steps to reproduce:
 1. Go for Complex app link
-2. Fill in the fields Username, Email, Password in sign up form with the valid values
+2. Fill in the fields in sign up forms with valid data:
+ Username= dodo1;
+ Email= dodo1@mailto.plus;
+ Password= *******;
+ UserName and Email are unique.
 3. Tap to the Sign up for OurApp button
 
-ER: Login to the OurApp with new credentials happens
+ER: Login to the OurApp with new credentials happens, My profile icon is displayed
 Postcondition: Logout
 
 
