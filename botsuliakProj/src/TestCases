@@ -1,13 +1,12 @@
 -----------------1 Sign up
 1. Open the site https://qa-complexapp.onrender.com/
-2. Find the "Username" field in the "Sign up" block
-3. Enter the valid username (only latin letters and numbers)
-4. Find the "Email" field in the "Sign up" block
-5. Enter valid email
-6. Find the "Password" field in the "Sign up" block
-7. Enter valid password (min 12 letters)
-8. Find the "Sign up for OurApp" button
-9. Click the "Sign up for OurApp" button
+2. Click the "Username" field in the "Sign up" block
+3. Enter the valid unique username (only latin letters and numbers), for ex: 123test
+4. Click the "Email" field in the "Sign up" block
+5. Enter valid unique email, for ex: 123test@test.com
+6. Click the "Password" field in the "Sign up" block
+7. Enter valid password (min 12 characters), for ex: 123test123test
+8. Click the "Sign up for OurApp" button
 
 ER: The text from step #3 is displayed in the header
 ------------------------------------------------------------------
@@ -17,14 +16,19 @@ Preconditions:
 * the user is logged in
 Steps:
 1. Open the site https://qa-complexapp.onrender.com/
-2. Find the "Create post" button in the header
-3. Click the "Create post" button
-4. Find the "Title" field
-5. Enter the data (at least 1 character)
-6. Find the "Body content" field
-7. Enter the data (at least 1 character)
+2. Click the "Create post" button in the header
+3. Click the "Title" field
+4. Enter the data (at least 1 character)
+5. Click the "Body content" field
+6. Enter the data (at least 1 character)
+7. Click the "Save New Post" button
 
 ER: The "New post successfully created." successful alert is displayed
+The title is displayed according to the step #4
+The body content is displayed according to the step #7
+
+Postconditions:
+* created post is deleted
 ------------------------------------------------------------------
 
 -----------------3 Edit a post
@@ -34,31 +38,36 @@ Preconditions:
 * the user opened created post
 Steps:
 1. Open the site https://qa-complexapp.onrender.com/
-2. Find the "Edit" button
-3. Click the "Edit" button
-4. Find the "Title" field
-5. Enter the data (at least 1 character)
-6. Find the "Body content" field
-7. Enter the data (at least 1 character)
-8. Find the "Save updates" button
-9. Click the "Save updates" button
+2. Click the "Edit" button
+3. Find the "Title" field
+4. Enter the data (at least 1 character)
+5. Find the "Body content" field
+6. Enter the data (at least 1 character)
+7. Click the "Save updates" button
 
 ER: The "Post successfully updated." successful alert is displayed
+The title is displayed according to the step #5
+The body content is displayed according to the step #7
+
+Postconditions:
+* enetered data is deleted from post
 ------------------------------------------------------------------
 
 -----------------4 Find post via search
 Preconditions:
-* the post with "X" word is created
+* 3 posts with "X" word are created ("X" is an example)
 * the user is logged in
 Steps:
-1. Find the "Search" field
-2. Click the "Search" field
-3. Enter the "X" word
-4. Observe the Search Results (Y items found)
-5. Click item from the search list
+1. Click the "Search" field
+2. Enter the "X" word
+3. Observe the Search Results (3 items found)
+4. Click item from the search list
 
 ER: The "Posted by" is displayed below the title
 The "X" word is in the post
+
+Postconditions:
+* 3 created posts are deleted
 
 ------------------------------------------------------------------
 
@@ -67,8 +76,7 @@ Preconditions:
 * the user is logged in
 Steps:
 1. Open the site https://qa-complexapp.onrender.com/
-2. Find the "Sign out" button in the header
-3. Click the "Sign out" button
+2. Click the "Sign out" button
 
 ER: The "Sign in" button is displayed in the header
 
