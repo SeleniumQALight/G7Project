@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ActionsWithElements {
+
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
@@ -14,10 +15,11 @@ public class ActionsWithElements {
     public void openPage(String url) {
         try {
             webDriver.get(url);
-            System.out.println("Page was opened");
+            System.out.println("Page was opened " + url);
         } catch (Exception e) {
             System.out.println("Can not open " + url);
             Assert.fail("Can not open " + url);
+
         }
     }
 
@@ -49,8 +51,7 @@ public class ActionsWithElements {
     }
 
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can not work with element");
-        Assert.fail("Can not work with element");
+        System.out.println("Can not work with element " + e);
+        Assert.fail("Can not work with element " + e);
     }
-
 }
