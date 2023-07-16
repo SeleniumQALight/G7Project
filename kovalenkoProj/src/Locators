@@ -37,3 +37,4 @@ Following user //a[@class='list-group-item list-group-item-action']
 Stop following button //button[text()='Stop Following ']
 Success message //*/div[contains(text(),'Successfully stopped')]
 
+
