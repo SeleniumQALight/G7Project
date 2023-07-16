@@ -52,4 +52,5 @@ public class ActionsWithElements {
         System.out.println("Can not work with element");
         Assert.fail("Can not work with element");
     }
+
 }
