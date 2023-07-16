@@ -40,12 +40,14 @@ public class LiginTestInvalidHW {
 
         Assert.assertTrue("The 'SignIn' button is not displayed", isButtonSignInVisible());
 
-        Assert.assertTrue("The 'SignOut' button is displayed", isButtonSignOutAbsent());
+        Assert.assertFalse("The 'SignOut' button is displayed", !isButtonSignOutVisible());
+
+//        Assert.assertTrue("The 'SignOut' button is displayed", !isButtonSignOutVisible());
 
         Assert.assertTrue("The alert is not displayed", isAlertDisplayed());
     }
 
-    @After // this method will be executed after each test
+    @After
     public void tearDown() {
         webDriver.quit();
         System.out.println("Browser was closed");
@@ -59,11 +61,11 @@ public class LiginTestInvalidHW {
         }
     }
 
-    private boolean isButtonSignOutAbsent() {
+    private boolean isButtonSignOutVisible() {
         try {
             return webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).isDisplayed();
         } catch (Exception e) {
-            return true;
+            return false;
         }
     }
 
@@ -71,7 +73,7 @@ public class LiginTestInvalidHW {
         try {
             return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
         } catch (Exception e) {
-            return true;
+            return false;
         }
     }
 }
