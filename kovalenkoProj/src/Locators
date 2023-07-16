@@ -1,0 +1,39 @@
+001 Success registration
+main page https://qa-complexapp.onrender.com/
+Username field //input[@id='username-register']
+Email field //input[@id='email-register']
+Password field //input[@id='password-register']
+Sign button //button[@type='submit']
+Sign out button //button[text()='Sign Out']
+
+002 Success sign out
+Sign out button //button[text()='Sign Out']
+Sign In button //button[text()='Sign In']
+
+003 Success unique public post creation
+Create post button //a[@href='/create-post']
+Title field //input[@id='post-title']
+Body Content field //textarea[@id='post-body']
+Check box //input[@name='uniquePost']
+Select value //option[@value='All Users']
+Save New Post button //button[text()='Save New Post']
+Success //div[text()='New post successfully created.']
+//*/u[contains(text(),'All Users')]
+//*/p[contains(text(),'yes')]
+
+004 Success post edition (title change of unique public post)
+My profile button //a[@class='mr-2']
+Exist post //a[@class='list-group-item list-group-item-action']
+Edit button //a[@class='text-primary mr-2']
+Title field //input[@id='post-title']
+Is this post unique check box //input[@name='uniquePost']
+Select value //option[@value='All Users']
+Save Updates button //button[text()='Save Updates']
+Success message //div[text()='Post successfully updated.']
+
+005 Success stop following
+Following button //div[text()='Following']
+Following user //a[@class='list-group-item list-group-item-action']
+Stop following button //button[text()='Stop Following ']
+Success message //*/div[contains(text(),'Successfully stopped')]
+
