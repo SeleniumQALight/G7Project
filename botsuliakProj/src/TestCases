@@ -17,11 +17,9 @@ Preconditions:
 Steps:
 1. Open the site https://qa-complexapp.onrender.com/
 2. Click the "Create post" button in the header
-3. Click the "Title" field
-4. Enter the data (at least 1 character)
-5. Click the "Body content" field
-6. Enter the data (at least 1 character)
-7. Click the "Save New Post" button
+3. Enter the data in the "Title" field (at least 1 character)
+4. Enter the data in the "Body content" field (at least 1 character)
+5. Click the "Save New Post" button
 
 ER: The "New post successfully created." successful alert is displayed
 The title is displayed according to the step #4
@@ -39,11 +37,9 @@ Preconditions:
 Steps:
 1. Open the site https://qa-complexapp.onrender.com/
 2. Click the "Edit" button
-3. Find the "Title" field
-4. Enter the data (at least 1 character)
-5. Find the "Body content" field
-6. Enter the data (at least 1 character)
-7. Click the "Save updates" button
+3. Enter the data in the "Title" field(at least 1 character)
+4. Enter the data in the "Body content" field (at least 1 character)
+5. Click the "Save updates" button
 
 ER: The "Post successfully updated." successful alert is displayed
 The title is displayed according to the step #5
