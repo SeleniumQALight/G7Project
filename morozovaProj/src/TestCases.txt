@@ -15,7 +15,6 @@ Precondition:The User exists
 1. Enter Username.
 2. Enter Password
 3. Press "Sign in"
-Postcondition:authorized login
 ER: Active "Sign Out"
 
 003 Create post on https://qa-complexapp.onrender.com/
@@ -25,20 +24,28 @@ Precondition:Active <Username>(Active "Sign Out")
 3. Is this post unique?(not)
 4. Select value- "Загальнодоступне"
 5. Press "Save New Post"
-Postcondition:New post successfully created.
-ER: The created post
+ER: The post was created. (Побачити "New post successfully created". Знайти свій пост по темі та змісту.Пост є в списку myProfile.)
+Postcondition:
+    1 Зайти відповідним користувачем.
+    2 Зайти в myProfile.
+    3 Знайти потрібний пост по темі та змісту.
+    4 Deleted post.
 
 004 Deleted post
-Precondition: The post exists
+Precondition:{The post exists:
+    1 Зайти відповідним користувачем.
+    2 Зайти в myProfile.
+    3 Знайти потрібний пост по темі та змісту.}
+
 1. Select created post
 2. Press delete
-Postcondition: active 'Post successfully deleted.'
-ER: Deleted post
+ER: Deleted post. Active 'Post successfully deleted.' Поста немає в списку myProfile.
 
 005 Chat
-Precondition: Active 'Sign Out'
+Precondition:Зайти відповідним користувачем. Побачити 'Sign Out'
 1. Press Chat
 2. Enter message
 3. Press Enter
-Postcondition:active <text message>
-ER: The message sent
+
+ER: The message sent. (Повідомлення видно в чаті //div [@class="chat-message-inner"and contains(text(), "<my message>")])
+Postcondition: Press "Sign оut". Active "Sign in"
