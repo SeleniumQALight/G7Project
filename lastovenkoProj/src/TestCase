@@ -28,7 +28,7 @@ on the site https://qa-complexapp.onrender.com/ may be the following notice:
 Your feed displays the latest posts from the people you follow. If you don't have any friends to follow that's okay;
 you can use the “Search” feature in the top menu bar to find content written by people with similar interests and
 then follow them"
-Given: site.. User of authorizated on the site.
+Given: site https://qa-complexapp.onrender.com/ User of authorizated on the site.
 Steps:
 1. Sign in to the site https://qa-complexapp.onrender.com/ .
 Scoring result:
