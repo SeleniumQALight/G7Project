@@ -1,12 +1,85 @@
-#001 Name Case
-Steps
-1.
-2.
-3.
-4.
 
-ER
+#001 Test case Successful registration
+Preconditions: without preconditions
+Steps to reproduce:
+1. Go for Complex app link
+2. Fill in the fields in sign up forms with valid data:
+ Username= dodo1;
+ Email= dodo1@mailto.plus;
+ Password= *******;
+ UserName and Email are unique.
+3. Tap to the Sign up for OurApp button
 
-Треба 5 тесткейсів
-https://qa-complexapp.onrender.com
-позитивні кейси
+ER: Login to the OurApp with new credentials happens, My profile icon is displayed
+Postcondition: Logout
+
+
+#002 Test case Create a new post
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Steps to reproduce:
+1. Tap to the Create post button
+2. Fill in the fields Title, Body content
+3. Tap to mark the checkbox Is this post unique?
+4. Select the Value "Загальнодоступне"
+5. Tap to the button Save new post
+
+ER: Alert New post successfully created is displayed, test title and the test body are displayed in the desk.
+Postcondition: Logout
+
+#003 Test case Deleting post from the desk
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Make the post to the board with text: "Post for autotest"
+Steps to reproduce:
+1. Tap to My profile button
+2. Tap to one of the your post with Title: "Post for autotest"
+3. Tap to the recycle bin icon to delete the current post
+
+ER: Alert Post successfully deleted is displayed, post has been deleted from list of posts
+Postcondition: Logout
+
+#004 Test case Search field
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Make the post to the board with text: "Post for autotest"
+Steps to reproduce:
+1. Tap to Search button, the search form opens
+2. Fill in the form with text: "Post for autotest"
+
+ER: Search gives you the result of search, text: "Post for autotest" exists
+Postcondition: Logout
+
+#005 Test case Follow for another user posts
+Preconditions:
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird
+password: **********
+Create a new post, with Title "Test555" and body "Test555"
+Logout from the site
+Login to the site https://qa-complexapp.onrender.com/ with valid credentials:
+login : dodobird1
+password: **********
+Steps to reproduce:
+1. Tap to Search button the search form opens
+2. Fill in the form with the word "Test555", Search gives you the result of search
+3. Tap to the row of the search results
+4. Tap to the user name button the post author, his posts page opens
+5. Tap to the button Follow, to follow this users posts
+
+ER: Alert Successfully followed "User" displays, page with users post opened.
+
+Postcondition: Logout
+login : dodobird
+password: **********
+Go to the page with users posts
+Delete the post with Title "Test555" and body "Test555"
+logout
+
+

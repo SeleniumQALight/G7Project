@@ -1,6 +1,7 @@
 package loginTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -39,12 +40,25 @@ public class LoginTest {
         signInButton.click();
         System.out.println("Button was clicked");
 
-        WebElement singOutButton = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
+//        WebElement singOutButton = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
 
 
-        Assert.assertTrue("Button is not displayed", singOutButton.isDisplayed());
+        Assert.assertTrue("Button is not displayed", isButtonSignOutVisible());
 
         webDriver.quit();
         System.out.println("Browser was closed");
+    }
+
+    @After
+    public void tearDown() {
+        webDriver.quit();
+    }
+
+    private boolean isButtonSignOutVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
