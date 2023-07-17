@@ -1,0 +1,39 @@
+001 User Authorization
+1.	//input[@placeholder="Username"]
+2.	//input[@placeholder="Password"]
+3.	//button[contains(text(), "Sign In")]
+ER:  //button[contains(text(), "Sign Out")]
+
+002 User Registration
+1.	//input[@placeholder="Pick a username"]
+2.	//input[@placeholder="you@example.com"]
+3.	//input[@placeholder="Create a password"]
+4.	//button[contains(text(), "Sign up for OurApp")]
+ER: // //button[contains(text(), "Sign Out")]
+
+003 Creating a Post
+1.  //a[@href="/create-post"]
+2.  //input[@name="title"]
+3.  //textarea[@name="body"]
+4.  //select[@name="select1"]
+5.  //button[contains(text(), "Save New Post")]
+6. //a[contains(@href, "/profile/") and contains(@class, "mr-2")]
+ER: //div[contains( @class, "list-group")]
+PC:
+1.0 //div[contains( @class, "list-group")]
+1.1 //button[@class='delete-post-button text-danger']
+1.2 //div[contains(@class, "alert alert-success") and contains(text(), "Post successfully deleted")]
+
+
+004 Deleting a Post
+1. //a[contains(@href, "/profile/") and contains(@class, "mr-2")]
+2. //div[contains( @class, "list-group")]
+3. //button[@class='delete-post-button text-danger']
+4. //div[contains(@class, "alert alert-success") and contains(text(), "Post successfully deleted")]
+ER: //div[contains( @class, "list-group")]
+
+
+
+005 Logout
+1.//button[contains(text(), "Sign Out")]
+ER: //button[contains(text(), "Sign In")]

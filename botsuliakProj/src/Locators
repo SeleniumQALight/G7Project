@@ -1,0 +1,41 @@
+-----------------1 Sign up
+2. //input[@placeholder="Pick a username"]
+4. //input[@name="email"]
+6. //input[@placeholder="Create a password"]
+8. //button[@type="submit"]
+
+ER: //span[@class="text-white mr-2"]
+
+
+-----------------2 Create a post
+2. //a[@class="btn btn-sm btn-success mr-2"]
+3. //input[@name="title"]
+4. //textarea[@name="body"]
+5. //button[@class="btn btn-primary"]
+
+ER: //div[@class="alert alert-success text-center"]
+//div[@class="d-flex justify-content-between"]//h2 - мені здається що просто h2 занадто не інформативно, тому я взяла батьківський елемент
+//div[@class="body-content"]//p - тут треба буде вибирати 2ий елемент, бо є ще один такий самий вище
+
+-----------------3 Edit a post
+2. //a[@class="text-primary mr-2"]
+3. //input[@name="title"] . . . . . . . . . . . . . . . . . . . . вперше використано в 2му кейсі
+4. //textarea[@name="body"] . . . . . . . . . . . . . . . . . . . вперше використано в 2му кейсі
+5. //button[@class="btn btn-primary"] . . . . . . . . . . . . . . вперше використано в 2му кейсі
+
+ER: //div[@class="alert alert-success text-center"] . . . . . . . вперше використано в 2му кейсі
+//div[@class="d-flex justify-content-between"]//h2  . . . . . . . вперше використано в 2му кейсі
+//div[@class="body-content"]//p - вперше використано в 2му кейсі
+
+-----------------4 Find post via search
+1. //a[@class="text-white mr-2 header-search-icon"]
+4. //a[@class="list-group-item list-group-item-action"] - тут вибрати наприклад 1ий елемент з доступних
+
+ER: //p[@class="text-muted small mb-4"]
+треба знайти "X" в //div[@class="d-flex justify-content-between"]
+якщо немає то в //div[@class="body-content"]//p  . . . . . . . . . вперше використано в 2му кейсі
+
+-----------------5 Sign out
+2. //button[@class="btn btn-sm btn-secondary"]
+
+ER: //button[@class='btn btn-primary btn-sm']
