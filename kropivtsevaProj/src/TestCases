@@ -36,7 +36,7 @@ Steps:
 
 Expected Result:
 After successful registration, the user should be redirected to the main page of the site.
-The main page displays the text "Hello [username], your feed is empty".
+The main page displays the [username].
 
 003 Test Case: Create a New Post
 Precondition:
@@ -61,6 +61,10 @@ Expected Result:
 After successfully creating a new post, it should be saved and displayed on the main page of the site with the text "New post successfully created.".
 The Title [name title] of our post is displayed.
 
+Postconditions for the "Delete Post":
+The post should be removed from the database or storage system.
+The deleted post is no longer displayed on the main page, the message "Post successfully deleted." is displayed.
+
 004 Test Case: Search for a Post by Title
 Precondition:
 - The web application is accessible at https://qa-complexapp.onrender.com/.
@@ -78,7 +82,6 @@ Steps:
 
 Expected Result:
 After performing a search by the title "test", the corresponding post with that title should be displayed.
-If no post with the title "test" is found, a message indicating no results should be displayed.
 
 005 Test Case: Subscribe to Post Creator
 Precondition:
