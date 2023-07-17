@@ -1,1 +1,16 @@
-LastovenkoQAutomation
+Test-case 1.
+Locators
+1.<input name="username" id="username-register" class="form-control" type="text" placeholder="Pick a username"
+autocomplete="off">
+2.<input name="email" id="email-register" class="form-control" type="text" placeholder="you@example.com"
+autocomplete="off">
+3.<input name="password" id="password-register" class="form-control" type="password" placeholder="Create a password"
+4.<button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for OurApp</button>
+.<div class="alert alert-danger small liveValidateMessage liveValidateMessage--visible">Password must
+be at least 12 characters.</div>
+5.<div class="alert alert-danger small liveValidateMessage liveValidateMessage--visible">You must provide
+a valid email address.</div>
+6.<input name="username" id="username-register" class="form-control" type="text" placeholder="Pick a username"
+autocomplete="off">
+7.<input name="password" id="password-register" class="form-control" type="password" placeholder="Create a password">
+8.<button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for OurApp</button>
