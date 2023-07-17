@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class InvalidLoginTest {
     WebDriver webDriver;
 
@@ -30,41 +32,41 @@ public class InvalidLoginTest {
         WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         inputPassword.clear();
         inputPassword.sendKeys("123456qwert");
-        System.out.println("Password was inputted");
+        System.out.println(" Invalid password was inputted");
 
-        webDriver.findElement(By.xpath(".//button[text()='Sign In']")).click();
+        webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).click();
         System.out.println("Button was clicked");
 
-        WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[text()='Log In']"));
-        WebElement buttonLogout = null;
+        Assert.assertTrue("Sign in button is not displayed", isButtonSignInVisible());
+        System.out.println("Sign in button is displayed");
+        Assert.assertFalse("Sign out button is displayed", isButtonSignOutVisible());//
+        System.out.println("Sign out button is not displayed");
+        Assert.assertTrue("Error message is not displayed", isInvalidDataMessegeVisible());
+        System.out.println("Error message is displayed");
 
-        // Verify that the Log In button is displayed
-        Assert.assertTrue("Log In button is not displayed", buttonLogin.isDisplayed());
+    }
 
-        // Check if the Log Out button is displayed (if it exists)
+    private boolean isButtonSignInVisible() {
         try {
-            buttonLogout = webDriver.findElement(By.xpath(".//button[text()='Log Out']"));
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
         } catch (Exception e) {
-            // Do nothing if the element is not found
-        }
-        Assert.assertNull("Log Out button is displayed", buttonLogout);
-
-        // Check if the invalid login message is displayed
-        Assert.assertTrue("Invalid Login Message is not displayed", isInvalidLoginMessageVisible());
-    }
-
-    @After
-    public void tearDown() {
-        if (webDriver != null) {
-            webDriver.quit();
-            System.out.println("Browser was closed");
+            return false;
         }
     }
 
-    private boolean isInvalidLoginMessageVisible() {
+    private boolean isInvalidDataMessegeVisible() {
         try {
-            WebElement invalidLoginMessage = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"));
-            return invalidLoginMessage.isDisplayed();
+            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            return webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    private boolean isButtonSignOutVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
