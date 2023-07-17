@@ -1,7 +1,7 @@
 url: https://qa-complexapp.onrender.com/
 Page 1
 sign up:
-username  .//input[@placeholder="Username"]
+username  .//*[@id='username-register']
 email     .//input[@name="email"]
 password  .//input[@id="password-register"]
 button    .//*[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]
