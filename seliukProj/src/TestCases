@@ -4,10 +4,10 @@ Test case ID: TS_SP_01
 
 	Preconditions:
 		- The user's login must be unique
-		- The user's login must match the regex pattern ^[a-zA-Z0-9]{3,30}$
+		- The user's login must be from 3 to 30 characters long and contain only letters and numbers
 		- The user's email address must be unique
-		- The user's email address has to match the regex pattern ^[a-zA-Z0-9-_]{1,20}@[a-zA-Z0-9]{1,10}\.[a-zA-Z]{3}$
-		- The user's password must match the regex pattern ^[\S]{12,50}$
+		- The user's email address myst be like {user}@{domain}.{top-level domain}
+		- The user's password must be from 12 to 30 characters
 
 	Steps to reproduce:
 		1. Entering a user name in the user registration block
@@ -27,6 +27,8 @@ Test case ID: TS_SP_01
 			Locator: homePage.buttons.logOut
 		- We can see the "Create Post" button on the page
 			Locator: homePage.buttons.createNewPost
+		- We can see username
+            Locator: homePage.elements.username
 		- We do not find the "Sign In" button on the page
 			Locator: startPage.signIn.submitButton
 
@@ -42,9 +44,7 @@ Test case ID: TS_SP_02
 
 	Preconditions:
 		- The user must already be registered
-		- If the user is not registered, he must be registered - run TS_SP_01
-		- The user's login must match the regex pattern ^[a-zA-Z0-9]{3,30}$
-		- The user's password must match the regex pattern ^[\S]{12,50}$
+		- If the user is not registered, he must be registered - according to steps in TS_SP_01
 
 	Steps to reproduce:
 		1. Entering a username in the user authorization block
@@ -55,15 +55,16 @@ Test case ID: TS_SP_02
 			Value: "user0001_Pass"
 		3. Clicking on the "Sign In" button
 			Locator: startPage.signIn.submitButton
-		4. Optional: If we see the message "Invalid username/password" the page: run TS_SP_01, and repeat paragraph 1-3
 
 	Expected results:
 		- We can see the "Sign Out" button on the page
 			Locator: homePage.buttons.logOut
 		- We can see the "Create Post" button on the page
 			Locator: homePage.buttons.createNewPost
+		- We can see username
+		    Locator: homePage.elements.username
 		- We do not find the "Sign In" button on the page
-		Locator: startPage.signIn.submitButton
+		    Locator: startPage.signIn.submitButton
 
 	Postconditions:
 		- Log Out from the page.
@@ -76,8 +77,8 @@ Test case ID: TS_PP_03
 	Summary: Creating a new post
 
 	Preconditions:
-		- The user must be logged in - run TS_SP_02
-		- If the user is not registered, he must be registered - run TS_SP_01
+		- The user must be logged in - according to steps in TS_SP_02
+		- If the user is not registered, he must be registered - according to steps in TS_SP_01
 
 	Steps to reproduce:
 		1. Clicking on the "Create Post" button
@@ -96,14 +97,19 @@ Test case ID: TS_PP_03
 			Locator: postPage.notification.newPostCreate
 		- We can see the delete post button on the page
 			Locator: postPage.buttons.deletePost
+		- We can see the created post on the page:
+		    - Move to the MyProfile page
+                Locator: homePage.buttons.myProfileButton
+            - Find the created post
+                Locator: myProfilePage.posts.findPost
 		- We do not find the "Sign In" button on the page
 			Locator: startPage.signIn.submitButton
 
-Postconditions:
-- Delete a created post.
-	Locator: postPage.buttons.deletePost
-- Log Out from the page.
-	Locator: homePage.buttons.logOut
+    Postconditions:
+        - Delete a created post.
+	        Locator: postPage.buttons.deletePost
+        - Log Out from the page.
+	        Locator: homePage.buttons.logOut
 
 
 
@@ -112,9 +118,9 @@ Test case ID: TS_PP_04
 	Summary: Editing an existing post
 
 	Preconditions:
-		- The user must be logged in - run TS_SP_02
-		- If the user is not registered, he must be registered - run TS_SP_01
-		- The new post must be created - if not, run TS_PP_03
+		- The user must be logged in - according to steps in TS_SP_02
+		- If the user is not registered, he must be registered - according to steps in TS_SP_01
+		- The new post must be created - if not, according to steps in TS_PP_03
 
 	Steps to reproduce:
 		1. Moving to MyProfile page.
@@ -134,6 +140,13 @@ Test case ID: TS_PP_04
 			Locator: postPage.notification.newPostCreated
 		- We can see the delete post button on the page
 			Locator: postPage.buttons.deletePost
+		- We can see the created post on the page:
+		    - Move to the MyProfile page
+                Locator: homePage.buttons.myProfileButton
+            - Find the created post
+                Locator: myProfilePage.posts.findPost
+            - Check the post body
+                Locator: myProfilePage.posts.postBody
 		- We do not find the "Sign In" button on the page
 			Locator: startPage.signIn.submitButton
 
@@ -152,13 +165,13 @@ Test case ID: TS_SS_05
 	Summary: Subscription to a user
 
 	Preconditions:
-		1. Creating or Logging In by User1: run TS_SP_01 or TS_SP_02 with values:
+		1. Creating or Logging In by User1: according to steps in TS_SP_01 or TS_SP_02 with values:
 			- login: user0001
 			- email: user0001@mail.com
 			- user password: user0001_Pass
-		2. Creating a new post by User1: run TS_PP_03
+		2. Creating a new post by User1: according to steps in TS_PP_03
 		3. Log Out by User1
-		4. Creating User2: run TS_SP_01 with values:
+		4. Creating User2: according to steps in TS_SP_01 with values:
 			- login: user0002
 			- email: user0002@mail.com
 			- user password: user0002_Pass
@@ -170,7 +183,7 @@ Test case ID: TS_SS_05
 			Locator: homePage.inputForms.searchField
 			Value: "What is test automation and why is it important?"
 		3. Selecting the post we were looking for
-			Locator: myProfilePage.posts.findPost = .//a[@class="list-group-item list-group-item-action"]//strong[contains(text(),"What is test automation and why is it important?")]
+			Locator: myProfilePage.posts.findPost
 		4. Clicking on the user1 avatar button
 			Locator: postPage.buttons.userAvatarButton
 		5. Clicking on the "Follow" button

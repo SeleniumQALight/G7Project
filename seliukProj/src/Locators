@@ -14,6 +14,7 @@ homePage.buttons.createNewPost = .//*[@class="btn btn-sm btn-success mr-2"]
 homePage.buttons.myProfileButton = .//*[@class="mr-2"]
 homePage.buttons.searchButton = .//*[@class="svg-inline--fa fa-search fa-w-16"]
 homePage.inputForms.searchField = .//*[@class="live-search-field"]
+homePage.elements.username = .//*[@class="text-white mr-2"]
 
 #postPage
 postPage.notification.newPostCreated = .//*[@class="alert alert-success text-center"]
@@ -29,3 +30,4 @@ postPage.buttons.unfollowUser.Button = .//*[@class="btn btn-danger btn-sm"]
 
 #myProfilePage
 myProfilePage.posts.findPost = .//a[@class="list-group-item list-group-item-action"]//strong[contains(text(),"What is test automation and why is it important?")]
+myProfilePage.posts.postBody = .//div[2]/div[4]/p[contains(text(), "Many companies are already using automation testing to a certain extent, but still largely depend on manual tests because they don’t know how to properly leverage the benefits of automated testing in their development process.")]
