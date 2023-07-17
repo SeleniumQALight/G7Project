@@ -1,0 +1,31 @@
+#loginPage
+startPage.signIn.userName = .//*[@name="username"] (or //*[@name="username" and @class="form-control form-control-sm input-dark"])
+startPage.signIn.password = //*[@name="password" and @class="form-control form-control-sm input-dark"]
+startPage.signIn.submitButton = //*[@class="btn btn-primary btn-sm"]
+startPage.register.userName = //*[@id="username-register"] or //*[@class="form-control" and @id="username-register"]
+startPage.register.email = //*[@name="email"] or //*[@class="form-control" and @id="email-register"]
+startPage.register.password = //*[@id="password-register"] or //*[@class="form-control" and @id="password-register"]
+startPage.register.submitButton = //*[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]
+startPage.notifications.failedLogin = .//*[@class="alert alert-danger text-center"]
+
+#homePage
+homePage.buttons.logOut = .//*[@class="btn btn-sm btn-secondary"]
+homePage.buttons.createNewPost = .//*[@class="btn btn-sm btn-success mr-2"]
+homePage.buttons.myProfileButton = .//*[@class="mr-2"]
+homePage.buttons.searchButton = .//*[@class="svg-inline--fa fa-search fa-w-16"]
+homePage.inputForms.searchField = .//*[@class="live-search-field"]
+
+#postPage
+postPage.notification.newPostCreated = .//*[@class="alert alert-success text-center"]
+postPage.buttons.deletePost = .//*[@class="delete-post-button text-danger"]
+postPage.buttons.savePost =  .//*[@class="btn btn-primary"]
+postPage.buttons.editPost = .//*[@class="svg-inline--fa fa-edit fa-w-18"]
+postPage.buttons.userAvatarButton == .//*[@class="avatar-tiny"]
+postPage.buttons.backToPostPermalink = .//div[@class="container py-md-5 container--narrow"]//a[@class="small font-weight-bold"]
+postPage.inputForms.title = .//*[@class="form-control form-control-lg form-control-title"]
+postPage.inputForms.body = .//*[@class="body-content tall-textarea form-control"]
+postPage.buttons.followUserButton = .//*[@class="btn btn-primary btn-sm"]
+postPage.buttons.unfollowUser.Button = .//*[@class="btn btn-danger btn-sm"]
+
+#myProfilePage
+myProfilePage.posts.findPost = .//a[@class="list-group-item list-group-item-action"]//strong[contains(text(),"What is test automation and why is it important?")]
