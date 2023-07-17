@@ -1,0 +1,69 @@
+##InputLogin
+InputLogin= //input[@placeholder='Username']
+
+##InputPassword
+InputPassword= //input[@placeholder='Password']
+
+##LogoutButton
+LogoutButton= //button[@class= 'btn btn-sm btn-secondary']
+
+##HomePage EmailRegister
+HomePage.EmailRegister= //input[@id='email-register']
+
+##HomePage UsernameRegister
+HomePage.UsernameRegister= //input[@id='username-register']
+
+##HomePage PasswordRegister
+HomePage.PasswordRegister= //input[@id='password-register']
+
+##Home page SignUpButton
+SignUp.Button= //button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
+
+##SuccesloginMyProfileButton
+LoginSuccess.MyProfileButton= //img[@alt='My profile']
+
+##CreatePostButton
+CreatePost.Button= //a[@href='/create-post']
+
+##InputPostTitle
+InputPost.Title= //input[@id='post-title']
+
+##InputPostBody
+InputPost.Body= //textarea[@id='post-body']
+
+##CheckboxUniquePost
+CheckBox.UniquePost= //input[@name= 'uniquePost']
+
+##SelectValuePost
+SelectValuePost= //select[@id= 'select1']
+
+##SaveNewPostButton
+SaveNewPost.Button= //button[@class= 'btn btn-primary']
+
+#New post successfully created
+NewPost.Created= //div[@class= 'alert alert-success text-center']
+
+##FindPostForTest "Post for autotest"
+FindPost.ForTest= //*[text()='Post for autotest']
+
+#Recycle bin for posts
+RecycleBin.ForPosts= //button[@class='delete-post-button text-danger']
+
+##PostDeleteSuccess
+PostDeleteSuccess= //div[@class='alert alert-success text-center' ]
+
+##SearchButton
+SearchButton= //a[@data-original-title='Search']
+
+##InputSearchField
+InputSearchField= //input[@id='live-search-field']
+
+##SearchResult for "Test555"
+SearchResultForTestCase5= //*[text()='Test555']
+
+##FollowForUserButton
+FollowForUser= //img[@class='avatar-tiny']
+
+##FollowConfirmationButton
+FollowConfirmationButton= //button[@class='btn btn-primary btn-sm']
+
