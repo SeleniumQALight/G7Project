@@ -106,7 +106,7 @@ public class LoginTest {
 
         Assert.assertFalse("Button SignOut is displayed, Login successful", isButtonSignOutVisible());
         Assert.assertTrue("Error message is not displayed, Login successful", isErrorMessageVisible());
-        Assert.assertFalse("Button SignIn is displayed, Login unsuccessful", isButtonSignInVisible());
+        Assert.assertTrue("Button SignIn is displayed, Login unsuccessful", isButtonSignInVisible());
 
     }
 
