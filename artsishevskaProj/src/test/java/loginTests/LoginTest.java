@@ -90,7 +90,7 @@ public class LoginTest {
 
     public boolean isButtonSignOutVisible() {
         try {
-            return webDriver.findElement(By.xpath(".//button[@class='btn btn-sm btn-secondary']")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -107,10 +107,11 @@ public class LoginTest {
 
     private boolean isErrorMessageVisible() {
         try {
-            return webDriver.findElement(By.xpath(".//*[@class='alert alert-danger text-center']")).isDisplayed();
+            return webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
+
 
 }
