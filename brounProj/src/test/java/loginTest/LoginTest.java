@@ -63,6 +63,54 @@ public class LoginTest {
         }
     }
 
+    private boolean isErrorMessageVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Test
+    public void invalidLogin() {
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println("Browser was opened");
+
+        webDriver.get("https://qa-complexapp.onrender.com/");
+        System.out.println("Site was opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto1");
+        System.out.println("Invalid User name was inputed");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        System.out.println("Password was inputed");
+
+        webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).click();
+        System.out.println("Button was clicked");
+
+
+        Assert.assertFalse("Button SignOut is displayed, Login successful", isButtonSignOutVisible());
+        Assert.assertTrue("Error message is not displayed, Login successful", isErrorMessageVisible());
+        Assert.assertTrue("Button SignIn is displayed, Login unsuccessful", isButtonSignInVisible());
+
+    }
+
+
 }
 
 

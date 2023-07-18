@@ -1,0 +1,33 @@
+Page 001 Home page Регістрації та авторизації користувача: https://qa-complexapp.onrender.com/
+1.AutPage.Username = //input[@placeholder='Username']
+2.AutPage.Password =//input[@placeholder='Password']
+3.AutPage.SignIn = //button[@class='btn btn-primary btn-sm'] or //button [contains (text(),'Sign In')]
+==
+1.RegPage.Username = //input [@id="username-register"]
+2.RegPage.Email = //input [@id="email-register"]
+3.RegPage.Password = /input [@id="password-register"]
+4.AutPage.SignUpForOurApp = //button [contains (text(),'Sign up for OurApp')]
+
+Page 002 Робоче середовище користувача on https://qa-complexapp.onrender.com/
+1 WorkPage.Chat = //span[@class='text-white mr-2 header-chat-icon']
+2 WorkPage.MyProfile = //img[@alt="My profile"]
+3 WorkPage.UserName = //span [contains (text(),'<userName>')]
+4 WorkPage.CreatePost = //input [@id="post-title"]
+6.WorkPage.SignOut = //button [text()= 'Sign Out']
+
+Page 003 Chat
+1 ChatPage.InputMessage = //input[@placeholder='Type a message…']
+2 ChatPage.InputedMessage = //div [@class="chat-message-inner"and contains(text(), "<my message>")]
+
+
+Page 004 My profile
+1 MyprofilePage.TopicMessage = //strong[contains(text(),"<my message subject>")]
+
+Page 005 Сторіка з повідомленням
+1. PostPage.Title = //h2 [contains (text(),'<my message subject>')]
+2. PostPage.Body = //p[contains(text(),"<my text message>")]
+
+Page 006 Create post on https://qa-complexapp.onrender.com/
+1.CreatePostPage.Title = //input [@id="post-title"]
+2.CreatePostPage.Body = //textarea [@id="post-body"]
+3.CreatePostPage.SaveNewPost = //button[@class='btn btn-primary']

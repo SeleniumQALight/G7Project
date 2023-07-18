@@ -1,17 +1,79 @@
-001 Name Case
-1. Step bla bla
-2.
-3.
-4.
+-----------------1 Sign up
+1. Open the site https://qa-complexapp.onrender.com/
+2. Click the "Username" field in the "Sign up" block
+3. Enter the valid unique username (only latin letters and numbers), for ex: 123test
+4. Click the "Email" field in the "Sign up" block
+5. Enter valid unique email, for ex: 123test@test.com
+6. Click the "Password" field in the "Sign up" block
+7. Enter valid password (min 12 characters), for ex: 123test123test
+8. Click the "Sign up for OurApp" button
 
-ER:
+ER: The text from step #3 is displayed in the header
+------------------------------------------------------------------
 
-002 Name
+-----------------2 Create a post
+Preconditions:
+* the user is logged in
+Steps:
+1. Open the site https://qa-complexapp.onrender.com/
+2. Click the "Create post" button in the header
+3. Enter the data in the "Title" field (at least 1 character)
+4. Enter the data in the "Body content" field (at least 1 character)
+5. Click the "Save New Post" button
 
-003 Name
+ER: The "New post successfully created." successful alert is displayed
+The title is displayed according to the step #4
+The body content is displayed according to the step #7
 
-003 Name
+Postconditions:
+* created post is deleted
+------------------------------------------------------------------
 
-004 Name
+-----------------3 Edit a post
+Preconditions:
+* the user is logged in
+* the user created a post
+* the user opened created post
+Steps:
+1. Open the site https://qa-complexapp.onrender.com/
+2. Click the "Edit" button
+3. Enter the data in the "Title" field(at least 1 character)
+4. Enter the data in the "Body content" field (at least 1 character)
+5. Click the "Save updates" button
 
-005 Name
+ER: The "Post successfully updated." successful alert is displayed
+The title is displayed according to the step #5
+The body content is displayed according to the step #7
+
+Postconditions:
+* enetered data is deleted from post
+------------------------------------------------------------------
+
+-----------------4 Find post via search
+Preconditions:
+* 3 posts with "X" word are created ("X" is an example)
+* the user is logged in
+Steps:
+1. Click the "Search" field
+2. Enter the "X" word
+3. Observe the Search Results (3 items found)
+4. Click item from the search list
+
+ER: The "Posted by" is displayed below the title
+The "X" word is in the post
+
+Postconditions:
+* 3 created posts are deleted
+
+------------------------------------------------------------------
+
+-----------------5 Sign out
+Preconditions:
+* the user is logged in
+Steps:
+1. Open the site https://qa-complexapp.onrender.com/
+2. Click the "Sign out" button
+
+ER: The "Sign in" button is displayed in the header
+
+------------------------------------------------------------------

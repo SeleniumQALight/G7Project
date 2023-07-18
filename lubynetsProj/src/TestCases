@@ -1,7 +1,41 @@
-001 Name Case
-1.
-2.
-3.
-4.
+001 User Authorization
+Precondition: User must be already registered on the site.
+1.	Open the page https://qa-complexapp.onrender.com/
+2.	Enter the username in the "Username" field.
+3.	Enter the password in the "Password" field.
+4.	Click the "Sign In" button.
+Expected Result: Active  button “Sign Out”
 
-ER
+002 User Registration
+Precondition: User is on the registration page (https://qa-complexapp.onrender.com/register)
+1.	Generate a unique username (e.g., "testuser123") and enter it in the username field.
+2.	Generate a unique email address (e.g., "testuser123@example.com") and enter it in the email field.
+3.	Enter a password of at least 12 characters in the password field.
+4.	Click on the "Sign up for OurApp" button.
+Expected Result: Active  button “Sign Out”
+
+003 Creating a Post
+Precondition: User must be logged in.
+1.	Click the "Create Post" button.
+2.	Enter the post title in the "Title" field.
+3.	Enter the post content in the "Body Content" field.
+4.	Select a value in the "Select value" field.
+5.	Click the "Save New Post" button.
+6.	Verify that the message "New post successfully created." is displayed on the screen.
+7.	 Click the "my profile" to Verify that the created post is displayed in the list of posts
+Expected Result: The post will be in the post list
+Post-condition: Delete the post created in the previous step
+
+004 Deleting a Post
+Precondition: User must be logged in and have created posts.
+1.	Go to the My Profile page.
+2.	Locate the post that you want to delete.
+3.	Click the delete icon (trash can icon) next to the post.
+4.	Verify that the message "Post successfully deleted." is displayed on the screen.
+5.	Verify that the deleted post is no longer visible in the list of posts.
+Expected Result:the deleted post is no longer visible in the list of posts.
+
+005 Logout
+Precondition: User must be logged in.
+1.	Click the "Sign Out" button
+Expected Result: Active  button “Sign In”.

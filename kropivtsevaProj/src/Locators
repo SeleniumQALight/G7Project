@@ -1,0 +1,39 @@
+#Registration
+- Registration.input.Username=.//input[@name='username' and @id='username-register']
+- Registration.input.Email=.//input[@name='email' and @id='email-register']
+- Registration.input.Password=.//input[@name='password' and @id='password-register']
+- Registration.button.SignUpButton=.//button[@type='submit' and @class='py-3 mt-4 btn btn-lg btn-success btn-block']
+
+
+#Authorization
+- Authorization.input.Username=.//input[@name='username' and @class='form-control form-control-sm input-dark']
+- Authorization.input.Password=.//input[@name='password' and @class='form-control form-control-sm input-dark']
+- Authorization.button.LoginButton=.//button[@class="btn btn-primary btn-sm"]
+
+#MainPage
+- MainPage.text=.//span[@class="text-white mr-2"]
+
+#CreatePostPage
+- CreatePostPage.button.CreatePost=.//a[@class="btn btn-sm btn-success mr-2"]
+- CreatePostPage.input.Title=.//input[@name="title" and @id="post-title"]
+- CreatePostPage.textarea.BodyContent=.//textarea[@name="body" and @id="post-body"]
+- CreatePostPage.checkbox.IsUniquePost=.//input[@name='uniquePost']
+- CreatePostPage.select.Visibility=.//select[@name="select1" and @id="select1"]
+- CreatePostPage.select.Value=.//option[@value="All Users"]
+- CreatePostPage.button.SaveNewPost=.//button[@class="btn btn-primary"]
+- CreatePostPage.text.PostCreationConfirmation=.//div[@class="alert alert-success text-center"]
+- CreatePostPage.postTitle=.//div[@class="d-flex justify-content-between"]
+- DeletePostPage.button.DeletePost=.//button[@class="delete-post-button text-danger"]
+- DeletePostPage.button.DeletePostConfirmation=.//div[@class="alert alert-success text-center"]
+
+#Search
+- Search.button.Search=.//a[@class="text-white mr-2 header-search-icon"]
+- Search.input.Search=.//input[@id="live-search-field"]
+- Search.postTitle=*//strong[text()='test']
+
+#SubscribeUserProfile
+- SubscribeUserProfile.openUserProfilePage=.//a[@href="/post/64b2aea155d6a40032d28ead"]
+- SubscribeUserProfile.userNameLink=.//p[@class="text-muted small mb-4"]
+- SubscribeUserProfile.button.Subscribe=.//button[@class="btn btn-primary btn-sm"]
+- SubscribeUserProfile.subscriptionConfirmation=.//div[@class="alert alert-success text-center"]
+
