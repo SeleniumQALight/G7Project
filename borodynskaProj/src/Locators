@@ -1,0 +1,42 @@
+Sign up Username input
+//*[@id='username-register']
+
+Sign up Email input
+//*[@id='email-register']
+
+Sign up Password input
+//*[@id='password-register']
+
+Sign up button
+//button[@type='submit']
+
+Sign in Username input
+//header//input[@name='username']
+
+Sign in Password input
+//header//input[@name='password']
+
+Sign in button
+//header//button[@class='btn btn-primary btn-sm']
+
+Sign out button
+//header//button[@class='btn btn-sm btn-secondary']
+
+Create post button
+//*[@href="/create-post"]
+
+Title input
+//*[@id='post-title']
+
+Body Content input
+//*[@id='post-body']
+
+Save new post button
+//*[@class='btn btn-primary']
+
+Edit icon
+//*[@class='svg-inline--fa fa-edit fa-w-18']
+
+
+
+
