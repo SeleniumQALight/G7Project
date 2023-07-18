@@ -85,18 +85,29 @@ public class LoginTest {
         System.out.println("Button was clicked");
 
         Assert.assertTrue("Message - Invalid username/password.", isMessageInvalidUsernamePasswordVisible());
-
-    }
-
-    @After
-    public void tearDownInvalidLoginIn() {
-        webDriver.quit();
-        System.out.println("Browser was closed");
+        Assert.assertTrue("Button 'Sign Out' is not displayed ", isButtonSignOutNotVisible());
+        Assert.assertTrue("Button 'Sign in' is displayed ", isButtonSignInVisible());
     }
 
     private boolean isMessageInvalidUsernamePasswordVisible() {
         try {
-            return webDriver.findElement(By.xpath(".//div[@class=\'alert alert-danger text-center\' and text()=\'Invalid username/password.\']")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center' and text()='Invalid username/password.']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isButtonSignOutNotVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[@class=''btn btn-sm btn-secondary']")).isDisplayed();
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    private boolean isButtonSignInVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
