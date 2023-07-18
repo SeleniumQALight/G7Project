@@ -63,6 +63,22 @@ public class LoginTest {
         }
     }
 
+    private boolean isErrorMessageVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     @Test
     public void invalidLogin() {
         WebDriverManager.chromedriver().setup();
@@ -88,8 +104,9 @@ public class LoginTest {
         System.out.println("Button was clicked");
 
 
-        Assert.assertFalse("Button is displayed", isButtonSignOutVisible());
-
+        Assert.assertFalse("Button SignOut is displayed, Login successful", isButtonSignOutVisible());
+        Assert.assertTrue("Error message is not displayed, Login successful", isErrorMessageVisible());
+        Assert.assertFalse("Button SignIn is displayed, Login unsuccessful", isButtonSignInVisible());
 
     }
 
