@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class LoginTest {
     WebDriver webDriver;
 
-    @Test 
+    @Test
     public void validLogIn() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
@@ -110,7 +110,7 @@ public class LoginTest {
 
     private boolean isMessageInvalidUsernamePasswordDisplayed() {
         try {
-            return webDriver.findElement(By.xpath(".//*[@class=\"alert alert-danger text-center\"]"))
+            return webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center' and text() = 'Invalid username/password.']"))
                     .isDisplayed();
         } catch (Exception e) {
             return false;
