@@ -1,5 +1,5 @@
 #Registration
-- Registration.input.Username=.//input[@name='username' @id='username-register']
+- Registration.input.Username=.//input[@name='username' and @id='username-register']
 - Registration.input.Email=.//input[@name='email' and @id='email-register']
 - Registration.input.Password=.//input[@name='password' and @id='password-register']
 - Registration.button.SignUpButton=.//button[@type='submit' and @class='py-3 mt-4 btn btn-lg btn-success btn-block']
@@ -11,7 +11,7 @@
 - Authorization.button.LoginButton=.//button[@class="btn btn-primary btn-sm"]
 
 #MainPage
-- MainPage.text=.//*[contains(text(), 'Hello') and contains(text(), 'your feed is empty')]
+- MainPage.text=.//span[@class="text-white mr-2"]
 
 #CreatePostPage
 - CreatePostPage.button.CreatePost=.//a[@class="btn btn-sm btn-success mr-2"]
@@ -29,7 +29,7 @@
 #Search
 - Search.button.Search=.//a[@class="text-white mr-2 header-search-icon"]
 - Search.input.Search=.//input[@id="live-search-field"]
-- Search.postTitle=//*//strong[text()='test']
+- Search.postTitle=*//strong[text()='test']
 
 #SubscribeUserProfile
 - SubscribeUserProfile.openUserProfilePage=.//a[@href="/post/64b2aea155d6a40032d28ead"]
