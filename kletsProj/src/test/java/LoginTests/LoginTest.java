@@ -105,7 +105,7 @@ public class LoginTest {
 
     private boolean isErrorMessageVisible() {
         try {
-            return webDriver.findElement(By.xpath(".//div[@class ='alert alert-danger text-center']"))
+            return webDriver.findElement(By.xpath(".//div[@class ='alert alert-danger text-center' and text()='Invalid username/password.']"))
                     .isDisplayed();
         } catch (Exception e) {
             return false;
