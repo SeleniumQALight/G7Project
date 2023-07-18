@@ -1,0 +1,51 @@
+001 User authorization on https://qa-complexapp.onrender.com/
+1. Enter Username. Must be at least 3 characters.
+2. Enter Email address.(you@example)
+3. Enter Password, must be at least 12 characters.
+4. Press "Sign up for OurApp"
+ER: Active <Username>
+Hello <Username>, your feed is empty.
+Your feed displays the latest posts from the people you follow.
+If you don’t have any friends to follow that’s okay;
+you can use the “Search” feature in the top menu bar to find content
+written by people with similar interests and then follow them.
+
+002 "Sign in" on https://qa-complexapp.onrender.com/
+Precondition:The User exists
+1. Enter Username.
+2. Enter Password
+3. Press "Sign in"
+ER: Active "Sign Out"
+
+003 Create post on https://qa-complexapp.onrender.com/
+Precondition:Active <Username>(Active "Sign Out")
+1. Enter Title on https://qa-complexapp.onrender.com/create-post
+2. Enter Body Content
+3. Is this post unique?(not)
+4. Select value- "Загальнодоступне"
+5. Press "Save New Post"
+ER: The post was created. (Побачити "New post successfully created". Знайти свій пост по темі та змісту.Пост є в списку myProfile.)
+Postcondition:
+    1 Зайти відповідним користувачем.
+    2 Зайти в myProfile.
+    3 Знайти потрібний пост по темі та змісту.
+    4 Deleted post.
+
+004 Deleted post
+Precondition:{The post exists:
+    1 Зайти відповідним користувачем.
+    2 Зайти в myProfile.
+    3 Знайти потрібний пост по темі та змісту.}
+
+1. Select created post
+2. Press delete
+ER: Deleted post. Active 'Post successfully deleted.' Поста немає в списку myProfile.
+
+005 Chat
+Precondition:Зайти відповідним користувачем. Побачити 'Sign Out'
+1. Press Chat
+2. Enter message
+3. Press Enter
+
+ER: The message sent. (Повідомлення видно в чаті //div [@class="chat-message-inner"and contains(text(), "<my message>")])
+Postcondition: Press "Sign оut". Active "Sign in"
