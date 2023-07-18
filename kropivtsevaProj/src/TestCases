@@ -1,9 +1,108 @@
-"5tc"
-https://qa-complexapp.onrender.com
+001 Test Case: User Registration
+Precondition:
+- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The registration page displays all the necessary fields: "Username," "Email," and "Password."
 
-001 name case
-Pre:
-1. step
-2. step
-EXP:
+Steps:
+1. Open the web application in a browser.
+2. Enter the following data in the respective fields:
+- Username: [enter desired username]
+- Email: [enter a valid email address]
+- Password: [enter a password with at least 12 characters, including letters and numbers]
+3. Click the "Sign Up" button or a similar button on the page.
+4. Wait for the registration process to complete.
+5. Verify that upon successful registration, the user is redirected to the main page of the site.
 
+Expected Result:
+After successful registration, the user should be redirected to to the main page of the site.
+The main page displays the text "Hello [username], your feed is empty".
+
+002 Test Case: User Login
+Precondition:
+- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The login page displays all the necessary fields: "Username" and "Password."
+- A user is registered with the following credentials:
+- Username: [enter the registered username]
+- Password: [enter the registered password]
+
+Steps:
+1. Open the web application in a browser.
+2. Enter the following data in the respective fields:
+- Username: [enter the registered username]
+- Password: [enter the registered password]
+3. Click the "Login" button.
+4. Wait for the login process to complete.
+5. Verify that upon successful login, the user is redirected to the main page of the site.
+
+Expected Result:
+After successful registration, the user should be redirected to the main page of the site.
+The main page displays the [username].
+
+003 Test Case: Create a New Post
+Precondition:
+- The web application is accessible at https://qa-complexapp.onrender.com/.
+- A user is registered with the following credentials:
+- Username: [enter the registered username]
+- Password: [enter the registered password]
+- The user is logged into the web application.
+
+Steps:
+1. Click on the "Create Post" button.
+2. Enter the following data:
+- Title: [enter the post title]
+- Body Content: [enter the post content]
+3. Set the "Is this post unique?" checkbox to either selected.
+4. Select the value (Public Message) from the dropdown list.
+5. Click the "Save New Post" button.
+6. Wait for the new post to be saved.
+7. Verify that the new post is successfully created and displayed on the main page of the site with the text "New post successfully created.".
+
+Expected Result:
+After successfully creating a new post, it should be saved and displayed on the main page of the site with the text "New post successfully created.".
+The Title [name title] of our post is displayed.
+
+Postconditions for the "Delete Post":
+The post should be removed from the database or storage system.
+The deleted post is no longer displayed on the main page, the message "Post successfully deleted." is displayed.
+
+004 Test Case: Search for a Post by Title
+Precondition:
+- The web application is accessible at https://qa-complexapp.onrender.com/.
+- A user is registered with the following credentials:
+- Username: [enter the registered username]
+- Password: [enter the registered password]
+- The user is logged into the web application.
+- It is known that there is a post with the title "test".
+
+Steps:
+1. Enter "test" into the search field.
+2. Press click the search button.
+3. Wait for the search results to appear.
+4. Verify that the search results include a post with the title "test".
+
+Expected Result:
+After performing a search by the title "test", the corresponding post with that title should be displayed.
+
+005 Test Case: Subscribe to Post Creator
+Precondition:
+- The web application is accessible at https://qa-complexapp.onrender.com/.
+- A user is registered with the following credentials:
+- Username: [enter the registered username]
+- Password: [enter the registered password]
+- The user is logged into the web application.
+- It is known that there is a post with the title "test", and its creator is a registered user.
+
+Steps:
+1. Open the web application in a browser.
+2. Enter "test" into the search field.
+3. Press the Enter key or click the search button.
+4. Wait for the search results to appear.
+5. Open the "test" post.
+6. Open the user's profile page.
+7. Click on the user's name.
+8. Click on the "Subscribe" button.
+9. Wait for the subscription confirmation.
+10. Verify that the subscription to the post creator is successfully completed.
+
+Expected Result:
+After subscribing to the post creator, the subscription should be successfully completed with the text "Successfully followed [username].".
