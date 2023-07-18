@@ -3,14 +3,15 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
     protected WebDriver webDriver;
 
-
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this); //initialization of elements
+// element in @FindBy
     }
 
     /**
@@ -25,10 +26,12 @@ public class ActionsWithElements {
             Assert.fail("Can not open " + url);
         }
     }
+
     private void printErrorAndStopTest(Exception e) {
         System.out.println("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
     }
+
     public void clickOnElement(WebElement element) { //method for clicking on element
         try {
             element.click();
@@ -37,17 +40,8 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-    public boolean isElementDisplayed(WebElement element) { //method for checking if element is displayed
-        try {
-            boolean state = element.isDisplayed();
-            System.out.println("Element is displayed");
-            return state;
-        } catch (Exception e) {
-            System.out.println("Element is not displayed");
-            return false;
-        }
-    }
-    public void enterTextInput(WebElement element, String text) { //method for inputting text
+
+    public void enterTextIntoInput(WebElement element, String text) { //method for inputting text
         try {
             element.clear();
             element.sendKeys(text);
@@ -58,6 +52,20 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    public boolean isElementDisplayed(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void checkElementDisplayed(WebElement element) {
+        Assert.assertTrue("Element is not displaed", isElementDisplayed(element));
+    }
 }
+
+
 
 
