@@ -41,8 +41,11 @@ public class LoginTests {
         System.out.println("Button was clicked");
 
         // WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-
+        Assert.assertTrue("Sign in button is not displayed", isButtonSignInVisible());
+        System.out.println("Sign in button is displayed");
         Assert.assertTrue("button is not displayed", isButtonSignOutVisible());
+        Assert.assertTrue("Error message is not displayed", isInvalidDataMessegeVisible());
+        System.out.println("Error message is displayed");
 
 
         //webDriver.quit();
@@ -53,6 +56,13 @@ public class LoginTests {
         webDriver.quit();
         System.out.println("Browser was closed");
     }
+    private boolean isButtonSignInVisible() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     private boolean isButtonSignOutVisible() {
         try {
@@ -61,6 +71,17 @@ public class LoginTests {
             return false;
         }
     }
+    private boolean isInvalidDataMessegeVisible() {
+        try {
+            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            return webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+
 }
 
 
