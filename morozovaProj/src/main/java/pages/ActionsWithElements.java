@@ -11,27 +11,23 @@ public class ActionsWithElements {
         this.webDriver = webDriver;
     }
 
+    /**
+     * @param url
+     */
     public void openPage(String url) {
         try {
             webDriver.get(url);
-            System.out.println("Page was opened");
+            System.out.println("Page was opened " + url);
         } catch (Exception e) {
             System.out.println("Can not open " + url);
             Assert.fail("Can not open " + url);
         }
     }
-
-    public void enterTextIntoInput(WebElement input, String text) {
-        try {
-            input.clear();
-            input.sendKeys(text);
-            System.out.println(text + " was inputted into input");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+    private void printErrorAndStopTest(Exception e) {
+        System.out.println("Can not work with element" + e);
+        Assert.fail("Can not work with element" + e);
     }
-
-    public void clickOnElement(WebElement element) {
+    public void clickOnElement(WebElement element) { //method for clicking on element
         try {
             element.click();
             System.out.println("Element was clicked");
@@ -40,6 +36,17 @@ public class ActionsWithElements {
         }
     }
 
+    public void enterTextInput(WebElement element, String text) { //method for inputting text
+        try {
+            element.clear();
+            element.sendKeys(text);
+            System.out.println(text + " was inputted");
+        } catch (Exception e) {
+// System.out.println("Can not work with element" + e);
+// Assert.fail("Can not work with element" + e);
+            printErrorAndStopTest(e);
+        }
+    }
     public boolean isElementDisplayed(WebElement element) {
         try {
             return element.isDisplayed();
@@ -47,10 +54,4 @@ public class ActionsWithElements {
             return false;
         }
     }
-
-    private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can not work with element");
-        Assert.fail("Can not work with element");
-    }
-
 }
