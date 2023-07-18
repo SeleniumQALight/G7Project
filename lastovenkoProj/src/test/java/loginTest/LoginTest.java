@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
     WebDriver webDriver;
+
     @Test
     public void validLoginIn() {
         WebDriverManager.chromedriver().setup();
@@ -40,29 +41,32 @@ public class LoginTest {
                 .click();
         System.out.println("Button was clicked");
 
-       // WebElement buttonSignOut =
-                //webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
+        // WebElement buttonSignOut =
+        //webDriver.findElement(By.xpath(".//button[text()='SignOut']"));
 
-        Assert.assertTrue("Button is not displayed",isButtonSignOutPresent());
+        Assert.assertTrue("Button is not displayed", isButtonSignOutPresent());
 
-       // webDriver.quit();
+        // webDriver.quit();
         //System.out.println("Browser was closed");
 
     }
+
     @After // this method will be executed after each test
-    public void tearDown(){
+    public void tearDown() {
         webDriver.quit();
         System.out.println("Browser was closed");
     }
 
-    private boolean isButtonSignOutPresent(){
+    private boolean isButtonSignOutPresent() {
         try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e){
+            return webDriver.findElement(By.xpath(".//button[text()='SignOut']")).isDisplayed();
+        } catch (Exception e) {
             return false;
         }
+
     }
-@Test
+
+    @Test
     public void invalidLoginIn() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
@@ -81,7 +85,7 @@ public class LoginTest {
         WebElement inputPassword =
                 webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         inputPassword.clear();
-        inputPassword.sendKeys("123456qwerty");
+        inputPassword.sendKeys("12345qwerty");
         System.out.println("Password was inputted");
 
         webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"))
@@ -105,5 +109,4 @@ public class LoginTest {
         }
     }
 }
-
 
