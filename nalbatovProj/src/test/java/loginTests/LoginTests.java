@@ -59,6 +59,7 @@ public class LoginTests {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was opened");
 
         webDriver.get("https://qa-complexapp.onrender.com");
@@ -104,7 +105,6 @@ public class LoginTests {
     }
     private boolean isInvalidDataMessegeVisible() {
         try {
-            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             return webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]")).isDisplayed();
         } catch (Exception e) {
             return false;
