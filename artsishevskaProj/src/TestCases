@@ -51,7 +51,7 @@ Test data: HW
 Expected result:
 1. messege "New post successfully created".
 2. can see the "my profile" "new post(HW)"
-Postcondition: none
+Postcondition: Delete the created post
 Version: 1.0
 
 
