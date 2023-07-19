@@ -18,7 +18,7 @@ o.lastovenko@medzakupivli.com Click the sign up for our App button
  do not enter a password. Click the sign up for our App button
 8. Enter a valid password-123@qaLightLastovenko and email-o.lastovenko@medzakupivli.com Do not enter login-
 LastovenkoqaAuto Click the sign up for our App button
-Expected result: entrance to the site is possible only if the login is valid. mail, password
+Expected result: entrance to the site is possible only if the login is valid. mail, password.
 
 
 Test case 2
