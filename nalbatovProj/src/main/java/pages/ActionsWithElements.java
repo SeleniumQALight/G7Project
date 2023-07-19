@@ -3,12 +3,15 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this);//   this - means all elements from this class will be initialized
+        // elements in FindBy
     }
 
     public void openPage(String url) {
@@ -48,6 +51,9 @@ public class ActionsWithElements {
             return false;
         }
     }
+     public void checkElementDisplayed(WebElement element) {
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+     }
 
     private void printErrorAndStopTest(Exception e) {
         System.out.println("Can not work with element " + e);
