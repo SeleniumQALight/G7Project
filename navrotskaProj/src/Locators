@@ -5,10 +5,13 @@
     SignUp.input.Password=//*[@id='password-register']
     SignUp.button.SignUp=//button[@type='submit']
 
+#HomePage
+    HomePage.div.InvalidCredentialsError=//*[@class='alert alert-danger text-center']
+
 #PreLoginHeader
     PreLoginHdr.input.Username=//*[@name='username' and @placeholder='Username']
     PreLoginHdr.input.Password=//header//input[@name='password']
-    PreLoginHdr.button.SignIn=//header//button[@class='btn btn-primary btn-sm']
+    PreLoginHdr.button.SignIn=//header//button[@class='btn btn-primary btn-sm'] or .//button[text()='Sign In']
 
 #PostLoginHeader
     PostLoginHdr.a.MyProfileButton =//body//header/div/div/a[2]
