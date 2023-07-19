@@ -95,6 +95,7 @@ public class LoginTest {
         WebElement buttonSignOut =
                 webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
 
+
         Assert.assertTrue("Button is not displayed",isButtonSignOutPresent());
 
         webDriver.quit();
