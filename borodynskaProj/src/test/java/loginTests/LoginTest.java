@@ -75,6 +75,8 @@ public class LoginTest{
         System.out.println("Sign-out button is not visible");
         Assert.assertTrue("Sign-in button is not visible", isButtonSignInVisible());
         System.out.println("Sign-in button is visible");
+        Assert.assertTrue("Alert is not visible", isAlertVisible());
+        System.out.println("Alert is visible");
     }
 
 private boolean isButtonSignOutVisible() {
@@ -93,5 +95,13 @@ private boolean isButtonSignInVisible() {
     }
 
     }
+
+private boolean isAlertVisible() {
+    try {
+        return webDriver.findElement(By.xpath(".//div[text()='Invalid username/password.']")).isDisplayed();
+    } catch (Exception e) {
+        return false;
+    }
+}
 
 }
