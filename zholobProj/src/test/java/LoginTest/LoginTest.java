@@ -74,7 +74,7 @@ public class LoginTest {
         WebElement inputUserName =
                 webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
+        inputUserName.sendKeys("qaauto1");
         System.out.println("Username was inputted");
 
 

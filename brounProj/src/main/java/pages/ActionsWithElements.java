@@ -3,12 +3,14 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this); // this means that all elements will be initialized in this class by FindBy annotation
     }
 
 
@@ -50,6 +52,9 @@ public class ActionsWithElements {
         }
     }
 
+    public void checkElementDisplayed(WebElement element) {
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
 
 
     private void printErrorAndStopTest(Exception e) {
