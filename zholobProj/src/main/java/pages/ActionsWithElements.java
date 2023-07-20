@@ -1,11 +1,15 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
+
+    Logger logger = Logger.getLogger(getClass()); //
+
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
@@ -17,25 +21,17 @@ public class ActionsWithElements {
     /**
      * @param url
      */
-    public void openPage(String url) {
-        try {
-            webDriver.get(url);
-            System.out.println("Page was opened " + url);
-        } catch (Exception e) {
-            System.out.println("Can not open " + url);
-            Assert.fail("Can not open " + url);
-        }
-    }
+
 
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can not work with element" + e);
+        logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
     }
 
     public void clickOnElement(WebElement element) { //method for clicking on element
         try {
             element.click();
-            System.out.println("Element was clicked");
+            logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -45,20 +41,30 @@ public class ActionsWithElements {
         try {
             element.clear();
             element.sendKeys(text);
-            System.out.println(text + " was inputted");
+           logger.info(text + " was inputted into element");
         } catch (Exception e) {
-// System.out.println("Can not work with element" + e);
-// Assert.fail("Can not work with element" + e);
+
+
             printErrorAndStopTest(e);
         }
     }
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            return element.isDisplayed();
+
+            boolean state = element.isDisplayed();
+            if (state) {
+                logger.info("Element is displaed");
+            } else {
+                logger.info("Element is not displaed");
+
+            }
+            return state;
         } catch (Exception e) {
+            logger.info("Element is not displaed");
             return false;
         }
+
     }
 
     public void checkElementDisplayed(WebElement element) {
