@@ -1,15 +1,19 @@
 package loginTest;
 
+import data.TestData;
 import org.junit.Test;
+
+import static data.TestData.LOGIN_DEFAULT;
+import static data.TestData.PASSWORD_DEFAULT;
 
 public class LoginTestWithPageObject extends baseTest.BaseTest{
     @Test
     public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputUserName("qaauto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSingIn();
 
-        //TODO Assert
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
 }
