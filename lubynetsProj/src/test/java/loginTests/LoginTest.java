@@ -91,7 +91,7 @@ public class LoginTest {
 
     private boolean isInvalidCMessagePresent() {
         try {
-            return webDriver.findElement(By.xpath("//div[contains(@class, 'alert alert-danger text-center')]")).isDisplayed();
+            return webDriver.findElement(By.xpath("//div[contains(@class, 'alert alert-danger text-center') and contains(text(), 'Invalid username  pasword')]")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
