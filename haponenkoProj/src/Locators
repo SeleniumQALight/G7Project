@@ -11,6 +11,9 @@ Login.input.UserNameLogin = //input[@name='username' and @class='form-control fo
 Login.input.PasswordLogin = //input[@name='password' and @class='form-control form-control-sm input-dark']
 Login.button.SignIn = //button[@class='btn btn-primary btn-sm']
 
+#Header
+Header.button.SignOut = //button[text()='Sign Out']
+
 #HomePage
 HomePage.text.UserName = //*[@class='text-white mr-2']
 
