@@ -1,11 +1,13 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
+    Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
@@ -13,20 +15,11 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this); // this - means all elements from this class will be initialized (elements in @FindBy)
     }
 
-    public void openPage(String url) {
-        try {
-            webDriver.get(url);
-            System.out.println("The site was opened" + url);
-        } catch (Exception e) {
-            System.out.println("Can't open " + url);
-        }
-    }
-
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-            System.out.println(text + " was inputted into input");
+            logger.info(text + " was inputted into input");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -35,7 +28,7 @@ public class ActionsWithElements {
     public void clickOnElement(WebElement element) {
         try {
             element.click();
-            System.out.println("The element was clicked");
+            logger.info("The element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -43,8 +36,15 @@ public class ActionsWithElements {
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            return element.isDisplayed();
+            boolean state = element.isDisplayed();
+            if (state) {
+                logger.info("The element is displayed");
+            } else {
+                logger.info("The element is not displayed");
+            }
+            return state;
         } catch (Exception e) {
+            logger.info("The element is not displayed");
             return false;
         }
     }
@@ -54,7 +54,7 @@ public class ActionsWithElements {
     }
 
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can't work with element " + e);
+        logger.error("Can't work with element " + e);
         Assert.fail("Can't work with element " + e);
     }
 }
