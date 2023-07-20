@@ -1,6 +1,6 @@
 001 Test Case: User Registration
 Precondition:
-- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The web application is accessible at https://aqa-complexapp.onrender.com/.
 - The registration page displays all the necessary fields: "Username," "Email," and "Password."
 
 Steps:
@@ -19,7 +19,7 @@ The main page displays the text "Hello [username], your feed is empty".
 
 002 Test Case: User Login
 Precondition:
-- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The web application is accessible at https://aqa-complexapp.onrender.com/.
 - The login page displays all the necessary fields: "Username" and "Password."
 - A user is registered with the following credentials:
 - Username: [enter the registered username]
@@ -40,7 +40,7 @@ The main page displays the [username].
 
 003 Test Case: Create a New Post
 Precondition:
-- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The web application is accessible at https://aqa-complexapp.onrender.com/.
 - A user is registered with the following credentials:
 - Username: [enter the registered username]
 - Password: [enter the registered password]
@@ -67,7 +67,7 @@ The deleted post is no longer displayed on the main page, the message "Post succ
 
 004 Test Case: Search for a Post by Title
 Precondition:
-- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The web application is accessible at https://aqa-complexapp.onrender.com/.
 - A user is registered with the following credentials:
 - Username: [enter the registered username]
 - Password: [enter the registered password]
@@ -85,7 +85,7 @@ After performing a search by the title "test", the corresponding post with that 
 
 005 Test Case: Subscribe to Post Creator
 Precondition:
-- The web application is accessible at https://qa-complexapp.onrender.com/.
+- The web application is accessible at https://aqa-complexapp.onrender.com/.
 - A user is registered with the following credentials:
 - Username: [enter the registered username]
 - Password: [enter the registered password]
