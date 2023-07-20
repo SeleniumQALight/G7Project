@@ -43,7 +43,7 @@ public class ActionsWithElements {
             } else {
                 logger.info("Element is not displayed");
             }
-            return false;
+            return state;
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
