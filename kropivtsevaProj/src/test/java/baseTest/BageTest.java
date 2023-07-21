@@ -29,6 +29,6 @@ public class BageTest {
     @After
     public void tearDown() {
         webDriver.quit();
-        System.out.println("Browser was closed");
+        logger.info("Browser was closed");
     }
 }
