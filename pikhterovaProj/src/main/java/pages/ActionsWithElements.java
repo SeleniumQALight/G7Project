@@ -1,11 +1,14 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
+
+    Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
@@ -13,36 +16,25 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this);//this - means all elements from this class will be initialized FindBy
     }
 
-
-    public void openPage(String url) {
-        try {
-            webDriver.get(url);
-            System.out.println("Page " + url + " was opened");
-        } catch (Exception e) {
-            System.out.println("Can not open " + url);
-            Assert.fail("Can not open " + url);
-        }
-    }
-
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-            System.out.println(text + " was inputted into input");
+            logger.info(text + " was inputted into input");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can not work with element" + e);
+        logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
     }
 
     public void clickOnElement(WebElement element) {
         try {
             element.click();
-            System.out.println("Element was clicked");
+            logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -50,9 +42,16 @@ public class ActionsWithElements {
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            return element.isDisplayed();
+
+            boolean state =  element.isDisplayed();
+            if (state) {
+                logger.info("Element is displayed");
+            } else {
+                logger.info("Element is not displayed");
+            }
+            return state;
         } catch (Exception e) {
-            System.out.println("Element is displayed -> false");
+            logger.info("Element is not  displayed");
             return false;
         }
     }
