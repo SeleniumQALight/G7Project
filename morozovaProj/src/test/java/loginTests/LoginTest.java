@@ -24,8 +24,7 @@ public class LoginTest {
         System.out.println("Browser was opened");
         webDriver.get("https://aqa-complexapp.onrender.com");
         System.out.println("Site was opened");
-        WebElement inputUserName =
-                webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         inputUserName.clear();
         inputUserName.sendKeys("qaauto");
         System.out.println("Username was inputted");
@@ -38,7 +37,7 @@ public class LoginTest {
 //        WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button [text()= 'Sign Out']"));
         Assert.assertTrue("Button is not displayed", isButtonSignOutVisible());
 
-//        webDriver.quit();
+        webDriver.quit();
 //        System.out.println("Browser was closed");
 
     }
@@ -66,18 +65,16 @@ public class LoginTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was open");
 
-        webDriver.get("https://qa-complexapp.onrender.com");
+        webDriver.get("https://aqa-complexapp.onrender.com");
         System.out.println("Site was opened");
 
-        WebElement inputUserName =
-                webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         inputUserName.clear();
         inputUserName.sendKeys("qaauto1");
         System.out.println("Username was inputted");
 
 
-        WebElement inputPass =
-                webDriver.findElement(By.xpath("//input[@placeholder='Pasword']]"));
+        WebElement inputPass = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         inputPass.clear();
         inputPass.sendKeys("123456qwerty");
         System.out.println("Password was inputted");
@@ -100,7 +97,7 @@ public class LoginTest {
 
     private boolean textInvalidUserVisible() {
         try {
-            return webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center']")).isDisplayed();
+            return webDriver.findElement(By.xpath("//div [contains(text(),'Invalid username  pasword')]")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
