@@ -4,6 +4,7 @@ Login.input.UserNameSignUp = //input[@name='username' and @id='username-register
 Login.input.EmailSignUp = //input[@name='email' and @id='email-register']
 Login.input.PasswordSignUp = //input[@name='password' and @id='password-register']
 Login.button.SignUp = //button[@type='submit' and @class='py-3 mt-4 btn btn-lg btn-success btn-block']
+Login.message.Error = //div[contains (text(),'Invalid username / pasword')] (for aqa env)
 
 #LoginPageHeader
 Login.form.Login = //form[@action='/login']
