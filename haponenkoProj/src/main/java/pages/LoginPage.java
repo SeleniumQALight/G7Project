@@ -3,19 +3,17 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.Header;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputUserName;
+    public static WebElement inputUserName;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
+    public static WebElement inputPassword;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
-    private WebElement buttonSignIn;
-
-    @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    public static WebElement buttonSignIn;
 
     @FindBy(xpath = "//div[contains (text(),'Invalid username / pasword')]")
     private WebElement errorMessage;
@@ -45,11 +43,35 @@ public class LoginPage extends ParentPage{
     }
 
     public void checkIsButtonSignOutNotVisible() {
-        checkElementIsNotDisplayed(buttonSignOut);
+        checkElementIsNotDisplayed(Header.buttonSignOut);
     }
 
     public void checkIsErrorMessageVisible() {
         checkElementIsDisplayed(errorMessage);
+    }
+
+    public void checkIsSearchButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.searchButton);
+    }
+
+    public void checkIsChatButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.chatButton);
+    }
+
+    public void checkIsProfileAvatarButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.profileButton);
+    }
+
+    public void checkIsCreatePostButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.createPostButton);
+    }
+
+    public void checkIsInputUserNameVisible() {
+        checkElementIsDisplayed(inputUserName);
+    }
+
+    public void checkIsInputPasswordVisible() {
+        checkElementIsDisplayed(inputPassword);
     }
 
 }

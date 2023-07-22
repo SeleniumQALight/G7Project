@@ -7,7 +7,7 @@ import static data.TestData.PASSWORD_DEFAULT;
 
 public class LoginTestWithPageObject extends baseTest.BaseTest{
     @Test
-    public void validLogin (){
+    public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);

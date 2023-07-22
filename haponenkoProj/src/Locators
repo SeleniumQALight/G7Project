@@ -12,11 +12,16 @@ Login.input.UserNameLogin = //input[@name='username' and @class='form-control fo
 Login.input.PasswordLogin = //input[@name='password' and @class='form-control form-control-sm input-dark']
 Login.button.SignIn = //button[@class='btn btn-primary btn-sm']
 
-#Header
-Header.button.SignOut = //button[text()='Sign Out']
 
 #HomePage
 HomePage.text.UserName = //*[@class='text-white mr-2']
+
+#Header
+Header.button.SignOut = //button[text()='Sign Out']
+Header.icon.Search = //a//*[@class = 'svg-inline--fa fa-search fa-w-16']
+Header.icon.Chat = //*[@class = 'svg-inline--fa fa-comment fa-w-16']
+Header.icon.ProfileAvatar = //a[@class = 'mr-2']
+Header.button.CreatePost = //a[@class = 'btn btn-sm btn-success mr-2']
 
 #ProfilePage
 Profile.Avatar = //img[@class='avatar-small']
