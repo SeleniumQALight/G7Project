@@ -14,6 +14,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = "//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//button[text() = 'Sign Out']")
+    private WebElement buttonSignOut;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -32,6 +35,10 @@ public class LoginPage extends ParentPage{
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+    }
+
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
     }
 
 

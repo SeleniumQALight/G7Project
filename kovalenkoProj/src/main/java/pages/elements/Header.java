@@ -27,10 +27,80 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(buttonSignIn);
     }
 
+    public void checkIsButtonSignInNotVisible() {
+        checkElementNotDisplayed(buttonSignIn);
+    }
+
     @FindBy(xpath = "//*[@class='alert alert-danger text-center']")
     private WebElement alertMessageWrongLoginOrPassword;
 
     public void checkIsAlertMessageVisible() {
         checkElementDisplayed(alertMessageWrongLoginOrPassword);
+    }
+
+    @FindBy(xpath = "//div[@class='flex-row my-3 my-md-0']//*[@data-icon='search']")
+    private WebElement searchIcon;
+
+    public void checkIsSearchVisible() {
+        checkElementDisplayed(searchIcon);
+    }
+
+    public void checkIsSearchNotVisible() {
+        checkElementNotDisplayed(searchIcon);
+    }
+
+    @FindBy(xpath = "//*[@data-icon='comment']")
+    private WebElement chatIcon;
+
+    public void checkIsChatVisible() {
+        checkElementDisplayed(chatIcon);
+    }
+
+    public void checkIsChatNotVisible() {
+        checkElementNotDisplayed(chatIcon);
+    }
+
+    @FindBy(xpath = "//span[@class='text-white mr-2']")
+    private WebElement avatarIcon;
+
+    public void checkIsAvatarVisible() {
+        checkElementDisplayed(avatarIcon);
+    }
+
+    public void checkIsAvatarNotVisible() {
+        checkElementNotDisplayed(avatarIcon);
+    }
+
+    @FindBy(xpath = "//a[@href='/create-post']")
+    private WebElement buttonCreatePost;
+
+    public void checkIsCreatePostVisible() {
+        checkElementDisplayed(buttonCreatePost);
+    }
+
+    public void checkIsCreatePostNotVisible() {
+        checkElementNotDisplayed(buttonCreatePost);
+    }
+
+    @FindBy(xpath = "//input[@id='username1']")
+    private WebElement inputUserName;
+
+    public void checkIsInputUserNameVisible() {
+        checkElementDisplayed(inputUserName);
+    }
+
+    public void checkIsInputUserNameNotVisible() {
+        checkElementNotDisplayed(inputUserName);
+    }
+
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement inputPassword;
+
+    public void checkIsInputPasswordVisible() {
+        checkElementDisplayed(inputPassword);
+    }
+
+    public void checkIsInputPasswordNotVisible() {
+        checkElementNotDisplayed(inputPassword);
     }
 }
