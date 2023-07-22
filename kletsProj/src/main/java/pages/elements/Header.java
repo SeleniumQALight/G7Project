@@ -8,8 +8,16 @@ import pages.ActionsWithElements;
 public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
+
+    @FindBy (xpath = "//button[@class=\"btn btn-primary btn-sm\"]")
+    private WebElement buttonSignIn;
+
     public Header(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public void checkIsButtonSignInVisible() {
+        checkElementDisplayed(buttonSignIn);
     }
 
     public void checkIsButtonSignOutVisible() {
