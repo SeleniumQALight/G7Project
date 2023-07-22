@@ -22,6 +22,15 @@ SignUp.Button= //button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
 ##SuccesloginMyProfileButton
 LoginSuccess.MyProfileButton= //img[@alt='My profile']
 
+##isErrorMessageVisible
+isErrorMessageVisible= .//div[text()='Invalid username/password.']
+
+##isButtonSignInVisible
+isButtonSignInVisible= .//button[text()='Sign In']
+
+##isButtonSignOutVisible
+isButtonSignOutVisible= .//button[text()='Sign Out']
+
 ##CreatePostButton
 CreatePost.Button= //a[@href='/create-post']
 
