@@ -35,5 +35,9 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
+    public void isButtonSignInVisible() {
+        isElementDisplayed(buttonSignIn);
+    }
+
 
 }
