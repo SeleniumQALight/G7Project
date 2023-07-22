@@ -82,7 +82,7 @@ public class Header extends ActionsWithElements {
         checkElementNotDisplayed(buttonCreatePost);
     }
 
-    @FindBy(xpath = "//input[@id='username1']")
+    @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement inputUserName;
 
     public void checkIsInputUserNameVisible() {
