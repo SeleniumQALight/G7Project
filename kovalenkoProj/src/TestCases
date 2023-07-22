@@ -1,8 +1,8 @@
 001 Success registration
 1. Open main page
-2. Enter valid name in Username field
-3. Enter valid email in Email field
-4. Enter valid password in Password field (must contain 12 characters)
+2. Enter valid unique name in Username field (E.g. "Tetiana123")
+3. Enter valid unique email in Email field (E.g. "123@gmail.com")
+4. Enter valid password in Password field (must contain 12 characters, e.g. "1234567890qw")
 5. Click on the registration confirmation button "Sign up in OurApp"
 
 ER
@@ -36,6 +36,9 @@ ER
 Post creating is success. There is message "New post successfully created."
 Created title and content are showed. There are "Note: This post was written for All Users" and "Is this post unique? : yes" notes on opened page
 
+Postcondition
+Delete created post
+
 
 004 Success post edition (title change of unique public post)
 Precondition
@@ -52,6 +55,9 @@ Steps
 
 ER
 Updating is success. There is message "Post successfully updated."
+
+Postcondition
+Return changes in the post
 
 
 005 Success stop following
