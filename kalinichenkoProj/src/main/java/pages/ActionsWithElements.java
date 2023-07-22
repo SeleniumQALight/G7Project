@@ -50,6 +50,17 @@ public class ActionsWithElements {
         }
     }
 
+    public boolean isElementNotDisplayed(WebElement element) {
+        try {
+            element.isDisplayed();
+            logger.info("Element is displayed");
+            return false;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return true;
+        }
+    }
+
     public void checkElementDisplay(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
