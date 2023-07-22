@@ -65,7 +65,7 @@ public class LoginTest {
     }
 
     @Test
-    public void inValidLoginIn(){
+    public void invalidLoginIn(){
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -88,22 +88,11 @@ public class LoginTest {
         webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).click();
         System.out.println("Button was clicked");
 
-        //  WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-
-        Assert.assertTrue("Button is not displayed", isButtonSignInVisible());
-
-
-
-        //webDriver.quit();
-        // System.out.println("Browser was closed");
+        Assert.assertTrue("SignIn is not displayed", isButtonSignInVisible());
+        Assert.assertFalse("SignOut is displayed", isButtonSignOutVisible());
+        Assert.assertTrue("Alert message is not displayed", isAlertMessageVisible());
 
 
-
-    }
-    @After
-    public void tearDown(){
-        webDriver.quit();
-        System.out.println("Browser was closed");
     }
 
     private boolean isButtonSignInVisible() {
@@ -114,5 +103,12 @@ public class LoginTest {
         }
     }
 
+    private boolean isAlertMessageVisible() {
+        try {
+            return webDriver.findElement(By.xpath("//*[@class='alert alert-danger text-center']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }
