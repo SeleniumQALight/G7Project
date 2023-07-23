@@ -17,4 +17,8 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(buttonSignOut);
     }
 
+    public void checkIsButtonSignOutNotVisible(){
+        checkElementNotDisplayed(buttonSignOut);
+    }
+
 }

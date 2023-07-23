@@ -15,6 +15,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement InvalidCredsError;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -34,6 +37,16 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
+
+    public void checkIsButtonSignInVisible(){
+        checkElementDisplayed(buttonSignIn);
+    }
+
+    public void isInvalidCredsErrorVisible(){
+        checkElementDisplayed(InvalidCredsError);
+    }
+
+
 }
 
 
