@@ -65,5 +65,12 @@ public class ActionsWithElements {
         Assert.fail("Can not work with element" + e);
     }
 
+    public void checkElementNotDisplayed (WebElement element) {
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+        //Assert.assertTrue("Error message is not displayed, Login successful", isErrorMessageVisible());
+        //Assert.assertTrue("Button SignIn is displayed, Login unsuccessful", isButtonSignInVisible());
+
+    }
+
 }
 
