@@ -16,6 +16,7 @@ public class ActionsWithElements {
         // elements in @FindBy annotations
     }
 
+    //actions
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
@@ -35,16 +36,23 @@ public class ActionsWithElements {
         }
     }
 
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element" + e);
+        Assert.fail("Can not work with element" + e);
+    }
+
+    //checks
     public boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
             if (state) {
                 logger.info("Element is displayed");
             } else {
-                logger.error("Element is not displayed");
+                logger.info("Element is not displayed");
             }
             return state;
         } catch (Exception e) {
+            logger.info("Element is not displayed");
             return false;
         }
     }
@@ -53,9 +61,8 @@ public class ActionsWithElements {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
 
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element" + e);
-        Assert.fail("Can not work with element" + e);
+    public void checkElementNotDisplayed(WebElement element) {
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
 }
