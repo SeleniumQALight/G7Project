@@ -5,11 +5,11 @@ import pages.elements.Header;
 
 public class ParentPageWithHeder extends ParentPage {
     Header header;
-    public ParentPageWithHeder(WebDriver webDriver) {
+    public ParentPageWithHeder(WebDriver webDriver) { // конструктор
         super(webDriver);
 
     }
-    public Header getHeader() {
+    public Header getHeader() { // метод для створення об'єкту Header
         return new Header(webDriver);
     }
 }

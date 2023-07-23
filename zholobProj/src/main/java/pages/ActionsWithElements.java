@@ -18,9 +18,6 @@ public class ActionsWithElements {
 // element in @FindBy
     }
 
-    /**
-     * @param url
-     */
 
 
     private void printErrorAndStopTest(Exception e) {
@@ -49,7 +46,7 @@ public class ActionsWithElements {
         }
     }
 
-    public boolean isElementDisplayed(WebElement element) {
+    public boolean isElementDisplayed(WebElement element) {  // перевырка чи елемент присутный на дысплеї
         try {
 
             boolean state = element.isDisplayed();
@@ -64,11 +61,17 @@ public class ActionsWithElements {
             logger.info("Element is not displaed");
             return false;
         }
-
     }
 
-    public void checkElementDisplayed(WebElement element) {
+//////?????????????????????????
+
+
+    public void checkElementDisplayed(WebElement element) { // перевірка чи елемент присутній на дисплеї
         Assert.assertTrue("Element is not displaed", isElementDisplayed(element));
+    }
+
+    public void checkElementNotDisplayed(WebElement element) { // перевірка чи елемент не присутній на дисплеї
+        Assert.assertFalse("Element is displaed", isElementDisplayed(element));
     }
 }
 
