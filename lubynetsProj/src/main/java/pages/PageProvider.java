@@ -18,7 +18,4 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
-    public SignOutPage getSignOutPage() {
-        return new SignOutPage(webDriver);
-    }
 }

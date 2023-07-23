@@ -80,5 +80,7 @@ public class Header extends ActionWithElements {
         checkElementNotDisplayed(buttonLogo);
     }
 
-
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+    }
 }
