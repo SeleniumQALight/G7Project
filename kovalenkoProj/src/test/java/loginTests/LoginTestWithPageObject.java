@@ -20,7 +20,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible();
-        pageProvider.getHomePage().getHeader().checkIsAlertMessageVisible();
+        pageProvider.getLoginPage().checkIsAlertMessageVisible();
     }
     @Test
     public void Logout(){
@@ -33,17 +33,17 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
         pageProvider.getHomePage().getHeader().checkIsAvatarVisible();
         pageProvider.getHomePage().getHeader().checkIsCreatePostVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputUserNameNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputPasswordNotVisible();
+        pageProvider.getLoginPage().checkIsInputUserNameNotVisible();
+        pageProvider.getLoginPage().checkIsInputPasswordNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignInNotVisible();
-        pageProvider.getLoginPage().clickOnButtonSignOut();
+        pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
         pageProvider.getHomePage().getHeader().checkIsSearchNotVisible();
         pageProvider.getHomePage().getHeader().checkIsChatNotVisible();
         pageProvider.getHomePage().getHeader().checkIsAvatarNotVisible();
         pageProvider.getHomePage().getHeader().checkIsCreatePostNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputUserNameVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputPasswordVisible();
+        pageProvider.getLoginPage().checkIsInputUserNameVisible();
+        pageProvider.getLoginPage().checkIsInputPasswordVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible();
     }
 }
