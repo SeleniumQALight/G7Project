@@ -4,16 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends ParrentPage {
-    @FindBy(xpath = "//input[@placeholder='Username']")
+public class LoginPage extends ParentPage {
+    @FindBy(xpath = "//input[@name='username' and @class='form-control form-control-sm input-dark']")
     private WebElement inputUserName;
 
-    @FindBy(xpath = "//input[@placeholder='Password']")
+    @FindBy(xpath = "//input[@name='password' and @class='form-control form-control-sm input-dark']")
     private WebElement inputPassword;
 
     @FindBy(xpath = "//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
-
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
