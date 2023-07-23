@@ -8,8 +8,6 @@ import pages.ActionWithElements;
 public class Header extends ActionWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
-    @FindBy(xpath = "//button[text()='Sign In']")
-    private WebElement buttonSignIn;
     @FindBy(xpath = "(//div[contains(@class, 'alert alert-danger text-center') and contains(text(), 'Invalid username  pasword')]")
     private WebElement invalidMessage;
     @FindBy(xpath = "//a[@href=\"/create-post\"]")
@@ -20,14 +18,9 @@ public class Header extends ActionWithElements {
     private WebElement buttonChat;
     @FindBy(xpath = "//a[contains( @class, 'text-white mr-2 header-search-icon')]")
     private WebElement buttonSearch;
-
     @FindBy(xpath = "//a[contains(@class, 'text-white') and contains(text(), 'Complex app for testing - QA')]")
     private WebElement buttonLogo;
 
-    @FindBy(xpath = "//input[@placeholder=\"Username\"]")
-    private WebElement inputUsername;
-    @FindBy(xpath = "//input[@placeholder=\"Password\"]")
-    private WebElement inputPassword;
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -46,13 +39,6 @@ public class Header extends ActionWithElements {
         checkElementNotDisplayed(invalidMessage);
     }
 
-    public void checkIsButtonSignInVisible() {
-        checkElementDisplayed(buttonSignIn);
-    }
-
-    public void checkIsButtonSignInNotVisible() {
-        checkElementNotDisplayed(buttonSignIn);
-    }
 
     public void checkIsButtonCreatePostVisible() {
         checkElementDisplayed(buttonCreatePost);
@@ -92,22 +78,6 @@ public class Header extends ActionWithElements {
 
     public void checkIsButtonLogoNotVisible() {
         checkElementNotDisplayed(buttonLogo);
-    }
-
-    public void checkIsInputUsernameVisible() {
-        checkElementDisplayed(inputUsername);
-    }
-
-    public void checkIsInputUsernameNotVisible() {
-        checkElementNotDisplayed(inputUsername);
-    }
-
-    public void checkIsInputPasswordVisible() {
-        checkElementDisplayed(inputPassword);
-    }
-
-    public void checkIsInputPasswordNotVisible() {
-        checkElementNotDisplayed(inputPassword);
     }
 
 

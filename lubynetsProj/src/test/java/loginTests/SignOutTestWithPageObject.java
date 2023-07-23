@@ -17,18 +17,18 @@ public class SignOutTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonLogoVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonProfileVisible();
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputUsernameNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputPasswordNotVisible();
+        pageProvider.getloginPage().checkIsButtonSignInNotVisible();
+        pageProvider.getloginPage().checkIsInputUsernameNotVisible();
+        pageProvider.getloginPage().checkIsInputPasswordNotVisible();
         pageProvider.getSignOutPage().clickOnButtonSignOut();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonChatNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonProfileNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputUsernameVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputPasswordVisible();
+        pageProvider.getloginPage().checkIsButtonSignInVisible();
+        pageProvider.getloginPage().checkIsInputUsernameVisible();
+        pageProvider.getloginPage().checkIsInputPasswordVisible();
     }
 
 }
