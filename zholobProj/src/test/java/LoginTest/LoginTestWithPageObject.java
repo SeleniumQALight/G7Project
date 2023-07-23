@@ -25,7 +25,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getloginPage().clickOnButtonSignIn();
 
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible(); // перевірка чи є кнопка SignIn
+        pageProvider.getloginPage().checkIsButtonSignInVisible(); // перевірка чи є кнопка SignIn
         pageProvider.getHomePage().getHeader().checkNotIsButtonMyProfileVisible(); // перевірка чи немає кнопки MyProfile
     }
 
@@ -42,8 +42,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible(); // перевірка чи є кнопка SignOut
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostVisible(); // перевірка чи є кнопка CreatePost
 
-        pageProvider.getHomePage().getHeader().checkNotIsFieldLoginVisible(); // перевірка чи відсутнє поле Login
-        pageProvider.getHomePage().getHeader().checkNotIsFieldPasswordVisible(); // перевірка чи відсутнє поле Password
+        pageProvider.getloginPage().checkNotIsFieldLoginVisible(); // перевірка чи відсутнє поле Login
+        pageProvider.getloginPage().checkNotIsFieldPasswordVisible(); // перевірка чи відсутнє поле Password
 
         pageProvider.getloginPage().clickOnButtonSignOut(); // клік на кнопку SignOut
 
@@ -54,9 +54,9 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkNotIsButtonSignOutVisible(); // перевірка чи немає кнопки SignOut
 
 
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible(); // перевірка чи є кнопка SignIn
-        pageProvider.getHomePage().getHeader().checkIsFieldLoginVisible(); // перевірка чи є поле Login
-        pageProvider.getHomePage().getHeader().checkIsFieldPasswordVisible(); // перевірка чи є поле Password
+        pageProvider.getloginPage().checkIsButtonSignInVisible(); // перевірка чи є кнопка SignIn
+        pageProvider.getloginPage().checkIsFieldLoginVisible(); // перевірка чи є поле Login
+        pageProvider.getloginPage().checkIsFieldPasswordVisible(); // перевірка чи є поле Password
 
     }
 }

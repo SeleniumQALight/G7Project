@@ -9,8 +9,6 @@ public class Header extends ActionsWithElements { // клас для робот�
     @FindBy(xpath = "//button[text() = 'Sign Out']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//button[text() = 'Sign In']")
-    private WebElement buttonSignIn;
 
     @FindBy(xpath = "//a[@ class='text-white mr-2 header-search-icon']//*[@data-icon ='search']")
     private WebElement buttonSearch;
@@ -24,25 +22,19 @@ public class Header extends ActionsWithElements { // клас для робот�
     @FindBy(xpath = " //*[@class='svg-inline--fa fa-comment fa-w-16']//*[@fill='currentColor']")
     private WebElement buttonChat;
 
-    @FindBy(xpath = "//input[@placeholder='Username']")
-    private WebElement fieldLogin;
 
-    @FindBy(xpath = "//input[@placeholder='Password']") //?
-    private WebElement fieldPassword;
 
 
     public Header(WebDriver webDriver) {
         super(webDriver);
     } // конструктор
 
-    // Методи присутності елементів на сторінці :
+    // Методи роботи з елементами хедера :
+
+    // Методи перевірки присутності елементів на сторінці :
 
     public void checkIsButtonSignOutVisible() { // метод для перевірки чи кнопка Sign Out присутня на сторінці
         checkElementDisplayed(buttonSignOut);
-    }
-
-    public void checkIsButtonSignInVisible() { // метод для перевірки чи кнопка Sign In присутня на сторінці
-        checkElementDisplayed(buttonSignIn);
     }
 
     public void checkIsButtonSearchVisible() { // метод для перевірки чи кнопка Search присутня на сторінці
@@ -59,20 +51,12 @@ public class Header extends ActionsWithElements { // клас для робот�
 
     public void checkIsButtonChatVisible() { checkElementDisplayed(buttonChat);}
 
-    public void checkIsFieldLoginVisible() { checkElementDisplayed(fieldLogin);}
-
-    public void checkIsFieldPasswordVisible() { checkElementDisplayed(fieldPassword);}
-
-
 
 
     //Методи перевірки відсутності елементів на сторінці :
 
     public void checkNotIsButtonSignOutVisible() { // метод для перевірки відсутності кнопки Sign Out на сторінці
         checkElementNotDisplayed(buttonSignOut);
-    }
-    public void checkNotIsButtonSignInVisible() { // метод для перевірки відсутності кнопки Sign In на сторінці
-        checkElementNotDisplayed(buttonSignIn);
     }
 
     public void checkNotIsButtonSearchVisible() { // метод для перевірки відсутності кнопки Search на сторінці
@@ -91,12 +75,5 @@ public class Header extends ActionsWithElements { // клас для робот�
         checkElementNotDisplayed(buttonChat);
     }
 
-    public void checkNotIsFieldLoginVisible() { // метод для перевірки відсутності поля Login на сторінці
-        checkElementNotDisplayed(fieldLogin);
-    }
-
-    public void checkNotIsFieldPasswordVisible() { // метод для перевірки відсутності поля Password на сторінці
-        checkElementNotDisplayed(fieldPassword);
-    }
 
 }
