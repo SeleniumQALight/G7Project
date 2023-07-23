@@ -51,14 +51,7 @@ public class ActionsWithElements {
     }
 
     public boolean isElementNotDisplayed(WebElement element) {
-        try {
-            element.isDisplayed();
-            logger.info("Element is displayed");
-            return false;
-        } catch (Exception e) {
-            logger.info("Element is not displayed");
-            return true;
-        }
+       return !isElementDisplayed(element);
     }
 
     public void checkElementDisplay(WebElement element) {
