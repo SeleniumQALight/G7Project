@@ -22,7 +22,7 @@ public class LoginTestOld {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was opened");
 
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
         System.out.println("Site was opened");
 
         WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
@@ -38,7 +38,7 @@ public class LoginTestOld {
         webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).click();
         System.out.println("Button 'Log In' was clicked");
 
-        //WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[@class=\"btn btn-sm btn-secondary\"]"));
+        //WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[@class='btn btn-sm btn-secondary']"));
         Assert.assertTrue("Button 'Sign Out' is not displayed", isButtonSignOutVisible());
         System.out.println("Button 'Sign Out' is displayed");
 
@@ -54,7 +54,7 @@ public class LoginTestOld {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was opened");
 
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
         System.out.println("Site was opened");
 
         WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
@@ -66,6 +66,10 @@ public class LoginTestOld {
         inputPassWord.clear();
         inputPassWord.sendKeys("123456qwert");
         System.out.println("Password was inputted");
+        /*WebElement inputPassWord = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        inputPassWord.clear();
+        inputPassWord.sendKeys("123456qwert");
+        System.out.println("Password was inputted");*/
 
         WebElement buttonLogIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonLogIn.click();
@@ -90,7 +94,7 @@ public class LoginTestOld {
 
     private boolean isButtonSignOutVisible() {
         try {
-            return webDriver.findElement(By.xpath(".//button[@class=\"btn btn-sm btn-secondary\"]"))
+            return webDriver.findElement(By.xpath(".//button[@class='btn btn-sm btn-secondary']"))
                     .isDisplayed();
         } catch (Exception e) {
             return false;
@@ -99,7 +103,7 @@ public class LoginTestOld {
 
     private boolean isButtonSignInVisible() {
         try {
-            return webDriver.findElement(By.xpath(".//*[@class=\"btn btn-primary btn-sm\"]"))
+            return webDriver.findElement(By.xpath(".//*[@class='btn btn-primary btn-sm']"))
                     .isDisplayed();
         } catch (Exception e) {
             return false;
@@ -108,7 +112,7 @@ public class LoginTestOld {
 
     private boolean isMessageInvalidUsernamePasswordDisplayed() {
         try {
-            return webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center' and text() = 'Invalid username/password.']"))
+            return webDriver.findElement(By.xpath("//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']"))
                     .isDisplayed();
         } catch (Exception e) {
             return false;
