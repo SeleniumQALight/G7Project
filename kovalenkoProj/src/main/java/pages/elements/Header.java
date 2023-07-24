@@ -13,9 +13,6 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text() = 'Sign Out']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//button[text() = 'Sign In']")
-    private WebElement buttonSignIn;
-
     @FindBy(xpath = "//div[@class='flex-row my-3 my-md-0']//*[@data-icon='search']")
     private WebElement searchIcon;
 
@@ -37,14 +34,6 @@ public class Header extends ActionsWithElements {
 
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
-    }
-
-    public void checkIsButtonSignInVisible() {
-        checkElementDisplayed(buttonSignIn);
-    }
-
-    public void checkIsButtonSignInNotVisible() {
-        checkElementNotDisplayed(buttonSignIn);
     }
 
     public void checkIsSearchVisible() {

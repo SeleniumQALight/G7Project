@@ -37,6 +37,14 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
 
+    public void checkIsButtonSignInVisible() {
+        checkElementDisplayed(buttonSignIn);
+    }
+
+    public void checkIsButtonSignInNotVisible() {
+        checkElementNotDisplayed(buttonSignIn);
+    }
+
     public void checkIsAlertMessageVisible() {
         checkElementDisplayed(alertMessageWrongLoginOrPassword);
     }
