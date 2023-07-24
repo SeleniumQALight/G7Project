@@ -11,7 +11,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
 
-    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
     public LoginPage(WebDriver webDriver) {
@@ -34,6 +34,29 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
+    public void checkIsButtonSignInVisible() {
+        checkElementDisplayed(buttonSignIn);
+    }
+
+    public void checkIsButtonSignInNotVisible() {
+        checkElementNotDisplayed(buttonSignIn);
+    }
+
+    public void checkIsInputUsernameVisible() {
+        checkElementDisplayed(inputUserName);
+    }
+
+    public void checkIsInputUsernameNotVisible() {
+        checkElementNotDisplayed(inputUserName);
+    }
+
+    public void checkIsInputPasswordVisible() {
+        checkElementDisplayed(inputPassword);
+    }
+
+    public void checkIsInputPasswordNotVisible() {
+        checkElementNotDisplayed(inputPassword);
+    }
 
 }
 
