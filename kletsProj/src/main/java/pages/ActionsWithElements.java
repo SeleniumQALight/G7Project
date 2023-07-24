@@ -76,4 +76,12 @@ public class ActionsWithElements {
         }
     }
 
+    void isElementNotDisplayed(WebElement element) {
+        logger.info("Checking if element is not displayed");
+        if (!element.isDisplayed()) {
+            logger.info("Element is not displayed");
+        } else {
+            logger.error("Element is displayed");
+        }
+    }
 }

@@ -1,7 +1,7 @@
 #registration-form
 Registration.form.SignUp = //form[@action="/register" and @id="registration-form"]
 Registration.input.UserName = //input[@name="username" and @id="username-register"]
-Registration.input.UserName = //input[@name="email" and @id="email-register"]
+Registration.input.Email = //input[@name="email" and @id="email-register"]
 Registration.input.Password = //input[@name="password" and @id="password-register"]
 Registration.button.SignUp = //form[@id="registration-form"]/button OR
 //button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
