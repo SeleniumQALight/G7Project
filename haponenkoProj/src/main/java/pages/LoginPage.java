@@ -7,13 +7,13 @@ import pages.elements.Header;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Username']")
-    public static WebElement inputUserName;
+    private WebElement inputUserName;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    public static WebElement inputPassword;
+    private WebElement inputPassword;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
-    public static WebElement buttonSignIn;
+    private WebElement buttonSignIn;
 
     @FindBy(xpath = "//div[contains (text(),'Invalid username / pasword')]")
     private WebElement errorMessage;
@@ -50,28 +50,24 @@ public class LoginPage extends ParentPage {
         checkElementIsDisplayed(errorMessage);
     }
 
-    public void checkIsSearchButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.searchButton);
-    }
-
-    public void checkIsChatButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.chatButton);
-    }
-
-    public void checkIsProfileAvatarButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.profileButton);
-    }
-
-    public void checkIsCreatePostButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.createPostButton);
-    }
-
     public void checkIsInputUserNameVisible() {
         checkElementIsDisplayed(inputUserName);
     }
 
     public void checkIsInputPasswordVisible() {
         checkElementIsDisplayed(inputPassword);
+    }
+
+    public void checkIsButtonSignInNotVisible() {
+        checkElementIsNotDisplayed(buttonSignIn);
+    }
+
+    public void checkIsInputUserNameNotVisible() {
+        checkElementIsNotDisplayed(inputUserName);
+    }
+
+    public void checkIsInputPasswordNotVisible() {
+        checkElementIsNotDisplayed(inputPassword);
     }
 
 }

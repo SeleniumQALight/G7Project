@@ -47,19 +47,23 @@ public class Header extends ActionsWithElements {
         checkElementIsDisplayed(createPostButton);
     }
 
-    public void checkIsButtonSignInNotVisible() {
-        checkElementIsNotDisplayed(LoginPage.buttonSignIn);
-    }
-
-    public void checkIsInputUserNameNotVisible() {
-        checkElementIsNotDisplayed(LoginPage.inputUserName);
-    }
-
-    public void checkIsInputPasswordNotVisible() {
-        checkElementIsNotDisplayed(LoginPage.inputPassword);
-    }
-
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
+    }
+
+    public void checkIsSearchButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.searchButton);
+    }
+
+    public void checkIsChatButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.chatButton);
+    }
+
+    public void checkIsProfileAvatarButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.profileButton);
+    }
+
+    public void checkIsCreatePostButtonNotVisible() {
+        checkElementIsNotDisplayed(Header.createPostButton);
     }
 }
