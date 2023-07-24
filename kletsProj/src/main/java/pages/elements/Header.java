@@ -7,9 +7,6 @@ import pages.ActionsWithElements;
 
 public class Header extends ActionsWithElements {
 
-    @FindBy(xpath = "//button[@class=\"btn btn-primary btn-sm\"]")
-    private WebElement buttonSignIn;
-
     @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']")
     private WebElement linkSearch;
 
@@ -28,18 +25,8 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//input[@name ='username' and @class='form-control form-control-sm input-dark']")
-    private WebElement inputUsernameLogin;
-
-    @FindBy(xpath = "//input[@name ='password' and @class='form-control form-control-sm input-dark']")
-    private WebElement inputPasswordLogin;
-
     public Header(WebDriver webDriver) {
         super(webDriver);
-    }
-
-    public void checkIsButtonSignInVisible() {
-        checkElementDisplayed(buttonSignIn);
     }
 
     public void checkIsButtonSignOutVisible() {
@@ -66,19 +53,9 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(linkCreatePost);
     }
 
-    public void checkIsInputUsernameLoginVisible() {
-        checkElementDisplayed(inputUsernameLogin);
-    }
-
-    public void checkIsInputPasswordLoginVisible() {
-        checkElementDisplayed(inputPasswordLogin);
-    }
-
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
-
-
 
 }
 

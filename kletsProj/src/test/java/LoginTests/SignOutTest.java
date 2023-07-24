@@ -13,7 +13,6 @@ public class SignOutTest extends BaseTest {
         pageProvider.getLoginPage().enterTextInputPassword(TestData.PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
-
         pageProvider.getHomePage().getHeader().checkIsLinkSearchVisible();
         pageProvider.getHomePage().getHeader().checkIsIconChatVisible();
         pageProvider.getHomePage().getHeader().checkIsLinkAvatarVisible();
@@ -26,6 +25,7 @@ public class SignOutTest extends BaseTest {
         pageProvider.getLoginPage().checkIsInputUsernameLoginVisible();
         pageProvider.getLoginPage().checkIsInputPasswordLoginVisible();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
+
     }
 
 

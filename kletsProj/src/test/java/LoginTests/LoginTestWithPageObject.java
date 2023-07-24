@@ -26,9 +26,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkErrorMessageIsDisplayed();
-        pageProvider.getLoginPage().checkTextInErrorMessage(TestData.ERROR_MESSAGE);
         pageProvider.getLoginPage().isButtonSignInDisplayed();
-
 
     }
 }

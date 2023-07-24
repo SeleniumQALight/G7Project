@@ -14,9 +14,6 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class ='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
 
-    @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
-    private WebElement buttonSignOut;
-
     @FindBy(xpath = "//div[@class ='alert alert-danger text-center' and text()='Invalid username / pasword']")
     private WebElement errorMessage;
 
@@ -32,16 +29,12 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputUsername, userName);
     }
 
-    public void clickOnButtonSignIn() {
-        clickOnElement(buttonSignIn);
-    }
-
     public void enterTextInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
-    public void isButtonSignOutDisplayed() {
-        isElementDisplayed(buttonSignOut);
+    public void clickOnButtonSignIn() {
+        clickOnElement(buttonSignIn);
     }
 
     public void isButtonSignInDisplayed() {
@@ -51,29 +44,6 @@ public class LoginPage extends ParentPage {
     public void checkErrorMessageIsDisplayed() {
         checkElementDisplayed(errorMessage);
     }
-
-    public void checkTextInErrorMessage(String text) {
-        checkTextInElement(errorMessage, text);
-    }
-
-    public void checkTextInElement(WebElement errorMessage, String text) {
-        String errorMessageText = errorMessage.getText();
-        if (errorMessageText.equals(text)) {
-            logger.info("Text in error message is correct");
-        } else {
-            logger.error("Text in error message is not correct");
-        }
-
-    }
-
-    public void checkIsButtonSignOutNotVisible() {
-        isElementNotDisplayed(buttonSignOut);
-    }
-
-    public void checkIsButtonSignInNotVisible() {
-        isElementNotDisplayed(buttonSignIn);
-    }
-
 
     public void checkIsInputUsernameLoginVisible() {
         checkElementDisplayed(inputUsername);

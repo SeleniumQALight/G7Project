@@ -61,22 +61,7 @@ public class ActionsWithElements {
         Assert.fail("Can not work with element " + e);//zupinit test
     }
 
-
-    public void checkTextInElement(WebElement element, String text) {
-        try {
-            String elementText = element.getText();
-            if (elementText.equals(text)) {
-                logger.info("Text in element is correct");
-            } else {
-                logger.error("Text in element is not correct");
-                Assert.fail("Text in element is not correct");
-            }
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    void isElementNotDisplayed(WebElement element) {
+    protected void isElementNotDisplayed(WebElement element) {
         logger.info("Checking if element is not displayed");
         if (!element.isDisplayed()) {
             logger.info("Element is not displayed");
