@@ -6,12 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 
 public class Header extends ActionsWithElements {
-    @FindBy(xpath = "//input[@placeholder='Username']")
-    private WebElement inputUserName;
-    @FindBy(xpath = "//input[@placeholder='Password']")
-    private WebElement inputPassword;
-    @FindBy(xpath = ".//*[text()='Sign In']")
-    private WebElement buttonSignIn;
     @FindBy(xpath = ".//*[text()='Sign Out']")
     private WebElement buttonSignOut;
     @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']")
@@ -22,18 +16,6 @@ public class Header extends ActionsWithElements {
     private WebElement profileIcon;
     @FindBy(xpath = "//a[text()='Create Post']")
     private WebElement buttonCreatePost;
-
-    public void enterTextIntoInputUserName(String userName) {
-        enterTextIntoInput(inputUserName, userName);
-    }
-
-    public void enterTextIntoInputPassword(String password) {
-        enterTextIntoInput(inputPassword, password);
-    }
-
-    public void clickOnButtonSignIn() {
-        clickOnElement(buttonSignIn);
-    }
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -49,14 +31,6 @@ public class Header extends ActionsWithElements {
 
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
-    }
-
-    public void checkIsButtonSignInVisible() {
-        checkElementDisplayed(buttonSignIn);
-    }
-
-    public void checkIsButtonSignInNotVisible() {
-        checkElementIsNotDisplayed(buttonSignIn);
     }
 
     public void checkIsSearchIconDisplayed() {
@@ -89,13 +63,5 @@ public class Header extends ActionsWithElements {
 
     public void checkIsButtonCreatePostNotDisplayed() {
         checkElementIsNotDisplayed(buttonCreatePost);
-    }
-
-    public void checkIsUserNameInputDisplayed() {
-        checkElementDisplayed(inputUserName);
-    }
-
-    public void checkIsPasswordInputDisplayed() {
-        checkElementDisplayed(inputPassword);
     }
 }

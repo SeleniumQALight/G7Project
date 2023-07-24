@@ -9,9 +9,9 @@ public class SignOutTest extends baseTest.BaseTest {
     public void signOutTest() {
         //step
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getHomePage().getHeader().enterTextIntoInputUserName(LOGIN_DEFAULT);
-        pageProvider.getHomePage().getHeader().enterTextIntoInputPassword(PASSWORD_DEFAULT);
-        pageProvider.getHomePage().getHeader().clickOnButtonSignIn();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         //assert
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().getHeader().checkIsChatIconDisplayed();
@@ -26,8 +26,8 @@ public class SignOutTest extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsSearchIconNotDisplayed();
         pageProvider.getHomePage().getHeader().checkIsProfileIconNotDisplayed();
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostNotDisplayed();
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible();
-        pageProvider.getHomePage().getHeader().checkIsUserNameInputDisplayed();
-        pageProvider.getHomePage().getHeader().checkIsPasswordInputDisplayed();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsUserNameInputDisplayed();
+        pageProvider.getLoginPage().checkIsPasswordInputDisplayed();
     }
 }

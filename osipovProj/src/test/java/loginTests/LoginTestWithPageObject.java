@@ -8,9 +8,9 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
     @Test
     public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getHomePage().getHeader().enterTextIntoInputUserName(LOGIN_DEFAULT);
-        pageProvider.getHomePage().getHeader().enterTextIntoInputPassword(PASSWORD_DEFAULT);
-        pageProvider.getHomePage().getHeader().clickOnButtonSignIn();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
@@ -18,11 +18,11 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
     @Test
     public void invalidLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getHomePage().getHeader().enterTextIntoInputUserName(LOGIN_INVALID);
-        pageProvider.getHomePage().getHeader().enterTextIntoInputPassword(PASSWORD_INVALID);
-        pageProvider.getHomePage().getHeader().clickOnButtonSignIn();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_INVALID);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_INVALID);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
 
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
         pageProvider.getLoginPage().isInvalidLoginMessageDisplayed();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
     }
