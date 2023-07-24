@@ -14,7 +14,6 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
 
-
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -33,6 +32,14 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+    }
+
+    public void checkIsInputUserNameIsNotDisplayed() {
+        checkElementNotDisplayed(inputUserName);
+    }
+
+    public void checkIsInputPasswordIsNotDisplayed() {
+        checkElementNotDisplayed(inputPassword);
     }
 
 
