@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,22 +20,29 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+
     public void openLoginPage() {
         openPage(BASE_URL);
     }
 
-    public void enterTextIntoInputUserNane(String UserNane) {
+    public void enterTextIntoInputUserName(String UserNane) {
         enterTextIntoInput(inputUserNane, UserNane);
     }
+
     public void enterTextIntoInputPassword(String Password) {
-        enterTextIntoInput(inputPassword,Password);
+        enterTextIntoInput(inputPassword, Password);
     }
 
-public void clickOnButtonSignIn() {
+    public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-//    public void enterTextInToInputPassword(String password) {
-//        enterTextIntoInput(inputPassword, password);
-//    }
+
+    public void loginWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
+    }
+
 
 }
