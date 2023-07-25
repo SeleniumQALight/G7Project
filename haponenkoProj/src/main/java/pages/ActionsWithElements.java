@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
@@ -55,6 +56,26 @@ public class ActionsWithElements {
 
     public void checkElementIsNotDisplayed(WebElement element) {
         Assert.assertFalse("The element is displayed", isElementDisplayed(element));
+    }
+
+    public void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     private void printErrorAndStopTest(Exception e) {

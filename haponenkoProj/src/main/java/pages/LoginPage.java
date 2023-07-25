@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.Header;
 
+import static data.TestData.LOGIN_DEFAULT;
+import static data.TestData.PASSWORD_DEFAULT;
+
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputUserName;
@@ -42,9 +45,6 @@ public class LoginPage extends ParentPage {
         checkElementIsDisplayed(buttonSignIn);
     }
 
-    public void checkIsButtonSignOutNotVisible() {
-        checkElementIsNotDisplayed(Header.buttonSignOut);
-    }
 
     public void checkIsErrorMessageVisible() {
         checkElementIsDisplayed(errorMessage);
@@ -70,4 +70,10 @@ public class LoginPage extends ParentPage {
         checkElementIsNotDisplayed(inputPassword);
     }
 
+    public void loginWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputUserName(LOGIN_DEFAULT);
+        enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
+    }
 }

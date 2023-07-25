@@ -24,7 +24,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
-        pageProvider.getLoginPage().checkIsButtonSignOutNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getLoginPage().checkIsErrorMessageVisible();
     }
 }
