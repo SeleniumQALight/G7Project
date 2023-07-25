@@ -9,7 +9,7 @@ public class ParentPage extends ActionsWithElements{
         super(webDriver);
     }
 
-    public void openPage(String url) {
+    public void openPage(String url) { // метод для відкриття сторінки
         try {
             webDriver.get(url);
             logger.info("Page was opened " + url);

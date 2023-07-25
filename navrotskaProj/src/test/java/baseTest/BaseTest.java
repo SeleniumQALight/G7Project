@@ -10,6 +10,9 @@ import pages.PageProvider;
 
 import java.time.Duration;
 
+import static data.TestData.LOGIN_DEFAULT;
+import static data.TestData.PASSWORD_DEFAULT;
+
 public class BaseTest {
 
     WebDriver webDriver;
@@ -31,6 +34,20 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
+    }
+    public void login(String username, String password) {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(username);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
+
+    }
+
+    public void logout() {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
     }
 
 }
