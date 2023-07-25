@@ -11,6 +11,11 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassword;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
+    @FindBy(xpath = "//button[text() = 'Sign Out']")
+    private WebElement buttonSignOut;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']")
+    private WebElement messageInvalidUserNameOrPassword;
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -26,6 +31,28 @@ public class LoginPage extends ParentPage{
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
+    public void clickOnButtonSignOut(){
+        clickOnElement(buttonSignOut);
+    }
+    public void checkIsButtonSignInVisible(){
+        checkElementDisplayed(buttonSignIn);
+    }
+    public void checkIsFieldLoginVisible(){
+        checkElementDisplayed(inputUserName);
+    }
+    public void checkIsFieldPasswordVisible(){
+        checkElementDisplayed(inputPassword);
+    }
+    public void checkNotIsButtonSignInVisible(){
+        checkElementNotDisplayed(buttonSignIn);
+    }
+    public void checkNotIsFieldLoginVisible(){
+        checkElementNotDisplayed(inputUserName);
+    }
+    public void checkNotIsFieldPasswordVisible(){
+        checkElementNotDisplayed(inputPassword);
+    }
+
     public LoginPage getLoginPage(){
         return new LoginPage(webDriver);
     }

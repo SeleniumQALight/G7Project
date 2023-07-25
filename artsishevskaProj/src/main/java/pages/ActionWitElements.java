@@ -49,11 +49,15 @@ public class ActionWitElements {
         }
 
     }
-    public void checkElementDispplayed(WebElement element){
+    public void checkElementDisplayed(WebElement element){
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element");
         Assert.fail("Can not work with element");
+
+    }
+    public void checkElementNotDisplayed(WebElement element){
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 }
