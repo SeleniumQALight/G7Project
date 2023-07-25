@@ -61,12 +61,9 @@ public class ActionsWithElements {
         Assert.fail("Can not work with element " + e);//zupinit test
     }
 
-    protected void isElementNotDisplayed(WebElement element) {
+    public void checkElementNotDisplayed(WebElement element) {
         logger.info("Checking if element is not displayed");
-        if (!element.isDisplayed()) {
-            logger.info("Element is not displayed");
-        } else {
-            logger.error("Element is displayed");
-        }
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
+
 }

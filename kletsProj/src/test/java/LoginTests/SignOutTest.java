@@ -20,13 +20,22 @@ public class SignOutTest extends BaseTest {
         pageProvider.getHomePage().getHeader().checkIsLinkCreatePostVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
+        pageProvider.getLoginPage().checkIsInputUsernameLoginNotVisible();
+        pageProvider.getLoginPage().checkIsInputPasswordLoginNotVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInNotVisible();
+
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
 
         pageProvider.getLoginPage().checkIsInputUsernameLoginVisible();
         pageProvider.getLoginPage().checkIsInputPasswordLoginVisible();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
 
+        pageProvider.getHomePage().getHeader().checkIsLinkSearchNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsIconChatNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsLinkAvatarNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsTextUserNameNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsLinkCreatePostNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
+
     }
-
-
 }

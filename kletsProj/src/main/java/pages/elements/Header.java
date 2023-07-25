@@ -57,6 +57,30 @@ public class Header extends ActionsWithElements {
         clickOnElement(buttonSignOut);
     }
 
+    public void checkIsLinkSearchNotVisible() {
+        checkElementNotDisplayed(linkSearch);
+    }
+
+    public void checkIsIconChatNotVisible() {
+        checkElementNotDisplayed(iconChat);
+    }
+
+    public void checkIsLinkAvatarNotVisible() {
+        checkElementNotDisplayed(linkAvatar);
+    }
+
+    public void checkIsTextUserNameNotVisible() {
+        checkElementNotDisplayed(textUserName);
+    }
+
+    public void checkIsLinkCreatePostNotVisible() {
+        checkElementNotDisplayed(linkCreatePost);
+    }
+
+    public void checkIsButtonSignOutNotVisible() {
+        checkElementNotDisplayed(buttonSignOut);
+    }
+
 }
 
 

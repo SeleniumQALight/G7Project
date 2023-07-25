@@ -26,7 +26,15 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkErrorMessageIsDisplayed();
-        pageProvider.getLoginPage().isButtonSignInDisplayed();
+        pageProvider.getLoginPage().checkButtonSignInDisplayed();
+
+        pageProvider.getHomePage().getHeader().checkIsLinkSearchNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsIconChatNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsLinkAvatarNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsTextUserNameNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsLinkCreatePostNotVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
+
 
     }
 }
