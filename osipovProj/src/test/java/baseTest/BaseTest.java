@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.PageProvider;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     WebDriver webDriver;
