@@ -34,7 +34,6 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-
     public void checkIsButtonSignInVisible() {
         checkElementDisplayed(buttonSignIn);
     }
@@ -45,6 +44,18 @@ public class LoginPage extends ParentPage {
 
     public void checkIsInputPasswordDisplayed() {
         checkElementDisplayed(inputPassword);
+    }
+
+    public void checkIsButtonSignInNotVisible() {
+        checkElementNotDisplayed(buttonSignIn);
+    }
+
+    public void checkIsInputUserNameIsNotDisplayed() {
+        checkElementNotDisplayed(inputUserName);
+    }
+
+    public void checkIsInputPasswordIsNotDisplayed() {
+        checkElementNotDisplayed(inputPassword);
     }
 
 }

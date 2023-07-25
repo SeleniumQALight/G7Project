@@ -14,13 +14,13 @@ public class SignOutTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonChatVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonMyProfileVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchVisible();
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsInputUserNameIsNotDisplayed();
-        pageProvider.getHomePage().getHeader().checkIsInputPasswordIsNotDisplayed();
+        pageProvider.getLoginPage().checkIsButtonSignInNotVisible();
+        pageProvider.getLoginPage().checkIsInputUserNameIsNotDisplayed();
+        pageProvider.getLoginPage().checkIsInputPasswordIsNotDisplayed();
 
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
-        pageProvider.getHomePage().getHeader().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonChatNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonMyProfileNotVisible();

@@ -9,9 +9,6 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']") // this is a locator
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//button[text()='Sign In']")
-    private WebElement buttonSignIn;
-
     @FindBy(xpath = "//div[text()='Invalid username / pasword']")
     private WebElement errorMessageInvalidUsernamePassword;
 
@@ -27,12 +24,6 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//a[@href='/create-post']")
     private WebElement buttonCreatePost;
 
-    @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputUserName;
-
-    @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
-
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -44,10 +35,6 @@ public class Header extends ActionsWithElements {
 
     public void checkIsButtonSignOutNotVisible() {
         checkElementNotDisplayed(buttonSignOut);
-    }
-
-    public void checkIsButtonSignInVisible() {
-        checkElementDisplayed(buttonSignIn);
     }
 
 
@@ -89,18 +76,6 @@ public class Header extends ActionsWithElements {
 
     public void checkIsButtonCreatePostNotVisible() {
         checkElementNotDisplayed(buttonCreatePost);
-    }
-
-    public void checkIsButtonSignInNotVisible() {
-        checkElementNotDisplayed(buttonSignIn);
-    }
-
-    public void checkIsInputUserNameIsNotDisplayed() {
-        checkElementNotDisplayed(inputUserName);
-    }
-
-    public void checkIsInputPasswordIsNotDisplayed() {
-        checkElementNotDisplayed(inputPassword);
     }
 
 
