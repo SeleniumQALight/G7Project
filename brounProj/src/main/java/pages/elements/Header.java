@@ -9,9 +9,6 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']") // this is a locator
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//div[text()='Invalid username / pasword']")
-    private WebElement errorMessageInvalidUsernamePassword;
-
     @FindBy(xpath = "//a[@data-original-title='Search']")
     private WebElement buttonSearch;
 
@@ -35,11 +32,6 @@ public class Header extends ActionsWithElements {
 
     public void checkIsButtonSignOutNotVisible() {
         checkElementNotDisplayed(buttonSignOut);
-    }
-
-
-    public void checkIsErrorMessageInvalidUsernamePasswordDisplayed() {
-        checkElementDisplayed(errorMessageInvalidUsernamePassword);
     }
 
     public void clickOnButtonSignOut() {

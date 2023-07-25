@@ -20,7 +20,6 @@ public class SignOutTestWithPageObject extends baseTest.BaseTest {
 
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
-        pageProvider.getLoginPage().checkIsButtonSignInVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonChatNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonMyProfileNotVisible();

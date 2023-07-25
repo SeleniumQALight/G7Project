@@ -15,6 +15,6 @@ public class InvalidLoginTestWithPageObject extends baseTest.BaseTest {
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
-        pageProvider.getHomePage().getHeader().checkIsErrorMessageInvalidUsernamePasswordDisplayed();
+        pageProvider.getLoginPage().checkIsErrorMessageInvalidUsernamePasswordDisplayed();
     }
 }
