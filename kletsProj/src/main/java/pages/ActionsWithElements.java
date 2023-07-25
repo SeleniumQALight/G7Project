@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ActionsWithElements {
 
@@ -52,18 +53,38 @@ public class ActionsWithElements {
         }
     }
 
-    public void checkElementDisplayed(WebElement element) {
+    public void checkIsElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+
+    public void checkIsElementNotDisplayed(WebElement element) {
+        logger.info("Checking if element is not displayed");
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+    }
+
+    public void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);//zupinit test
-    }
-
-    public void checkElementNotDisplayed(WebElement element) {
-        logger.info("Checking if element is not displayed");
-        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
 }
