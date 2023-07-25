@@ -14,11 +14,12 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class ='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
 
-    @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
+    @FindBy(xpath = "//div[@class ='alert alert-danger text-center' and text()='Invalid username / pasword']")
+    private WebElement errorMessage;
+
+    @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = ".//div[@class ='alert alert-danger text-center' and text()='Invalid username/password.']")
-    private WebElement errorMessage;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -32,13 +33,48 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputUsername, userName);
     }
 
-    public void clickOnButtonSignIn() {
-        clickOnElement(buttonSignIn);
-    }
-
     public void enterTextInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
+    public void clickOnButtonSignIn() {
+        clickOnElement(buttonSignIn);
+    }
+
+    public void checkButtonSignInDisplayed() {
+        checkElementDisplayed(buttonSignIn);
+    }
+
+    public void checkErrorMessageIsDisplayed() {
+        checkElementDisplayed(errorMessage);
+    }
+
+    public void checkIsInputUsernameLoginVisible() {
+        checkElementDisplayed(inputUsername);
+    }
+
+    public void checkIsInputPasswordLoginVisible() {
+        checkElementDisplayed(inputPassword);
+    }
+
+    public void checkIsButtonSignInVisible() {
+        checkElementDisplayed(buttonSignIn);
+    }
+
+    public void checkIsButtonSignInNotVisible() {
+        checkElementNotDisplayed(buttonSignIn);
+    }
+
+    public void checkIsInputUsernameLoginNotVisible() {
+        checkElementNotDisplayed(inputUsername);
+    }
+
+    public void checkIsInputPasswordLoginNotVisible() {
+        checkElementNotDisplayed(inputPassword);
+    }
+
+    public void checkIsErrorMessageNotVisible() {
+        checkElementNotDisplayed(errorMessage);
+    }
 
 }
