@@ -20,7 +20,7 @@ public class LoginTest {
         WebDriverManager.chromedriver().setup();//maven zarune chromedriver
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(55, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("Browser was opened");
         webDriver.get("https://aqa-complexapp.onrender.com");
         System.out.println("Site was opened");
@@ -97,7 +97,7 @@ public class LoginTest {
 
     private boolean textInvalidUserVisible() {
         try {
-            return webDriver.findElement(By.xpath("//div [contains(text(),'Invalid username  pasword')]")).isDisplayed();
+            return webDriver.findElement(By.xpath("//div [contains(text(),'Invalid username / password')]")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
