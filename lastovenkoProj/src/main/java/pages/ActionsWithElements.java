@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
@@ -17,8 +18,6 @@ public class ActionsWithElements {
     }
 
 
-
-
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
@@ -28,6 +27,7 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
     public void clickOnElement(WebElement element) {
         try {
             element.click();
@@ -54,6 +54,31 @@ public class ActionsWithElements {
     public void checkElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
+
+    public void selectTextInDD(WebElement dropDown, String text) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DD");
+        } catch (Exception e) {
+           printErrorAndStopTest(e);
+        }
+    }
+
+
+
+
+    public void selectValueInDD(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DD");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
