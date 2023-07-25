@@ -2,16 +2,16 @@ package signOutTests;
 
 import baseTest.BaseTest;
 import org.junit.Test;
-
-import static data.TestData.LOGIN_DEFAULT;
-import static data.TestData.PASSWORD_DEFAULT;
+import pages.LoginPage;
+import pages.elements.Header;
 
 public class SignOutTestWithPageObject extends BaseTest {
 
 
     @Test
     public void validSignOut() {
-        login(LOGIN_DEFAULT, PASSWORD_DEFAULT);
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.loginWithValidCreds();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonChatVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonMyProfileVisible();
@@ -21,7 +21,8 @@ public class SignOutTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().checkIsInputPasswordNotVisible();
         pageProvider.getLoginPage().checkIsButtonSignInNotVisible();
 
-        logout();
+        Header header = new Header(webDriver);
+        header.logout();
         pageProvider.getLoginPage().checkIsInputUserNameVisible();
         pageProvider.getLoginPage().checkIsInputPasswordVisible();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();

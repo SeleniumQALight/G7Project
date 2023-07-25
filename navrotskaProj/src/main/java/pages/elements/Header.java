@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
+import pages.LoginPage;
 
 public class Header extends ActionsWithElements {
     @FindBy(xpath = "//*[text()='Sign Out']")
@@ -70,5 +72,14 @@ public class Header extends ActionsWithElements {
         checkElementNotDisplayed(buttonCreatePost);
     }
 
+    public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
+    }
 
+    public void logout() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        clickOnButtonSignOut();
+    }
 }
