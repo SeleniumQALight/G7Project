@@ -17,13 +17,11 @@ public class ActionsWithElements {
     }
 
 
-
-
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-           logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -63,6 +61,12 @@ public class ActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
+    }
+
+    public void checkElementNotDisplayed(WebElement element) {
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+
+
     }
 
 }
