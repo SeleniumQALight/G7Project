@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputUserNane;
+    private WebElement inputUserName;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
@@ -25,8 +25,8 @@ public class LoginPage extends ParentPage {
         openPage(BASE_URL);
     }
 
-    public void enterTextIntoInputUserName(String UserNane) {
-        enterTextIntoInput(inputUserNane, UserNane);
+    public void enterTextIntoInputUserName(String UserName) {
+        enterTextIntoInput(inputUserName, UserName);
     }
 
     public void enterTextIntoInputPassword(String Password) {
