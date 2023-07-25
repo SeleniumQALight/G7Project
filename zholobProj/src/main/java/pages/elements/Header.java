@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements { // клас для роботи з елементами хедера
     @FindBy(xpath = "//button[text() = 'Sign Out']")
@@ -75,5 +76,8 @@ public class Header extends ActionsWithElements { // клас для робот�
         checkElementNotDisplayed(buttonChat);
     }
 
-
+    public CreatePostPage clickOnButtonCreatePost(){ // метод для кліку по кнопці Create Post
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
+    }
 }
