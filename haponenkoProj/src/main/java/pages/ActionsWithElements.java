@@ -53,6 +53,10 @@ public class ActionsWithElements {
         Assert.assertTrue("The element is not displayed", isElementDisplayed(element));
     }
 
+    public void checkElementIsNotDisplayed(WebElement element) {
+        Assert.assertFalse("The element is displayed", isElementDisplayed(element));
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element " + e);
         Assert.fail("Can't work with element " + e);
