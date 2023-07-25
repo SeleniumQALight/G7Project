@@ -50,8 +50,8 @@ public class ActionsWithElements {
         }
     }
 
-    public boolean isElementNotDisplayed(WebElement element) {
-       return !isElementDisplayed(element);
+    public void checkElementNotDisplayed(WebElement element) {
+       Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
     public void checkElementDisplay(WebElement element) {
