@@ -97,7 +97,7 @@ public class LoginTest {
 
     private boolean textInvalidUserVisible() {
         try {
-            return webDriver.findElement(By.xpath("//div [contains(text(),'Invalid username / password')]")).isDisplayed();
+            return webDriver.findElement(By.xpath("//div [contains(text(),'Invalid username // password')]")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
