@@ -27,6 +27,12 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//a[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = ".//input[@placeholder='Username']")
+    private WebElement inputUserName;
+
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
+
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -57,20 +63,44 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(buttonSearch);
     }
 
+    public void checkIsButtonSearchNotVisible() {
+        checkElementNotDisplayed(buttonSearch);
+    }
+
     public void checkIsButtonChatVisible() {
         checkElementDisplayed(buttonChat);
+    }
+
+    public void checkIsButtonChatNotVisible() {
+        checkElementNotDisplayed(buttonChat);
     }
 
     public void checkIsButtonMyProfileVisible() {
         checkElementDisplayed(buttonMyProfile);
     }
 
+    public void checkIsButtonMyProfileNotVisible() {
+        checkElementNotDisplayed(buttonMyProfile);
+    }
+
     public void checkIsButtonCreatePostVisible() {
         checkElementDisplayed(buttonCreatePost);
     }
 
+    public void checkIsButtonCreatePostNotVisible() {
+        checkElementNotDisplayed(buttonCreatePost);
+    }
+
     public void checkIsButtonSignInNotVisible() {
         checkElementNotDisplayed(buttonSignIn);
+    }
+
+    public void checkIsInputUserNameIsNotDisplayed() {
+        checkElementNotDisplayed(inputUserName);
+    }
+
+    public void checkIsInputPasswordIsNotDisplayed() {
+        checkElementNotDisplayed(inputPassword);
     }
 
 
