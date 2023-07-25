@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']") // this is a locator
@@ -70,5 +71,9 @@ public class Header extends ActionsWithElements {
         checkElementNotDisplayed(buttonCreatePost);
     }
 
+    public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
+    }
 
 }
