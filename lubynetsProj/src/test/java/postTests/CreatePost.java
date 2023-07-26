@@ -8,6 +8,7 @@ public class CreatePost extends baseTest.BaseTest {
         pageProvider.getHomePage()
                 .openHomePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
+                .CheckIsRedirectOnCreatePostPage()
                 .enterTextIntoInputTitle("Body text")
                 .enterTextIntoInputBody("Title text")
                 .selectTextInDropDown("Приватне повідомлення")
