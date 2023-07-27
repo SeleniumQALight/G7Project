@@ -51,6 +51,4 @@ public class CreatePostPage extends ParentPageWithHeder {
         selectTextInDropDown(dropDownSelectValue, value);
         return this;
     }
-
-
 }

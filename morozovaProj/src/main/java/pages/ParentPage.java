@@ -9,6 +9,7 @@ public class ParentPage extends ActionsWithElements {
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
+
     public void openPage(String url) {
         try {
             webDriver.get(url);
