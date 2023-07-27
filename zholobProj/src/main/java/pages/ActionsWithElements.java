@@ -5,18 +5,25 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ActionsWithElements {
 
     Logger logger = Logger.getLogger(getClass()); //
 
     protected WebDriver webDriver;
+    protected WebDriverWait  webDriverWait10, webDriverWait15; // очікування
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //initialization of elements
 // element in @FindBy
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10)); //
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
 
@@ -28,6 +35,7 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) { //method for clicking on element
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element)); // чекаємо поки елемент буде клікабельний
             element.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
