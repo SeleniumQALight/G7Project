@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static data.TestData.LOGIN_DEFAULT;
+import static data.TestData.PASSWORD_DEFAULT;
+
 public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@name='username' and @class='form-control form-control-sm input-dark']")
     private WebElement inputUserName;
@@ -36,6 +39,13 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+    }
+
+    public void loginWithValidCredentials() {
+        openLoginPage();
+        enterUserName(LOGIN_DEFAULT);
+        enterPassword(PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
     }
 
     //checks
