@@ -1,61 +1,82 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ActionsWithElements {
-    WebDriver webDriver;
+
+    Logger logger = Logger.getLogger(getClass());
+    public WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // this - means all elements from this class will be initialized// elements in @FindBy
     }
 
-    public void openPage(String url) {
-        try {
-            webDriver.get(url);
-            System.out.println("Page was opened");
-        } catch (Exception e) {
-            System.out.println("Page can not be opened");
-            Assert.fail("Page can not be opened");
-        }
-    }
-
-    public void enterTextIntoInput(String text, WebElement input){
+    public void enterTextIntoInput(String text, WebElement input) {
         try {
             input.clear();
             input.sendKeys(text);
-            System.out.println(text + " was inputted");
-        } catch (Exception e) {
-           printErrorAndStopTest(e);
-        }
-    }
-
-    public void clickOnElement(WebElement element){
-        try {
-            element.click();
-            System.out.println("Element was clicked");
+            logger.info(text + " was inputted");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    public boolean isElementDisplayed(WebElement element){
+    public void clickOnElement(WebElement element) {
         try {
-            return element.isDisplayed();
+            element.click();
+            logger.info("Element was clicked");
         } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public boolean isElementDisplayed(WebElement element) {
+        try {
+           boolean state = element.isDisplayed();
+           if (state) {
+               logger.info("Element is displayed");
+           } else {
+               logger.info("Element is not displayed");
+           }
+           return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
             return false;
         }
     }
 
-    public void checkElementDisplayed(WebElement element){
+    public void checkElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
 
+    public void selectTextInDropDown(WebElement dropDown, String text){
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectValueInDropDown(WebElement dropDown, String value){
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Cannot work with element " + e);
+        logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
 }
