@@ -8,8 +8,10 @@ public class CreatePost extends BaseTest {
     public void createNewPost(){
         pageProvider.getHomePage()
                 .openHomePage().checkIsRedirectToHomePage()
-                .getHeader().clickOnButtonCreatePost().checkIsRedirectToCreatePostPage()
-                .enterTextIntoInputTitle("New Post").enterTextIntoInputBody("New Post Body")
+                .getHeader().clickOnButtonCreatePost()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoInputTitle("New Post")
+                .enterTextIntoInputBody("New Post Body")
                 .selectTextInDropDown("Приватне повідомлення")//.selectValueInDropDownByValue("One Person")
                 .clickOnButtonSave();
     }
