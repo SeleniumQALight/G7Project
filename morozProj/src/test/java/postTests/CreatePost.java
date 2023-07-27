@@ -10,7 +10,7 @@ public class CreatePost extends BaseTest {
                 .openHomePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost().checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle("New Post").enterTextIntoInputBody("New Post Body")
-                .selectTextInDropDown("Приватне повідомлення")
+                .selectTextInDropDown("Приватне повідомлення")//.selectValueInDropDownByValue("One Person")
                 .clickOnButtonSave();
     }
 }
