@@ -2,18 +2,24 @@ package postTests;
 
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
+
 public class CreatePost extends BaseTest {
+    private String title = "TC01 - New Post Maryna " + Util.getDateAndTimeFormatted();
+
     @Test
     public void createNewPost() {
         pageProvider.getHomePage().openHomePage().
                 checkIsRedirectToHomePage().getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTextIntoInputTitle("New Post Maryna")
-                .enterTextIntoInputBody("Body of  Post Maryna")
+                .enterTextIntoInputTitle(title)
+                .enterTextIntoInputBody("Body of new Post Maryna")
                 .selectTextInDropDown("Приватне повідомлення")
                 //.selectValueInDropDown("One Person")
-                .clickOnButtonSaveNewPost();
+                .clickOnButtonSaveNewPost()
+                .checkTextInSuccessMessage("New post successfully created.");
     }
+
 }
