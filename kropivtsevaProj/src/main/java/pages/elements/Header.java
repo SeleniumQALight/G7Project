@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
 
@@ -70,5 +71,12 @@ public class Header extends ActionsWithElements {
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
+
+public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
+    }
+
+
 
 }

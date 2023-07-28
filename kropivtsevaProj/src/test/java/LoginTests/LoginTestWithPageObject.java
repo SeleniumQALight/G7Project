@@ -6,7 +6,7 @@ import org.junit.Test;
 import static data.TestData.*;
 
 
-public class LoginTestWithPageObject extends baseTest.BageTest {
+public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
