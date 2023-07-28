@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import testData.TestData;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Username']")
@@ -32,5 +33,12 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+    }
+
+    public void loginWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
     }
 }
