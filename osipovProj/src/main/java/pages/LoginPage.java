@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,9 +19,10 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openLoginPage(){
+    public void openLoginPage() {
         openPage(BASE_URL);
     }
+
     public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
     }
@@ -32,6 +34,7 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
+
     public void checkIsButtonSignInVisible() {
         checkElementDisplayed(buttonSignIn);
     }
@@ -39,6 +42,7 @@ public class LoginPage extends ParentPage {
     public void checkIsButtonSignInNotVisible() {
         checkElementIsNotDisplayed(buttonSignIn);
     }
+
     public void checkIsUserNameInputDisplayed() {
         checkElementDisplayed(inputUserName);
     }
@@ -47,8 +51,15 @@ public class LoginPage extends ParentPage {
         checkElementDisplayed(inputPassword);
     }
 
-    public void isInvalidLoginMessageDisplayed(){
+    public void isInvalidLoginMessageDisplayed() {
         checkElementDisplayed(invalidLoginMessage);
+    }
+
+    public void loginWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
     }
 }
 
