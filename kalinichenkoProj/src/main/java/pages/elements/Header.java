@@ -32,8 +32,6 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']")
     private WebElement searchIcon;
 
-    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
-    private WebElement buttonCreatePost;
 
     public void checkIsButtonSignOutVisible() {
         checkElementDisplay(buttonSignOut);
@@ -95,7 +93,7 @@ public class Header extends ActionsWithElements {
         checkElementNotDisplay(searchIcon);
     }
     public CreatePostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
+        clickOnElement(addNewPostButton);
         return new CreatePostPage(webDriver);
     }
 
