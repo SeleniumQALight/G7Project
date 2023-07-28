@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 import pages.LoginPage;
 
 public class Header extends ActionsWithElements {
@@ -13,19 +14,19 @@ public class Header extends ActionsWithElements {
     }
 
     @FindBy(xpath = "//button[text()='Sign Out']")
-    public static WebElement buttonSignOut;
+    private WebElement buttonSignOut;
 
     @FindBy(xpath = "//a//*[@class = 'svg-inline--fa fa-search fa-w-16']")
-    public static WebElement searchButton;
+    private WebElement searchButton;
 
     @FindBy(xpath = "//*[@class = 'svg-inline--fa fa-comment fa-w-16']")
-    public static WebElement chatButton;
+    private WebElement chatButton;
 
     @FindBy(xpath = "//a[@class = 'mr-2']")
-    public static WebElement profileButton;
+    private WebElement profileButton;
 
     @FindBy(xpath = "//a[@class = 'btn btn-sm btn-success mr-2']")
-    public static WebElement createPostButton;
+    private WebElement createPostButton;
 
     public void checkIsButtonSignOutVisible() {
         checkElementIsDisplayed(buttonSignOut);
@@ -52,18 +53,27 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsSearchButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.searchButton);
+        checkElementIsNotDisplayed(searchButton);
     }
 
     public void checkIsChatButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.chatButton);
+        checkElementIsNotDisplayed(chatButton);
     }
 
     public void checkIsProfileAvatarButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.profileButton);
+        checkElementIsNotDisplayed(profileButton);
     }
 
     public void checkIsCreatePostButtonNotVisible() {
-        checkElementIsNotDisplayed(Header.createPostButton);
+        checkElementIsNotDisplayed(createPostButton);
+    }
+
+    public void checkIsButtonSignOutNotVisible() {
+        checkElementIsNotDisplayed(buttonSignOut);
+    }
+
+    public CreatePostPage clickOnButtonCreatePost(){
+        clickOnElement(createPostButton);
+        return new CreatePostPage(webDriver);
     }
 }

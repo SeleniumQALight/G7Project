@@ -4,10 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
     @FindBy(xpath = "//button[text()= 'Sign Out']")
     private WebElement buttonSignOut;
+
+    //button creare post
+    @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -17,4 +22,8 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(buttonSignOut);
     }
 
+    public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
+    }
 }

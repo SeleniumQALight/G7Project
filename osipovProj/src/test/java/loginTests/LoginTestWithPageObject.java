@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import static data.TestData.*;
 
-public class LoginTestWithPageObject extends baseTest.BaseTest{
+public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Test
-    public void validLogin(){
+    public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
@@ -16,7 +16,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
     }
 
     @Test
-    public void invalidLogin(){
+    public void invalidLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_INVALID);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_INVALID);

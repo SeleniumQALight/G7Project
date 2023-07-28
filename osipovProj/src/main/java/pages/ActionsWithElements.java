@@ -4,14 +4,25 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 
 public class ActionsWithElements {
     protected WebDriver webDriver;
+    Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait_10, webDriverWait_15;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);// this - means all elements from this class will be initialized
         //elements in FindBy
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     public void openPage(String url) {
@@ -36,6 +47,7 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             System.out.println("Element was clicked");
         } catch (Exception e) {
@@ -59,7 +71,25 @@ public class ActionsWithElements {
         Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
+    public void selectTextInDropDown(WebElement dropDown, String text){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
+    public void selectValueInDropDown(WebElement dropDown, String value){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
     private void printErrorAndStopTest(Exception e) {
         System.out.println("Can not work with element");

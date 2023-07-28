@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,39 +43,45 @@ public class LoginPage extends ParentPage {
     }
 
     public void checkButtonSignInDisplayed() {
-        checkElementDisplayed(buttonSignIn);
+        checkIsElementDisplayed(buttonSignIn);
     }
 
     public void checkErrorMessageIsDisplayed() {
-        checkElementDisplayed(errorMessage);
+        checkIsElementDisplayed(errorMessage);
     }
 
     public void checkIsInputUsernameLoginVisible() {
-        checkElementDisplayed(inputUsername);
+        checkIsElementDisplayed(inputUsername);
     }
 
     public void checkIsInputPasswordLoginVisible() {
-        checkElementDisplayed(inputPassword);
+        checkIsElementDisplayed(inputPassword);
     }
 
     public void checkIsButtonSignInVisible() {
-        checkElementDisplayed(buttonSignIn);
+        checkIsElementDisplayed(buttonSignIn);
     }
 
     public void checkIsButtonSignInNotVisible() {
-        checkElementNotDisplayed(buttonSignIn);
+        checkIsElementNotDisplayed(buttonSignIn);
     }
 
     public void checkIsInputUsernameLoginNotVisible() {
-        checkElementNotDisplayed(inputUsername);
+        checkIsElementNotDisplayed(inputUsername);
     }
 
     public void checkIsInputPasswordLoginNotVisible() {
-        checkElementNotDisplayed(inputPassword);
+        checkIsElementNotDisplayed(inputPassword);
     }
 
     public void checkIsErrorMessageNotVisible() {
-        checkElementNotDisplayed(errorMessage);
+        checkIsElementNotDisplayed(errorMessage);
     }
 
+    public void loginWithValidCreds() {
+        openLoginPage();
+        enterTextInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextInputPassword(TestData.PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
+    }
 }

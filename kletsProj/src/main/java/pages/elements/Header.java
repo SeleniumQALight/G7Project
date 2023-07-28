@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
 
@@ -20,7 +21,7 @@ public class Header extends ActionsWithElements {
     private WebElement textUserName;
 
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
-    private WebElement linkCreatePost;
+    private WebElement buttonCreatePost;
 
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
@@ -30,27 +31,27 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsButtonSignOutVisible() {
-        checkElementDisplayed(buttonSignOut);
+        checkIsElementDisplayed(buttonSignOut);
     }
 
     public void checkIsLinkSearchVisible() {
-        checkElementDisplayed(linkSearch);
+        checkIsElementDisplayed(linkSearch);
     }
 
     public void checkIsIconChatVisible() {
-        checkElementDisplayed(iconChat);
+        checkIsElementDisplayed(iconChat);
     }
 
     public void checkIsLinkAvatarVisible() {
-        checkElementDisplayed(linkAvatar);
+        checkIsElementDisplayed(linkAvatar);
     }
 
     public void checkIsTextUserNameVisible() {
-        checkElementDisplayed(textUserName);
+        checkIsElementDisplayed(textUserName);
     }
 
     public void checkIsLinkCreatePostVisible() {
-        checkElementDisplayed(linkCreatePost);
+        checkIsElementDisplayed(buttonCreatePost);
     }
 
     public void clickOnButtonSignOut() {
@@ -58,27 +59,32 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsLinkSearchNotVisible() {
-        checkElementNotDisplayed(linkSearch);
+        checkIsElementNotDisplayed(linkSearch);
     }
 
     public void checkIsIconChatNotVisible() {
-        checkElementNotDisplayed(iconChat);
+        checkIsElementNotDisplayed(iconChat);
     }
 
     public void checkIsLinkAvatarNotVisible() {
-        checkElementNotDisplayed(linkAvatar);
+        checkIsElementNotDisplayed(linkAvatar);
     }
 
     public void checkIsTextUserNameNotVisible() {
-        checkElementNotDisplayed(textUserName);
+        checkIsElementNotDisplayed(textUserName);
     }
 
     public void checkIsLinkCreatePostNotVisible() {
-        checkElementNotDisplayed(linkCreatePost);
+        checkIsElementNotDisplayed(buttonCreatePost);
     }
 
     public void checkIsButtonSignOutNotVisible() {
-        checkElementNotDisplayed(buttonSignOut);
+        checkIsElementNotDisplayed(buttonSignOut);
+    }
+
+    public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 
 }
