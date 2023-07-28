@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -79,5 +80,12 @@ public class LoginPage extends ParentPage {
 
     public void checkNotIsFieldPasswordVisible() { // метод для перевірки відсутності поля Password на сторінці
         checkElementNotDisplayed(fieldPassword);
+    }
+
+    public void loginWithValidCreds() {
+        openLoginPage();
+        enterTextIntoInputUserNane(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
+        clickOnButtonSignIn();
     }
 }
