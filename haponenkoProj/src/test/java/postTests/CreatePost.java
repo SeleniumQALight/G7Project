@@ -17,7 +17,8 @@ public class CreatePost extends BaseTest {
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody("Body of the New Post Iryna value")
                 //.selectTextInDropDown("Приватне повідомлення")
-                .selectValueInDropDown("One Person")
+                .selectTextInDropDownByUI("Загальнодоступне")
+                //.selectValueInDropDown("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.");
     }
