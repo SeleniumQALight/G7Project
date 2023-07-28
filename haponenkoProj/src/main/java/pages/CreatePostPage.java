@@ -21,6 +21,9 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
 
+    @FindBy(xpath = "//input[@type = 'checkbox']")
+    private WebElement checkboxUniquePost;
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         //TODO check URL
         //TODO some unique element
@@ -54,7 +57,12 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage selectTextInDropDownByUI (String text) {
-        selectTextInDropDownByUI(dropDownSelectValue,text);
+        selectTextInDropDownByUI(dropDownSelectValue, text);
+        return this;
+    }
+
+    public CreatePostPage markCheckboxYes () {
+        clickOnElement(checkboxUniquePost);
         return this;
     }
 

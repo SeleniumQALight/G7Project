@@ -19,6 +19,7 @@ public class CreatePost extends BaseTest {
                 //.selectTextInDropDown("Приватне повідомлення")
                 .selectTextInDropDownByUI("Загальнодоступне")
                 //.selectValueInDropDown("One Person")
+                .markCheckboxYes()
                 .clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.");
     }
