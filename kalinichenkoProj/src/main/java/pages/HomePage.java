@@ -7,4 +7,19 @@ public class HomePage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    public HomePage openHomePage() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.loinWithValidCred();
+        checkIsRedirectToHomePage();
+        return this;
+    }
+
+    public HomePage checkIsRedirectToHomePage() {
+        //TODO check url
+        //TODO check unique element
+        getHeader().checkIsButtonSignOutVisible();
+        return this;
+    }
+
+
 }
