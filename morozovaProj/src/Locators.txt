@@ -8,8 +8,8 @@ Page 001 Home page Регістрації та авторизації корис
 3.RegPage.Password = /input [@id="password-register"]
 4.AutPage.SignUpForOurApp = //button [contains (text(),'Sign up for OurApp')]
 
-Page 002 Робоче середовище користувача on https://qa-complexapp.onrender.com/
-1 WorkPage.Chat = //span[@class='text-white mr-2 header-chat-icon']
+Page 002 Header on https://aqa-complexapp.onrender.com/
+1 WorkPage.Chat = //span[@class='text-white mr-2 header-chat-icon'] or //*[@class='svg-inline--fa fa-comment fa-w-16']//*[@fill='currentColor']
 2 WorkPage.MyProfile = //img[@alt="My profile"]
 3 WorkPage.UserName = //span [contains (text(),'<userName>')]
 4 WorkPage.CreatePost = //input [@id="post-title"]
