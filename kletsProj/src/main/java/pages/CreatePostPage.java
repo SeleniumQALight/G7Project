@@ -22,6 +22,15 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
 
+    @FindBy //option[text()='Загальнодоступне']
+    private WebElement dropDownSelectValuePublic;
+
+    @FindBy //option[text()='Приватне повідомлення']
+    private WebElement dropDownSelectValuePrivate;
+
+    @FindBy //option[text()='Групове повідомлення']
+    private WebElement dropDownSelectValueGroup;
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         //TODO check URL
         //TODO check some unique element
@@ -53,8 +62,9 @@ public class CreatePostPage extends ParentPageWithHeader {
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
-
-
-
+    public CreatePostPage selectTextDropDownBuUI(String text) {
+        selectTextDropDownByUI(dropDownSelectValue, text);
+        return this;
+    }
 
 }

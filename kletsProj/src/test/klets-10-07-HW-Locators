@@ -38,6 +38,12 @@ CreatePostPage.input.Title = //input[@name='title' and @id='post-title']
 CreatePostPage.textarea.BodyContent= //textarea[@name='body' and @id='post-body']
 CreatePostPage.input.Checkbox = //input[@name='uniquePost']
 CreatePostPage.select.DropDownList= //select[@name='select1' and @id='select1']
+CreatePostPage.select.DropDownListOption = //select[@name='select1' and @id='select1']/option[@value='All Users'] OR
+//option[text()='Загальнодоступне']
+CreatePostPage.select.DropDownListOption2 = //select[@name='select1' and @id='select1']/option[@value='One Person']
+//option[text()='Приватне повідомлення']
+CreatePostPage.select.DropDownListOption2 = //select[@name='select1' and @id='select1']/option[@value='Group Message']
+//option[text()='Групове повідомлення']
 CreatePostPage.button.SaveNewPost = //button[@class='btn btn-primary']
 
 #SearchPage

@@ -13,8 +13,11 @@ public class CreatePost extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody("New Post Body Klets")
+                // .selectTextDropDownBuUI("Загальнодоступне")
+                // .selectTextDropDownBuUI("Приватне повідомлення")
+                .selectTextDropDownBuUI("Групове повідомлення")
                // .selectTextInDropDown("Приватне повідомлення")
-                 .selectValueInDropDown("One Person")
+                // .selectValueInDropDown("One Person")
                 .clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;

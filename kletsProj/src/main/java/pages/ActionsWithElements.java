@@ -96,4 +96,16 @@ public class ActionsWithElements {
         Assert.fail("Can not work with element " + e);//zupinit test
     }
 
+    public void selectTextDropDownByUI(WebElement dropDown, String text) {
+        try {
+
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            logger.error("Failed to select " + text + " from DropDown" + e.getMessage());
+            printErrorAndStopTest(e);
+        }
+    }
+
 }
