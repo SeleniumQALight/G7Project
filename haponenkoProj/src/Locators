@@ -37,10 +37,12 @@ Header.button.SignOut = //a[@class = 'btn btn-sm btn-secondary']
 Header.icon.Search = //a[@class = 'text-white mr-2 header-search-icon']//*[@class = 'svg-inline--fa fa-search fa-w-16']
 Header.icon.Chat = //*[@class = 'svg-inline--fa fa-comment fa-w-16']
 
+//TODO
 #CreatePostPage
 CreatePost.input.Title = //input[@name = 'title']
 CreatePost.textarea.Body = //textarea[@name = 'body']
 CreatePost.checkbox.Unique = //input[@type = 'checkbox']
+СreatePost.button.Save = "//button[text()='Save New Post']"
 
 #MyPostPage
 Post.message.Success = //div[@class = 'alert alert-success text-center']

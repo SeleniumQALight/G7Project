@@ -9,9 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.PageProvider;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
-public class BageTest {
+public class BaseTest {
     WebDriver webDriver;
     protected PageProvider pageProvider;
 
@@ -27,7 +26,7 @@ public class BageTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(){
         webDriver.quit();
         logger.info("Browser was closed");
     }

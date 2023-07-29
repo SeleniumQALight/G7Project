@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionWitElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionWitElements {
     @FindBy(xpath = "//button[text() = 'Sign Out']")
@@ -16,7 +17,7 @@ public class Header extends ActionWitElements {
     private WebElement buttonCreatePost;
 
     @FindBy(xpath = "//*[@data-original-title='My Profile']")
-   private WebElement byttonMyProfile;
+   private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//*[@class='svg-inline--fa fa-comment fa-w-16']//*[@fill='currentColor']")
     private WebElement buttonChat;
@@ -38,7 +39,7 @@ public class Header extends ActionWitElements {
         checkElementDisplayed(buttonCreatePost);
     }
     public void checkIsButtonMyProfileVisible(){
-        checkElementDisplayed(byttonMyProfile);
+        checkElementDisplayed(buttonMyProfile);
     }
     public void checkIsButtonChatVisible(){
         checkElementDisplayed(buttonChat);
@@ -53,10 +54,14 @@ public class Header extends ActionWitElements {
         checkElementNotDisplayed(buttonCreatePost);
     }
     public  void checkNotIsButtonMyProfileVisible(){
-        checkElementNotDisplayed(byttonMyProfile);
+        checkElementNotDisplayed(buttonMyProfile);
     }
     public  void checkNotIsButtonChatVisible(){
         checkElementNotDisplayed(buttonChat);
+    }
+    public CreatePostPage clickOnButtonCreatePost(){
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 
 

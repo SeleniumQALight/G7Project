@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
     @FindBy(xpath = ".//*[text()='Sign Out']")
@@ -63,5 +64,10 @@ public class Header extends ActionsWithElements {
 
     public void checkIsButtonCreatePostNotDisplayed() {
         checkElementIsNotDisplayed(buttonCreatePost);
+    }
+
+    public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 }
