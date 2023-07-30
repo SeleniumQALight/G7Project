@@ -6,14 +6,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPageWithHeader {
+
+    @FindBy(xpath = "//button[text()='Sign In']")
+    private WebElement signInButton;
+
+    @FindBy(xpath = "//div[text()='Invalid username / pasword']")
+    private WebElement loginValidation;
     @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement inputUsername;
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary btn-sm']")
-    private WebElement signInButton;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -41,6 +45,14 @@ public class LoginPage extends ParentPageWithHeader {
         enterTextIntoInputUsername(TestData.LOGIN_DEFAULT);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnSignInButton();
+    }
+
+    public void checkIsLoginValidationDisplayed(){
+        checkElementDisplayed(loginValidation);
+    }
+
+    public void checkIsSignInButtonVisible(){
+        checkElementDisplayed(signInButton);
     }
 
 
