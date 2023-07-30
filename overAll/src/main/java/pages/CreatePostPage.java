@@ -5,24 +5,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPageWithHeader {
-    @FindBy(id = "post-title")
+
+    @FindBy(id = "post-title") // //*[@id='post-title']
     private WebElement inputTitle;
-    @FindBy(name = "body")
+
+    @FindBy(name = "body") // //*[@name='body']
     private WebElement inputBody;
+
     @FindBy(xpath = "//button[text()='Save New Post']")
-    private WebElement buttonSaveNewPost;
+    private WebElement buttonSave;
+
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
-    @FindBy(xpath = "//option[text()='Приватне повідомлення']")
-    private WebElement dropDownOnePersonVariant;
-    @FindBy(xpath = "//input[@type='checkbox']")
-    private WebElement checkbox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        //TODO check URL
+        //TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }
@@ -38,7 +40,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public PostPage clickOnButtonSaveNewPost() {
-        clickOnElement(buttonSaveNewPost);
+        clickOnElement(buttonSave);
         return new PostPage(webDriver);
     }
 
@@ -47,18 +49,9 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
+    //select by value
     public CreatePostPage selectValueInDropDown(String value) {
         selectValueInDropDown(dropDownSelectValue, value);
-        return this;
-    }
-
-    public CreatePostPage workWithCheckBox(String text) {
-        checkOrUncheckCheckBoxDependingOnText(checkbox, text);
-        return this;
-    }
-
-    public CreatePostPage selectTextInDropDownByUI() {
-        selectTextInDropDownByUI(dropDownSelectValue, dropDownOnePersonVariant);
         return this;
     }
 }
