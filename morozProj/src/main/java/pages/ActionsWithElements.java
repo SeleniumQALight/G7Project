@@ -64,6 +64,10 @@ public class ActionsWithElements {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
 
+    public void checkElementNotDisplayed(WebElement element){
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+    }
+
     public void selectTextInDropDown(WebElement dropDown, String text){
         try {
             Select select = new Select(dropDown);
