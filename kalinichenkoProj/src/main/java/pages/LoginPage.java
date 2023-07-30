@@ -40,31 +40,31 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public void isButtonSignInVisible() {
+    public void checkButtonSignInVisible() {
         checkElementDisplay(buttonSignIn);
     }
 
-    public void isButtonSignInNotVisible() {
+    public void checkButtonSignInNotVisible() {
         checkElementNotDisplay(buttonSignIn);
     }
 
-    public void isInputUserNameNotVisible() {
+    public void checkInputUserNameNotVisible() {
         checkElementNotDisplay(inputUserName);
     }
 
-    public void isInputUserNameVisible() {
+    public void checkInputUserNameVisible() {
         checkElementDisplay(inputUserName);
     }
 
-    public void isInputPasswordNotVisible() {
+    public void checkInputPasswordNotVisible() {
         checkElementNotDisplay(inputPassword);
     }
 
-    public void isInputPasswordVisible() {
+    public void checkInputPasswordVisible() {
         checkElementDisplay(inputPassword);
     }
 
-    public void isAlertMessageWrongLoginOrPasswordVisible() {
+    public void checkAlertMessageWrongLoginOrPasswordVisible() {
         checkElementDisplay(alertMessageWrongLoginOrPassword);
     }
 

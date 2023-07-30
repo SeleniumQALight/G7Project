@@ -45,51 +45,51 @@ public class Header extends ActionsWithElements {
         clickOnElement(buttonSignOut);
     }
 
-    public void isHomePageButtonVisible() {
+    public void checkHomePageButtonVisible() {
         checkElementDisplay(homePageButton);
     }
 
-    public void isAddNewPostButtonVisible() {
+    public void checkAddNewPostButtonVisible() {
         checkElementDisplay(addNewPostButton);
     }
 
-    public void isAddNewPostButtonNotVisible() {
+    public void checkAddNewPostButtonNotVisible() {
         checkElementNotDisplay(addNewPostButton);
     }
 
 
-    public void isUserNameVisible() {
+    public void checkUserNameVisible() {
         checkElementDisplay(userName);
     }
 
-    public void isUserNameNotVisible() {
+    public void checkUserNameNotVisible() {
         checkElementNotDisplay(userName);
     }
 
 
-    public void isUserIconVisible() {
+    public void checkUserIconVisible() {
         checkElementDisplay(userIcon);
     }
 
-    public void isUserIconNotVisible() {
+    public void checkUserIconNotVisible() {
         checkElementNotDisplay(userIcon);
     }
 
 
-    public void isChatIconVisible() {
+    public void checkChatIconVisible() {
         checkElementDisplay(chatIcon);
     }
 
-    public void isChatIconNotVisible() {
+    public void checkChatIconNotVisible() {
         checkElementNotDisplay(chatIcon);
     }
 
 
-    public void isSearchIconVisible() {
+    public void checkSearchIconVisible() {
         checkElementDisplay(searchIcon);
     }
 
-    public void isSearchIconNotVisible() {
+    public void checkSearchIconNotVisible() {
         checkElementNotDisplay(searchIcon);
     }
     public CreatePostPage clickOnButtonCreatePost() {

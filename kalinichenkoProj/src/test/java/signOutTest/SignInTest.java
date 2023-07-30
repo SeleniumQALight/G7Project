@@ -12,27 +12,27 @@ public class SignInTest extends baseTest.BaseTest {
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
-        pageProvider.getLoginPage().isInputUserNameNotVisible();
-        pageProvider.getLoginPage().isInputPasswordNotVisible();
-        pageProvider.getLoginPage().isButtonSignInNotVisible();
+        pageProvider.getLoginPage().checkInputUserNameNotVisible();
+        pageProvider.getLoginPage().checkInputPasswordNotVisible();
+        pageProvider.getLoginPage().checkButtonSignInNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
-        pageProvider.getHomePage().getHeader().isAddNewPostButtonVisible();
-        pageProvider.getHomePage().getHeader().isChatIconVisible();
-        pageProvider.getHomePage().getHeader().isUserIconVisible();
-        pageProvider.getHomePage().getHeader().isUserNameVisible();
-        pageProvider.getHomePage().getHeader().isSearchIconVisible();
-        pageProvider.getHomePage().getHeader().isHomePageButtonVisible();
+        pageProvider.getHomePage().getHeader().checkAddNewPostButtonVisible();
+        pageProvider.getHomePage().getHeader().checkChatIconVisible();
+        pageProvider.getHomePage().getHeader().checkUserIconVisible();
+        pageProvider.getHomePage().getHeader().checkUserNameVisible();
+        pageProvider.getHomePage().getHeader().checkSearchIconVisible();
+        pageProvider.getHomePage().getHeader().checkHomePageButtonVisible();
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
-        pageProvider.getHomePage().getHeader().isAddNewPostButtonNotVisible();
-        pageProvider.getHomePage().getHeader().isChatIconNotVisible();
-        pageProvider.getHomePage().getHeader().isUserIconNotVisible();
-        pageProvider.getHomePage().getHeader().isUserNameNotVisible();
-        pageProvider.getHomePage().getHeader().isSearchIconNotVisible();
-        pageProvider.getHomePage().getHeader().isHomePageButtonVisible();
-        pageProvider.getLoginPage().isInputUserNameVisible();
-        pageProvider.getLoginPage().isInputPasswordVisible();
-        pageProvider.getLoginPage().isButtonSignInVisible();
+        pageProvider.getHomePage().getHeader().checkAddNewPostButtonNotVisible();
+        pageProvider.getHomePage().getHeader().checkChatIconNotVisible();
+        pageProvider.getHomePage().getHeader().checkUserIconNotVisible();
+        pageProvider.getHomePage().getHeader().checkUserNameNotVisible();
+        pageProvider.getHomePage().getHeader().checkSearchIconNotVisible();
+        pageProvider.getHomePage().getHeader().checkHomePageButtonVisible();
+        pageProvider.getLoginPage().checkInputUserNameVisible();
+        pageProvider.getLoginPage().checkInputPasswordVisible();
+        pageProvider.getLoginPage().checkButtonSignInVisible();
 
     }
 }
