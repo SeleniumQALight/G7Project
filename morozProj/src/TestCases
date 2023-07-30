@@ -1,9 +1,9 @@
 TestCase001: Create new user in the system
 
 Steps:
-    1. Enter the correct username into the "username" input on the registration form
-    2. Enter the correct email into the "email" input on the registration form
-    3. Enter the correct password into the "password" input on the registration form
+    1. Enter the correct  e.g: "Kostia" into the "username" input on the registration form
+    2. Enter the correct email e.g: "kostia@test.com" into the "email" input on the registration form
+    3. Enter the correct password e.g: "kostia12345" into the "password" input on the registration form
     4. Click the "submit" button type on the registration form
 
 ER: User with correct data created in the system. User sees the empty feed and "Create post" and "Sign out" buttons.
@@ -43,7 +43,7 @@ Pre-conditions:  Log in the system by "Kostia" user (Username: "Kostia" Password
 
 Steps:
     1. Click the "Create Post" button
-    2. Enter at least one character on the "Title" field
+    2. Enter a unique post title on the "Title" field
     3. Enter at least one character on the "Body Content" field
     4. Check the "Is this post unique?" checkbox
     5. Select the "Загальнодоступне" value on the "Select value" dropdown
@@ -51,6 +51,8 @@ Steps:
 
 ER: New unique public post is created with entered title on the "Step 2" and entered body content on the "Step 3",
     with correct date and correct author
+
+Post-condtions: Delete created post
 
 
 TestCase005: Edit the post
@@ -70,5 +72,7 @@ Steps:
 ER: User sees the green toaster with "Post successfully updated" text. On the user profile edited post updated correctly,
     new entered title on the "Step 4" and entered body content on the "Step 4" is shown, correct date and correct author
     is shown on the post info
+
+Post-condtions: Delete edited post
 
 
