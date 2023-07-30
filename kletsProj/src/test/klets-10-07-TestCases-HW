@@ -1,0 +1,93 @@
+001 New User Registration Check
+Preconditions:
+1. Go to the https://qa-complexapp.onrender.com/
+2. Verify Valid Credentials for the "Registration" form:
+- non-existent in the system username (min 3 characters, max 30 characters, can only contain letters and numbers):
+f.e. test 12345
+- non-existent in the system email (f.e. zipsutefya@gufum.com)
+- password (at least 12 characters): f.e. Password_0987
+STR:
+1. Find the registration form on the page
+2. Fill in the required fields with a valid value
+3. Click on the submit button
+ER:
+1. The system successfully created a new user.
+2. The system shows the user a page with the next elements in the header: the user's name, profile icon, and Sign Out button.
+Post-condition: Delete the User from the system
+
+
+002 Checking the functionality of the Login form
+Preconditions:
+1. Go to the https://qa-complexapp.onrender.com/
+2. Verify Valid Credentials for the "Login" form:
+- an existing user in the system (f.e. test111222)
+- a valid value in the "Password" field (f.e. Password_0123)
+STR:
+1. Find the login form in the header
+2. Fill in the form with a valid value
+3. Click on the submit button
+ER:
+The system shows the user the page with the next elements in the header: the user's name, profile icon, and Sign Out button.
+
+003 User profile verification
+Preconditions:
+1. Go to the https://qa-complexapp.onrender.com/
+2. log in as an existing user who already has at least one post (f.e. username: test111222, password: Password_0123)
+STR:
+1. Find the avatar of the user's profile in the header
+2. Click on the avatar
+ER:
+The system shows:
+1. The avatar of the user
+2. User's name
+3. Next profile navigation tabs with clickable links and counters:
+- Posts
+- Followers
+- Following
+4. The system doesn't display the counter if the user hasn't posts, followers, and follows
+5. List of post group items with clickable links to the corresponding post. 
+6. The latest post in the system is displayed at the top of the list.
+
+004 Checking Post-Creation Functionality
+Preconditions:
+1. Go to the https://qa-complexapp.onrender.com/
+2. log in as an existing user into the system (f.e. username: test111222, password: Password_0123)
+3. Required fields: Title, Body Content
+STR:
+1. Find the create post button in the header
+2. Click on the button
+3. Fill in the required fields with a valid value
+4. Mark the unique post checkbox
+5. Select a value from the dropdown
+6. Click on the submit button
+ER:
+1. The system successfully created a new post
+2. The system shows:
+- alert success
+- title of the post
+- "Edit" button
+- "Delete" button
+- user's avatar
+- "Posted by" with a clickable link and the relevant date
+- Note
+- "Is this post unique?" with correspondent value
+- the body of the post with correspondent value
+Post-condition: Delete the post from the system
+
+
+005 Checking Search functionality with existing value
+Precondition:
+1. The user is authorized on the https://qa-complexapp.onrender.com/
+2. The "Complex app for testing - QA" page is opened.
+3. Valid search term (f.e. 6666666666666666666 - by Title, aaa - by Body content)
+Steps:
+1. Click on the "Search" button on the header bar
+2. Enter a valid search term in the input field
+ER:
+1. The loader is displayed.
+2. The system shows the post with the corresponding Title and Body content on the List of post group items with clickable links to the corresponding post.
+Post-condition: Delete a value from the "Search" field
+
+
+
+

@@ -1,0 +1,66 @@
+page 1 login user
+
+ register.user.username=  //input[@id="username-register"]
+ register.user.email=  //input[@name="email"]
+ register.user.password=  //input[@id="password-register"]
+ register.user.button.Sign up for OurApp =  //button[contains(text(),"for OurApp")]
+
+ login.user.username = //input[@placeholder="Username"]
+ login.user.Password = //input[@placeholder="Password"]
+ login.user.button.Sign In = //*[contains(text(),"Sign In")]
+ button.Sign Out = //button[contains(text(),"Sign Out")]"
+
+page 2 user logged in
+
+ Button.Create_post = //a[@href="/create-post]
+ Button.Sign Out = //button[contains(text(),"Sign Out")]
+ Button.My profile= //img[@alt="My profile"]
+
+page 3 Create_post   //https://qa-complexapp.onrender.com/create-post
+
+  Create_post.title = //input[@name="title"]
+  Create_post.body = //textarea[@id="post-body"]
+  Create_post.SaveNewPost = //button[contains(text(),"Save")]
+  text_post.SuccessfullyCreate = //div[contains(text(),"successfully")]
+  Button.Sign Out = //button[contains(text(),"Sign Out")]
+  Delete.Post = //button[contains(@class, "delete-post")]
+
+page 4 post_search
+
+  icon.swrch =  //a[@ class="text-white mr-2 header-search-icon"]//*[@data-icon ="search"]
+  search.post.title = //input[@id ="live-search-field"]
+  search.result = //*[contains(text(),"by zholob")]
+
+
+page with a post   // https://qa-complexapp.onrender.com/post/64b50bb255d6a40032d28ebb //вікно конкретного поста
+
+  text.post = //p[contains(text(),"<текст поста>")]
+  title.post =  //h2[contains(text(),"<тема поста>")]
+  icon.edit =  //*[@data-icon ="edit"]
+
+
+page 5 Edit_post   //  https://qa-complexapp.onrender.com/post/64b50bb255d6a40032d28ebb/edit //вікно редагування поста
+
+   post.body = //textarea[@id="post-body"]
+   post.title = //input[@name="title"]
+   Button.save.Updates.Post = //button[contains(text(),"Save Updates")]
+   text.successfully updated = //*[contains(text(),"successfully updated")]
+   verification.post = //a[@class="small font-weight-bold"]
+
+   Delete.Post = //button[contains(@class, "delete-post")]
+   Button.Sign Out = //button[contains(text(),"Sign Out")]
+
+page 6 Search post for Following
+
+      icon.search =  //a[@ class="text-white mr-2 header-search-icon"]//*[@data-icon ="search"]
+      avatar.user.post = //img[contains(@class,"avatar-tiny")]
+
+page 7 Posts user    https://qa-complexapp.onrender.com/profile/qaauto             //сторінка з постами юзера
+
+       button.Following =  //button[@class= "btn btn-primary btn-sm"]
+       text.SuccessfullyFollowing =  //div[contains(text(),"Successfully")]
+       Button.Sign Out = //button[contains(text(),"Sign Out")]
+
+page 8 My profile
+
+      My.profile.title.post = //strong[contains(text(),"<тема поста>")]
