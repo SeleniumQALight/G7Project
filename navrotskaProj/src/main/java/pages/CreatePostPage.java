@@ -15,8 +15,17 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//*[@id='select1']")
+    private WebElement dropDownPostAccess;
+
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
+
+    @FindBy(xpath = "//*[text()='Приватне повідомлення']")
+    private WebElement dropDownSelectPrivatePostAccess;
+
+    @FindBy (xpath = "//*[@name='uniquePost']")
+    private WebElement checkBoxUniquePost;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -53,6 +62,17 @@ public class CreatePostPage extends ParentPageWithHeader {
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
+
+    public CreatePostPage selectTextInDropDownByText() {
+        selectTextInDropDownByUI(dropDownPostAccess, dropDownSelectPrivatePostAccess);
+        return this;
+    }
+
+    public CreatePostPage setCheckBoxState(String CheckboxState){
+        setCheckboxState(checkBoxUniquePost, CheckboxState);
+        return this;
+    }
+
 
 }
 
