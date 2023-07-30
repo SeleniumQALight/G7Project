@@ -40,19 +40,52 @@ public class LoginPage extends ParentPageWithHeader {
     }
 
 
-    public void loginWithValidCreds() {
+    public HomePage loginWithValidCreds() {
         openLoginPage();
         enterTextIntoInputUsername(TestData.LOGIN_DEFAULT);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnSignInButton();
+        return new HomePage(webDriver);
     }
 
     public void checkIsLoginValidationDisplayed(){
         checkElementDisplayed(loginValidation);
     }
 
+
     public void checkIsSignInButtonVisible(){
         checkElementDisplayed(signInButton);
+    }
+
+    public void checkIsInputUsernameVisible(){
+        checkElementDisplayed(inputUsername);
+    }
+
+    public void checkIsInputUserNameNotVisible(){
+        checkElementNotDisplayed(inputUsername);
+    }
+
+    public void checkIsInputPasswordVisible(){
+        checkElementDisplayed(inputPassword);
+    }
+
+    public void checkIsInputPasswordNotVisible(){
+        checkElementNotDisplayed(inputPassword);
+    }
+
+    public void checkisSignInButtonNotVisible(){
+        checkElementNotDisplayed(signInButton);
+    }
+
+    public void checkIsRedirectToLoginPage(){
+        getHeader().checkSearchButtonNotVisible();
+        getHeader().checkChatButtonNotVisible();
+        getHeader().checkProfileButtonNotVisible();
+        getHeader().checkButtonCreatePostNotVisible();
+        getHeader().checkIsSignOutButtonNotVisible();
+        checkIsInputUsernameVisible();
+        checkIsInputPasswordVisible();
+        checkIsSignInButtonVisible();
     }
 
 
