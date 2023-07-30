@@ -13,6 +13,10 @@ public class CreatePostPage extends ParentPageWithHeader {
     private WebElement buttonSaveNewPost;
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
+    @FindBy(xpath = "//option[text()='Приватне повідомлення']")
+    private WebElement dropDownOnePersonVariant;
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement checkbox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -45,6 +49,16 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     public CreatePostPage selectValueInDropDown(String value) {
         selectValueInDropDown(dropDownSelectValue, value);
+        return this;
+    }
+
+    public CreatePostPage workWithCheckBox(String text) {
+        checkOrUncheckCheckBoxDependingOnText(checkbox, text);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUI() {
+        selectTextInDropDownByUI(dropDownSelectValue, dropDownOnePersonVariant);
         return this;
     }
 }
