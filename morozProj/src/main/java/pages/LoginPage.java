@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends ParentPage {
+public class LoginPage extends ParentPageWithHeader {
     @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement inputUsername;
 
@@ -42,4 +42,6 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnSignInButton();
     }
+
+
 }

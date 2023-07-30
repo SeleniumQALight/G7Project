@@ -7,6 +7,13 @@ import pages.ActionsWithElements;
 import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
+
+    @FindBy(xpath = "//div[text()='Invalid username / pasword']")
+    private WebElement loginValidation;
+
+    @FindBy(xpath = "//button[text()='Sign In']")
+    private WebElement signInButton;
+
    @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement signOutButton;
 
@@ -20,8 +27,22 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(signOutButton);
     }
 
+    public void checkIsSignOutButtonNotVisible(){
+        checkElementNotDisplayed(signOutButton);
+    }
+
     public CreatePostPage clickOnButtonCreatePost(){
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
+
+    public void checkIsSignInButtonVisible(){
+        checkElementDisplayed(signInButton);
+    }
+
+    public void checkIsLoginValidationDisplayed(){
+        checkElementDisplayed(loginValidation);
+    }
+
+
 }
