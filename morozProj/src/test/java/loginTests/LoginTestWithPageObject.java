@@ -4,8 +4,7 @@ import baseTest.BaseTest;
 import data.TestData;
 import org.junit.Test;
 
-import static data.TestData.LOGIN_DEFAULT;
-import static data.TestData.PASSWORD_DEFAULT;
+import static data.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -16,5 +15,19 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getloginPage().clickOnSignInButton();
 
         pageProvider.getHomePage().getHeader().checkIsSignOutButtonVisible();
+    }
+
+    @Test
+    public void unvalidLogin(){
+        pageProvider.getloginPage().openLoginPage();
+        pageProvider.getloginPage().enterTextIntoInputUsername(UNVALID_LOGIN);
+        pageProvider.getloginPage().enterTextIntoInputPassword(UNVALID_PASSWORD);
+        pageProvider.getloginPage().clickOnSignInButton();
+
+        pageProvider.getloginPage().getHeader().checkIsSignOutButtonNotVisible();
+        pageProvider.getloginPage().checkIsSignInButtonVisible();
+        pageProvider.getloginPage().checkIsLoginValidationDisplayed();
+
+
     }
 }

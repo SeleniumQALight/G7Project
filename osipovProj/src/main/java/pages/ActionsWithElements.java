@@ -63,30 +63,92 @@ public class ActionsWithElements {
         }
     }
 
-    public void checkElementDisplayed(WebElement element){
+    public void checkElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
 
-    public void checkElementIsNotDisplayed(WebElement element){
+    public void checkElementIsNotDisplayed(WebElement element) {
         Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
-    public void selectTextInDropDown(WebElement dropDown, String text){
-        try{
+    public void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    public void selectValueInDropDown(WebElement dropDown, String value){
-        try{
+    public void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, WebElement dropDownValue) {
+        try {
+            clickOnElement(dropDown);
+            if (isElementDisplayed(dropDownValue)) {
+                clickOnElement(dropDownValue);
+                logger.info("DropDown value with text 'Приватне повідомлення' is clicked");
+            } else {
+                logger.error("DropDown value with text 'Приватне повідомлення' is not displayed");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void checkCheckbox(WebElement element) {
+        try {
+            if (!element.isSelected()) {
+                clickOnElement(element);
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox has alreaddy been checked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void uncheckCheckBox(WebElement element) {
+        try {
+            if (element.isSelected()) {
+                clickOnElement(element);
+                logger.info("Checkbox was unchecked");
+            } else {
+                logger.info("Checkbox has alreaddy been unchecked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void checkOrUncheckCheckBoxDependingOnText(WebElement element, String text) {
+        try {
+            if (text.equals("check")) {
+                if (!element.isSelected()) {
+                    clickOnElement(element);
+                    logger.info("Checkbox was checked");
+                } else {
+                    logger.info("Checkbox has alreaddy been checked");
+                }
+            } else if (text.equals("uncheck")) {
+                if (element.isSelected()) {
+                    clickOnElement(element);
+                    logger.info("Checkbox was unchecked");
+                } else {
+                    logger.info("Checkbox has alreaddy been unchecked");
+                }
+            }
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
@@ -95,5 +157,4 @@ public class ActionsWithElements {
         System.out.println("Can not work with element");
         Assert.fail("Can not work with element");
     }
-
 }

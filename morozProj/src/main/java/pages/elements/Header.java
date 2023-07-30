@@ -7,6 +7,7 @@ import pages.ActionsWithElements;
 import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
+
    @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement signOutButton;
 
@@ -20,8 +21,16 @@ public class Header extends ActionsWithElements {
         checkElementDisplayed(signOutButton);
     }
 
+    public void checkIsSignOutButtonNotVisible(){
+        checkElementNotDisplayed(signOutButton);
+    }
+
     public CreatePostPage clickOnButtonCreatePost(){
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
+
+
+
+
 }

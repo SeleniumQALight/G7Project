@@ -1,0 +1,123 @@
+#MainPage Locators
+
+
+- "Username" field on the header:
+    //*[@action='/login']//*[@name='username']
+    //*[@id="username3"] - not recommend
+
+- "Password" field on the header:
+    //*[@action='/login']//*[@name='password']
+    //*[@action='/login']//*[@type="password"]
+
+- "Sign In" button locator:
+    //*[@class='btn btn-primary btn-sm']
+    //*[@action='/login']//*[@class='btn btn-primary btn-sm']
+
+- "Username" field on the registration form:
+    //*[@action='/register']//*[@name='username']
+    //*[@id='username-register']
+
+- "Email" field on the registration form:
+    //*[@action='/register']//*[@name='email']
+    //*[@id='email-register']
+
+- "Password" field on the registration form:
+    //*[@action='/register']//*[@name='password']
+    //*[@id='password-register']
+
+- "Sign up for OurApp" button locator:
+    //*[@type='submit']
+    //*[@action='/register']//*[@type='submit']
+
+#HomePage Locators
+
+- "Create Post" button:
+    //*[@class='btn btn-sm btn-success mr-2']
+    //*[@href='/create-post']
+
+- "Sign Out" button:
+    //*[@class='btn btn-sm btn-secondary']
+    //*[@action='/logout']//*[@class='btn btn-sm btn-secondary']
+
+- UserName:
+     //*[@class='text-white mr-2']
+
+- "My profile" button:
+    //*[@alt='My profile']
+    //*[@href='/profile/kostia'] - cannot use cause "kostia" is the dynamic value
+    //*[@class='mr-2']
+
+- Feed:
+    //*[@class="text-center"]
+    //*[@class="text-center"]//p
+
+- User's name on the empty feed:
+    //H2//Strong
+    //*[@class="text-center"]//H2//Strong
+
+#MyProfilePage Locators
+
+- User's name:
+    //H2
+
+- Open post:
+    //*[@class='list-group']//a[N], where N - post number what you want to open
+    exmpl: //*[@class='list-group']//a[1] - open first post
+
+- Get post title:
+    //*[@class='list-group']//a[1]//Strong
+
+- Get post date:???
+    ????//*[@class='list-group']//a[1]//*[text()] - not working
+
+- Open "Posts" tab or get number of posts:
+    //*[@class='profile-nav nav nav-tabs pt-2 mb-4']//a[1]
+
+- Open "Followers" tab or get number of followers:
+    //*[@class='profile-nav nav nav-tabs pt-2 mb-4']//a[2]
+
+- Open "Following" tab or get number of following users:
+    //*[@class='profile-nav nav nav-tabs pt-2 mb-4']//a[3]
+
+#ViewPost Page:
+
+- Get post title:
+    //H2
+    //*[@class='d-flex justify-content-between']//H2
+
+- Edit button:
+    //*[@class='text-primary mr-2']
+    //*[@data-icon='edit']
+    //*[@data-original-title='Edit']
+
+- Delete button:
+    //*[@class='delete-post-button text-danger']
+    //*[@data-icon='trash']
+
+- Post's body:
+    //*[@class='container py-md-5 container--narrow']/div[4]//p
+
+- Get author name:
+    //*[@class='text-muted small mb-4']//a[2]
+
+- Get date:???
+    ???
+
+#CreatePost and #EditPost pages:
+
+- "Title" field:
+    //*[@name="title"]
+
+- "Body content" field:
+    //*[@name='body']
+
+- "Is this post unique?" checkbox:
+    //*[@type='checkbox']
+
+- DropDown values:
+    //*[@name='select1']//*[@value='All Users'] or //*[@name='select1']//*[@value][1]
+    //*[@name='select1']//*[@value='One Person'] or //*[@name='select1']//*[@value][2]
+    //*[@name='select1']//*[@value='Group Message'] or //*[@name='select1']//*[@value][3]
+
+- "Save new post" button or "Save updates" button:
+    //*[@class='btn btn-primary']
