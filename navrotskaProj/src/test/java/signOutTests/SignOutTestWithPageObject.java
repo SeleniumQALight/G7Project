@@ -10,8 +10,7 @@ public class SignOutTestWithPageObject extends BaseTest {
 
     @Test
     public void validSignOut() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.loginWithValidCreds();
+        pageProvider.getLoginPage().loginWithValidCreds();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonChatVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonMyProfileVisible();
@@ -21,8 +20,7 @@ public class SignOutTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().checkIsInputPasswordNotVisible();
         pageProvider.getLoginPage().checkIsButtonSignInNotVisible();
 
-        Header header = new Header(webDriver);
-        header.logout();
+        pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
         pageProvider.getLoginPage().checkIsInputUserNameVisible();
         pageProvider.getLoginPage().checkIsInputPasswordVisible();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();

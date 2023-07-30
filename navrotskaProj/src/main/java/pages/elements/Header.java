@@ -77,9 +77,4 @@ public class Header extends ActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public void logout() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.openLoginPage();
-        clickOnButtonSignOut();
-    }
 }
