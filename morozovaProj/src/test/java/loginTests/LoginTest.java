@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class LoginTest {
-    static WebDriver webDriver;
+    WebDriver webDriver;
 
     @Test
     public void validLoginIn() {
@@ -49,7 +49,7 @@ public class LoginTest {
     }
 
 
-    public static boolean isButtonSignOutVisible() {
+    private boolean isButtonSignOutVisible() {
         try {
             return webDriver.findElement(By.xpath(".//button [text()= 'Sign Out']")).isDisplayed();
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class LoginTest {
         Assert.assertFalse("Button 'Sign Out' is displayed", isButtonSignOutVisible());
     }
 
-    public static boolean isButtonSignInVisible() {
+    private boolean isButtonSignInVisible() {
         try {
             return webDriver.findElement(By.xpath(".//button[contains(text(),'Sign In')]")).isDisplayed();
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public class LoginTest {
         }
     }
 
-    public static boolean textInvalidUserVisible() {
+    private boolean textInvalidUserVisible() {
         try {
             return webDriver.findElement(By.xpath("//div [contains(text(),'Invalid username // password')]")).isDisplayed();
         } catch (Exception e) {

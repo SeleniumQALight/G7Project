@@ -1,21 +1,20 @@
 package loginTests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Assert;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+//import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
-
-import java.sql.SQLOutput;
-import java.util.concurrent.TimeUnit;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.support.FindBy;
+//
+//import java.sql.SQLOutput;
+//import java.util.concurrent.TimeUnit;
 
 import static data.TestData.*;
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
-    WebDriver webDriver;
 
     @Test
     public void validLogin() {
@@ -25,10 +24,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getloginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
-
 // TODO Assert
     }
-
     @Test
     public void invalidLogin() { // HW3 With PageObject
 //        1. Додати тест кейс на невалідний логін (але тепер вже з пейдж обжектом),

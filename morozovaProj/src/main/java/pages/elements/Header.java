@@ -9,7 +9,7 @@ import pages.CreatePostPage;
 
 public class Header extends ActionsWithElements {
 
-    @FindBy(xpath = "//a[@class ='text-white mr-2 header-search-icon']")
+    @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']//*[@class='svg-inline--fa fa-search fa-w-16']")
     private WebElement searchIcon;
 
     @FindBy(xpath = "//span[@class=\"text-white mr-2 header-chat-icon\"]//*[@class=\"svg-inline--fa fa-comment fa-w-16\"]")
