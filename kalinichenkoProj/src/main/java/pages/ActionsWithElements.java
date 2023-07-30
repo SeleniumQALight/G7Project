@@ -82,6 +82,10 @@ public class ActionsWithElements {
         }
     }
 
+    public void checkElementNotDisplay(WebElement element) {
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);

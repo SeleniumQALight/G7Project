@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends ParentPageWithHeader{
+public class HomePage extends ParentPageWithHeader {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -15,8 +15,10 @@ public class HomePage extends ParentPageWithHeader{
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check URL
-        //TODO some unique element
+        getHeader().checkSearchButtonVisible();
+        getHeader().checkChatButtonVisible();
+        getHeader().checkProfileButtonVisible();
+        getHeader().checkButtonCreatePostVisible();
         getHeader().checkIsSignOutButtonVisible();
         return this;
     }
