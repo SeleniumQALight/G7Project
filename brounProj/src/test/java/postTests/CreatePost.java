@@ -16,6 +16,7 @@ public class CreatePost extends BaseTest {
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody("New Post Body Dmytro")
                 .selectTextInDropDown("Приватне повідомлення")
+                .selectValueInCheckbox("Check")
                 //.selectValueInDropDown("One person")
                 .clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.")

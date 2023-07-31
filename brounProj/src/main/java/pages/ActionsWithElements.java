@@ -80,24 +80,89 @@ public class ActionsWithElements {
     }
 
     public void selectTextInDropDown(WebElement dropDown, String text) {
-        try{
+        try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
     public void selectValueInDropDown(WebElement dropDown, String value) {
-        try{
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
+
+
+    public void selectTextInDropDownByUI(WebElement dropDown, WebElement optionToSelect) {
+        try {
+
+            clickOnElement(dropDown);
+            clickOnElement(optionToSelect);
+
+            logger.info(optionToSelect.getText() + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectValueInCheckbox(WebElement checkbox, String value) {
+
+        if (value.equalsIgnoreCase("Check")) {
+            if (!checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox is checked");
+            } else {
+                logger.info("Checkbox is already checked");
+            }
+
+        } else if (value.equalsIgnoreCase("Uncheck")) {
+            if (checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox is unchecked");
+            } else {
+                logger.info("Checkbox is already unchecked");
+            }
+
+        } else {
+            logger.error("Value should be 'Check' or 'Uncheck'");
+            Assert.fail("Value should be 'Check' or 'Uncheck'");
+        }
+
+    }
+
+    public void setCheckboxActive(WebElement checkbox, String value) {
+        if (value.equalsIgnoreCase("Check")) {
+            if (!checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox is checked");
+            }
+            logger.info("Checkbox is already checked");
+        } else {
+            logger.error("Value should be 'Check'");
+            Assert.fail("Value should be 'Check'");
+        }
+    }
+
+    public void setCheckboxInactive(WebElement checkbox, String value) {
+        if (value.equalsIgnoreCase("Uncheck")) {
+            if (checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox is unchecked");
+            }
+            logger.info("Checkbox is already unchecked");
+        } else {
+            logger.error("Value should be 'Uncheck'");
+            Assert.fail("Value should be 'Uncheck'");
+        }
+    }
+
 
 }
 
