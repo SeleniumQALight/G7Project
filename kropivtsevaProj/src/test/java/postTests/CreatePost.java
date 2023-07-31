@@ -10,8 +10,23 @@ public class CreatePost extends BaseTest {
     @Test
 
     public void createPost() {
-        pageProvider.getHomePage().openHomePage().checkIsRedirectToHomePage().getHeader().clickOnButtonCreatePost().checkIsRedirectToCreatePostPage().enterTextIntoInputTitle(title).enterTextIntoInputBody("Body of new post").selectTextInDropDown("Приватне повідомлення")//.selectValueInDropDown("One Person")
-                .clickOnButtonSaveNewPost().checkIsSuccessMessageDisplayed().checkTextInSuccessMessage("New post successfully created.")
+        pageProvider.getHomePage()
+                .openHomePage()
+                .checkIsRedirectToHomePage()
+                .getHeader()
+                .clickOnButtonCreatePost()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoInputTitle(title)
+                .enterTextIntoInputBody("Body of new post")
+                .workWithCheckBox("check")
+                .selectTextInDropDown("Приватне повідомлення")
+                //.selectValueInDropDown("One Person")
+                .clickOnButtonSaveNewPost()
+                .checkIsSuccessMessageDisplayed()
+                .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsPostBodyDisplayed("Body of new post")
+                .checkIsPostTitleDisplayed(title)
+                .checkIsPostUnique("Is this post unique? : yes")
         ;
     }
 }

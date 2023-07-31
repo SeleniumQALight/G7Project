@@ -87,8 +87,41 @@ public class ActionsWithElements {
         }
     }
 
+    public void checkOrUncheckCheckBoxDependingOnText(WebElement checkBox, String text) {
+        try {
+            if (text.equals("check")) {
+                if (!checkBox.isSelected()) {
+                    checkBox.click();
+                    logger.info("CheckBox was checked");
+                } else {
+                    logger.info("CheckBox is already checked");
+                }
+            } else if (text.equals("uncheck")) {
+                if (checkBox.isSelected()) {
+                    checkBox.click();
+                    logger.info("CheckBox was unchecked");
+                } else {
+                    logger.info("CheckBox is already unchecked");
+                }
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
 }
+//ДЗ №4:
+//        1. Написати метод вибору значення в дроп дауні через UI (Знайти елемент, клікнути по ньому, знайти потрібний рядок по тексту(текст захардкодити в локаторі рядочка), і клікнути по ньому). Це повинени бути новий метод selectTextInDropDownByUI в ActionsWithElements (не пишіть код знову для кліка, а використовуйте вже існуючі методи)
+//
+//        2. Створити метод який буде робити чекбокс вибраним
+//        3. Створити метод який буде робити чекбокс не вибраним
+//        4.Створити метод встановлення заданого стану у чекбокс
+//        - метод повинен приймати на вхід стрінговий стан (check or uncheck)
+//        - в залежності від стану чекбокса і необхідного стану - клікати і виводити повідомлення в лог, чи не клікати і просто виводити повідомлення в лог.
+//        - додати цей метод в наш тест по створенню поста (зі значенням check) і перевірку на наступному скріні
+//
+//        5. зробити перевірку на сторінці postPage що ми бачимо текст тайтла, боді - такіж, з якими ми створювали пост (порівняти текс з них з очикуваним, тим який передавали при створені). А також перевірити що бачите текст Note: This post was written for One Person і Is this post unique? : yes — це теж зробити простим порівнянням тексту з елементку з текстом переданим з тесткейсу..
