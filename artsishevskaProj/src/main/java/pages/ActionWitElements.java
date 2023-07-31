@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -88,5 +89,52 @@ public class ActionWitElements {
     }
     public void checkElementNotDisplayed(WebElement element){
         Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+    }
+    public void selectTextInDropDownByUI(WebElement dropDown, String text){
+        try{
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath(".//option[text()='" + text + "']")));
+            logger.info(text + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void setCheckBoxTrue(WebElement checkBox){
+        try{
+            if(!checkBox.isSelected()) {
+                checkBox.click();
+                logger.info("CheckBox was clicked");
+            }else{
+                logger.info("CheckBox is already selected");
+            }
+
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void setCheckBoxFalse(WebElement checkBox){
+        try{
+            if(checkBox.isSelected()) {
+                checkBox.click();
+                logger.info("CheckBox was clicked");
+            }else{
+                logger.info("CheckBox is already deselected");
+            }
+
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void setCheckBox(WebElement checkBox,boolean state){
+        try{
+            if(checkBox.isSelected()!=state){
+                checkBox.click();
+                logger.info("CheckBox was clicked");
+            }else{
+                logger.info("CheckBox is already selected");
+            }
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 }
