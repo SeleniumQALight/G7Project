@@ -36,7 +36,7 @@ HomePage.link.SignOutHeader = //button[@class='btn btn-sm btn-secondary']
 #CreatePostPage
 CreatePostPage.input.Title = //input[@name='title' and @id='post-title']
 CreatePostPage.textarea.BodyContent= //textarea[@name='body' and @id='post-body']
-CreatePostPage.input.Checkbox = //input[@name='uniquePost']
+CreatePostPage.input.Checkbox = //input[@type='checkbox' and @name='uniquePost' and @value='yes']
 CreatePostPage.select.DropDownList= //select[@name='select1' and @id='select1']
 CreatePostPage.select.DropDownListOption = //select[@name='select1' and @id='select1']/option[@value='All Users'] OR
 //option[text()='Загальнодоступне']
@@ -57,6 +57,9 @@ NewPostPage.text.Title = //div[@class='d-flex justify-content-between']
 NewPostPage.link.EditPost = //a[@class='text-primary mr-2']
 NewPostPage.button.DeletePost = //button[@class='delete-post-button text-danger']
 NewPostPage.text.PostedBy = //p[@class='text-muted small mb-4']
+//p[text()='Is this post unique? : yes']
+//p[text()='Is this post unique? : no']
+
 
 
 
