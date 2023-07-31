@@ -5,24 +5,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPageWithHeader {
-    @FindBy(id = "post-title")
+
+    @FindBy(id = "post-title") //(xpath = "//*[@id='post-title']")
     private WebElement inputTitle;
-    @FindBy(name = "body")
+
+    @FindBy(name="body") //(xpath = "//*[@name='body']")
     private WebElement inputBody;
-    @FindBy(xpath = "//button[text()='Save New Post']")
+
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement buttonSaveNewPost;
+
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
-    @FindBy(xpath = "//option[text()='Приватне повідомлення']")
-    private WebElement dropDownOnePersonVariant;
-    @FindBy(xpath = "//input[@type='checkbox']")
-    private WebElement checkbox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        //TODO check url
+        //TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }
@@ -32,8 +34,8 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage enterTextIntoInputBody(String body) {
-        enterTextIntoInput(inputBody, body);
+    public CreatePostPage enterTextIntoInputBody(String bodyText) {
+        enterTextIntoInput(inputBody, bodyText);
         return this;
     }
 
@@ -47,18 +49,10 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage selectValueInDropDown(String value) {
+    public CreatePostPage selectTextInDropDownByValue(String value) {
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
 
-    public CreatePostPage workWithCheckBox(String text) {
-        checkOrUncheckCheckBoxDependingOnText(checkbox, text);
-        return this;
-    }
-
-    public CreatePostPage selectTextInDropDownByUI() {
-        selectTextInDropDownByUI(dropDownSelectValue, dropDownOnePersonVariant);
-        return this;
-    }
 }
+
