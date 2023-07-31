@@ -78,6 +78,6 @@ public class Header extends ActionsWithElements { // клас для робот�
 
     public CreatePostPage clickOnButtonCreatePost(){ // метод для кліку по кнопці Create Post
         clickOnElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
+        return new CreatePostPage(webDriver);//в результаті відкривається НОВА сторінка Create Post
     }
 }
