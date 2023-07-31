@@ -1,10 +1,11 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatePostPage extends ParentPageWithHeader{
+public class CreatePostPage extends ParentPageWithHeader {
 
     @FindBy(id = "post-title") // //*[@id='post-title'] - the same
     private WebElement inputTitle;
@@ -16,7 +17,11 @@ public class CreatePostPage extends ParentPageWithHeader{
     private WebElement buttonSave;
 
     @FindBy(tagName = "select") // dropdown
-    private WebElement dropDownSelectValue;
+    private static WebElement dropDownSelectValue;
+
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private static WebElement checkBoxUniquePost;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -53,4 +58,27 @@ public class CreatePostPage extends ParentPageWithHeader{
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
+
+    public static WebElement getDropDownSelectValue() {
+        return dropDownSelectValue;
+    }
+
+    public CreatePostPage checkStatusCheckBoxUniquePost(String status) {
+        try {
+            if (status.equals("check")) {
+                setCheckboxState(checkBoxUniquePost);
+
+            } else if (status.equals("uncheck")) {
+                unsetCheckboxState(checkBoxUniquePost);
+            } else {
+                logger.error("Status should be 'check' or 'uncheck'");
+                Assert.fail("Status should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with checkbox");
+            Assert.fail("Can not work with checkbox");
+        }
+        return this;
+    }
+
 }
