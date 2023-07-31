@@ -61,9 +61,18 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage markCheckboxYes () {
-        clickOnElement(checkboxUniquePost);
+    public CreatePostPage markCheckboxUniqueYes () {
+        markCheckboxYes(checkboxUniquePost);
         return this;
     }
 
+    public CreatePostPage markCheckboxUniqueNo () {
+        markCheckboxNo(checkboxUniquePost);
+        return this;
+    }
+
+    public CreatePostPage markCheckboxStateUnique(String checkboxState) {
+        checkCheckboxState(checkboxUniquePost, checkboxState);
+        return this;
+    }
 }

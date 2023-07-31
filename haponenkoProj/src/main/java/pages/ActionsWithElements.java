@@ -97,6 +97,54 @@ public class ActionsWithElements {
         }
     }
 
+    public void markCheckboxYes(WebElement checkboxUniquePost) {
+        try {
+            if (!checkboxUniquePost.isSelected()) {
+                clickOnElement(checkboxUniquePost);
+                logger.info("Checkbox was marked 'Yes'");
+            } else {
+                logger.info("Checkbox is already marked 'Yes'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void markCheckboxNo(WebElement checkboxUniquePost) {
+        try {
+            if (checkboxUniquePost.isSelected()) {
+                clickOnElement(checkboxUniquePost);
+                logger.info("Checkbox was marked 'No'");
+            } else {
+                logger.info("Checkbox is already marked 'No'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+//    check checkbox according to state
+
+    /**
+     * You shoud use this method if you want to check or uncheck checkbox
+     * @param checkbox
+     * @param state (only "check" or "uncheck")
+     */
+    public void checkCheckboxState(WebElement checkbox, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                markCheckboxYes(checkbox);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                markCheckboxNo(checkbox);
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element " + e);
         Assert.fail("Can't work with element " + e);
