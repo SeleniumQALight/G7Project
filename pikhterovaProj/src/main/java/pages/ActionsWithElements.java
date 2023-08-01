@@ -53,7 +53,7 @@ public class ActionsWithElements {
     public boolean isElementDisplayed(WebElement element) {
         try {
 
-            boolean state =  element.isDisplayed();
+            boolean state = element.isDisplayed();
             if (state) {
                 logger.info("Element is displayed");
             } else {
@@ -67,27 +67,51 @@ public class ActionsWithElements {
     }
 
 
-    public void selectTextInDropDown(WebElement dropDown, String text){
-        try{
+    public void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    public void selectValueInDropDown(WebElement dropDown, String value){
-        try{
+    public void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
     public void checkElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+    public void activateCheckBox(WebElement element, boolean state) {
+        try {
+            if (element.isSelected() != state) {
+                element.click();
+                logger.info("CheckBox was activated");
+            } else {
+                logger.info("CheckBox is already activated");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 }

@@ -6,17 +6,28 @@ import org.junit.Test;
 
 public class CreatePost extends BaseTest {
     private String title = "TC01 - New Post Pikhterova" + Util.getDateAndTimeFormatted();
+    private String body = "New Post Body" + Util.getDateAndTimeFormatted();
+
     @Test
     public void createNewPost() {
         pageProvider.getHomePage().openHomePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(title)
-                .enterTextIntoInputBody("New Post Body")
-                .selectTextInDropDown("Приватне повідомлення")
+                .enterTextIntoInputBody(body)
+                .checkCheckBoxUnique(true)
+                //.selectTextInDropDown("Приватне повідомлення")
                 //.selectValueInDropDown("One Person")
+                .selectTextInDropDownByClick("Приватне повідомлення")
                 .clickOnButtonSaveNewPost()
-                .checkTextInSuccessMessage("New post successfully created.");
+                .checkTextInSuccessMessage("New post successfully created.")
+                .checkIfPostIsUnique()
+                .checkIfPostIsVisibleOnlyForOnePerson()
+                .checkTitleText(title)
+                .checkBodyText(body)
+
+
+        ;
 
 
     }
