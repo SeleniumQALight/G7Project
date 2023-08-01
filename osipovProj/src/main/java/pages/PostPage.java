@@ -16,6 +16,8 @@ public class PostPage extends ParentPageWithHeader {
     WebElement selectedValueFromDropDown;
     @FindBy(xpath = "//div[not(@*)]//p")
     WebElement uniquePostMessage;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -55,5 +57,10 @@ public class PostPage extends ParentPageWithHeader {
     public PostPage checkPostIsUnique(String text) {
         Assert.assertEquals("Text in message", text, uniquePostMessage.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeletePostButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
