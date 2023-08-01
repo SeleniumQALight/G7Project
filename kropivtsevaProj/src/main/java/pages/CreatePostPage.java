@@ -58,6 +58,11 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
+    public CreatePostPage selectTextInDropDownByUI() {
+        selectTextInDropDownByUI(dropDownSelectValue, "Приватне повідомлення");
+        return this;
+    }
+
     public CreatePostPage workWithCheckBox(String text) {
         checkOrUncheckCheckBoxDependingOnText(checkbox, text);
         return this;

@@ -19,6 +19,9 @@ public class PostPage  extends ParentPageWithHeader{
     @FindBy(xpath = "//div[@class='d-flex justify-content-between']")
     private WebElement postTitle;
 
+    @FindBy(xpath = "//div[@class='body-content'][1]//p")
+    private WebElement postPrivate;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -54,4 +57,8 @@ public class PostPage  extends ParentPageWithHeader{
         return this;
     }
 
+    public PostPage checkIsPostPrivate(String text) {
+        Assert.assertEquals("Text in message", text, postPrivate.getText());
+        return this;
+    }
 }

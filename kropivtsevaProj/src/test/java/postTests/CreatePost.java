@@ -19,14 +19,16 @@ public class CreatePost extends BaseTest {
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody("Body of new post")
                 .workWithCheckBox("check")
-                .selectTextInDropDown("Приватне повідомлення")
+                //.selectTextInDropDown("Приватне повідомлення")
                 //.selectValueInDropDown("One Person")
+                .selectTextInDropDownByUI()
                 .clickOnButtonSaveNewPost()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkIsPostBodyDisplayed("Body of new post")
                 .checkIsPostTitleDisplayed(title)
                 .checkIsPostUnique("Is this post unique? : yes")
+                .checkIsPostPrivate("Note: This post was written for One Person")
         ;
     }
 }
