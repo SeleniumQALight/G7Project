@@ -101,7 +101,7 @@ public class ActionsWithElements {
     public void setCheckBoxTrue(WebElement checkBox) {
         try {
             if (!checkBox.isSelected()) {
-                checkBox.click();
+                clickOnElement(checkBox);
                 logger.info("CheckBox was clicked");
             } else {
                 logger.info("CheckBox is already selected");
@@ -114,7 +114,7 @@ public class ActionsWithElements {
     public void setCheckBoxFalse(WebElement checkBox) {
         try {
             if (checkBox.isSelected()) {
-                checkBox.click();
+                clickOnElement(checkBox);
                 logger.info("CheckBox was clicked");
             } else {
                 logger.info("CheckBox is already deselected");
@@ -127,7 +127,7 @@ public class ActionsWithElements {
     public void setCheckBox(WebElement checkBox, boolean state) {
         try {
             if (checkBox.isSelected()!=state) {
-                checkBox.click();
+                clickOnElement(checkBox);
                 logger.info("CheckBox was clicked");
             } else {
                 logger.info("CheckBox is already selected");
