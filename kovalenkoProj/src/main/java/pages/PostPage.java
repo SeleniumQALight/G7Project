@@ -9,6 +9,18 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
 
+    @FindBy(xpath = "//div[@class='d-flex justify-content-between']")
+    private WebElement titleOnPostPage;
+
+    @FindBy(xpath = "//*[@class=\"body-content\"][2]//p")
+    private WebElement bodyOnPostPage;
+
+    @FindBy(xpath = "//*[@class=\"body-content\"][1]//u")
+    private WebElement noteIs;
+
+    @FindBy(xpath = "//*/p[contains(text(),'unique')]")
+    private WebElement isUnique;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -28,4 +40,25 @@ public class PostPage extends ParentPageWithHeader{
         Assert.assertEquals("Text in message", text, successMessageElement.getText());
         return this;
     }
+
+    public PostPage checkIsTitleEquals(String title) {
+        Assert.assertEquals("Title is incorrect", title, titleOnPostPage.getText());
+        return this;
+    }
+
+    public PostPage checkIsBodyEquals(String body) {
+        Assert.assertEquals("Body is incorrect", body, bodyOnPostPage.getText());
+        return this;
+    }
+
+    public PostPage checkNoteIsEquals(String text) {
+        Assert.assertEquals("Note is incorrect", text, noteIs.getText());
+        return this;
+    }
+
+    public PostPage checkIsUniqueEquals(String text) {
+        Assert.assertEquals("Unique is incorrect", text, isUnique.getText());
+        return this;
+    }
+
 }
