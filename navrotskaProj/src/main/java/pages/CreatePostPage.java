@@ -4,21 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatePostPage extends ParentPageWithHeader{
-    @FindBy(id = "post-title")  // //*[@id="post-title"]
+public class CreatePostPage extends ParentPageWithHeader {
+
+    @FindBy(id = "post-title") //(xpath = "//*[@id='post-title']")
     private WebElement inputTitle;
 
-    @FindBy(name = "body")  // //*[@name="body"]
+    @FindBy(name="body") //(xpath = "//*[@name='body']")
     private WebElement inputBody;
 
-    @FindBy(xpath = "//button[text()='Save New Post']")  // //button[text()='Save New Post']
-    private WebElement buttonSave;
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
+    private WebElement buttonSaveNewPost;
 
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
-
-    @FindBy(xpath = "//input[@type='checkbox']")
-    private WebElement checkBoxUniquePost;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -36,13 +34,13 @@ public class CreatePostPage extends ParentPageWithHeader{
         return this;
     }
 
-    public CreatePostPage enterTextIntoInputBody(String body) {
-        enterTextIntoInput(inputBody, body);
+    public CreatePostPage enterTextIntoInputBody(String bodyText) {
+        enterTextIntoInput(inputBody, bodyText);
         return this;
     }
 
     public PostPage clickOnButtonSaveNewPost() {
-        clickOnElement(buttonSave);
+        clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
 
@@ -51,13 +49,10 @@ public class CreatePostPage extends ParentPageWithHeader{
         return this;
     }
 
-    public CreatePostPage selectValueInDropDown(String value) {
+    public CreatePostPage selectTextInDropDownByValue(String value) {
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
 
-    public CreatePostPage setCheckBoxUniquePost(boolean state) {
-        setCheckBox(checkBoxUniquePost, state);
-        return this;
-    }
 }
+

@@ -62,25 +62,72 @@ public class ActionsWithElements {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
 
-    public void selectTextInDropDown(WebElement dropDown, String text){
-        try{
+    public void selectTextInDropDown(WebElement dropDown, String text) {
+        try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown");
-        }catch (Exception e) {
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    public void selectValueInDropDown(WebElement dropDown, String value){
-        try{
+    public void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
-        }catch (Exception e) {
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
+
+    public void checkElementNotDisplay(WebElement element) {
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+    }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(org.openqa.selenium.By.xpath(".//option[text()=" + text + ']')));
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public boolean setCheckboxState(WebElement element) {
+        try {
+            if (!element.isSelected()) {
+                element.click();
+                logger.info("Checkbox state was changed to set");
+                return true;
+            } else {
+                logger.info("Checkbox state was not changed it is already set");
+                return false;
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
+
+    public boolean unsetCheckboxState(WebElement element) {
+        try {
+            if (element.isSelected()) {
+                element.click();
+                logger.info("Checkbox state was changed to unset");
+                return true;
+            } else {
+                logger.info("Checkbox state was not changed it is already unset");
+                return false;
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
