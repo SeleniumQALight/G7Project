@@ -36,13 +36,13 @@ HomePage.link.SignOutHeader = //button[@class='btn btn-sm btn-secondary']
 #CreatePostPage
 CreatePostPage.input.Title = //input[@name='title' and @id='post-title']
 CreatePostPage.textarea.BodyContent= //textarea[@name='body' and @id='post-body']
-CreatePostPage.input.Checkbox = //input[@type='checkbox' and @name='uniquePost' and @value='yes']
+CreatePostPage.input.Checkbox = //input[@type='checkbox']
 CreatePostPage.select.DropDownList= //select[@name='select1' and @id='select1']
 CreatePostPage.select.DropDownListOption = //select[@name='select1' and @id='select1']/option[@value='All Users'] OR
 //option[text()='Загальнодоступне']
-CreatePostPage.select.DropDownListOption2 = //select[@name='select1' and @id='select1']/option[@value='One Person']
+CreatePostPage.select.DropDownListOption2 = //select[@name='select1' and @id='select1']/option[@value='One Person'] OR
 //option[text()='Приватне повідомлення']
-CreatePostPage.select.DropDownListOption2 = //select[@name='select1' and @id='select1']/option[@value='Group Message']
+CreatePostPage.select.DropDownListOption2 = //select[@name='select1' and @id='select1']/option[@value='Group Message'] OR
 //option[text()='Групове повідомлення']
 CreatePostPage.button.SaveNewPost = //button[@class='btn btn-primary']
 
@@ -52,13 +52,16 @@ SearchPage.input.LiveSearchField = //input[@class='live-search-field' and @id='l
 SearchPage.button.CloseLiveSearch = //span[@class='close-live-search']
 
 #NewPostPage
-NewPostPage.alert.SuccessAlert = //div[@class='alert alert-success text-center']
-NewPostPage.text.Title = //div[@class='d-flex justify-content-between']
+NewPostPage.alert.SuccessAlert = .//div[@class='alert alert-success text-center']
+NewPostPage.text.PostTitle = "//h2[contains(text(), '" + title + "')]"
 NewPostPage.link.EditPost = //a[@class='text-primary mr-2']
 NewPostPage.button.DeletePost = //button[@class='delete-post-button text-danger']
 NewPostPage.text.PostedBy = //p[@class='text-muted small mb-4']
-//p[text()='Is this post unique? : yes']
-//p[text()='Is this post unique? : no']
+NewPostPage.text.BodyContent = //div[@class='body-content'][contains(., '22')]
+NewPostPage.text.Note = //i[contains(text(), 'Note: This post was written for')]//u[contains(text(), 'All Users')]
+NewPostPage.paragraph.UniqueYes = //p[text()='Is this post unique? : yes']
+NewPostPage.paragraph.UniqueNo = //p[text()='Is this post unique? : no']
+//div[@class="container py-md-5 container--narrow"]//div[3]
 
 
 

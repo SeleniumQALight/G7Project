@@ -32,7 +32,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(xpath = "//option[text()='Групове повідомлення']")
     private WebElement dropDownSelectValueGroup;
 
-    @FindBy(xpath = "//input[@type='checkbox' and @name='uniquePost' and @value='yes']")
+    @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement checkBoxUniquePost;
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {

@@ -5,9 +5,16 @@ import libs.Util;
 import org.junit.Test;
 
 public class CreatePost extends BaseTest {
+
+    private String TextInSuccessMessage = "New post successfully created.";
     private String title = "TC01 - New Post Klets " + Util.getDateAndTimeFormatted();
 
+    private String body = "New Post Body Klets";
+
     private String checkBoxState = "check";
+
+    private String option = "All Users";
+
 
     @Test
     public void createNewPost() {
@@ -15,19 +22,26 @@ public class CreatePost extends BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(title)
-                .enterTextIntoInputBody("New Post Body Klets")
+                .enterTextIntoInputBody(body)
                 //.markCheckBoxUniquePostYes()
                 //.markCheckBoxUniquePostNo()
                 .markCheckBoxUniquePost(checkBoxState)
                 //.selectCheckBoxUniquePost()
                 //.deselectCheckBoxUniquePost()
-                //.selectTextDropDownByUI("Загальнодоступне")
+                .selectTextDropDownByUI("Загальнодоступне")
                 // .selectTextDropDownByUI("Приватне повідомлення")
-                .selectTextDropDownByUI("Групове повідомлення")
+              //  .selectTextDropDownByUI(option)
                 //.selectTextInDropDown("Приватне повідомлення")
                 // .selectValueInDropDown("One Person")
                 .clickOnButtonSaveNewPost()
-                .checkTextInSuccessMessage("New post successfully created.")
+                .checkTextInSuccessMessage(TextInSuccessMessage)
+                .checkIsRedirectToPostPage()
+                .checkTextInTitle(title)
+                .checkTextInBody(body)
+                .checkTextInPrivate(option)
+                .checkTextInUnique("Is this post unique? : yes")
+
+
 
         ;
 
