@@ -141,19 +141,22 @@ public class ActionsWithElements {
     }
 
 
-    public void toMarkAndToUnMarkCheckBoxByUI(WebElement element, String text) { // метод для встановлення або зняття чекбокса
+  //
+
+public void toMarkAndToUnMarkCheckBoxByUI(WebElement element, String text) { // метод для встановлення або зняття чекбокса
         try {
             if (!element.isSelected() && text.equals("check")) { // якщо чекбокс не вибраний
-                clickOnElement(element); // вибрати чекбокс
+               toMarkCheckBox(element); // вибрати чекбокс
                 logger.info("Checkbox was marked");
-            } else if (element.isSelected() && text.equals("uncheck")) {
-                clickOnElement(element); // зняти чекбокс
+            } else if (element.isSelected() && text.equals("uncheck")) { // якщо чекбокс вибраний
+                toUnMarkCheckBox(element); // зняти чекбокс
                 logger.info("Checkbox was unmarked");
             } else {
                 logger.info("Checkbox is already marked");
             }
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+
+} catch (Exception e) {
+        printErrorAndStopTest(e);
     }
 }
+    }
