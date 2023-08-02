@@ -112,24 +112,35 @@ public class ActionsWithElements {
         }
     }
 
+
+    public void setCheckboxActive(WebElement checkbox) {
+
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is checked");
+        }
+        logger.info("Checkbox is already checked");
+
+    }
+
+
+    public void setCheckboxInactive(WebElement checkbox) {
+
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is unchecked");
+        }
+        logger.info("Checkbox is already unchecked");
+    }
+
+
     public void selectValueInCheckbox(WebElement checkbox, String value) {
 
         if (value.equalsIgnoreCase("Check")) {
-            if (!checkbox.isSelected()) {
-                clickOnElement(checkbox);
-                logger.info("Checkbox is checked");
-            } else {
-                logger.info("Checkbox is already checked");
-            }
+            setCheckboxActive(checkbox);
 
         } else if (value.equalsIgnoreCase("Uncheck")) {
-            if (checkbox.isSelected()) {
-                clickOnElement(checkbox);
-                logger.info("Checkbox is unchecked");
-            } else {
-                logger.info("Checkbox is already unchecked");
-            }
-
+            setCheckboxInactive(checkbox);
         } else {
             logger.error("Value should be 'Check' or 'Uncheck'");
             Assert.fail("Value should be 'Check' or 'Uncheck'");
@@ -137,32 +148,4 @@ public class ActionsWithElements {
 
     }
 
-    public void setCheckboxActive(WebElement checkbox, String value) {
-        if (value.equalsIgnoreCase("Check")) {
-            if (!checkbox.isSelected()) {
-                clickOnElement(checkbox);
-                logger.info("Checkbox is checked");
-            }
-            logger.info("Checkbox is already checked");
-        } else {
-            logger.error("Value should be 'Check'");
-            Assert.fail("Value should be 'Check'");
-        }
-    }
-
-    public void setCheckboxInactive(WebElement checkbox, String value) {
-        if (value.equalsIgnoreCase("Uncheck")) {
-            if (checkbox.isSelected()) {
-                clickOnElement(checkbox);
-                logger.info("Checkbox is unchecked");
-            }
-            logger.info("Checkbox is already unchecked");
-        } else {
-            logger.error("Value should be 'Uncheck'");
-            Assert.fail("Value should be 'Uncheck'");
-        }
-    }
-
-
 }
-

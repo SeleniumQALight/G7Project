@@ -71,4 +71,14 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
+    public CreatePostPage setCheckboxActive(String value) {
+        setCheckboxActive(checkBoxValue);
+        return this;
+    }
+
+    public CreatePostPage setCheckboxInactive(String value) {
+        setCheckboxInactive(checkBoxValue);
+        return this;
+    }
+
 }
