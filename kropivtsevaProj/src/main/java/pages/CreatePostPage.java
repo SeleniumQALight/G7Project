@@ -63,7 +63,17 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public CreatePostPage workWithCheckBox(String text) {
+    public CreatePostPage workWithCheckBox() {
+        clickOnCheckBox(checkbox);
+        return this;
+    }
+
+    public CreatePostPage unworkWithCheckBox() {
+        unclickOnCheckBox(checkbox);
+        return this;
+    }
+
+    public CreatePostPage checkOrUncheckCheckBoxDependingOnText(String text) {
         checkOrUncheckCheckBoxDependingOnText(checkbox, text);
         return this;
     }
