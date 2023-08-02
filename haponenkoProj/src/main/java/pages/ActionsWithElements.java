@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -81,6 +82,64 @@ public class ActionsWithElements {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath("//select[@id = 'select1']//*[contains(text(),'Загальнодоступне')]")));
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void markCheckboxYes(WebElement checkboxUniquePost) {
+        try {
+            if (!checkboxUniquePost.isSelected()) {
+                clickOnElement(checkboxUniquePost);
+                logger.info("Checkbox was marked 'Yes'");
+            } else {
+                logger.info("Checkbox is already marked 'Yes'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void markCheckboxNo(WebElement checkboxUniquePost) {
+        try {
+            if (checkboxUniquePost.isSelected()) {
+                clickOnElement(checkboxUniquePost);
+                logger.info("Checkbox was marked 'No'");
+            } else {
+                logger.info("Checkbox is already marked 'No'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+//    check checkbox according to state
+
+    /**
+     * You shoud use this method if you want to check or uncheck checkbox
+     * @param checkbox
+     * @param state (only "check" or "uncheck")
+     */
+    public void checkCheckboxState(WebElement checkbox, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                markCheckboxYes(checkbox);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                markCheckboxNo(checkbox);
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
