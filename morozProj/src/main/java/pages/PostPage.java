@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class PostPage extends ParentPageWithHeader{
 
+    @FindBy(xpath = "//*[@class='delete-post-button text-danger']")
+    private WebElement deleteButton;
+
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
 
@@ -29,5 +32,10 @@ public class PostPage extends ParentPageWithHeader{
     public PostPage checkTextInSuccessMessage(String text){
         Assert.assertEquals("Text in message", text, successMessageElement.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton(){
+        clickOnElement(deleteButton);
+        return new MyProfilePage(webDriver);
     }
 }

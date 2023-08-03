@@ -24,4 +24,15 @@ public class HomePage extends ParentPageWithHeader {
         return this;
     }
 
+    public HomePage openHomePageIfNeed() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (this.getHeader().isButtonSignOutVisible()) {
+            logger.info("User was already logged in");
+        } else {
+            loginPage.loginWithValidCredentials();
+            checkIsRedirectOnHomePage();
+        }
+        return this;
+    }
 }

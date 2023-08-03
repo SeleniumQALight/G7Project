@@ -1,5 +1,6 @@
 package postTests;
 
+import org.junit.After;
 import org.junit.Test;
 
 import static data.TestData.*;
@@ -23,6 +24,20 @@ public class CreatePost extends baseTest.BaseTest {
                 .checkBodyIsMatchingWithCreatePostStep(POST_BODY)
                 .checkPostIsPrivate("Note: This post was written for One Person")
                 .checkPostIsUnique("Is this post unique? : yes")
+        ;
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE)
+        ;
+    }
+
+    @After
+    public void deletePost() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitle(POST_TITLE)
         ;
     }
 }
