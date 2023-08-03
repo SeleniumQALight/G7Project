@@ -32,21 +32,11 @@ public class CreatePost extends BaseTest {
                 .checkPostForUsersSuccessMessage("One Person");
 
 
-
-
-
-
-
-
-
-
-
-
 // перевіряє повідомлення в профайлі
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkpostWithTitleIsPresent(title)
-                ;
+        ;
     }
 
     @After
@@ -56,9 +46,8 @@ public class CreatePost extends BaseTest {
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsTillPresent(title)
-                ;
+        ;
     }
-
 
 }
 

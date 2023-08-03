@@ -64,8 +64,8 @@ public class PostPage extends ParentPageWithHeder {
         return this;
     }
 
-}
-    }
+
+
 
     public MyProfilePage clickOnDeletePostButton() {
         clickOnElement(buttonDelit);
