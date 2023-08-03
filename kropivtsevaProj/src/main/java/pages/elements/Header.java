@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
 
@@ -78,5 +79,12 @@ public CreatePostPage clickOnButtonCreatePost() {
     }
 
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonProfile);
+        return new MyProfilePage(webDriver);
+    }
 
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }

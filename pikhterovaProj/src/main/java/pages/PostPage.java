@@ -22,6 +22,10 @@ public class PostPage extends ParentPageWithHeader{
     @FindBy (xpath = "//*[@class='body-content'][2]//p")
     private WebElement postBody;
 
+
+    @FindBy (xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -40,6 +44,11 @@ public class PostPage extends ParentPageWithHeader{
     public PostPage checkTextInSuccessMessage(String text) {
         Assert.assertEquals("Text in message", text, successMessageElement.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 
     public PostPage checkTitleText (String text)

@@ -88,6 +88,55 @@ public class ActionsWithElements {
         }
     }
 
+    public void selectTextInDropDownByUI(WebElement dropDown, String text){
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(org.openqa.selenium.By.xpath(".//option[text()='" + text + "']")));
+            logger.info(text + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setCheckBoxTrue(WebElement checkBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                clickOnElement(checkBox);
+                logger.info("CheckBox was clicked");
+            } else {
+                logger.info("CheckBox is already selected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setCheckBoxFalse(WebElement checkBox) {
+        try {
+            if (checkBox.isSelected()) {
+                clickOnElement(checkBox);
+                logger.info("CheckBox was clicked");
+            } else {
+                logger.info("CheckBox is already deselected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setCheckBox(WebElement checkBox, boolean state) {
+        try {
+            if (checkBox.isSelected()!=state) {
+                clickOnElement(checkBox);
+                logger.info("CheckBox was clicked");
+            } else {
+                logger.info("CheckBox is already selected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);

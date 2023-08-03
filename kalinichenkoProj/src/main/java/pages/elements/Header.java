@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
     public Header (WebDriver webDriver) {
@@ -24,7 +25,7 @@ public class Header extends ActionsWithElements {
     private WebElement userName;
 
     @FindBy(xpath = "//a[@class='mr-2']")
-    private WebElement userIcon;
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//span[@class='text-white mr-2 header-chat-icon']")
     private WebElement chatIcon;
@@ -68,11 +69,11 @@ public class Header extends ActionsWithElements {
 
 
     public void checkUserIconVisible() {
-        checkElementDisplay(userIcon);
+        checkElementDisplay(buttonMyProfile);
     }
 
     public void checkUserIconNotVisible() {
-        checkElementNotDisplay(userIcon);
+        checkElementNotDisplay(buttonMyProfile);
     }
 
 
@@ -97,4 +98,12 @@ public class Header extends ActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }

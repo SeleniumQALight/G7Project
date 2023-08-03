@@ -51,6 +51,7 @@ NewPostPage.text.Title = //div[@class='d-flex justify-content-between']
 NewPostPage.link.EditPost = //a[@class='text-primary mr-2']
 NewPostPage.button.DeletePost = //button[@class='delete-post-button text-danger']
 NewPostPage.text.PostedBy = //p[@class='text-muted small mb-4']
+NewPostPage.text.BodyContent = //div[@class='body-content']
 
 
 
