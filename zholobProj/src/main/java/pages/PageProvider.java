@@ -12,4 +12,7 @@ public class PageProvider {
     } // метод для створення об'єкту LoginPage
     public HomePage getHomePage() { return  new HomePage(webDriver);  } // метод для створення об'єкту HomePage
 
-}
+    public PostPage getPostPage() {
+        return new PostPage(webDriver);
+    } // метод для створення об'єкту PostPage
+    }

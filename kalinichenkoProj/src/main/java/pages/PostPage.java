@@ -20,6 +20,8 @@ public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//p[contains(text(),'this post')]")
     private WebElement postBodyThisPostUnique;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -59,5 +61,10 @@ public class PostPage extends ParentPageWithHeader {
     public PostPage checkTextInThisPostUnique(String text) {
         Assert.assertEquals("Text in message", text, postBodyThisPostUnique.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeletePostButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

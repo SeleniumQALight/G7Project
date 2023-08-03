@@ -5,10 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements { // клас для роботи з елементами хедера
     @FindBy(xpath = "//button[text() = 'Sign Out']")
     private WebElement buttonSignOut;
+
+
 
 
     @FindBy(xpath = "//a[@ class='text-white mr-2 header-search-icon']//*[@data-icon ='search']")
@@ -17,7 +20,7 @@ public class Header extends ActionsWithElements { // клас для робот�
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-    @FindBy(xpath = "//img") //
+    @FindBy(xpath = "//img") // локатор для кнопки My Profile
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = " //*[@class='svg-inline--fa fa-comment fa-w-16']//*[@fill='currentColor']")
@@ -79,5 +82,15 @@ public class Header extends ActionsWithElements { // клас для робот�
     public CreatePostPage clickOnButtonCreatePost(){ // метод для кліку по кнопці Create Post
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);//в результаті відкривається НОВА сторінка Create Post
+    }
+
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
     }
 }

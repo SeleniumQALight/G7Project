@@ -3,6 +3,7 @@ package postTest;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePost extends BaseTest {
@@ -30,6 +31,32 @@ public class CreatePost extends BaseTest {
                 .checkPostUniqueSuccessMessage("Is this post unique? : yes") // перевірка чи  пост є унікальним
                 .checkPostForUsersSuccessMessage("One Person");
 
+
+
+
+
+
+
+
+
+
+
+
+// перевіряє повідомлення в профайлі
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkpostWithTitleIsPresent(title)
+                ;
+    }
+
+    @After
+    public void deletePosts() {
+        pageProvider.getHomePage().openHomePageAndLoginifNeeded()
+                .openHomePageAndLoginifNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(title)
+                ;
     }
 
 

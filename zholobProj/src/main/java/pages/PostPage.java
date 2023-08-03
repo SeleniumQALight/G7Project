@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 public class PostPage extends ParentPageWithHeder {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']") // повыдомлення про успішне створення поста
     private WebElement successMessageElement;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelit;
 
     @FindBy(xpath = ".//h2") // заголовок поста на сторінці Post Page
     private WebElement postTitleOnPostPageElement;
@@ -62,6 +64,13 @@ public class PostPage extends ParentPageWithHeder {
         return this;
     }
 
+}
+    }
+
+    public MyProfilePage clickOnDeletePostButton() {
+        clickOnElement(buttonDelit);
+        return new  MyProfilePage(webDriver);
+    }
 }
 
 

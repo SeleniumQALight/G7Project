@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionWithElements {
     @FindBy(xpath = "//button[text()='Sign Out']")
@@ -21,6 +22,9 @@ public class Header extends ActionWithElements {
     private WebElement buttonSearch;
     @FindBy(xpath = "//a[contains(@class, 'text-white') and contains(text(), 'Complex app for testing - QA')]")
     private WebElement buttonLogo;
+
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
 
 
     public Header(WebDriver webDriver) {
@@ -91,4 +95,13 @@ public class Header extends ActionWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+        
+    }
+
+    public boolean IsButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }
