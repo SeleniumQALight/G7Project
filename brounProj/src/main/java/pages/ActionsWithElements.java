@@ -118,8 +118,9 @@ public class ActionsWithElements {
         if (!checkbox.isSelected()) {
             clickOnElement(checkbox);
             logger.info("Checkbox is checked");
+        } else {
+            logger.info("Checkbox is already checked");
         }
-        logger.info("Checkbox is already checked");
 
     }
 
@@ -129,8 +130,9 @@ public class ActionsWithElements {
         if (checkbox.isSelected()) {
             clickOnElement(checkbox);
             logger.info("Checkbox is unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
         }
-        logger.info("Checkbox is already unchecked");
     }
 
 
