@@ -82,7 +82,7 @@ public class LoginPage extends ParentPage {
         checkElementNotDisplayed(fieldPassword);
     }
 
-    public void loginWithValidCreds() {
+    public void loginWithValidCreds() { //4 в одному для логіна з валідними даними
         openLoginPage();
         enterTextIntoInputUserNane(TestData.LOGIN_DEFAULT);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
