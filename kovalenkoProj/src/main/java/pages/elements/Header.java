@@ -5,12 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
 
     public Header(WebDriver webDriver) {
         super(webDriver);
     }
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
     @FindBy(xpath = "//button[text() = 'Sign Out']")
     private WebElement buttonSignOut;
 
@@ -74,4 +77,12 @@ public class Header extends ActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }

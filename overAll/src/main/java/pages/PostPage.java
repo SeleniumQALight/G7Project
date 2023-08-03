@@ -9,6 +9,9 @@ public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -30,4 +33,8 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
 }

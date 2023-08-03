@@ -6,8 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
+
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -23,7 +25,7 @@ public class Header extends ActionsWithElements {
     private WebElement chatButton;
 
     @FindBy(xpath = "//a[@class = 'mr-2']")
-    private WebElement profileButton;
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//a[@class = 'btn btn-sm btn-success mr-2']")
     private WebElement createPostButton;
@@ -41,7 +43,7 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsProfileAvatarButtonVisible() {
-        checkElementIsDisplayed(profileButton);
+        checkElementIsDisplayed(buttonMyProfile);
     }
 
     public void checkIsCreatePostButtonVisible() {
@@ -61,7 +63,7 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsProfileAvatarButtonNotVisible() {
-        checkElementIsNotDisplayed(profileButton);
+        checkElementIsNotDisplayed(buttonMyProfile);
     }
 
     public void checkIsCreatePostButtonNotVisible() {
@@ -75,5 +77,14 @@ public class Header extends ActionsWithElements {
     public CreatePostPage clickOnButtonCreatePost(){
         clickOnElement(createPostButton);
         return new CreatePostPage(webDriver);
+    }
+
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
     }
 }

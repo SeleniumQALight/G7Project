@@ -57,12 +57,13 @@ NewPostPage.text.PostTitle = "//h2[contains(text(), '" + title + "')]"
 NewPostPage.link.EditPost = //a[@class='text-primary mr-2']
 NewPostPage.button.DeletePost = //button[@class='delete-post-button text-danger']
 NewPostPage.text.PostedBy = //p[@class='text-muted small mb-4']
+
 NewPostPage.text.BodyContent = //div[@class='body-content'][contains(., '22')]
 NewPostPage.text.Note = //i[contains(text(), 'Note: This post was written for')]//u[contains(text(), 'All Users')]
 NewPostPage.paragraph.UniqueYes = //p[text()='Is this post unique? : yes']
 NewPostPage.paragraph.UniqueNo = //p[text()='Is this post unique? : no']
 //div[@class="container py-md-5 container--narrow"]//div[3]
-
+NewPostPage.text.BodyContent = //div[@class='body-content']
 
 
 
