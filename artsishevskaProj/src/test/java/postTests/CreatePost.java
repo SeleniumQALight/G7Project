@@ -17,7 +17,7 @@ public class CreatePost extends BaseTest {
                 .enterTextIntoInputBody("Body of new Post MArt")
                 .enterTextIntoInputBody(title)
                 .enterTextIntoInputBody(body)
-                .setCheckBoxUniquePost(true)
+                .setCheckBoxUniquePost("check")
                 .selectTextInDropDown("Приватне повідомлення")
         //.selectValueDropDown("One Person")
                 .clickOnButtonSaveNewPost()
