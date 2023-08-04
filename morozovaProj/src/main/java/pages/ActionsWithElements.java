@@ -87,6 +87,19 @@ public class ActionsWithElements {
         }
     }
 
+    //swich to new tab
+//    public void switchToNewTab() {
+//        try {
+//            String winHandleBefore = webDriver.getWindowHandle();
+//            for (String winHandle : webDriver.getWindowHandles()) {
+//                webDriver.switchTo().window(winHandle);
+//            }
+//            logger.info("Switch to new tab");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+//    }
+
     public void selectValueInDropDown(WebElement dropDown, String value) {
         try {
             Select select = new Select(dropDown);
