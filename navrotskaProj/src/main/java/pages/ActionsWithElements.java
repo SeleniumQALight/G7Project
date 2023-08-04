@@ -108,10 +108,10 @@ public class ActionsWithElements {
     public void selectCheckBox(WebElement checkBox) {
         try {
             if (!checkBox.isSelected()) {
-                checkBox.click();
+                clickOnElement(checkBox);
+                logger.info("Checkbox was just selected.");
             } else {
-                logger.info("Checkbox is already selected");
-                Assert.fail("Checkbox is already selected");
+                logger.info("Checkbox was already selected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -121,10 +121,10 @@ public class ActionsWithElements {
     public void deselectCheckBox(WebElement checkbox) {
         try {
             if (checkbox.isSelected()) {
-                checkbox.click();
+                clickOnElement(checkbox);
+                logger.info("Checkbox was just deselected ");
             } else {
-                logger.info("Checkbox is already deselected");
-                Assert.fail("Checkbox is already deselected");
+                logger.info("Checkbox was already deselected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -136,16 +136,10 @@ public class ActionsWithElements {
         boolean isStateUncheck = checkboxState.toLowerCase().equals("uncheck");
         try {
             if (isStateCheck || isStateUncheck) {
-                if (checkbox.isSelected() && isStateCheck) {
-                    logger.info("Checkbox is already selected");
-                } else if (checkbox.isSelected() && isStateUncheck) {
-                    clickOnElement(checkbox);
-                    logger.info("Checkbox was just deselected ");
-                } else if (!checkbox.isSelected() && isStateCheck) {
-                    clickOnElement(checkbox);
-                    logger.info("Checkbox was just selected.");
-                } else if (!checkbox.isSelected() && isStateUncheck) {
-                    logger.info("Checkbox is already deselected");
+                if ((!checkbox.isSelected() && isStateCheck) || (checkbox.isSelected() && isStateCheck)) {
+                    selectCheckBox(checkbox);
+                } else if ((checkbox.isSelected() && isStateUncheck) || (!checkbox.isSelected() && isStateUncheck)) {
+                    deselectCheckBox(checkbox);
                 }
             } else {
                 logger.error("State should be 'check' or 'uncheck'");
