@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionWitElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionWitElements {
     @FindBy(xpath = "//button[text() = 'Sign Out']")
@@ -65,4 +66,12 @@ public class Header extends ActionWitElements {
     }
 
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }

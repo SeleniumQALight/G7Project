@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 public class PostPage extends ParentPageWithHeader{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
+   @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+   private WebElement buttonDelete;
 
     @FindBy(xpath = "//div[@class='d-flex justify-content-between']" )
     private WebElement postTitleOnPage;
@@ -55,5 +57,10 @@ public class PostPage extends ParentPageWithHeader{
         Assert.assertEquals("Unique is incorrect",text,postIsUnique.getText());
         return this;
 
+    }
+
+    public MyProfilePage clickOnDeletePostButton() {
+       clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

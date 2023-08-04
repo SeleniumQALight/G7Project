@@ -2,8 +2,10 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,16 +18,15 @@ public class ActionsWithElements {
     Logger logger = Logger.getLogger(getClass()); //
 
     protected WebDriver webDriver;
-    protected WebDriverWait  webDriverWait10, webDriverWait15; // очікування
+    protected WebDriverWait webDriverWait10, webDriverWait15; //  чекаємо поки елемент буде клікабельний
 
-    public ActionsWithElements(WebDriver webDriver) {
+    public ActionsWithElements(WebDriver webDriver) { // конструктор
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //initialization of elements
 // element in @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10)); //
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10)); // чекаємо макс 10с поки елемент буде клікабельний
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
-
 
 
     private void printErrorAndStopTest(Exception e) {
@@ -47,7 +48,7 @@ public class ActionsWithElements {
         try {
             element.clear();
             element.sendKeys(text);
-           logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element");
         } catch (Exception e) {
 
 
@@ -79,21 +80,21 @@ public class ActionsWithElements {
         Assert.assertTrue("Element is not displaed", isElementDisplayed(element));
     }
 
-    public void checkElementNotDisplayed(WebElement element) { // перевірка чи елемент не присутній на дисплеї
+    public void checkElementNotDisplayed(WebElement element) { // перевірка чи елемент відсутній на дисплеї
         Assert.assertFalse("Element is displaed", isElementDisplayed(element));
     }
 
-    public  void selectTextInDropDown(WebElement dropDown, String text) {  // метод для вибору вказаного значення з дропдауну
+    public void selectTextInDropDown(WebElement dropDown, String text) {  // метод для вибору вказаного значення з дропдауну
         try {
-        Select select = new Select(dropDown);
-        select.selectByVisibleText(text);
-        logger.info(text + " was selected in DropDown");
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
         } catch (Exception e) { // якщо вибраного значення немає в дропдауні
             printErrorAndStopTest(e);
+        }
     }
-}
 
-    public  void selectValueInDropDown(WebElement dropDown, String value) {  // метод для вибору value значення з дропдауну
+    public void selectValueInDropDown(WebElement dropDown, String value) {  // метод для вибору value значення з дропдауну
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
@@ -103,10 +104,61 @@ public class ActionsWithElements {
         }
     }
 
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {  // ще метод для вибору вказаного значення з дропдауну
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath("//*[contains(text(),'" + text + "')]")));
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) { // якщо вибраного значення немає в дропдауні
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void toMarkCheckBox(WebElement element) { // метод для встановлення чекбокса
+        try {
+            if (!element.isSelected()) { // якщо чекбокс не вибраний
+                element.click(); // вибрати чекбокс
+                logger.info("Checkbox was marked");
+            } else {
+                logger.info("Checkbox is already marked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void toUnMarkCheckBox(WebElement element) { // метод для зняття чекбокса
+        try {
+            if (element.isSelected()) { // якщо чекбокс вибраний
+                element.click(); // зняти чекбокс
+                logger.info("Checkbox was unmarked");
+            } else {
+                logger.info("Checkbox is already unmarked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
 
+  //
+
+public void toMarkAndToUnMarkCheckBoxByUI(WebElement element, String text) { // метод для встановлення або зняття чекбокса
+        try {
+            if (!element.isSelected() && text.equals("check")) { // якщо чекбокс не вибраний
+               toMarkCheckBox(element); // вибрати чекбокс
+                logger.info("Checkbox was marked");
+            } else if (element.isSelected() && text.equals("uncheck")) { // якщо чекбокс вибраний
+                toUnMarkCheckBox(element); // зняти чекбокс
+                logger.info("Checkbox was unmarked");
+            } else {
+                logger.info("Checkbox is already marked");
+            }
+
+} catch (Exception e) {
+        printErrorAndStopTest(e);
+    }
 }
 
-
-
-
+//sw
+    }
