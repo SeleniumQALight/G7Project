@@ -20,6 +20,9 @@ public class RegistrationTest extends BaseTest {
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
+    final static String ERROR_USERNAME_CYRILLIC = "Username can only contain letters and numbers.";
+    final static String ERROR_EMAIL_EXIST = "That email is already being used.";
+    final static String ERROR_PASSWORD_TOO_LONG = "Password cannot exceed 50 characters.";
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
     public void checkErrorsTest(String userName, String email, String password, String expectedErrorMessages) {
@@ -33,7 +36,9 @@ public class RegistrationTest extends BaseTest {
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "tr@tr.com", "123", ERROR_PASSWORD}
+                {"test", "tr@tr.com", "123", ERROR_PASSWORD},
+                {"Ірина", "iryna@qa.auto", " ", ERROR_USERNAME_CYRILLIC + SEMICOLON + ERROR_EMAIL_EXIST + SEMICOLON + ERROR_PASSWORD},
+                {"qaauto", " ", "qwerty123456111111111111111111111111111111111111111", ERROR_ALREADY_EXIST + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD_TOO_LONG},
         };
     }
 }
