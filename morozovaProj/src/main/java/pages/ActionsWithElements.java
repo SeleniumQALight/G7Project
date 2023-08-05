@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -81,7 +82,7 @@ public class ActionsWithElements {
         try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
-            logger.info(text + "was selected in DropDown");
+            logger.info(text + " was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -104,12 +105,64 @@ public class ActionsWithElements {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
-            logger.info(value + "was selected in DropDown");
+            logger.info(value + " was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    //HW4 1. метод вибору значення з дропдауну
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath("//*[contains(text(),'" + text + "')]")));
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) { // якщо в дропдауні немає вибраного значення
+            printErrorAndStopTest(e);
+        }
+    }
+    public void toMarkCheckBox(WebElement element) { //2. метод для вибору чекбокса
+        try {
+            if (!element.isSelected()) { // якщо чекбокс не вибраний
+                element.click(); // вибрати чекбокс
+                logger.info("Checkbox was marked 'Yes'");
+            } else { logger.info("Checkbox is already marked 'Yes'");}
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void toUnMarkCheckBox(WebElement element) { // 3. метод для зняття чекбокса
+        try {
+            if (element.isSelected()) { // якщо чекбокс вибраний
+                element.click(); // зняти чекбокс
+                logger.info("Checkbox was unmarked");
+            } else { logger.info("Checkbox is already unmarked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+     /*
+     4. Створити метод встановлення заданого стану у чекбокс
+     - метод повинен приймати на вхід стрінговий стан (check or uncheck)
+     - в залежності від стану чекбокса і необхідного стану - клікати і виводити повідомлення в лог, чи не клікати і просто виводити повідомлення в лог.
+     - додати цей метод в наш тест по створенню поста (зі значенням check) і перевірку на наступному скріні
+     */
+    public void checkCheckboxState(WebElement checkbox, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                toMarkCheckBox(checkbox);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                toUnMarkCheckBox(checkbox);
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 }
 
 
