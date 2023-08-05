@@ -91,9 +91,85 @@ public class ActionsWithElements {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);//zupinit test
+    }
+
+    protected void selectTextDropDownByUI(WebElement dropDown, String option) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(org.openqa.selenium.By.xpath(".//option[text()='" + option + "']")));
+            logger.info("Text was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+    protected void selectCheckbox(WebElement checkBox) {
+        if (checkBox.isSelected()) {
+            logger.info("Checkbox is already selected");
+        } else {
+            checkBox.click();
+            logger.info("Checkbox was selected");
+        }
+    }
+
+    protected void deselectCheckbox(WebElement checkBox) {
+        if (checkBox.isSelected()) {
+            checkBox.click();
+            logger.info("Checkbox was deselected");
+        } else {
+            logger.info("Checkbox is already deselected");
+        }
+    }
+
+    public void markCheckBoxYes(WebElement checkBoxUniquePost) {
+        try {
+            if (!checkBoxUniquePost.isSelected()) {
+                checkBoxUniquePost.click();
+                logger.info("Checkbox was marked as Yes");
+            } else {
+                logger.info("Checkbox is already marked as Yes");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+    public void markCheckBoxNo(WebElement checkBoxUniquePost) {
+        try {
+            if (checkBoxUniquePost.isSelected()) {
+                checkBoxUniquePost.click();
+                logger.info("Checkbox was marked as No");
+            } else {
+                logger.info("Checkbox is already marked as No");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+    //check if status of the checkbox is displayed according to the state
+    //@param state - expected state (check/uncheck)
+    //@param checkBox - checkbox to check
+
+    public void checkCheckBoxState(WebElement checkbox, String state) {
+        try {
+            if (state.equalsIgnoreCase("check")) {
+                markCheckBoxYes(checkbox);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                markCheckBoxNo(checkbox);
+            } else {
+                logger.error("State should be check/uncheck");
+                Assert.fail("State should be check/uncheck");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
 }

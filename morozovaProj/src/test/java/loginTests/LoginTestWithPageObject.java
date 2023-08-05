@@ -18,10 +18,10 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 
     @Test
     public void validLogin() {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
-        pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
 // TODO Assert
@@ -31,21 +31,21 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 //        1. Додати тест кейс на невалідний логін (але тепер вже з пейдж обжектом),
 //        аналогічні зробити перевірки до тесту, який ви писали без пейдж обжекта (цей кейс додати в наш класс LoginTestWithPageObject)
 
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_INVALID);
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_INVALID);
         System.out.println("Username was inputted");
 
-        pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         System.out.println("Password was inputted");
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         System.out.println("Button 'Sign In' was clicked");
 
 //        Assert.assertTrue("Button 'Sign In' is not displayed", LoginTest.isButtonSignInVisible());
 //        Assert.assertTrue("Text Invalid username/password is not displayed", LoginTest.textInvalidUserVisible());
 //        Assert.assertFalse("Button 'Sign Out' is displayed", LoginTest.isButtonSignOutVisible());
 
-        pageProvider.getloginPage().checkIsButtonSignInVisible();
-        pageProvider.getloginPage().checkIsMessageInvalidUsernameAndPasswordVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsMessageInvalidUsernameAndPasswordVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
     }
 
@@ -60,10 +60,10 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 //        Зробити log Out і перевірити відсутність  елементів в Хедері - кнопки пошуку, кнопки виклику чатику,
 //        аватарки,  кнопки CreatePost , кнопки signOut, а також наявність  поля для вводу логіна, пароля, та кнопки sign In.
         //LogIn
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
-        pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchVisible();
@@ -71,9 +71,9 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonAvatarVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostVisible();
 
-        pageProvider.getloginPage().checkIsInputUserNameNotVisible();
-        pageProvider.getloginPage().checkIsInputPasswordNotVisible();
-        pageProvider.getloginPage().checkIsButtonSignInNotVisible();
+        pageProvider.getLoginPage().checkIsInputUserNameNotVisible();
+        pageProvider.getLoginPage().checkIsInputPasswordNotVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInNotVisible();
 
         //LogOut
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
@@ -84,8 +84,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
 
-        pageProvider.getloginPage().checkIsInputUserNameVisible();
-        pageProvider.getloginPage().checkIsInputPasswordVisible();
-        pageProvider.getloginPage().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsInputUserNameVisible();
+        pageProvider.getLoginPage().checkIsInputPasswordVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
     }
 }

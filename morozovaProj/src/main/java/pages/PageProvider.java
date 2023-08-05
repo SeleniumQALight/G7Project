@@ -9,7 +9,7 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
-    public LoginPage getloginPage() {
+    public LoginPage getLoginPage() {
         return new LoginPage(webDriver);
     }
 
