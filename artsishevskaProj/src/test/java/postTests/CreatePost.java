@@ -39,7 +39,6 @@ public class CreatePost extends BaseTest {
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsTillPresent(title)
-
         ;
     }
 }

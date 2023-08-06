@@ -51,8 +51,12 @@ public class CreatePostPage extends ParentPageWithHeader{
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
-    public CreatePostPage setCheckBoxUniquePost(boolean state){
-        setCheckBox(checkBoxUniquePost, state);
+    public CreatePostPage selectTextInDropDown1(String text) {
+        selectTextInDropDown(dropDownSelectValue, text);
+        return this;
+    }
+    public CreatePostPage setCheckBoxUniquePost(String text){
+        setCheckBox(checkBoxUniquePost, text);
         return this;
     }
 }

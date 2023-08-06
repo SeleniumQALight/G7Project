@@ -82,6 +82,7 @@ public class ActionWitElements {
         }
     }
 
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element");
         Assert.fail("Can not work with element");
@@ -125,16 +126,20 @@ public class ActionWitElements {
             printErrorAndStopTest(e);
         }
     }
-    public void setCheckBox(WebElement checkBox,boolean state){
-        try{
-            if(checkBox.isSelected()!=state){
-                checkBox.click();
-                logger.info("CheckBox was clicked");
-            }else{
+    public void setCheckBox(WebElement checkBox,String text){
+        try {
+            if (!checkBox.isSelected() && text.equals("check")) {
+                setCheckBoxTrue(checkBox);
                 logger.info("CheckBox is already selected");
+            } else if (checkBox.isSelected() && text.equals("uncheck")) {
+                setCheckBoxFalse(checkBox);
+                logger.info("CheckBox is already deselected");
+            } else {
+                logger.info("CheckBox is already in the desired state");
             }
         }catch (Exception e) {
             printErrorAndStopTest(e);
         }
+
     }
 }
