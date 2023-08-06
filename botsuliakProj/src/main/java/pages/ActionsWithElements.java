@@ -60,8 +60,27 @@ public class ActionsWithElements {
         }
     }
 
+    public boolean isElementAbsent(WebElement element) {
+        try {
+            boolean state = element.isDisplayed();
+            if (state) {
+                logger.info("Element is displayed");
+            } else {
+                logger.info("Element is not displayed");
+            }
+            return !state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return true;
+        }
+    }
+
     public void checkElementDisplay(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+
+    public void checkElementAbsent(WebElement element) {
+        Assert.assertTrue("Element is displayed", isElementAbsent(element));
     }
 
     public void selectTextInDropDown(WebElement dropDown, String text) {

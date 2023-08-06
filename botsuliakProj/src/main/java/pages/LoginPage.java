@@ -107,4 +107,17 @@ public class LoginPage extends ParentPage{
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
+
+    public LoginPage checkIsRedirectToLoginPage(){
+        checkElementDisplay(buttonSingIn);
+        checkElementDisplay(inputUserName);
+        checkElementDisplay(inputPassword);
+        return this;
+    }
+    public LoginPage checkIsNotRedirectToLoginPage(){
+        checkElementAbsent(buttonSingIn);
+        checkElementAbsent(inputUserName);
+        checkElementAbsent(inputPassword);
+        return this;
+    }
 }
