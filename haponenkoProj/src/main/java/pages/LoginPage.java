@@ -1,19 +1,15 @@
 package pages;
 
 import libs.Util;
-import org.assertj.core.api.SoftAssertionError;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.elements.Header;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static data.TestData.LOGIN_DEFAULT;
@@ -43,6 +39,7 @@ public class LoginPage extends ParentPage {
 
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    final String errorMessageLoginLocator = "//div[@class='alert alert-danger text-center']";
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -142,5 +139,26 @@ public class LoginPage extends ParentPage {
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+
+    public LoginPage checkErrorMessageLogin(String expectedErrorMessageLogin) {
+        // Wait until the error message is visible
+        webDriverWait10.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(errorMessageLoginLocator)));
+        Util.waitABit(1);
+
+        // Check that there is exactly one error message
+        Assert.assertEquals("Number of error messages", 1, getErrorLogin().size());
+
+        // Get the actual error message text
+        String actualErrorMessage = getErrorLogin().get(0).getText();
+
+        // Compare the expected and actual error messages
+        Assert.assertEquals("Error message", expectedErrorMessageLogin, actualErrorMessage);
+
+        return this;
+    }
+
+    private List<WebElement> getErrorLogin() {
+        return webDriver.findElements(By.xpath(errorMessageLoginLocator));
     }
 }
