@@ -1,0 +1,66 @@
+001 Login page (https://aqa-complexapp.onrender.com/)
+
+Username field //input[@id='username-register']
+Email field //input[@id='email-register']
+Password field //input[@id='password-register']
+Sign button //button[@type='submit']
+Sign In button //button[text()='Sign In']
+
+
+002 Main page (after login) (https://aqa-complexapp.onrender.com/)
+
+Sign out button //button[text()='Sign Out']
+Create post button //a[@href='/create-post']
+My profile button //a[@class='mr-2']
+
+
+003 Create post page (https://aqa-complexapp.onrender.com/create-post)
+
+Title field //input[@id='post-title']
+Body Content field //textarea[@id='post-body']
+Check box //input[@name='uniquePost']
+Select value //option[@value='All Users']
+Save New Post button //button[text()='Save New Post']
+
+
+004 Success post creation page (https://aqa-complexapp.onrender.com/post/<id>)
+
+//div[text()='New post successfully created.']
+//*/u[contains(text(),'All Users')]
+//*/p[contains(text(),'yes')]
+
+
+005 Profile page (https://aqa-complexapp.onrender.com/profile/<username>)
+
+Exist post //a[@class='list-group-item list-group-item-action']
+Following button //div[text()='Following']
+Stop following button //button[text()='Stop Following ']
+
+
+006 Post page (https://aqa-complexapp.onrender.com/post/<id>)
+
+Edit button //a[@class='text-primary mr-2']
+
+
+007 Edit post page (https://aqa-complexapp.onrender.com/post/<id>/edit)
+
+Title field //input[@id='post-title']
+Is this post unique check box //input[@name='uniquePost']
+Select value //option[@value='All Users']
+Save Updates button //button[text()='Save Updates']
+
+
+008 Success post edition page (https://aqa-complexapp.onrender.com/post/<id>)
+
+//div[text()='Post successfully updated.']
+
+009 Following page (https://aqa-complexapp.onrender.com/profile/<username>/following)
+
+Following user //a[@class='list-group-item list-group-item-action']
+
+
+010 Success stop following page
+
+Success message //*/div[contains(text(),'Successfully stopped')]
+
+

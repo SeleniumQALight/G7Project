@@ -1,52 +1,92 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ActionWitElements {
+    Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
     public ActionWitElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this);//this - означає, що ініціалізуємо елементи саме в цьому класі.описані за допомогою FindBy
+    webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+    webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
 
-    public void openPage(String url) {
-        try {
-            webDriver.get(url);
-            System.out.println("Page was opened " + url);
-        } catch (Exception e) {
-            System.out.println("Can not open " + url);
-            Assert.fail("Can not open " + url);
-        }
-    }
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-            System.out.println(text + " was inputted into input");
+            logger.info(text + " was inputted into input");
         } catch (Exception e) {
-            System.out.println("Can not work with element");
+            logger.error("Can not work with element");
             Assert.fail("Can not work with element");
         }
     }
     public  void clickOnElement(WebElement element) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
+
             element.click();
-            System.out.println("Element was clicked");
+            logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
     public boolean isElementDisplayed(WebElement element){
         try{
-            return element.isDisplayed();
+
+            boolean state = element.isDisplayed();
+            if (state){
+                logger.info("Element is displayed");
+            }else {
+                logger.info("Element is not displayed");
+            }
+            return state;
         }catch (Exception e){
+            logger.info("Element is not displayed");
             return false;
         }
+
     }
+    public void checkElementDisplayed(WebElement element){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+    public void selectTextInDropDown(WebElement dropDown, String text){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void selectValueInDropDown(WebElement dropDown, String value){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can not work with element");
+        logger.error("Can not work with element");
         Assert.fail("Can not work with element");
+
+    }
+    public void checkElementNotDisplayed(WebElement element){
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 }
