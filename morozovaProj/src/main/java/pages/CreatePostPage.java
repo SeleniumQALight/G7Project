@@ -17,6 +17,12 @@ public class CreatePostPage extends ParentPageWithHeder {
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
 
+//    @FindBy(xpath = "//input[@type='checkbox']")// чекбокс
+//    private WebElement checkBox;
+
+    @FindBy(xpath = "//input[@type = 'checkbox']")
+    private WebElement checkboxUniquePost;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -49,6 +55,14 @@ public class CreatePostPage extends ParentPageWithHeder {
     // select by value
     public CreatePostPage selectValueInDropDown(String value){
         selectTextInDropDown(dropDownSelectValue, value);
+        return this;
+    }
+    public CreatePostPage selectTextInDropDown2(String text) { // домашній метод для вибору значення з дропдауну по тексту
+        selectTextInDropDownByUI(dropDownSelectValue, text);
+        return this;
+    }
+    public CreatePostPage markCheckboxStateUnique(String checkboxState) {
+        checkCheckboxState(checkboxUniquePost, checkboxState);
         return this;
     }
 }
