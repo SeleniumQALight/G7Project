@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -35,20 +34,24 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         openPage(BASE_URL);
+        return this;
     }
 
-    public void enterTextIntoInputUserName(String userName) {
+    public LoginPage enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
-    public void clickOnButtonSignIn() {
+    public LoginPage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return this;
     }
 
     public void checkIsButtonSignInVisible() {
@@ -67,7 +70,7 @@ public class LoginPage extends ParentPage {
         checkElementDisplayed(inputPassword);
     }
 
-    public void isInvalidLoginMessageDisplayed() {
+    public void checkIsInvalidLoginMessageDisplayed() {
         checkElementDisplayed(invalidLoginMessage);
     }
 
@@ -111,6 +114,13 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+//    public void enter(){
+//        confirmingWithEnter(inputPassword);
+//    }
+//
+//    public void tab(){
+//        switchWithTab(inputPassword);
+//    }
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));

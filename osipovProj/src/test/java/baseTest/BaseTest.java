@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.PageProvider;
 
@@ -16,7 +17,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
 
     @Before
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -25,8 +26,29 @@ public class BaseTest {
         pageProvider = new PageProvider(webDriver);
     }
 
+    public void openNewTab() {
+        webDriver.switchTo().newWindow(WindowType.TAB);
+    }
+
+    public void closeCurrentTab() {
+        webDriver.close();
+    }
+
+    public void switchToTab(int tabNumber) {
+        webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+    }
+
+    public void pressingTab(){
+        webDriver.switchTo().activeElement().sendKeys("Keys.TAB");
+    }
+
+    public void refreshPage() {
+        switchToTab(0);
+        webDriver.navigate().refresh();
+    }
+
     @After
-    public void tearDown(){
+    public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
     }

@@ -153,6 +153,24 @@ public class ActionsWithElements {
         }
     }
 
+//    public void confirmingWithEnter(WebElement element) {
+//        try {
+//            element.sendKeys("\n");
+//            logger.info("Enter was pressed");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+//    }
+//
+//    public void switchWithTab(WebElement element) {
+//        try {
+//            element.sendKeys("\t");
+//            logger.info("Tab was pressed");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+//    }
+
     private void printErrorAndStopTest(Exception e) {
         System.out.println("Can not work with element");
         Assert.fail("Can not work with element");
