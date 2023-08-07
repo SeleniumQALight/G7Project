@@ -4,6 +4,13 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import data.TestData;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static java.time.Duration.ofSeconds;
+
 
 @RunWith(JUnitParamsRunner.class)
 public class RegistrationTest extends baseTest.BaseTest {
@@ -43,5 +50,27 @@ public class RegistrationTest extends baseTest.BaseTest {
                 {"тест", "test@mail.com", "123456", ERROR_ONLY_LETTERS_AND_NUMBERS + SEMICOLON + ERROR_PASSWORD},
                 {"test@invalidEmail", "test@mail.com", "12345123451234512345123451234512345123451234512345123451234512345", ERROR_ONLY_LETTERS_AND_NUMBERS + SEMICOLON + ERROR_PASSWORD_ABOVE50},
         };
+    }
+
+    // Additional Homework
+    @Test
+    public void checkErrorMessagesWithTabAndEnter() {
+        pageProvider.getloginPage().openLoginPage();
+        WebElement userNameInput = pageProvider.getloginPage().getUserNameInput();
+        WebElement emailInput = pageProvider.getloginPage().getEmailInput();
+        WebElement passwordInput = pageProvider.getloginPage().getPasswordInput();
+        pageProvider.getloginPage().enterTextIntoRegistrationUserName(TestData.SHORT_USER_NAME);
+        WebDriverWait wait = new WebDriverWait(webDriver, ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(emailInput));
+        wait.until(ExpectedConditions.elementToBeClickable(emailInput));
+        pageProvider.getloginPage().enterTextIntoRegistrationEmail(TestData.INVALID_EMAIL);
+        pageProvider.getloginPage().pressTabKeyEmail();
+        wait.until(ExpectedConditions.visibilityOf(passwordInput));
+        wait.until(ExpectedConditions.elementToBeClickable(passwordInput));
+        pageProvider.getloginPage().pressTabKeyPassword();
+        pageProvider.getloginPage().enterTextIntoRegistrationPassword(TestData.PASSWORD_INVALID_SHORT);
+        pageProvider.getloginPage().pressEnterKey();
+        String expectedMessages = ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD;
+        pageProvider.getloginPage().checkErrorsMessages(expectedMessages);
     }
 }

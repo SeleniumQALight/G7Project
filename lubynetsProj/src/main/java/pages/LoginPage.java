@@ -5,6 +5,7 @@ import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,7 +35,6 @@ public class LoginPage extends ParentPage {
     private WebElement inputPasswordRegistration;
 
     final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
-
 
 
     public LoginPage(WebDriver webDriver) {
@@ -100,6 +100,19 @@ public class LoginPage extends ParentPage {
 
     }
 
+
+    public WebElement getUserNameInput() {
+        return inputUserNameRegistration;
+    }
+
+    public WebElement getEmailInput() {
+        return inputEmailRegistration;
+    }
+
+    public WebElement getPasswordInput() {
+        return inputPasswordRegistration;
+    }
+
     public LoginPage enterTextIntoRegistrationPassword(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
@@ -134,5 +147,21 @@ public class LoginPage extends ParentPage {
 
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
-}
 
+    public void loginWithTabAndEnter() {
+        inputUserName.sendKeys(Keys.TAB);
+        inputPassword.sendKeys(Keys.ENTER);
+    }
+
+    public void pressTabKeyEmail() {
+        inputEmailRegistration.sendKeys(Keys.TAB);
+    }
+
+    public void pressTabKeyPassword() {
+        inputPasswordRegistration.sendKeys(Keys.TAB);
+    }
+
+    public void pressEnterKey() {
+        inputPasswordRegistration.sendKeys(Keys.ENTER);
+    }
+}
