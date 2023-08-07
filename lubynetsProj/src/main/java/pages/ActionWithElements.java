@@ -93,14 +93,59 @@ public class ActionWithElements {
 
     public void selectTextInDropDownByUI(WebElement dropDown, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(dropDown)).click();
+            clickOnElement(dropDown);
+
             String optionXpath = "//option[text()='" + text + "']";
-            WebElement optionElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(optionXpath)));
-            optionElement.click();
+            WebElement optionElement = webDriverWait10.until(ExpectedConditions.elementToBeClickable(By.xpath(optionXpath)));
+            clickOnElement(optionElement);
+
             logger.info(text + " was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
+        }
+    }
+
+
+    public void uncheckCheckbox(WebElement checkBoxElement) {
+        if (checkBoxElement.isSelected()) {
+            clickOnElement(checkBoxElement);
+            logger.info("Checkbox is unchecked.");
+        } else {
+            logger.info("Checkbox is already unchecked.");
+        }
+
+
+    }
+
+
+    public void setCheckboxState(WebElement checkBoxElement, String state) {
+        boolean isChecked = checkBoxElement.isSelected();
+
+        if (state.equals("check")) {
+            if (!isChecked) {
+                clickOnElement(checkBoxElement);
+                logger.info("Checkbox is checked.");
+            } else {
+                logger.info("Checkbox is already checked.");
+            }
+        } else if (state.equals("uncheck")) {
+            if (isChecked) {
+                uncheckCheckbox(checkBoxElement);
+                logger.info("Checkbox is unchecked.");
+            } else {
+                logger.info("Checkbox is already unchecked.");
+            }
+        } else {
+            logger.error("Invalid state provided. Please use 'check' or 'uncheck'.");
+        }
+    }
+
+    public void checkCheckbox(WebElement checkBoxElement) {
+        if (!checkBoxElement.isSelected()) {
+            clickOnElement(checkBoxElement);
+            logger.info("Checkbox is checked.");
+        } else {
+            logger.info("Checkbox is already checked.");
         }
     }
 }

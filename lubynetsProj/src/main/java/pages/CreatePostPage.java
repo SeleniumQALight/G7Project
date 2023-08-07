@@ -22,6 +22,7 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
+        actionWithElements = new ActionWithElements(webDriver);
 
 
     }
@@ -63,33 +64,17 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage checkCheckbox() {
-        if (!checkBoxUniquePost.isSelected()) {
-            clickOnElement(checkBoxUniquePost);
-            logger.info("Checkbox is checked.");
-        } else {
-            logger.info("Checkbox is already checked.");
-        }
+        actionWithElements.checkCheckbox(checkBoxUniquePost);
         return this;
     }
 
     public CreatePostPage uncheckCheckbox() {
-        if (checkBoxUniquePost.isSelected()) {
-            clickOnElement(checkBoxUniquePost);
-            logger.info("Checkbox is unchecked.");
-        } else {
-            logger.info("Checkbox is already unchecked.");
-        }
+        actionWithElements.uncheckCheckbox(checkBoxUniquePost);
         return this;
     }
 
     public CreatePostPage setCheckboxState(String state) {
-        if (state.equals("check")) {
-            checkCheckbox();
-        } else if (state.equals("uncheck")) {
-            uncheckCheckbox();
-        } else {
-            logger.error("Invalid state provided. Please use 'check' or 'uncheck'.");
-        }
+        actionWithElements.setCheckboxState(checkBoxUniquePost, state);
         return this;
     }
 }

@@ -2,15 +2,12 @@ package postTests;
 
 import libs.Util;
 import org.junit.Test;
-import pages.ActionWithElements;
 import pages.PostPage;
-
 
 public class CreatePost extends baseTest.BaseTest {
     private String title;
     private String body;
     private PostPage postPage;
-    private ActionWithElements actionWithElements;
 
     @Test
     public void createNewPost() {
@@ -46,8 +43,8 @@ public class CreatePost extends baseTest.BaseTest {
                 .getHeader().clickOnButtonCreatePost()
                 .CheckIsRedirectOnCreatePostPage()
                 .enterTextIntoInputTitle(title)
-                .enterTextIntoInputBody(body);
-        postPage.selectTextInDropDownByUI(postPage.getDropDownSelectValue(), dropDownValue);
+                .enterTextIntoInputBody(body)
+                .selectTextInDropDown(dropDownValue);
         postPage.clickOnButtonSavePost()
                 .checkIsNoteMessageDisplayed("Note: This post was written for ")
                 .checkIsPostWrittenFor("One Person")
