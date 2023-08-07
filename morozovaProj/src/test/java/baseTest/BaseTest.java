@@ -12,6 +12,7 @@ import java.time.Duration;
 
 
 public class BaseTest {
+    public final static String SHORT_USER_NAME = "tr";
     WebDriver webDriver;
     protected PageProvider pageProvider;
     protected Logger logger = Logger.getLogger(getClass());
