@@ -119,27 +119,14 @@ public class ActionWithElements {
 
 
     public void setCheckboxState(WebElement checkBoxElement, String state) {
-        boolean isChecked = checkBoxElement.isSelected();
-
         if (state.equals("check")) {
-            if (!isChecked) {
-                clickOnElement(checkBoxElement);
-                logger.info("Checkbox is checked.");
-            } else {
-                logger.info("Checkbox is already checked.");
-            }
+            checkCheckbox(checkBoxElement);
         } else if (state.equals("uncheck")) {
-            if (isChecked) {
-                uncheckCheckbox(checkBoxElement);
-                logger.info("Checkbox is unchecked.");
-            } else {
-                logger.info("Checkbox is already unchecked.");
-            }
+            uncheckCheckbox(checkBoxElement);
         } else {
             logger.error("Invalid state provided. Please use 'check' or 'uncheck'.");
         }
     }
-
     public void checkCheckbox(WebElement checkBoxElement) {
         if (!checkBoxElement.isSelected()) {
             clickOnElement(checkBoxElement);
