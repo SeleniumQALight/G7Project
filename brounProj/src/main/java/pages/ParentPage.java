@@ -4,7 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends ActionsWithElements {
-    final String BASE_URL = "https://aqa-complexapp.onrender.com";
+    String env = System.getProperty("env", "aqa"); // 2 параментр - дефолтне значення
+    final String BASE_URL = String.format("https://%s-complexapp.onrender.com", env);
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
