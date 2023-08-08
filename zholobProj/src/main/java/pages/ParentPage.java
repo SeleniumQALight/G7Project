@@ -1,13 +1,19 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends ActionsWithElements{
     String env = System.getProperty("env","aqa"); // зчитуємо змінну середовища
-    final String BASE_URL = String.format("https://%s-complexapp.onrender.com", env); // final - це константа, яку не можна змінити
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+
+ String BASE_URL; // final - це константа, яку не можна змінити
+
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
+        BASE_URL = configProperties.base_url().replace("[env]", env) ;// отримуємо значення з конфіга
     }
 
     public void openPage(String url) { // метод для відкриття сторінки
