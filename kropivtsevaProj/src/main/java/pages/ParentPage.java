@@ -3,7 +3,7 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-public class ParentPage extends ActionsWithElements {
+public abstract class ParentPage extends ActionsWithElements {
 
     final String baseUrl = "https://aqa-complexapp.onrender.com";
 
@@ -20,5 +20,31 @@ public class ParentPage extends ActionsWithElements {
             Assert.fail("Can not open " + url);
 
         }
+    }
+
+    abstract protected String getRelativeUrl();
+
+
+    //check Url
+    // https://aqa-complexapp.onrender.com/ == baseUrl + "/" --> true
+
+    public void checkUrl(String relativeUrl) {
+        Assert.assertEquals("Url is not expected", baseUrl + relativeUrl, webDriver.getCurrentUrl());
+    }
+
+    public void checkUrl() {
+        checkUrl(getRelativeUrl());
+    }
+
+    //https://aqa-complexapp.onrender.com/post/64c93aa211e802003266e585
+    //regex for 64c93aa211e802003266e585
+    //[a-z0-9]{24}
+    //https://aqa-complexapp.onrender.com/post/[a-zA-Z0-9]{24}
+    protected void checkUrlWithPattern(String relativeUrl) {
+        Assert.assertTrue("Url is not expected \n" + "Expected result: " + baseUrl + relativeUrl + "\n" + "Actual result: " + webDriver.getCurrentUrl(), webDriver.getCurrentUrl().matches(baseUrl + relativeUrl));
+    }
+
+    protected void checkUrlWithPattern() {
+        checkUrlWithPattern(getRelativeUrl());
     }
 }
