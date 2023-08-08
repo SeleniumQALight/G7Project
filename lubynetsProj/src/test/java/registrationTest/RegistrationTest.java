@@ -55,21 +55,17 @@ public class RegistrationTest extends baseTest.BaseTest {
     // Additional Homework
     @Test
     public void checkErrorMessagesWithTabAndEnter() {
-        pageProvider.getloginPage().openLoginPage();
-        WebElement userNameInput = pageProvider.getloginPage().getUserNameInput();
-        WebElement emailInput = pageProvider.getloginPage().getEmailInput();
-        WebElement passwordInput = pageProvider.getloginPage().getPasswordInput();
-        pageProvider.getloginPage().enterTextIntoRegistrationUserName(TestData.SHORT_USER_NAME);
-        WebDriverWait wait = new WebDriverWait(webDriver, ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(emailInput));
-        wait.until(ExpectedConditions.elementToBeClickable(emailInput));
-        pageProvider.getloginPage().enterTextIntoRegistrationEmail(TestData.INVALID_EMAIL);
-        pageProvider.getloginPage().pressTabKeyEmail();
-        wait.until(ExpectedConditions.visibilityOf(passwordInput));
-        wait.until(ExpectedConditions.elementToBeClickable(passwordInput));
-        pageProvider.getloginPage().pressTabKeyPassword();
-        pageProvider.getloginPage().enterTextIntoRegistrationPassword(TestData.PASSWORD_INVALID_SHORT);
-        pageProvider.getloginPage().pressEnterKey();
+        pageProvider.getloginPage().openLoginPage()
+                .enterTextIntoRegistrationUserName(TestData.SHORT_USER_NAME)
+                .pressTabKeyUserName()
+                .waitForEmailInputClickable()
+                .enterTextIntoRegistrationEmail(TestData.INVALID_EMAIL)
+                .pressTabKeyEmail()
+                .waitForPasswordInputClickable()
+                .pressTabKeyPassword()
+                .enterTextIntoRegistrationPassword(TestData.PASSWORD_INVALID_SHORT)
+                .pressEnterKeyPassword();
+
         String expectedMessages = ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD;
         pageProvider.getloginPage().checkErrorsMessages(expectedMessages);
     }
