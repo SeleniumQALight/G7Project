@@ -28,6 +28,11 @@ public class CreatePostPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         //TODO check url
         //TODO same unique element
