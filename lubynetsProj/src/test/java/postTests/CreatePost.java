@@ -1,13 +1,18 @@
 package postTests;
 
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 import pages.PostPage;
 
 public class CreatePost extends baseTest.BaseTest {
+
     private String title;
     private String body;
     private PostPage postPage;
+
+
+    private String title = "TC01 - New post Lubynets" + Util.getDateAndTimeFormatted();
 
     @Test
     public void createNewPost() {
@@ -27,6 +32,7 @@ public class CreatePost extends baseTest.BaseTest {
                 .checkPostBody(body)
                 .clickOnButtonSavePost()
                 .checkTextInSuccessMessage("New post successfully created.")
+
                 .checkIsNoteMessageDisplayed("Note: This post was written for ")
                 .checkIsPostWrittenFor("One Person")
                 .checkIsPostUnique("Is this post unique? : yes", "yes");
@@ -52,3 +58,26 @@ public class CreatePost extends baseTest.BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.");
     }
 }
+
+        ;
+
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton().checkIsRedirectToMyProfilePage().checkPostWithTitleIsPresent(title)
+
+        ;
+
+
+    }
+
+
+    @After
+    public void deletePosts(){
+        pageProvider.getHomePage()
+                    .openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostTillPresent(title);
+
+    }
+
+}
+

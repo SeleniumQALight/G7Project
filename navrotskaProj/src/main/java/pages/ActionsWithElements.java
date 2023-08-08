@@ -69,26 +69,85 @@ public class ActionsWithElements {
         Assert.assertFalse("Element is displayed, but shouldn't", isElementDisplayed(element));
     }
 
-    public void selectTextInDropDown(WebElement dropDown, String text){
+    public void selectTextInDropDown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
 
     }
 
-    public void selectValueInDropDown(WebElement dropDown, String value){
+    public void selectValueInDropDown(WebElement dropDown, String value) {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
 
+    }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, WebElement dropDownOption) {
+        try {
+            clickOnElement(dropDown);
+            logger.info("Element was clicked");
+            clickOnElement(dropDownOption);
+            logger.info("Dropdown element was clicked");
+            checkElementDisplayed(dropDownOption);
+            logger.info("Dropdown element is displayed");
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectCheckBox(WebElement checkBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                clickOnElement(checkBox);
+                logger.info("Checkbox was just selected.");
+            } else {
+                logger.info("Checkbox was already selected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void deselectCheckBox(WebElement checkbox) {
+        try {
+            if (checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox was just deselected ");
+            } else {
+                logger.info("Checkbox was already deselected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String checkboxState) {
+        boolean isStateCheck = checkboxState.toLowerCase().equals("check");
+        boolean isStateUncheck = checkboxState.toLowerCase().equals("uncheck");
+        try {
+            if (isStateCheck || isStateUncheck) {
+                if ((!checkbox.isSelected() && isStateCheck) || (checkbox.isSelected() && isStateCheck)) {
+                    selectCheckBox(checkbox);
+                } else if ((checkbox.isSelected() && isStateUncheck) || (!checkbox.isSelected() && isStateUncheck)) {
+                    deselectCheckBox(checkbox);
+                }
+            } else {
+                logger.error("State should be 'check' or 'uncheck'");
+                Assert.fail("State should be 'check' or 'uncheck'");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     private void printErrorAndStopTest(Exception e) {

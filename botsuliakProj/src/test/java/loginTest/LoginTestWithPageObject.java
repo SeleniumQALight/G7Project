@@ -16,4 +16,13 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
+    @Test
+    public void invalidLogin(){
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(TestData.LOGIN_INVALID);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.PASSWORD_INVALID);
+        pageProvider.getLoginPage().clickOnButtonSingIn();
+
+        pageProvider.getLoginPage().checkIsRedirectToLoginPage();
+    }
 }

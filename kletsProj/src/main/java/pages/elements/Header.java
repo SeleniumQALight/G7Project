@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
 
@@ -15,7 +16,7 @@ public class Header extends ActionsWithElements {
     private WebElement iconChat;
 
     @FindBy(xpath = "//a[@class=\"mr-2\"]")
-    private WebElement linkAvatar;
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement textUserName;
@@ -43,7 +44,7 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsLinkAvatarVisible() {
-        checkIsElementDisplayed(linkAvatar);
+        checkIsElementDisplayed(buttonMyProfile);
     }
 
     public void checkIsTextUserNameVisible() {
@@ -67,7 +68,7 @@ public class Header extends ActionsWithElements {
     }
 
     public void checkIsLinkAvatarNotVisible() {
-        checkIsElementNotDisplayed(linkAvatar);
+        checkIsElementNotDisplayed(buttonMyProfile);
     }
 
     public void checkIsTextUserNameNotVisible() {
@@ -87,6 +88,15 @@ public class Header extends ActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
+    }
 }
 
 

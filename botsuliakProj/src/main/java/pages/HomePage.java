@@ -15,9 +15,31 @@ public class HomePage extends ParentPageWithHeader{
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check URL
-        //TODO check is avatar present
+        getHeader().checkIsSearchIconVisible();
+        getHeader().checkIsChatIconVisible();
+        getHeader().checkIsAvatarVisible();
+        getHeader().checkIsCreatePostButtonVisible();
         getHeader().checkIsButtonSignOutVisible();
+        return this;
+    }
+    public HomePage checkIsNotRedirectToHomePage(){
+        getHeader().checkIsChatIconAbsent();
+        getHeader().checkIsSearchIconAbsent();
+        getHeader().checkIsAvatarAbsent();
+        getHeader().checkIsCreatePostButtonAbsent();
+        return this;
+    }
+
+    public HomePage openHomePageAndLoginIfNeeded() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (this.getHeader().isButtonSignOutVisible()) {
+            logger.info("User is already logged in");
+        }else{
+            loginPage.loginWithValidCreds();
+            checkIsRedirectToHomePage();
+            logger.info("User was logged in");
+        }
         return this;
     }
 }

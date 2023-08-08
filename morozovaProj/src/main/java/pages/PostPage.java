@@ -9,6 +9,15 @@ public class PostPage extends ParentPageWithHeder {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
+    @FindBy(xpath = ".//div[@class='body-content']/p/*[last()]")
+    private WebElement postBodyThisPostWasWritten;
+
+    @FindBy(xpath = "//p[contains (text(),'Is this post unique')]") ////p[text()='Is this post unique? : yes']
+    private WebElement postUnique;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -23,8 +32,24 @@ public class PostPage extends ParentPageWithHeder {
         checkElementDisplayed(successMessageElement);
         return this;
     }
+
     public PostPage checkTextInSuccessMessage(String text) {
         Assert.assertEquals("Text in message", text, successMessageElement.getText());
+        return this;
+    }
+
+    public MyProfilePage clickOnDeletePostButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkTextInThisPostWasWritten(String text) {
+        Assert.assertEquals("Text in message", text, postBodyThisPostWasWritten.getText());
+        return this;
+    }
+
+    public PostPage checkIsPostUnique(String post_unique) {//перевірка чи пост унікальний
+        Assert.assertEquals("Post unique", post_unique, postUnique.getText());
         return this;
     }
 }

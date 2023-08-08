@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
 
@@ -81,6 +82,12 @@ public class Header extends ActionsWithElements {
     }
 
 
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(profileButton);
+        return new MyProfilePage(webDriver);
+    }
 
-
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(signOutButton);
+    }
 }

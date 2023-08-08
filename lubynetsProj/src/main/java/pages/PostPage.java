@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
+
     @FindBy(xpath = "//input[@id='post-title']")
     private WebElement postTitle;
 
@@ -30,6 +31,11 @@ public class PostPage extends ParentPageWithHeader {
     private WebElement negativeUniquePostMessage;
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSave;
+
+
+
+    @FindBy (xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
 
     public PostPage(WebDriver webDriver) {
@@ -114,6 +120,7 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
+
     public PostPage checkPostTitle(String expectedTitle) {
         String actualTitle = postTitle.getAttribute("value");
         Assert.assertEquals("Unexpected post title", expectedTitle, actualTitle);
@@ -132,3 +139,11 @@ public class PostPage extends ParentPageWithHeader {
     }
 
 }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+
+    }
+}
+

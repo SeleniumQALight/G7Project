@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
+import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
 
@@ -13,6 +14,9 @@ public class Header extends ActionsWithElements {
 
     @FindBy(xpath = "//a[@class = 'btn btn-sm btn-success mr-2']")
     public static WebElement buttonCreatePost;
+
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
 
     public Header(WebDriver webDriver) {
         super(webDriver);
@@ -24,6 +28,14 @@ public class Header extends ActionsWithElements {
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+    public MyProfilePage clickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementDisplayed(buttonSignOut);
     }
 
 }
