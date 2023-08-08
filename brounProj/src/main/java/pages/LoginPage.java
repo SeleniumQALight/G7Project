@@ -38,6 +38,8 @@ public class LoginPage extends ParentPage {
 
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    final String loginErrorLocator =  "//div[text()='Invalid username / pasword']";
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -145,5 +147,44 @@ public class LoginPage extends ParentPage {
     private List<WebElement> getListOfErrors() {
                 return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
+
+
+
+    public LoginPage checkLoginErrors(String expectedMessages) {
+                String[] errors = expectedMessages.split(";");
+                webDriverWait10.until(
+                ExpectedConditions.numberOfElementsToBe(
+                        By.xpath(loginErrorLocator), errors.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of elements ", errors.length, getLoginErrors().size());
+
+        ArrayList actualTextFromErrors = new ArrayList();
+        for (WebElement element : getLoginErrors()) {
+            actualTextFromErrors.add(element.getText());
+
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions(); // об'єкт для накоплювальоних перевірок
+        for (int i = 0; i < errors.length; i++) {
+
+            softAssertions.assertThat(errors[i])
+                    .as("Error " + i)
+                    .isIn(actualTextFromErrors);
+
+        }
+
+
+        softAssertions.assertAll(); // перевірка всіх накоплювальних перевірок
+
+
+        return this;
+    }
+
+    private List<WebElement> getLoginErrors() {
+        return webDriver.findElements(By.xpath(loginErrorLocator));
+    }
+
+
+
 }
 

@@ -2,7 +2,18 @@ package loginTests;
 
 //import io.github.bonigarcia.wdm.WebDriverManager;
 //import org.junit.Assert;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import libs.Util;
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.LoginPage;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebElement;
@@ -12,10 +23,35 @@ import org.junit.Test;
 //import java.sql.SQLOutput;
 //import java.util.concurrent.TimeUnit;
 
+import java.util.List;
+
 import static data.TestData.*;
+
+@RunWith(JUnitParamsRunner.class) //позволяет использовать параметризацию
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
 
+    final static String ERROR_USERNAME_OR_PASSWORD = "Invalid username / pasword";
+
+    @Test //проверка входа с невалидными данными
+    @Parameters(method = "parametersForCheckInvalidLoginPassword") //параметризация
+    public void checkInvalidLoginPassword(String userName, String password, String expectedMessages) {//перевірка невалідного логіну
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();//проверка, что кнопка Sign In видна
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();//проверка, что кнопка Sign Out не видна
+
+        pageProvider.getLoginPage().checkErrorMessageLogin(expectedMessages);//проверка, что появилось сообщение об ошибке
+    }
+
+    public Object[][] parametersForCheckInvalidLoginPassword() {
+        return new Object[][]{//повертає параметри для тесту
+                {SHORT_USER_NAME, "123456", ERROR_USERNAME_OR_PASSWORD},
+                {"test", "123", ERROR_USERNAME_OR_PASSWORD}
+        };
+    }
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
@@ -26,6 +62,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 
 // TODO Assert
     }
+
     @Test
     public void invalidLogin() { // HW3 With PageObject
 //        1. Додати тест кейс на невалідний логін (але тепер вже з пейдж обжектом),
