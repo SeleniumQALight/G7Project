@@ -1,14 +1,18 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa");
-    final String baseUrl = String.format("https://%s-complexapp.onrender.com", env);
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+     String baseUrl ;
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
+        baseUrl = configProperties.base_url().replace("[env]", env);
     }
 
     public void openPage(String url) {
