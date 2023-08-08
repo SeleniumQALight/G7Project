@@ -20,9 +20,14 @@ private WebElement buttonSave;
 
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
 
     public CreatePostPage CheckIsRedirectOnCreatePostPage() {
-        // TODO CHECK URL
+        checkUrl();
         // TODO SOME UNIQUE ELEMENT
         getHeader().checkIsButtonSignOutVisible();
         return this;
