@@ -16,7 +16,6 @@ public class CreatePost extends BaseTest {
 
     private String option = "All Users";
 
-
     @Test
     public void createNewPost() {
         pageProvider.getHomePage().openHomePage().checkIsRedirectToHomePage()
@@ -41,16 +40,11 @@ public class CreatePost extends BaseTest {
                 .checkTextInBody(body)
                 .checkTextInPrivate(option)
                 .checkTextInUnique("Is this post unique? : yes")
-
-
-
         ;
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(title)
-
-
         ;
 
     }
