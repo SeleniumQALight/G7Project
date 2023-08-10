@@ -29,7 +29,6 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));//замість 5 секунд
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
-
     }
 
     @After
