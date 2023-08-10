@@ -45,6 +45,13 @@ public class ActionWitElements {
             printErrorAndStopTest(e);
         }
     }
+    public void clickOnElement(String locator){
+        try{
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
     public boolean isElementDisplayed(WebElement element){
         try{
 
