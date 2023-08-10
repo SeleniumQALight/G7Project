@@ -44,6 +44,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register") // для реєстрації
     WebElement inputPasswordRegistration;
 
+   // @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    //private List<WebElement> alertDanger;
+
     //локатор  для списоку червоних повідомлень з помилками при неправильному вводі логіна чи пароля
     final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -53,8 +56,14 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/"; // повертаємо шлях до сторінки
+    }
+
     public void openLoginPage() { // метод для відкриття сторінки
         openPage(BASE_URL);
+        checkUrl();
     } // метод для відкриття сторінки
 
     public void enterTextIntoInputUserNane(String UserNane) { // метод для вводу юзернейм в поле
