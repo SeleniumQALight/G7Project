@@ -1,18 +1,17 @@
 package pages;
 
-import libs.ConfigProperties;
-import org.aeonbits.owner.ConfigFactory;
+
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa"); //параметр, який ми передаємо при старті тесту
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);//створюємо об'єкт класу ConfigProperties з парами ключів і значень
 
     String BASE_URL;
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
-        BASE_URL = configProperties.base_url().replace("[env]", env);//формуємо url в залежності від того, який env ми передали
+        BASE_URL = ConfigProvider.configProperties.base_url().replace("[env]", env);//формуємо url в залежності від того, який env ми передали
     }
 
     public void openPage(String url) {
