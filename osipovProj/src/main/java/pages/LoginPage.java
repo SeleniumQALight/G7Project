@@ -114,13 +114,6 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-//    public void enter(){
-//        confirmingWithEnter(inputPassword);
-//    }
-//
-//    public void tab(){
-//        switchWithTab(inputPassword);
-//    }
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));

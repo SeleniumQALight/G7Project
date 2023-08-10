@@ -9,11 +9,9 @@ import static data.TestData.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestWithParameters extends baseTest.BaseTest {
-
-    final static String ERROR_LOGIN = "Invalid username / pasword";
     @Test
     @Parameters(method = "parametersForLogin")
-    public void inValidLogin(String userName, String password, String expectedMessage){
+    public void inValidLogin(String userName, String password){
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(userName);
         pageProvider.getLoginPage().enterTextIntoInputPassword(password);
@@ -22,11 +20,11 @@ public class LoginTestWithParameters extends baseTest.BaseTest {
     }
     public Object[][] parametersForLogin(){
         return new Object[][]{
-                {LOGIN_INVALID,PASSWORD_INVALID,ERROR_LOGIN},
-                {LOGIN_DEFAULT,PASSWORD_INVALID,ERROR_LOGIN},
-                {LOGIN_INVALID,PASSWORD_DEFAULT,ERROR_LOGIN},
-//bug           {" qaauto", PASSWORD_DEFAULT, ERROR_LOGIN},
-                {LOGIN_DEFAULT, " 123456qwerty", ERROR_LOGIN}
+                {LOGIN_INVALID,PASSWORD_INVALID},
+                {LOGIN_DEFAULT,PASSWORD_INVALID},
+                {LOGIN_INVALID,PASSWORD_DEFAULT},
+//bug           {" qaauto", PASSWORD_DEFAULT},
+                {LOGIN_DEFAULT, " 123456qwerty"}
         };
     }
 }

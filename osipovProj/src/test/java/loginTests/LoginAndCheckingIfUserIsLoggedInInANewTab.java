@@ -14,7 +14,7 @@ public class LoginAndCheckingIfUserIsLoggedInInANewTab extends BaseTest {
 
         pageProvider.getHomePage().getHeader().clickOnButtonSignOut();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
-        refreshPage();
+        switchToFirstTabAndRefresh();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
     }
 }

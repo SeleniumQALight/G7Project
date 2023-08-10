@@ -38,11 +38,7 @@ public class BaseTest {
         webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
     }
 
-    public void pressingTab(){
-        webDriver.switchTo().activeElement().sendKeys("Keys.TAB");
-    }
-
-    public void refreshPage() {
+    public void switchToFirstTabAndRefresh() {
         switchToTab(0);
         webDriver.navigate().refresh();
     }
