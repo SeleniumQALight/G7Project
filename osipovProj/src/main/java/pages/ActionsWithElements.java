@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this);// this - means all elements from this class will be initialized
         //elements in FindBy
         webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void openPage(String url) {
