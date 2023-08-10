@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +14,7 @@ import java.time.Duration;
 
 public class ActionWithElements {
 
+    public WebElement dropDownSelectValue;
     Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
@@ -52,7 +54,8 @@ public class ActionWithElements {
     public void checkElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
-    public  void checkElementNotDisplayed(WebElement element) {
+
+    public void checkElementNotDisplayed(WebElement element) {
         Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
@@ -66,10 +69,11 @@ public class ActionWithElements {
         }
 
     }
+
     public void selectValueInDropDown(WebElement dropDown, String value) {
         try {
             Select select = new Select(dropDown);
-           select.selectByValue(value);
+            select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -87,4 +91,48 @@ public class ActionWithElements {
         }
     }
 
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            clickOnElement(dropDown);
+
+            String optionXpath = "//option[text()='" + text + "']";
+            WebElement optionElement = webDriverWait10.until(ExpectedConditions.elementToBeClickable(By.xpath(optionXpath)));
+            clickOnElement(optionElement);
+
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+    public void uncheckCheckbox(WebElement checkBoxElement) {
+        if (checkBoxElement.isSelected()) {
+            clickOnElement(checkBoxElement);
+            logger.info("Checkbox is unchecked.");
+        } else {
+            logger.info("Checkbox is already unchecked.");
+        }
+
+
+    }
+
+
+    public void setCheckboxState(WebElement checkBoxElement, String state) {
+        if (state.equals("check")) {
+            checkCheckbox(checkBoxElement);
+        } else if (state.equals("uncheck")) {
+            uncheckCheckbox(checkBoxElement);
+        } else {
+            logger.error("Invalid state provided. Please use 'check' or 'uncheck'.");
+        }
+    }
+    public void checkCheckbox(WebElement checkBoxElement) {
+        if (!checkBoxElement.isSelected()) {
+            clickOnElement(checkBoxElement);
+            logger.info("Checkbox is checked.");
+        } else {
+            logger.info("Checkbox is already checked.");
+        }
+    }
 }
