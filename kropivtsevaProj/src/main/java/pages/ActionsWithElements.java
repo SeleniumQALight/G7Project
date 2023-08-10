@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -86,6 +87,63 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(webDriver.findElement(By.xpath(String.format(".//option[text()='%s']", text))));
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setCheckStatusToCheckBox(WebElement checkBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                clickOnElement(checkBox);
+
+                logger.info("CheckBox was checked");
+            } else {
+                logger.info("CheckBox is already checked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setUncheckStatusToCheckBox(WebElement checkBox) {
+        try {
+            if (checkBox.isSelected()) {
+                clickOnElement(checkBox);
+                logger.info("CheckBox was unchecked");
+            } else {
+                logger.info("CheckBox is already unchecked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void checkOrUncheckCheckBoxDependingOnText(WebElement checkBox, String text) {
+        try {
+            if (text.equalsIgnoreCase("check")) {
+                setCheckStatusToCheckBox(checkBox);
+
+            } else if (text.equalsIgnoreCase("uncheck")) {
+                setUncheckStatusToCheckBox(checkBox);
+            } else {
+                logger.error("Text should be 'check' or 'uncheck'");
+                Assert.fail("Text should be 'check' or 'uncheck'");
+            }
+
+        } catch (
+                Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

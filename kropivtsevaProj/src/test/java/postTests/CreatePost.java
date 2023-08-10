@@ -2,7 +2,6 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.After;
 import org.junit.Test;
 
@@ -20,20 +19,23 @@ public class CreatePost extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody("Body of new post")
-                .selectTextInDropDown("Приватне повідомлення")
+                .workWithCheckBox()
+                .checkOrUncheckCheckBoxDependingOnText("check")
+                //.selectTextInDropDown("Приватне повідомлення")
                 //.selectValueInDropDown("One Person")
+                .selectTextInDropDownByUI()
                 .clickOnButtonSaveNewPost()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-        ;
-
-
-        pageProvider.getPostPage()
-                .getHeader()
-                .clickOnMyProfileButton()
+                .checkIsPostBodyDisplayed("Body of new post")
+                .checkIsPostTitleDisplayed(title)
+                .checkIsPostUnique("Is this post unique? : yes")
+                .checkIsPostPrivate("Note: This post was written for One Person")
+                .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(title);
     }
+
 
     @After
     public void deletePost() {
@@ -45,5 +47,4 @@ public class CreatePost extends BaseTest {
                 .deletePostsTillPresent(title)
         ;
     }
-
 }
