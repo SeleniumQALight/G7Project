@@ -2,6 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePost extends BaseTest {
@@ -30,28 +31,11 @@ public class CreatePost extends BaseTest {
                 .checkIsPostTitleDisplayed(title)
                 .checkIsPostUnique("Is this post unique? : yes")
                 .checkIsPostPrivate("Note: This post was written for One Person")
-        pageProvider.getHomePage()
-                .openHomePage()
-                .checkIsRedirectToHomePage()
-                .getHeader()
-                .clickOnButtonCreatePost()
-                .checkIsRedirectToCreatePostPage()
-                .enterTextIntoInputTitle(title)
-                .enterTextIntoInputBody("Body of new post")
-                .selectTextInDropDown("Приватне повідомлення")
-                //.selectValueInDropDown("One Person")
-                .clickOnButtonSaveNewPost()
-                .checkIsSuccessMessageDisplayed()
-                .checkTextInSuccessMessage("New post successfully created.")
-        ;
-
-
-        pageProvider.getPostPage()
-                .getHeader()
-                .clickOnMyProfileButton()
+                .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(title);
     }
+
 
     @After
     public void deletePost() {

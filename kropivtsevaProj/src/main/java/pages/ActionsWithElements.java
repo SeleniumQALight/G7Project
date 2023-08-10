@@ -98,10 +98,11 @@ public class ActionsWithElements {
         }
     }
 
-    public void clickOnCheckBox(WebElement checkBox) {
+    public void setCheckStatusToCheckBox(WebElement checkBox) {
         try {
             if (!checkBox.isSelected()) {
-                checkBox.click();
+                clickOnElement(checkBox);
+
                 logger.info("CheckBox was checked");
             } else {
                 logger.info("CheckBox is already checked");
@@ -111,10 +112,10 @@ public class ActionsWithElements {
         }
     }
 
-    public void unclickOnCheckBox(WebElement checkBox) {
+    public void setUncheckStatusToCheckBox(WebElement checkBox) {
         try {
             if (checkBox.isSelected()) {
-                checkBox.click();
+                clickOnElement(checkBox);
                 logger.info("CheckBox was unchecked");
             } else {
                 logger.info("CheckBox is already unchecked");
@@ -127,24 +128,22 @@ public class ActionsWithElements {
     public void checkOrUncheckCheckBoxDependingOnText(WebElement checkBox, String text) {
         try {
             if (text.equalsIgnoreCase("check")) {
-                if (!checkBox.isSelected()) {
-                    checkBox.click();
-                    logger.info("CheckBox was checked");
-                } else {
-                    logger.info("CheckBox is already checked");
-                }
+                setCheckStatusToCheckBox(checkBox);
+
             } else if (text.equalsIgnoreCase("uncheck")) {
-                if (checkBox.isSelected()) {
-                    checkBox.click();
-                    logger.info("CheckBox was unchecked");
-                } else {
-                    logger.info("CheckBox is already unchecked");
-                }
+                setUncheckStatusToCheckBox(checkBox);
+            } else {
+                logger.error("Text should be 'check' or 'uncheck'");
+                Assert.fail("Text should be 'check' or 'uncheck'");
             }
-        } catch (Exception e) {
+
+        } catch (
+                Exception e) {
             printErrorAndStopTest(e);
         }
+
     }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

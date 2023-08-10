@@ -70,12 +70,12 @@ public class CreatePostPage extends ParentPageWithHeader {
     }
 
     public CreatePostPage workWithCheckBox() {
-        clickOnCheckBox(checkbox);
+        setCheckStatusToCheckBox(checkbox);
         return this;
     }
 
     public CreatePostPage unworkWithCheckBox() {
-        unclickOnCheckBox(checkbox);
+        setUncheckStatusToCheckBox(checkbox);
         return this;
     }
 
