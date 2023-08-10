@@ -22,10 +22,14 @@ public class CreatePostPage extends ParentPageWithHeader{
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
 
     public CreatePostPage checkisRedirectToCreatePostPage() {
-        //TODO check url
-        //TODO some unique element
+        checkUrl();
+        //TODO check unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }
@@ -55,4 +59,6 @@ public class CreatePostPage extends ParentPageWithHeader{
         selectValueInDropDown(dropDownSelectValue, value);
         return this;
     }
+
+
 }

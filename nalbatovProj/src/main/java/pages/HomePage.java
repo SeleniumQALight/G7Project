@@ -7,6 +7,10 @@ public class HomePage extends ParentPageWithHeader {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
@@ -16,7 +20,7 @@ public class HomePage extends ParentPageWithHeader {
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check url
+        checkUrl();
         //TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
