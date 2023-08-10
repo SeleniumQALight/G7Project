@@ -46,6 +46,15 @@ public class ActionsWithElements {
         }
     }
 
+    public void clickOnElement(String locator) {
+        try{
+            clickOnElement(webDriver.findElement(By.xpath(locator)));//передаем в метод clickOnElement элемент, который находим по локатору
+            logger.info("Element was clicked");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
     public boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
