@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PostPage  extends ParentPageWithHeader{
+public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
@@ -29,8 +29,13 @@ public class PostPage  extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO CHECK URL
+        checkUrlWithPattern();
         //TODO UNIQUE ELEMENT
         return this;
     }

@@ -37,6 +37,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+//    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+//    private List<WebElement> alertDanger; same as  listErrorsMessagesLocator
+
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     final String errorMessageLoginLocator = "//div[@class='alert alert-danger text-center']";
@@ -44,8 +47,14 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         openPage(BASE_URL);
+        checkUrl();
     }
 
     public void enterTextIntoInputUserName(String userName) {
