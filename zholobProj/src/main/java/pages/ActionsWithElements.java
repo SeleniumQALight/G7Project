@@ -45,7 +45,16 @@ public class ActionsWithElements {
         }
     }
 
-    public void enterTextIntoInput(WebElement element, String text) { //method for inputting text
+    public void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+            logger.info("Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void enterTextIntoInput(WebElement element, String text) {
         try {
             element.clear();
             element.sendKeys(text);
