@@ -22,6 +22,9 @@ public class PostPage  extends ParentPageWithHeader{
     @FindBy(xpath = "//div[@class='body-content'][1]//p")
     private WebElement postPrivate;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -60,5 +63,10 @@ public class PostPage  extends ParentPageWithHeader{
     public PostPage checkIsPostPrivate(String text) {
         Assert.assertEquals("Text in message", text, postPrivate.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeletePostButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
     }
 }

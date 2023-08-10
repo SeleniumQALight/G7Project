@@ -2,6 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePost extends BaseTest {
@@ -32,6 +33,22 @@ public class CreatePost extends BaseTest {
                 .checkTextPostTitle(title)
                 .checkTextPostBody("Body of the New Post Iryna one person unique")
                 .checkNote("One Person");
+
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(title)
+
+        ;
+    }
+
+    @After
+    public void deletePosts(){
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(title)
+        ;
     }
 
 }
