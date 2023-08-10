@@ -32,8 +32,8 @@ public class RegistrationTest extends BaseTest {
 
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
-                {"test", "trtr", "123456",  ERROR_EMAIL}
-//                {"test", "tr@tr.com", "123", ERROR_PASSWORD}
+                {"test", "trtr", "123456",  ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+               {"test", "tr@tr.com", "123", ERROR_PASSWORD}
         };
     }
 }
