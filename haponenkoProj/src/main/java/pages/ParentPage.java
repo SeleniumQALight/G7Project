@@ -4,7 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
  abstract public class ParentPage extends ActionsWithElements {
-    final String BASE_URL = "https://aqa-complexapp.onrender.com";
+    String env = System.getProperty("env", "aqa");
+     final String BASE_URL = String.format("https://%s-complexapp.onrender.com", env);
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -13,7 +14,7 @@ import org.openqa.selenium.WebDriver;
     public void openPage(String url) {
         try {
             webDriver.get(url);
-            logger.info("The site was opened" + url);
+            logger.info("The site was opened " + url);
         } catch (Exception e) {
             logger.error("Can't open " + url);
             Assert.fail("Can't open " + url);
