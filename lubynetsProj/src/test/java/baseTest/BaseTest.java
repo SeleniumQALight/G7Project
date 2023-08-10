@@ -6,9 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.PageProvider;
 
 import java.time.Duration;
+
+import static java.time.Duration.ofSeconds;
 
 
 public class BaseTest {
@@ -21,7 +24,8 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        webDriver.manage().timeouts().implicitlyWait(ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(webDriver, ofSeconds(5));
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
     }
