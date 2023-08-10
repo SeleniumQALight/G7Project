@@ -1,12 +1,17 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-public class ParentPage extends ActionsWithElements {
-    final String BASE_URL = "https://aqa-complexapp.onrender.com";
+abstract public class ParentPage extends ActionsWithElements {
+    String env = System.getProperty("env", "aqa");
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    String BASE_URL;
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
+        BASE_URL = configProperties.base_url().replace("[env]", env);
     }
     public void openPage(String url) {
         try {
@@ -16,6 +21,33 @@ public class ParentPage extends ActionsWithElements {
             logger.error("Can not open " + url);
             Assert.fail("Can not open " + url);
         }
+    }
+
+    abstract protected String getRelativeUrl();
+
+    // check url
+    // https://aqa-complexapp.onrender.com/ == BASE_URL + "/" -> true
+    protected void checkUrl(String relativeURL){
+            Assert.assertEquals("Url is not expected", BASE_URL + relativeURL, webDriver.getCurrentUrl());
+    }
+
+    protected void checkUrl(){
+        checkUrl(getRelativeUrl());
+    }
+
+     //https://aga-complexapp.onrender.com/post/5f9b1d3b9d6b280004a0e8b2
+    // regex for 5f9b1d3b9d6b280004a0e8b2
+    // [a-zA-Z0-9]{24}
+    // https://aga-complexapp.onrender.com/post/[a-zA-Z0-9]
+
+    protected void checkUrlWithPattern(String relativeURL){
+        Assert.assertTrue("Url is not expected \n"
+                + "Expected result: " + BASE_URL + relativeURL + "\n"
+                + "Actual result: " + webDriver.getCurrentUrl()
+                ,webDriver.getCurrentUrl().matches(BASE_URL + relativeURL));
+    }
+    protected void checkUrlWithPattern(){
+        checkUrlWithPattern(getRelativeUrl());
     }
 }
 

@@ -19,16 +19,19 @@ public class CreatePostPage extends ParentPageWithHeader {
     private WebElement dropDownSelectValue;
 
 
-
-
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        //TODO check url
-        //TODO some unique element
+        checkUrl();
+//TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }

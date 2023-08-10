@@ -28,8 +28,15 @@ public class PostPage extends ParentPageWithHeder {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+
+    }
+
     public PostPage checkIsRedirectToPostPage() { // перевірка чи ми на сторінці Post Page
-//TODO check URL
+
+        checkUrlWithPattern();//TODO check URL
 // TODO unique elements
         return this;
     }

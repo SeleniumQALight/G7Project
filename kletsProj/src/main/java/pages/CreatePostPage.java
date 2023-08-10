@@ -11,6 +11,11 @@ public class CreatePostPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     @FindBy(id = "post-title") // //input[@id='post-title']
     private WebElement inputTitle;
 
@@ -36,7 +41,7 @@ public class CreatePostPage extends ParentPageWithHeader {
     private WebElement checkBoxUniquePost;
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        //TODO check URL
+        checkUrl();
         //TODO check some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
