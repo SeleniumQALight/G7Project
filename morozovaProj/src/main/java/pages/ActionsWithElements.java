@@ -43,6 +43,15 @@ public class ActionsWithElements {
         }
     }
 
+    public void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
     public void enterTextIntoInput(WebElement element, String text) { //method for inputting text
         try {
             element.clear();
