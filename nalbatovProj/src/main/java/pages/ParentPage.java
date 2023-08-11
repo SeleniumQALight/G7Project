@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import libs.ConfigProperties;
@@ -7,12 +8,11 @@ import org.aeonbits.owner.ConfigFactory;
 
 abstract public class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa");
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     String BASE_URL;
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
-        BASE_URL = String.format(configProperties.base_url(), env);
+        BASE_URL = ConfigProvider.configProperties.base_url().replace("[env]", env);
         //BASE_URL = configProperties.base_url().replace("[env]", env);
     }
     public void openPage(String url) {
