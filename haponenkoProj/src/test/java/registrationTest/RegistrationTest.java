@@ -23,6 +23,7 @@ public class RegistrationTest extends BaseTest {
     final static String ERROR_USERNAME_CYRILLIC = "Username can only contain letters and numbers.";
     final static String ERROR_EMAIL_EXIST = "That email is already being used.";
     final static String ERROR_PASSWORD_TOO_LONG = "Password cannot exceed 50 characters.";
+
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
     public void checkErrorsTest(String userName, String email, String password, String expectedErrorMessages) {

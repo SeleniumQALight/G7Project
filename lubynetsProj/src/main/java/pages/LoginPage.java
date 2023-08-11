@@ -5,13 +5,13 @@ import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -33,11 +33,7 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
-//    @FindBy (xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']") // same
-//    private List<WebElement> alertDanger;
-
-    final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"; //same
-
+    final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
     public LoginPage(WebDriver webDriver) {
@@ -49,45 +45,55 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
+        return this;
     }
 
-    public void enterTextIntoInputUserName(String userName) {
+    public LoginPage enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
-    public void clickOnButtonSignIn() {
+    public LoginPage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return this;
     }
 
-    public void checkIsButtonSignInVisible() {
+    public LoginPage checkIsButtonSignInVisible() {
         checkElementDisplayed(buttonSignIn);
+        return this;
     }
 
-    public void checkIsButtonSignInNotVisible() {
+    public LoginPage checkIsButtonSignInNotVisible() {
         checkElementNotDisplayed(buttonSignIn);
+        return this;
     }
 
-    public void checkIsInputUsernameVisible() {
+    public LoginPage checkIsInputUsernameVisible() {
         checkElementDisplayed(inputUserName);
+        return this;
     }
 
-    public void checkIsInputUsernameNotVisible() {
+    public LoginPage checkIsInputUsernameNotVisible() {
         checkElementNotDisplayed(inputUserName);
+        return this;
     }
 
-    public void checkIsInputPasswordVisible() {
+    public LoginPage checkIsInputPasswordVisible() {
         checkElementDisplayed(inputPassword);
+        return this;
     }
 
-    public void checkIsInputPasswordNotVisible() {
+    public LoginPage checkIsInputPasswordNotVisible() {
         checkElementNotDisplayed(inputPassword);
+        return this;
     }
 
     public void loginWithValidCreds() {
@@ -100,19 +106,16 @@ public class LoginPage extends ParentPage {
     public LoginPage enterTextIntoRegistrationUserName(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
-
     }
 
     public LoginPage enterTextIntoRegistrationEmail(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
-
     }
 
     public LoginPage enterTextIntoRegistrationPassword(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
-
     }
 
     public LoginPage checkErrorsMessages(String expectedMessages) {
@@ -140,8 +143,40 @@ public class LoginPage extends ParentPage {
     }
 
     private List<WebElement> getListOfErrors() {
-
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
-}
 
+    public LoginPage waitForEmailInputClickable() {
+        webDriverWait10.until(ExpectedConditions.elementToBeClickable(inputEmailRegistration));
+        return this;
+    }
+
+    public LoginPage waitForPasswordInputClickable() {
+        webDriverWait10.until(ExpectedConditions.elementToBeClickable(inputPasswordRegistration));
+        return this;
+    }
+
+    public LoginPage pressTabKeyEmail() {
+        pressTabKey(inputEmailRegistration);
+        return this;
+    }
+
+    public LoginPage pressTabKeyUserName() {
+        pressTabKey(inputUserNameRegistration);
+        return this;
+    }
+    public LoginPage pressTabKeyPassword() {
+        pressTabKey(inputPasswordRegistration);
+        return this;
+    }
+
+    public LoginPage pressEnterKeyPassword() {
+        pressEnterKey(inputPasswordRegistration);
+        return this;
+    }
+
+    public void loginWithTabAndEnter() {
+        inputUserName.sendKeys(Keys.TAB);
+        inputPassword.sendKeys(Keys.ENTER);
+    }
+}
