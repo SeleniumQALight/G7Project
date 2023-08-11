@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -20,7 +21,7 @@ public class ActionWitElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);//this - означає, що ініціалізуємо елементи саме в цьому класі.описані за допомогою FindBy
     webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-    webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+    webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
 
@@ -41,6 +42,13 @@ public class ActionWitElements {
             element.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void clickOnElement(String locator){
+        try{
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
