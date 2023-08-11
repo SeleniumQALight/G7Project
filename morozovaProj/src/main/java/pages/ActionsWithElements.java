@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -23,7 +24,7 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this); //initialization of elements
         // element in @FindBy
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
 
     }
 
@@ -41,6 +42,15 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    public void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
     public void enterTextIntoInput(WebElement element, String text) { //method for inputting text
         try {
