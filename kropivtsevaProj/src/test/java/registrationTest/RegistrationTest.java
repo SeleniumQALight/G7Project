@@ -18,6 +18,8 @@ public class RegistrationTest extends BaseTest {
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
+    final static String ERROR_USERNAME_NOT_ENGLISH = "Username can only contain letters and numbers.";
+    final static String ERROR_PASSWORD_LONGEST = "Password cannot exceed 50 characters.";
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
@@ -34,7 +36,10 @@ public class RegistrationTest extends BaseTest {
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "tr@tr.com", "123", ERROR_PASSWORD}
-        };
+                {"test", "tr@tr.com", "123", ERROR_PASSWORD},
+                {"test", "tr@tr.com", "123456", ERROR_PASSWORD},
+                {"тест", "test", "123456", ERROR_USERNAME_NOT_ENGLISH + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"test", "test", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm1234567890", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD_LONGEST}}
+        ;
     }
 }
