@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class ActionsWithElements {
 
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
 
@@ -45,8 +45,9 @@ public class ActionsWithElements {
         }
     }
 
-    public void clickOnElement(String locator) {
+    public void clickOnElement(String text) {
         try {
+            String locator = String.format(".//*[text()='%s']", text);
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             printErrorAndStopTest(e);
