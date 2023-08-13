@@ -32,13 +32,23 @@ public class LoginPage extends ParentPage{
 
     @FindBy(id="password-register")
     private WebElement inputPasswordRegistration;
+
+//    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+//    private List<WebElement> alertDangerList;
+
     final String listErrorsMessagesLocator = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
     public void openLoginPage() {
         openPage(BASE_URL);
+        checkUrl();
     }
 
     public void enterTextIntoInputUserName(String userName) {
@@ -106,5 +116,18 @@ public class LoginPage extends ParentPage{
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+
+    public LoginPage checkIsRedirectToLoginPage(){
+        checkElementDisplay(buttonSingIn);
+        checkElementDisplay(inputUserName);
+        checkElementDisplay(inputPassword);
+        return this;
+    }
+    public LoginPage checkIsNotRedirectToLoginPage(){
+        checkElementAbsent(buttonSingIn);
+        checkElementAbsent(inputUserName);
+        checkElementAbsent(inputPassword);
+        return this;
     }
 }

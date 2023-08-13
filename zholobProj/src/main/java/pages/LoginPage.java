@@ -44,6 +44,10 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register") // для реєстрації
     WebElement inputPasswordRegistration;
 
+   // @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    //private List<WebElement> alertDanger;
+
+    //локатор  для списоку червоних повідомлень з помилками при неправильному вводі логіна чи пароля
     final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 // Методи для елементів цієї сторінки:
@@ -52,8 +56,14 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/"; // повертаємо шлях до сторінки
+    }
+
     public void openLoginPage() { // метод для відкриття сторінки
         openPage(BASE_URL);
+        checkUrl();
     } // метод для відкриття сторінки
 
     public void enterTextIntoInputUserNane(String UserNane) { // метод для вводу юзернейм в поле
@@ -111,7 +121,6 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) { // метод для вводу юзернейм в поле реєстрації
-
         enterTextIntoInput(inputUserNaneRegistration, userName);
         return this;
     }
@@ -126,19 +135,22 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checErrorsMessages(String expectedMessages) { // метод для перевірки помилок
+    public LoginPage checErrorsMessages(String expectedMessages) { // метод для перевірки кількості помилок
         // error1;error2--> [error1,error2]
-        String[] errors = expectedMessages.split(";");
+        String[] errors = expectedMessages.split(";"); // розбиваємо стрічку помилок на масив окремих помилок
         // wait util number of  errors  will be expected
-        List<WebElement> until = webDriverWait10.until
-                (ExpectedConditions.numberOfElementsToBe
+        List<WebElement> until = webDriverWait10.until // чекаємо 10с поки кількість помилок буде як в масиві
+                (ExpectedConditions.numberOfElementsToBe //
                         (By.xpath(listErrorsMessagesLocator), errors.length));
 
         Util.waitABit(1); // чекаємо 1 секунду
 
-        Assert.assertEquals("Number of elements", errors.length,
+
+        Assert.assertEquals("Number of elements", errors.length, //
                 getListOfErrors().size());
-        ArrayList actualTextFromErrors = new ArrayList(); // створили масив для зберігання тексту з помилок
+
+
+        ArrayList actualTextFromErrors = new ArrayList(); // створили ліст для зберігання тексту з помилок
         for (WebElement element : getListOfErrors()) { // цикл для перебору елементів
             actualTextFromErrors.add(element.getText()); // додали текст з помилок в масив
         }
@@ -155,7 +167,6 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    private List<WebElement> getListOfErrors() {
+    private List<WebElement> getListOfErrors() { // метод для отримання списку помилок за локаторои
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
-    }
-}
+    }}

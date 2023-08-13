@@ -37,14 +37,26 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']")
     private WebElement messageInvalidUsernameAndPassword;
 
+    //це як варіант webDriver.findElement(By.xpath("//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+//    @FindBy(xpath = "@FindBy(xpath = \"//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']\")\n" +
+//            "    private WebElement messageInvalidUsernameAndPassword;")
+//    private List<WebElement> alertDanger;
+
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    final String errorMessageLogin = "//div[@class='alert alert-danger text-center']";
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
     }
 
 
     public void openLoginPage() {
         openPage(BASE_URL);
+        checkUrl();
     }
 
     public void enterTextIntoInputUserName(String UserName) {
@@ -132,8 +144,26 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+    public LoginPage checkErrorMessageLogin(String expectedErrorMessageLogin) {
+        // Очикування, поки повідомлення про помилку буде видимим
+        webDriverWait10.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(errorMessageLogin)));
+        Util.waitABit(1);
+
+        // Перевірте, що кількість повідомлень про помилку = 1
+        Assert.assertEquals("Number of error messages", 1, getErrorLogin().size());
+
+        // Отримайте фактичний текст повідомлення про помилку
+        String actualErrorMessage = getErrorLogin().get(0).getText();
+
+        // Порівняйте очікувані та фактичні повідомлення
+        Assert.assertEquals("Error message", expectedErrorMessageLogin, actualErrorMessage);
+
+        return this;
+    }
+    private List<WebElement> getErrorLogin() {
+        return webDriver.findElements(By.xpath(errorMessageLogin));
     }
 }

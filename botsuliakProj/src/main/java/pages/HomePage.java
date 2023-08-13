@@ -7,6 +7,11 @@ public class HomePage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.loginWithValidCreds();
@@ -15,9 +20,19 @@ public class HomePage extends ParentPageWithHeader{
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check URL
-        //TODO check is avatar present
+        checkUrl();
+        getHeader().checkIsSearchIconVisible();
+        getHeader().checkIsChatIconVisible();
+        getHeader().checkIsAvatarVisible();
+        getHeader().checkIsCreatePostButtonVisible();
         getHeader().checkIsButtonSignOutVisible();
+        return this;
+    }
+    public HomePage checkIsNotRedirectToHomePage(){
+        getHeader().checkIsChatIconAbsent();
+        getHeader().checkIsSearchIconAbsent();
+        getHeader().checkIsAvatarAbsent();
+        getHeader().checkIsCreatePostButtonAbsent();
         return this;
     }
 

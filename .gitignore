@@ -15,7 +15,7 @@ target/site
 *.iws
 .allure
 */src/main/java/resources/hiddenConfig.properties
-
+hiddenConfig.properties
 allure-results
 
 ### Mac OS ###

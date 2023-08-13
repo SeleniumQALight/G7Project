@@ -29,8 +29,13 @@ public class PostPage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkUrlWithPattern();
         //TODO some unique element
         return this;
     }

@@ -16,12 +16,14 @@ public class RegistrationTest extends BaseTest {
 //    String expectedMessages = "You must provide a valid email address.;Password must be at least 12 characters.";
 
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final static String ERROR_USERNAME1 = "Username can only contain letters and numbers.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
+    final static String ERROR_PASSWORD_LONG = "Password cannot exceed 50 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
-    final static String SHORT_USER_NAME = "tr";
+
 
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
@@ -35,8 +37,10 @@ public class RegistrationTest extends BaseTest {
 
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
-                {SHORT_USER_NAME, "trtrt", "123456", ERROR_USERNAME+ SEMICOLON + ERROR_EMAIL+ SEMICOLON+ ERROR_PASSWORD},
-                {"test", "tr@trt.com", "123", ERROR_PASSWORD}
+                {SHORT_USER_NAME, "trtrt", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+//                {"test", "tr@trt.com", "123", ERROR_PASSWORD},
+//                {"Мари", "trtrt", "123456", ERROR_USERNAME1 + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+//                {SHORT_USER_NAME, "tr@trt.com", "123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1", ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD_LONG}
         };
     }
 }

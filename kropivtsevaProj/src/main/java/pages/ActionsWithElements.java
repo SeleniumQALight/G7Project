@@ -1,7 +1,9 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -21,7 +23,7 @@ public class ActionsWithElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);//инициализирует все элементы на странице @FindBy в LoginPage и ParentPage (все элементы, которые находятся в ActionsWithElements)
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
@@ -40,6 +42,15 @@ public class ActionsWithElements {
             element.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void clickOnElement(String locator) {
+        try{
+            clickOnElement(webDriver.findElement(By.xpath(locator)));//передаем в метод clickOnElement элемент, который находим по локатору
+            logger.info("Element was clicked");
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
@@ -86,6 +97,63 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    public void selectTextInDropDownByUI(WebElement dropDown, String text) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(webDriver.findElement(By.xpath(String.format(".//option[text()='%s']", text))));
+            logger.info(text + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setCheckStatusToCheckBox(WebElement checkBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                clickOnElement(checkBox);
+
+                logger.info("CheckBox was checked");
+            } else {
+                logger.info("CheckBox is already checked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void setUncheckStatusToCheckBox(WebElement checkBox) {
+        try {
+            if (checkBox.isSelected()) {
+                clickOnElement(checkBox);
+                logger.info("CheckBox was unchecked");
+            } else {
+                logger.info("CheckBox is already unchecked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void checkOrUncheckCheckBoxDependingOnText(WebElement checkBox, String text) {
+        try {
+            if (text.equalsIgnoreCase("check")) {
+                setCheckStatusToCheckBox(checkBox);
+
+            } else if (text.equalsIgnoreCase("uncheck")) {
+                setUncheckStatusToCheckBox(checkBox);
+            } else {
+                logger.error("Text should be 'check' or 'uncheck'");
+                Assert.fail("Text should be 'check' or 'uncheck'");
+            }
+
+        } catch (
+                Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

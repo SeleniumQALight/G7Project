@@ -18,17 +18,23 @@ public class CreatePostPage extends ParentPageWithHeader {
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
 
-
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkbox;
 
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        //TODO check url
-        //TODO some unique element
+        checkUrl();
+//TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }
@@ -55,6 +61,26 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     public CreatePostPage selectValueInDropDown(String value) {
         selectValueInDropDown(dropDownSelectValue, value);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUI() {
+        selectTextInDropDownByUI(dropDownSelectValue, "Приватне повідомлення");
+        return this;
+    }
+
+    public CreatePostPage workWithCheckBox() {
+        setCheckStatusToCheckBox(checkbox);
+        return this;
+    }
+
+    public CreatePostPage unworkWithCheckBox() {
+        setUncheckStatusToCheckBox(checkbox);
+        return this;
+    }
+
+    public CreatePostPage checkOrUncheckCheckBoxDependingOnText(String text) {
+        checkOrUncheckCheckBoxDependingOnText(checkbox, text);
         return this;
     }
 

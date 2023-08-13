@@ -36,13 +36,24 @@ public class LoginPage extends ParentPage{
     @FindBy(id="password-register")
     private WebElement inputPasswordRegistration;
 
+    //це як варіант webDriver.findElement(By.xpath("//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+    // @FindBy(xpath = "@FindBy(xpath = \"//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']\")\n" +
+    // " private WebElement messageInvalidUsernameAndPassword;")
+    // private List<WebElement> alertDanger;
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage(){
         openPage(BASE_URL);
+        checkUrl();
     }
     public void enterTextIntoInputUserName(String userName){
         enterTextIntoInput(inputUserName, userName);

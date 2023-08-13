@@ -12,10 +12,15 @@ public class MyProfilePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private String postTitleLocator = ".//*[text()='%s']";
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check url
+        checkUrlWithPattern();
         //todo check unique element
         return this;
     }

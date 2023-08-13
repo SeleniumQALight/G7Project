@@ -1,7 +1,9 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -23,7 +25,7 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this); // this - means all elements from this class will be initialized
         // element in @FindBy
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
@@ -45,6 +47,13 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+    public void clickOnElement(String locator){
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
     public boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
@@ -60,8 +69,27 @@ public class ActionsWithElements {
         }
     }
 
+    public boolean isElementAbsent(WebElement element) {
+        try {
+            boolean state = element.isDisplayed();
+            if (state) {
+                logger.info("Element is displayed");
+            } else {
+                logger.info("Element is not displayed");
+            }
+            return !state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return true;
+        }
+    }
+
     public void checkElementDisplay(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+
+    public void checkElementAbsent(WebElement element) {
+        Assert.assertTrue("Element is displayed", isElementAbsent(element));
     }
 
     public void selectTextInDropDown(WebElement dropDown, String text) {
