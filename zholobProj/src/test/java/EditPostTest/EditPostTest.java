@@ -50,7 +50,7 @@ public class EditPostTest extends BaseTest {
         pageProvider.getHomePage().openHomePageAndLoginifNeeded()
                 .openHomePageAndLoginifNeeded()
                 .getHeader().clickOnMyProfileButton()
-                //           .checkIsRedirectToMyProfilePage() // перевірка чи ми на сторінці профайлу
+                .checkIsRedirectToMyProfilePage() // перевірка чи ми на сторінці профайлу
                 .deletePostsTillPresent(title) // видалення постів з таким заголовком
                 .deletePostsTillPresent(title_edit) // видалення постів з таким заголовком
         ;
