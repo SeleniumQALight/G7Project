@@ -43,7 +43,6 @@ public class LoginPage extends ParentPage {
 
     public void openLoginPage() {
         openPage(BASE_URL);
-        return this;
         checkUrl();
     }
 
