@@ -35,12 +35,19 @@ public class LoginPage extends ParentPage {
 
     final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public LoginPage openLoginPage() {
         openPage(BASE_URL);
+        checkUrl();
         return this;
     }
 
@@ -48,6 +55,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputUserName, userName);
         return this;
     }
+
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
@@ -100,6 +108,10 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage enterTextIntoRegistrationEmail(String email) {
+        enterTextIntoInput(inputEmailRegistration, email);
+        return this;
+    }
 
     public LoginPage enterTextIntoRegistrationPassword(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
@@ -107,7 +119,9 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkErrorsMessages(String expectedMessages) {
+        // error1;error2 -> [error1, error2]
         String[] errors = expectedMessages.split(";");
+        // wait until numbers of errors messages will be expected
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
                 By.xpath(listErrorsMessagesLocator), errors.length));
         Util.waitABit(1); // wait until Extra time will be displayed
@@ -151,14 +165,8 @@ public class LoginPage extends ParentPage {
         pressTabKey(inputUserNameRegistration);
         return this;
     }
-
     public LoginPage pressTabKeyPassword() {
         pressTabKey(inputPasswordRegistration);
-        return this;
-    }
-
-    public LoginPage enterTextIntoRegistrationEmail(String invalidEmail) {
-        enterTextIntoInput(inputEmailRegistration, invalidEmail);
         return this;
     }
 
