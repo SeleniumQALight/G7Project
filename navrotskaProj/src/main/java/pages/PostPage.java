@@ -9,6 +9,8 @@ public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessageElement;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
     private WebElement postIsUnique;
@@ -50,6 +52,12 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
+
     public PostPage checkBodyOnPostPage(String text) {
         Assert.assertEquals("Is created post body matches the typed", text, bodyOnPostPage.getText());
         return this;
@@ -63,5 +71,6 @@ public class PostPage extends ParentPageWithHeader {
     public PostPage checkIfPostIsUnique(String text) {
         Assert.assertEquals("Is created post status is unique", text, postIsUnique.getText());
         return this;
+
     }
 }

@@ -6,9 +6,10 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import static libs.ConfigProvider.configProperties;
+
 public abstract class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa");
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
     String baseUrl;
 
     public ParentPage(WebDriver webDriver) {
