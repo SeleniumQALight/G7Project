@@ -12,6 +12,9 @@ public class PostPage extends ParentPageWithHeder {
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = ".//*[@class=\"svg-inline--fa fa-edit fa-w-18\"]")
+    private WebElement buttonEditPost;
+
     @FindBy(xpath = ".//div[@class='body-content']/p/*[last()]")
     private WebElement postBodyThisPostWasWritten;
 
@@ -56,5 +59,9 @@ public class PostPage extends ParentPageWithHeder {
     public PostPage checkIsPostUnique(String post_unique) {//перевірка чи пост унікальний
         Assert.assertEquals("Post unique", post_unique, postUnique.getText());
         return this;
+    }
+
+    public void clickOnEditPostButton() {
+        clickOnElement(buttonEditPost);
     }
 }

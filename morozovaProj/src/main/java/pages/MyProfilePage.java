@@ -64,4 +64,8 @@ public class MyProfilePage extends ParentPageWithHeder {
 
         return this;
     }
+
+    public void clickOnPostWithTitle(String title) {
+        clickOnElement(title);
+    }
 }
