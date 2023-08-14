@@ -27,8 +27,13 @@ public class CreatePostPage extends ParentPageWithHeder {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        //TODO check URL
+        checkUrl();
         // TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;

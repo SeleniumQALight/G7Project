@@ -28,15 +28,23 @@ public class LoginPage extends ParentPage {
     private WebElement inputEmailRegistration;
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
+//    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+//    private List<WebElement> alertDanger;
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public LoginPage openLoginPage() {
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
+    public void openLoginPage() {
         openPage(BASE_URL);
         return this;
+        checkUrl();
     }
 
     public LoginPage enterTextIntoInputUserName(String userName) {

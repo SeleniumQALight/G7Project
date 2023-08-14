@@ -38,16 +38,26 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
-    final String listErrorsMessagesLocator = "//div[@class ='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    //same as webDriver.findElements(By.xpath("//div[@class ='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
+//    @FindBy(xpath = "//div[@class ='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+//    private List<WebElement> alertDanger;
 
+    final String listErrorsMessagesLocator = "//div[@class ='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public void openLoginPage() {
         openPage(BASE_URL);
+        checkUrl();
     }
+
 
     public void enterTextInputUserName(String userName) {
         enterTextIntoInput(inputUsername, userName);
@@ -136,7 +146,7 @@ public class LoginPage extends ParentPage {
         }
 
         SoftAssertions softAssertions = new SoftAssertions();
-        for (int i= 0; i < errors.length; i++) {
+        for (int i = 0; i < errors.length; i++) {
             softAssertions.assertThat(errors[i])
                     .as("Error " + i)
                     .isIn(actualTextFromErrors);
@@ -148,6 +158,6 @@ public class LoginPage extends ParentPage {
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
-
     }
 }
+

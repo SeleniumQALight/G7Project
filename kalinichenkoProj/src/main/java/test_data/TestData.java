@@ -1,8 +1,11 @@
 package test_data;
 
+import libs.ConfigHiddenProperties;
+import libs.ConfigProvider;
+
 public class TestData {
-    public final static String LOGIN_DEFAULT = "qaauto";
-    public final static String PASSWORD_DEFAULT = "123456qwerty";
+    public final static String LOGIN_DEFAULT = System.getProperty("default login" ,ConfigProvider.configHiddenProperties.login());
+    public final static String PASSWORD_DEFAULT = System.getProperty("default password", ConfigProvider.configHiddenProperties.password());
 
     public final static String LOGIN_INVALID = "qaauto1";
 

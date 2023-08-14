@@ -22,9 +22,10 @@ public class RegistrationTest extends BaseTest {
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
+    final static String ERROR_USERNAME_LATIN_LETTERS_NUMBERS = "Username can only contain letters and numbers.";
 
     @Test
-    @Parameters(method = "parametersForCheckErrorsTest") //зв'язок ментода з тестом
+    @Parameters(method = "parametersForCheckErrorsTest") //зв'язок метода з тестом
     public void checkErrorsTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);
@@ -37,6 +38,10 @@ public class RegistrationTest extends BaseTest {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
                 {"test", "tr@tr.com", "123", ERROR_PASSWORD},
-             };
-         }
+                {"Тест_Логін", "ТестЕмейл", "ТестПасс", ERROR_USERNAME_LATIN_LETTERS_NUMBERS + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"test", "trtr", "123456", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+
+        };
+    }
+
 }

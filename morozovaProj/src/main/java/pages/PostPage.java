@@ -22,8 +22,13 @@ public class PostPage extends ParentPageWithHeder {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";// можемо ставити{24} або * - будь-який символ [0-9] - цифри [a-zA-Z] - букви
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkUrlWithPattern();
         // TODO unique elements
         return this;
     }

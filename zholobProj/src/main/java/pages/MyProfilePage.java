@@ -13,9 +13,16 @@ public class MyProfilePage extends ParentPageWithHeder{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*"; // регулярний вираз для перевірки чи ми на сторінці профілю
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkUrlWithPattern(); //TODO check url
         return this;
-        //TODO check url
+
+
         //TODO check unique element
     }
 
