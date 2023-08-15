@@ -11,7 +11,6 @@ public class RegistrationTest extends BaseTest {
 //    String userName = "test";
 //    String email = "trtr";
 //    String password = "123456";
-//
 //    String expectedMessages = "You must provide a valid email address1.;Password must be at least 12 characters2.";
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
@@ -32,8 +31,8 @@ public class RegistrationTest extends BaseTest {
 
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
-                {"test", "trtr", "123456",  ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-               {"test", "tr@tr.com", "123", ERROR_PASSWORD}
+                {SHORT_USER_NAME, "trtr", "123456",  ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"test", "tr@tr.com", "123", ERROR_PASSWORD}
         };
     }
 }
