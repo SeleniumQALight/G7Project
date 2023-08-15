@@ -30,7 +30,7 @@ public class ActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input" + getWebElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -40,17 +40,17 @@ public class ActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getWebElementName(element) + "Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
     public void clickOnElement(String locator) {
-        try{
+        try {
             clickOnElement(webDriver.findElement(By.xpath(locator)));//передаем в метод clickOnElement элемент, который находим по локатору
             logger.info("Element was clicked");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
@@ -152,6 +152,14 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
 
+    }
+
+    private String getWebElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "Element name not found";
+        }
     }
 
 
