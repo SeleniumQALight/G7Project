@@ -29,7 +29,7 @@ public class ActionWitElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input" + getElementName(input));
         } catch (Exception e) {
             logger.error("Can not work with element");
             Assert.fail("Can not work with element");
@@ -40,7 +40,7 @@ public class ActionWitElements {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
 
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(element) + "Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -87,6 +87,13 @@ public class ActionWitElements {
             logger.info(value + " was selected in DropDown");
         }catch (Exception e) {
             printErrorAndStopTest(e);
+        }
+    }
+    private String getElementName(WebElement element){
+        try{
+            return element.getAccessibleName();
+        }catch (Exception e){
+            return "";
         }
     }
 
