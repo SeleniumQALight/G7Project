@@ -38,7 +38,7 @@ public class RenamePost extends BaseTest {
                 .getHeader()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .clickOnLocator(title);
+                .clickOnLocatorText(title);
         pageProvider.getPostPage()
                 .checkIsRedirectToPostPage()
                 .clickOnEditPostButton();
@@ -53,7 +53,7 @@ public class RenamePost extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkIsPostWithTitlePresent(newTitle)
-                .clickOnLocator(newTitle);
+                .clickOnLocatorText(newTitle);
         pageProvider.getPostPage()
                 .checkIsRedirectToPostPage()
                 .checkTextInTitle(newTitle)

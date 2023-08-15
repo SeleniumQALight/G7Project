@@ -140,11 +140,10 @@ public class ActionsWithElements {
     }
 
 
-    public void clickOnLocator(String title) {
+    public void clickOnLocatorText(String title) {
+        String locator = "//*[text()='%s']";
         clickOnElement(String.format(locator, title));
     }
-
-    private String locator = "//*[text()='%s']";
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
