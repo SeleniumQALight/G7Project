@@ -29,10 +29,12 @@ public class ActionsWithElements {
     }
 
     public void clickOnElement(WebElement element) { //method for clicking on element
+
         try {
+            String elementName= getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));//вона перестрибне на інший коли буде клікабельний
             element.click();
-            logger.info(getElementName(element) + "Element was clicked");
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
