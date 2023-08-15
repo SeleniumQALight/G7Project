@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import pages.elements.Header;
 
 abstract public class ParentPageWithHeader extends ParentPage {
-    Header header; 
+    Header header;
 
     public ParentPageWithHeader(WebDriver webDriver) {
         super(webDriver);
