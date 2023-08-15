@@ -1,13 +1,14 @@
 package pages;
 
-import libs.ConfigProperties;
-import org.aeonbits.owner.ConfigFactory;
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import static libs.ConfigProvider.configProperties;
+
 abstract public class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa"); // 2 параментр - дефолтне значення
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+
 
     String BASE_URL ;
 

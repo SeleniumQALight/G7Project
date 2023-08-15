@@ -27,9 +27,14 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
 
     public CreatePostPage CheckIsRedirectOnCreatePostPage() {
-        // TODO CHECK URL
+        checkUrl();
         // TODO SOME UNIQUE ELEMENT
         getHeader().checkIsButtonSignOutVisible();
         return this;
