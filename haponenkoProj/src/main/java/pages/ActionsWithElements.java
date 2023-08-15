@@ -37,9 +37,10 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info(getElementName(element) + " element was clicked");
+            logger.info(elementName + " element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
