@@ -47,7 +47,6 @@ public class MyProfilePage extends ParentPageWithHeder {
         List<WebElement> postsList = getPostslist(title);
         int counter = 0;
         while (!postsList.isEmpty() && counter < 100) {// роби поки список не пустий
-
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -65,7 +64,8 @@ public class MyProfilePage extends ParentPageWithHeder {
         return this;
     }
 
-    public void clickOnPostWithTitle(String title) {
-        clickOnElement(title);
+    public PostPage clickOnPostWithTitle(String title) {
+        clickOnElement(getPostslist(title).get(0));
+        return new PostPage(webDriver);
     }
 }

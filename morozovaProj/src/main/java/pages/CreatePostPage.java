@@ -17,9 +17,6 @@ public class CreatePostPage extends ParentPageWithHeder {
     @FindBy(tagName = "select")
     private WebElement dropDownSelectValue;
 
-//    @FindBy(xpath = "//input[@type='checkbox']")// чекбокс
-//    private WebElement checkBox;
-
     @FindBy(xpath = "//input[@type = 'checkbox']")
     private WebElement checkboxUniquePost;
 
