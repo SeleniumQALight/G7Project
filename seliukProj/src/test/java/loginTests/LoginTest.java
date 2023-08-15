@@ -1,6 +1,12 @@
 package loginTests;
 
+import libs.ExcelDriver;
+import org.assertj.core.configuration.ConfigurationProvider;
 import org.junit.Test;
+
+import javax.security.auth.login.Configuration;
+import java.io.IOException;
+import java.util.Map;
 
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
@@ -35,6 +41,16 @@ public class LoginTest extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getLoginPage().checkIsInputUserNameVisible();
         pageProvider.getLoginPage().checkIsMessageInvalidUsernameAndPasswordVisible();
+    }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(".//src//main//java//data//testData.xls", "validLogOn");
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterUserName(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterPassword(dataForValidLogin.get("pass"));
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
 
 }
