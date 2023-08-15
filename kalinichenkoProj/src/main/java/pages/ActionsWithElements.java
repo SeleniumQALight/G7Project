@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class ActionsWithElements {
@@ -45,9 +46,8 @@ public class ActionsWithElements {
         }
     }
 
-    public void clickOnElement(String text) {
+    public void clickOnElement(String locator) {
         try {
-            String locator = String.format(".//*[text()='%s']", text);
             clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -139,6 +139,12 @@ public class ActionsWithElements {
         }
     }
 
+
+    public void clickOnLocator(String title) {
+        clickOnElement(String.format(locator, title));
+    }
+
+    private String locator = "//*[text()='%s']";
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);

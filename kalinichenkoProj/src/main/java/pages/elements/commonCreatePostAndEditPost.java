@@ -23,19 +23,22 @@ abstract public class commonCreatePostAndEditPost extends ParentPageWithHeader {
     @FindBy(xpath = ".//input[@type='checkbox']")
     private WebElement checkBoxUniquePost;
 
-    public void enterTextIntoInputTitle(String text) {
+    public commonCreatePostAndEditPost enterTextIntoInputTitle(String text) {
         enterTextIntoInput(inputTitle, text);
+        return this;
     }
 
-    public void enterTextIntoInputBody(String text) {
+    public commonCreatePostAndEditPost enterTextIntoInputBody(String text) {
         enterTextIntoInput(inputBody, text);
+        return this;
     }
 
-    public void selectTextInDropDown(String text) {
+    public commonCreatePostAndEditPost selectTextInDropDown(String text) {
         selectTextInDropDown(dropDownSelectValue, text);
+        return this;
     }
 
-    public void checkStatusCheckBoxUniquePost(String status) {
+    public commonCreatePostAndEditPost checkStatusCheckBoxUniquePost(String status) {
         try {
             if (status.equals("check")) {
                 setCheckboxState(checkBoxUniquePost);
@@ -50,5 +53,6 @@ abstract public class commonCreatePostAndEditPost extends ParentPageWithHeader {
             logger.error("Can not work with checkbox");
             Assert.fail("Can not work with checkbox");
         }
+        return this;
     }
 }

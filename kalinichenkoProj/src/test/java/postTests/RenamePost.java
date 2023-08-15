@@ -11,14 +11,15 @@ public class RenamePost extends BaseTest {
     private String title = "TC002 - Kalinichenko" + Util.getDateAndTimeFormatted();
     private String newTitle = title + " - RENAMED";
 
+
     @Before
     public void createPost() {
         pageProvider.getHomePage()
                 .openHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTextIntoInputTitle(title);
-        pageProvider.getCreatePostPage().enterTextIntoInputBody("Body of Post");
+                .enterTextIntoInputTitle(title)
+                .enterTextIntoInputBody("Body of Post");
         pageProvider.getCreatePostPage().clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.");
         pageProvider.getPostPage()
@@ -37,7 +38,7 @@ public class RenamePost extends BaseTest {
                 .getHeader()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .clickOnElement(title);
+                .clickOnLocator(title);
         pageProvider.getPostPage()
                 .checkIsRedirectToPostPage()
                 .clickOnEditPostButton();
@@ -52,7 +53,7 @@ public class RenamePost extends BaseTest {
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkIsPostWithTitlePresent(newTitle)
-                .clickOnElement(newTitle);
+                .clickOnLocator(newTitle);
         pageProvider.getPostPage()
                 .checkIsRedirectToPostPage()
                 .checkTextInTitle(newTitle)

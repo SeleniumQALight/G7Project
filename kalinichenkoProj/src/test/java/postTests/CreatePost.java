@@ -15,11 +15,11 @@ public class CreatePost extends BaseTest {
                 .openHomePage()
                 .getHeader().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTextIntoInputTitle(title);
-        pageProvider.getCreatePostPage().enterTextIntoInputBody("Body of Post");
-        pageProvider.getCreatePostPage().selectTextInDropDown("Приватне повідомлення");
-        //pageProvider.getCreatePostPage().selectValueInDropDownByValue("One Person"); b
-        pageProvider.getCreatePostPage().checkStatusCheckBoxUniquePost("check");
+                .enterTextIntoInputTitle(title)
+                .enterTextIntoInputBody("Body of Post")
+                .selectTextInDropDown("Приватне повідомлення")
+                //pageProvider.getCreatePostPage().selectValueInDropDownByValue("One Person");
+                .checkStatusCheckBoxUniquePost("check");
         pageProvider.getCreatePostPage().clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTextInTitle(title)
