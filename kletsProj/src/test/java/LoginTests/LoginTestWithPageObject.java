@@ -3,8 +3,14 @@ package LoginTests;
 import data.TestData;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.grid.config.Config;
+
+import java.io.IOException;
+import java.util.Map;
 
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
@@ -18,6 +24,19 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
+
+    }
+
+    @Test
+    public void validLoginWithExel() throws IOException {
+        Map<String,String> dataForValidLogin =
+                ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextInputUserName(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextInputPassword(dataForValidLogin.get("pass"));
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
@@ -53,13 +72,13 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 
         pageProvider.getLoginPage().checkErrorMessageIsDisplayed();
         pageProvider.getLoginPage().checkButtonSignInDisplayed();
-        }
+    }
 
-        public Object[][] parametersForInvalidLogin() {
-            return new Object[][]{
-                    {TestData.LOGIN_INVALID, TestData.PASSWORD_DEFAULT},
-                    {TestData.LOGIN_DEFAULT, TestData.PASSWORD_INVALID},
-                    {TestData.LOGIN_INVALID, TestData.PASSWORD_INVALID},
-            };
+    public Object[][] parametersForInvalidLogin() {
+        return new Object[][]{
+                {TestData.LOGIN_INVALID, TestData.PASSWORD_DEFAULT},
+                {TestData.LOGIN_DEFAULT, TestData.PASSWORD_INVALID},
+                {TestData.LOGIN_INVALID, TestData.PASSWORD_INVALID},
+        };
     }
 }
