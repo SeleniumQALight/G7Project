@@ -92,6 +92,16 @@ public class ActionWithElements {
         }
     }
 
+    public void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
+            logger.info("Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
     public void selectTextInDropDownByUI(WebElement dropDown, String text) {
         try {
             clickOnElement(dropDown);
