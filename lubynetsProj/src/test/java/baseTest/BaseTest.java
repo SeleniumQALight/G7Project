@@ -1,6 +1,7 @@
 package baseTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +25,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(ofSeconds(5));
+        webDriver.manage().timeouts().implicitlyWait(ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
         WebDriverWait wait = new WebDriverWait(webDriver, ofSeconds(5));
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
