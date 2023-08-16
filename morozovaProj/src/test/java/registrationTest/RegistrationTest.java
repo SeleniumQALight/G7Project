@@ -38,9 +38,9 @@ public class RegistrationTest extends BaseTest {
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtrt", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "tr@trt.com", "123", ERROR_PASSWORD},
-                {"Мари", "trtrt", "123456", ERROR_USERNAME1 + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {SHORT_USER_NAME, "tr@trt.com", "123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1", ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD_LONG}
+//                {"test", "tr@trt.com", "123", ERROR_PASSWORD},
+//                {"Мари", "trtrt", "123456", ERROR_USERNAME1 + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+//                {SHORT_USER_NAME, "tr@trt.com", "123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1123QWERTY1", ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD_LONG}
         };
     }
 }

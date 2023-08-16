@@ -1,18 +1,21 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class ActionsWithElements {
 
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait10, webDriverWait15;
 
@@ -20,7 +23,7 @@ public class ActionsWithElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // this - means all elements from this class will be initialized elements in FindBy
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
@@ -38,6 +41,14 @@ public class ActionsWithElements {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             logger.info("Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -128,6 +139,11 @@ public class ActionsWithElements {
         }
     }
 
+
+    public void clickOnLocatorText(String title) {
+        String locator = "//*[text()='%s']";
+        clickOnElement(String.format(locator, title));
+    }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);

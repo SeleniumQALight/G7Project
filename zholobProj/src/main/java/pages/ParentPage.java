@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends ActionsWithElements{
     String env = System.getProperty("env","aqa"); // зчитуємо змінну середовища
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class); // створюємо об'єкт класу ConfigProperties з парами ключів і значень
 
  String BASE_URL; // final - це константа, яку не можна змінити
 
