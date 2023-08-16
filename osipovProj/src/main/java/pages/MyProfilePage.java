@@ -4,25 +4,31 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MyProfilePage extends ParentPageWithHeader {
     private String postTitleLocator = ".//*[text()='%s']";
+    @FindBy(xpath = "//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
     @Override
     protected String getRelativeUrl() {
         return "/profile/[a-zA-Z0-9]*";
     }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
         return this;
     }
 
-    private List<WebElement> getPostsList(String title) {
+    public List<WebElement> getPostsList(String title) {
         return webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
     }
 
@@ -30,6 +36,11 @@ public class MyProfilePage extends ParentPageWithHeader {
         Assert.assertEquals("Count of posts with title " + title,
                 1, getPostsList(title).size());
         return this;
+    }
+
+    public PostPage clickOnPostFromTheList(String title) {
+        clickOnElement(getPostsList(title).get(0));
+        return new PostPage(webDriver);
     }
 
     public MyProfilePage deletePostWithTitle(String postTitle) {
@@ -47,6 +58,17 @@ public class MyProfilePage extends ParentPageWithHeader {
         }
         if (counter >= 100) {
             Assert.fail("There are more than 100 posts with title " + postTitle);
+        }
+        return this;
+    }
+
+    public MyProfilePage deletePostWithOneNameOrAnother(String firstVariantOfTitle, String secondVariantOfTitle) {
+        if (getPostsList(firstVariantOfTitle).size() > 0) {
+            deletePostWithTitle(firstVariantOfTitle);
+        } else if (getPostsList(secondVariantOfTitle).size() > 0) {
+            deletePostWithTitle(secondVariantOfTitle);
+        } else {
+            logger.error("PostWithThisTitlesIsNotFound");
         }
         return this;
     }

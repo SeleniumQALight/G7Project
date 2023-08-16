@@ -9,10 +9,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.Header;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
+import static data.TestData.*;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Username']")
@@ -29,7 +31,7 @@ public class LoginPage extends ParentPage {
     private WebElement inputEmailRegistration;
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
-//    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    //    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
 //    private List<WebElement> alertDanger;
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -86,14 +88,32 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
     }
 
+    public String createValidPostAndCheckIfExist() {
+        loginWithValidCred();
+        Header header = new Header(webDriver);
+        header.clickOnButtonCreatePost()
+                .checkIsRedirectToCreatePostPage()
+                .enterTextIntoInputTitle(POST_TITLE)
+                .enterTextIntoInputBody(POST_BODY)
+                .selectTextInDropDownByUI()
+                .workWithCheckBox(CHECK_CHECKBOX)
+                .clickOnButtonSaveNewPost();
+        header.clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE);
+        return POST_TITLE;
+    }
+
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
+
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
+
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
