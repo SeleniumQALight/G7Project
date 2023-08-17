@@ -37,6 +37,11 @@ public class MyProfilePage extends ParentPageWithHeader{
         return this;
 
     }
+    public PostPage selectPostByTitle(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(
+                String.format(postTitleLocator, title))));
+       return new PostPage(webDriver);
+    }
 
     public MyProfilePage deletePostsTillPresent(String title) {
         List<WebElement> postsList = getPostList(title);
