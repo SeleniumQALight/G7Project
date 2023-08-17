@@ -28,7 +28,7 @@ public class EditPostTest extends BaseTest {
         pageProvider.getHomePage().openHomePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost().checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(title).enterTextIntoInputBody("Body of new Post Maryna")
-                .selectTextInDropDown("Групове повідомлення")
+             //   .selectTextInDropDown("Групове повідомлення")
                 .selectTextInDropDown2("Приватне повідомлення")
                 //     .selectOnCheckBoxIs("check") // вибираємо чекбокс
                 .markCheckboxStateUnique("check")
@@ -48,9 +48,12 @@ public class EditPostTest extends BaseTest {
                 .clickOnMyProfileButton().checkIsRedirectToMyProfilePage().clickOnPostWithTitle(title); // на пост з заголовком
         pageProvider.getPostPage().checkIsRedirectToPostPage() // перевірка чи ми на сторінці поста
                 .clickOnEditPostButton(); // на кнопку редагування поста
+        pageProvider.getPostEditPage().checkIsRedirectToEditPostPage();//перевірка ура редагування посту
         pageProvider.getPostEditPage().enterTextIntoInputTitle(titleEdit)// редагуємо Title
-                .clickOnButtonSaveUpdates() // на кнопку збереження поста
+                        .clickOnButtonSaveUpdates() // на кнопку збереження поста
                 .checkIsMessageSuccessEditPost();// перевірка чи успішне редагування
+        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeader()
+                .clickOnMyProfileButton().checkPostWithTitleIsPresent(titleEdit);//повернулась на myProfile, для перевірки нового тайта
     }
 //    After - видаляти змінений пост, або якщо тайт не змінився то видаляти не змінений пост (просто двічи викликати метод видалення просто з різними тайтлами)
     @After

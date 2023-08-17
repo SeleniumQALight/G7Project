@@ -4,7 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-public class EditPostPage extends PostPage {
+
+public class EditPostPage extends ParentPageWithHeder {
 
     @FindBy(xpath = ".//input [@name=\"title\"]")
     private WebElement titleEdit;
@@ -30,21 +31,22 @@ public class EditPostPage extends PostPage {
 
     @Override
     protected String getRelativeUrl() {
-        return "/post/[a-zA-Z0-9]*";
+        return "/post/[a-zA-Z0-9]*/edit";
     }
 
-    public EditPostPage checkIsRedirectToPostPage() {
-        //TODO check url
-        //TODO unique elements
-        return this;
+    public EditPostPage checkIsRedirectToEditPostPage() { // перевірка урла редагування поста
+        {
+            checkUrlWithPattern(getRelativeUrl());
+            return this;
+        }
     }
 
-    public PostPage checkIsSuccessMessageDisplayed() {
+    public EditPostPage checkIsSuccessMessageDisplayed() {
         checkElementDisplayed(successMessageEditPost);
         return this;
     }
 
-    public PostPage checkTextInSuccessMessage(String text) {
+    public EditPostPage checkTextInSuccessMessage(String text) {
         Assert.assertEquals("Text in message", text, successMessageEditPost.getText());
         return this;
     }
