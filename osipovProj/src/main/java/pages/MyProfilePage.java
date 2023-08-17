@@ -10,8 +10,6 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader {
     private String postTitleLocator = ".//*[text()='%s']";
-    @FindBy(xpath = "//a[@class='list-group-item list-group-item-action']")
-    private List<WebElement> postList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
