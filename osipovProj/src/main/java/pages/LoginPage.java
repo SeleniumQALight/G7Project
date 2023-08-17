@@ -49,16 +49,19 @@ public class LoginPage extends ParentPage {
         checkUrl();
     }
 
-    public void enterTextIntoInputUserName(String userName) {
+    public LoginPage enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
-    public void clickOnButtonSignIn() {
+    public LoginPage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return this;
     }
 
     public void checkIsButtonSignInVisible() {
@@ -77,7 +80,7 @@ public class LoginPage extends ParentPage {
         checkElementDisplayed(inputPassword);
     }
 
-    public void isInvalidLoginMessageDisplayed() {
+    public void checkIsInvalidLoginMessageDisplayed() {
         checkElementDisplayed(invalidLoginMessage);
     }
 

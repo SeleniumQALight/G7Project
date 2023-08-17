@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -30,6 +31,23 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
+    }
+
+    public void openNewTab() {
+        webDriver.switchTo().newWindow(WindowType.TAB);
+    }
+
+    public void closeCurrentTab() {
+        webDriver.close();
+    }
+
+    public void switchToTab(int tabNumber) {
+        webDriver.switchTo().window(webDriver.getWindowHandles().toArray()[tabNumber].toString());
+    }
+
+    public void switchToFirstTabAndRefresh() {
+        switchToTab(0);
+        webDriver.navigate().refresh();
     }
 
     @After
