@@ -18,9 +18,9 @@ public class CreatePost extends BaseTest {
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody("Body of Post")
                 .selectTextInDropDown("Приватне повідомлення")
-                //.selectValueInDropDownByValue("One Person")
-                .checkStatusCheckBoxUniquePost("check")
-                .clickOnButtonSaveNewPost()
+                //pageProvider.getCreatePostPage().selectValueInDropDownByValue("One Person");
+                .checkStatusCheckBoxUniquePost("check");
+        pageProvider.getCreatePostPage().clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTextInTitle(title)
                 .checkTextInBody("Body of Post")

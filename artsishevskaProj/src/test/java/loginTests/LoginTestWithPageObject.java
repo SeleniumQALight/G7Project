@@ -1,11 +1,16 @@
 package loginTests;
 
 import data.TestData;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Test;
 
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
 import org.openqa.selenium.WebElement;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class LoginTestWithPageObject extends baseTest.BaseTest{
     @Test
@@ -13,6 +18,16 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
+    }
+    @Test
+    public  void validLoginWithExcel() throws IOException {
+        Map<String,String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
