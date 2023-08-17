@@ -13,7 +13,7 @@ public class PostEditPage extends ParentPageWithHeder {
 
     @Override
     protected String getRelativeUrl() {
-        return null;
+        return "/post/[a-zA-Z0-9]*/edit";
     }
 
     @FindBy(xpath = "//input[@id='post-title']") // локатор для поля вводу заголовку поста
@@ -28,7 +28,7 @@ public class PostEditPage extends ParentPageWithHeder {
 
 
     public PostEditPage checkIsRedirectToPostEditPage() { // перевірка чи ми на сторінці редагування поста
-        checkUrlWithPattern("/edit/\\d+");
+        checkUrlWithPattern(getRelativeUrl());
         return this;
     }
 

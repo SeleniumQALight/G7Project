@@ -49,7 +49,7 @@ abstract public class ParentPage extends ActionsWithElements{
                         + "Actual result: " + webDriver.getCurrentUrl()
                 , webDriver.getCurrentUrl().matches(BASE_URL + relativeUrl));
     }
-    protected void checkUrlWithPattern() {
+    protected void checkUrlWithPattern() { // перевірка
         checkUrlWithPattern(getRelativeUrl());
     }
 }
