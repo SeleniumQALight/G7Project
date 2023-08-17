@@ -27,7 +27,7 @@ public class HomePage extends ParentPageWithHeder { //
         return this;
     }
 
-    public HomePage openHomePageAndLoginifNeeded() {
+    public HomePage openHomePageAndLoginifNeeded() {//
         LoginPage loginPage = new LoginPage(webDriver); // створюємо об'єкт класу LoginPage
         loginPage.openLoginPage();
         if(this.getHeader().isButtonSignOutVisible()) { // перевірка чи є кнопка SignOut
