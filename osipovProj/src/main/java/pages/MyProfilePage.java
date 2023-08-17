@@ -58,15 +58,4 @@ public class MyProfilePage extends ParentPageWithHeader {
         }
         return this;
     }
-
-    public MyProfilePage deletePostWithOneNameOrAnother(String firstVariantOfTitle, String secondVariantOfTitle) {
-        if (getPostsList(firstVariantOfTitle).size() > 0) {
-            deletePostWithTitle(firstVariantOfTitle);
-        } else if (getPostsList(secondVariantOfTitle).size() > 0) {
-            deletePostWithTitle(secondVariantOfTitle);
-        } else {
-            logger.error("PostWithThisTitlesIsNotFound");
-        }
-        return this;
-    }
 }
