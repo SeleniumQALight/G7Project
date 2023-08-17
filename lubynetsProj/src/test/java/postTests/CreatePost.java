@@ -12,7 +12,7 @@ public class CreatePost extends baseTest.BaseTest {
     private PostPage postPage;
 
 
-    private String title = "TC01 - New post Lubynets" + Util.getDateAndTimeFormatted();
+
 
     @Test
     public void createNewPost() {
@@ -56,17 +56,13 @@ public class CreatePost extends baseTest.BaseTest {
                 .checkIsPostWrittenFor("One Person")
                 .checkIsNegativePostUnique("Is this post unique? : no", "no")
                 .checkTextInSuccessMessage("New post successfully created.");
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton().checkIsRedirectToMyProfilePage().checkPostWithTitleIsPresent(title);
     }
-}
-
-        ;
-
-        pageProvider.getPostPage().getHeader().clickOnMyProfileButton().checkIsRedirectToMyProfilePage().checkPostWithTitleIsPresent(title)
-
-        ;
 
 
-    }
+
+
+
 
 
     @After
