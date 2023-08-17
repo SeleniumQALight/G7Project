@@ -38,6 +38,7 @@ public class EditPostTest extends BaseTest {
                 .clickOnPostWithTitle(title); // клік на пост з заголовком
         pageProvider.getPostPage().checkIsRedirectToPostPage() // перевірка чи ми на сторінці поста
                 .clickOnEditPostButton(); // клік на кнопку редагування поста
+        pageProvider.getPostEditPage().checkIsRedirectToPostEditPage();
         pageProvider.getPostEditPage().enterTextIntoInputTitle(title_edit)// вводимо новий текст в поле Title
                 .clickOnButtonSaveUpdates() // клік на кнопку збереження поста
                 .checkIsMessageSuccessfullyEditPost() // перевірка чи  є повідомлення про успішне редагування
