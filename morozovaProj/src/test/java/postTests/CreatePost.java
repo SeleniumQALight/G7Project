@@ -12,7 +12,6 @@ public class CreatePost extends BaseTest {
 
     @Test
     public void createNewPost() {
-
         pageProvider.getHomePage().openHomePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost().checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(title).enterTextIntoInputBody("Body of new Post Maryna")
@@ -33,7 +32,8 @@ public class CreatePost extends BaseTest {
 
     @After
     public void deletePosts() {
-        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeader().clickOnMyProfileButton().checkIsRedirectToMyProfilePage().deletePostsTillPresent(title);
+        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeader()
+                .clickOnMyProfileButton().checkIsRedirectToMyProfilePage().deletePostsTillPresent(title);
 
     }
 }
