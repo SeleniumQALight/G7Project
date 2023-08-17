@@ -43,7 +43,7 @@ public class ActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(element) + "Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -160,6 +160,14 @@ public class ActionsWithElements {
             Assert.fail("Value should be 'Check' or 'Uncheck'");
         }
 
+    }
+
+    private String getElementName(WebElement element) {
+       try {
+           return element.getAccessibleName();
+       } catch (Exception e){
+           return "";
+       }
     }
 
 }
