@@ -53,7 +53,17 @@
             <version>1.0.5</version>
             <scope>test</scope>
         </dependency>
-
-
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi - for the possibility of working with Excel-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.12</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

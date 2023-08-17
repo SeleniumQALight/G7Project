@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -22,14 +23,14 @@ public class ActionsWithElements {
         this.webDriver = webDriver; // initialize webDriver
         PageFactory.initElements(webDriver, this); // initialize all elements from this class will be initialized elements in FindBY
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input" + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -39,7 +40,7 @@ public class ActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(element) + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -149,6 +150,16 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+
+    private String getElementName(WebElement element){
+        try{
+           return element.getAccessibleName();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e); // print message in report

@@ -4,11 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class CreatePostPage extends ParentPageWithHeader {
     @Override
     protected String getRelativeUrl() {
         return "/create-post";
     }
+
     @FindBy(id = "post-title")
     private WebElement inputTitle;
     @FindBy(name = "body")
