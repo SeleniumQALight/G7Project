@@ -29,7 +29,7 @@ public class ActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -39,7 +39,7 @@ public class ActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(element) + "Element was clicked" );
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -57,19 +57,19 @@ public class ActionsWithElements {
         try {
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(element) + "Element is displayed");
             } else {
-                logger.info("Element is not displayed");
+                logger.info(getElementName(element) + "Element is not displayed");
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed");
+            logger.info(getElementName(element) + " Element is not displayed");
             return false;
         }
     }
 
     public void checkElementDisplay(WebElement element) {
-        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+        Assert.assertTrue(getElementName(element) + "Element is not displayed ", isElementDisplayed(element));
     }
 
     public void selectTextInDropDown(WebElement dropDown, String text) {
@@ -93,7 +93,7 @@ public class ActionsWithElements {
     }
 
     public void checkElementNotDisplay(WebElement element) {
-        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+        Assert.assertFalse(getElementName(element) + "Element is displayed ", isElementDisplayed(element));
     }
 
     public void selectTextInDropDownByUI(WebElement dropDown, String text) {
@@ -110,10 +110,10 @@ public class ActionsWithElements {
         try {
             if (!element.isSelected()) {
                 element.click();
-                logger.info("Checkbox state was changed to set");
+                logger.info(getElementName(element) +"Checkbox state was changed to set");
                 return true;
             } else {
-                logger.info("Checkbox state was not changed it is already set");
+                logger.info(getElementName(element) + "Checkbox state was not changed it is already set");
                 return false;
             }
         } catch (Exception e) {
@@ -126,10 +126,10 @@ public class ActionsWithElements {
         try {
             if (element.isSelected()) {
                 element.click();
-                logger.info("Checkbox state was changed to unset");
+                logger.info(getElementName(element) + "Checkbox state was changed to unset");
                 return true;
             } else {
-                logger.info("Checkbox state was not changed it is already unset");
+                logger.info(getElementName(element) + "Checkbox state was not changed it is already unset");
                 return false;
             }
         } catch (Exception e) {
@@ -138,6 +138,19 @@ public class ActionsWithElements {
         }
     }
 
+
+    public void clickOnLocatorText(String title) {
+        String locator = "//*[text()='%s']";
+        clickOnElement(String.format(locator, title));
+    }
+
+    private String getElementName (WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);

@@ -28,16 +28,13 @@ public class ActionsWithElements {
 
     }
 
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element" + e);
-        Assert.fail("Can not work with element" + e);
-    }
-
     public void clickOnElement(WebElement element) { //method for clicking on element
+
         try {
+            String elementName= getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));//вона перестрибне на інший коли буде клікабельний
             element.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -56,7 +53,7 @@ public class ActionsWithElements {
         try {
             element.clear();
             element.sendKeys(text);
-            logger.info(text + " was inputted");
+            logger.info(text + " was inputted " + getElementName(element));
         } catch (Exception e) {
 // System.out.println("Can not work with element" + e);
 // Assert.fail("Can not work with element" + e);
@@ -131,34 +128,39 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
     public void toMarkCheckBox(WebElement element) { //2. метод для вибору чекбокса
         try {
             if (!element.isSelected()) { // якщо чекбокс не вибраний
                 element.click(); // вибрати чекбокс
                 logger.info("Checkbox was marked 'Yes'");
-            } else { logger.info("Checkbox is already marked 'Yes'");}
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-    public void toUnMarkCheckBox(WebElement element) { // 3. метод для зняття чекбокса
-        try {
-            if (element.isSelected()) { // якщо чекбокс вибраний
-                element.click(); // зняти чекбокс
-                logger.info("Checkbox was unmarked");
-            } else { logger.info("Checkbox is already unmarked");
+            } else {
+                logger.info("Checkbox is already marked 'Yes'");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-     /*
-     4. Створити метод встановлення заданого стану у чекбокс
-     - метод повинен приймати на вхід стрінговий стан (check or uncheck)
-     - в залежності від стану чекбокса і необхідного стану - клікати і виводити повідомлення в лог, чи не клікати і просто виводити повідомлення в лог.
-     - додати цей метод в наш тест по створенню поста (зі значенням check) і перевірку на наступному скріні
-     */
+    public void toUnMarkCheckBox(WebElement element) { // 3. метод для зняття чекбокса
+        try {
+            if (element.isSelected()) { // якщо чекбокс вибраний
+                element.click(); // зняти чекбокс
+                logger.info("Checkbox was unmarked");
+            } else {
+                logger.info("Checkbox is already unmarked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    /*
+    4. Створити метод встановлення заданого стану у чекбокс
+    - метод повинен приймати на вхід стрінговий стан (check or uncheck)
+    - в залежності від стану чекбокса і необхідного стану - клікати і виводити повідомлення в лог, чи не клікати і просто виводити повідомлення в лог.
+    - додати цей метод в наш тест по створенню поста (зі значенням check) і перевірку на наступному скріні
+    */
     public void checkCheckboxState(WebElement checkbox, String state) {
         try {
             if (state.equalsIgnoreCase("check")) {
@@ -172,6 +174,19 @@ public class ActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element" + e);
+        Assert.fail("Can not work with element" + e);
     }
 }
 

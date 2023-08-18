@@ -65,6 +65,16 @@ NewPostPage.paragraph.UniqueNo = //p[text()='Is this post unique? : no']
 //div[@class="container py-md-5 container--narrow"]//div[3]
 NewPostPage.text.BodyContent = //div[@class='body-content']
 
+#EditPostPage
+EditPostPage.button.Back = //a[@class="small font-weight-bold"]
+EditPostPage.input.Title = //input[@name='title' and @id='post-title']
+EditPostPage.textarea.BodyContent= //textarea[@name='body' and @id='post-body']
+EditPostPage.input.Checkbox = //input[@type='checkbox']
+EditPostPage.select.DropDownList= //select[@name='select1' and @id='select1']
+EditPostPage.button.SaveUpdates = //button[@class='btn btn-primary']
+EditPostPage.message.Success = //div[@class='alert alert-success text-center']
+
+
 
 
 

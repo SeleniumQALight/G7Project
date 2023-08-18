@@ -39,7 +39,7 @@ public class ActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(getElementName(element) + " was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -65,6 +65,14 @@ public class ActionsWithElements {
         }
     }
 
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        }catch (Exception e){
+            return "";
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
@@ -75,9 +83,9 @@ public class ActionsWithElements {
         try {
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info("Element " + getElementName(element) + " is displayed");
             } else {
-                logger.info("Element is not displayed");
+                logger.info("Element " + getElementName(element) + " is not displayed");
             }
             return state;
         } catch (Exception e) {

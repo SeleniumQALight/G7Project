@@ -30,4 +30,5 @@ public class SignOutTest extends baseTest.BaseTest {
         pageProvider.getLoginPage().checkIsUserNameInputDisplayed();
         pageProvider.getLoginPage().checkIsPasswordInputDisplayed();
     }
+
 }

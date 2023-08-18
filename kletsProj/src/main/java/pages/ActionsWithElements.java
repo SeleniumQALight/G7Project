@@ -32,7 +32,7 @@ public class ActionsWithElements {
         try {
             input.clear();// clear field
             input.sendKeys(text);//vvod s klaviaturi
-            logger.info(text + " was inputted");
+            logger.info(text + " was inputted into " + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -40,9 +40,10 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info (elementName +" Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -101,10 +102,6 @@ public class ActionsWithElements {
         }
     }
 
-    void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element " + e);
-        Assert.fail("Can not work with element " + e);//zupinit test
-    }
 
     protected void selectTextDropDownByUI(WebElement dropDown, String option) {
         try {
@@ -180,6 +177,19 @@ public class ActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    void printErrorAndStopTest(Exception e) {
+        logger.error("Can not work with element " + e);
+        Assert.fail("Can not work with element " + e);//zupinit test
     }
 
 }
