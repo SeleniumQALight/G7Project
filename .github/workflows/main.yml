@@ -22,3 +22,9 @@ jobs:
       - name: Archive target folder  # Архівація папки target
         run: |
           Compress-Archive -Path overAll/target -DestinationPath target.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: target-zip-artifact
+          path: target.zip
