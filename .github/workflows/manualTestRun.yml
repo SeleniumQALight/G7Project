@@ -1,0 +1,33 @@
+name: Manual Test Run
+
+on:
+  workflow_dispatch:  # Цей тригер дозволить запускати джобу вручну
+
+jobs:
+  run_tests:
+    runs-on: windows-latest  # Запуск на Windows
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Клонування репозиторію
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Choose Test Module
+        run: |
+          echo "Which test module do you want to run?"
+          read TEST_MODULE
+          echo "You chose: $TEST_MODULE"
+          echo "TEST_MODULE=$TEST_MODULE" >> $GITHUB_ENV
+
+      - name: Build and test
+        run: |
+          cd ${{ env.TEST_MODULE }}  # Використання змінної середовища для вибору модуля
+          mvn clean test -Dtest=LoginTestWithPageObject#validLogin -DdefaultLogin=qaauto
