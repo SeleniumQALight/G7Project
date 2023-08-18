@@ -1,6 +1,7 @@
 name: Automated Tests
 
-on: [push]  # Тести будуть запускатися при коммітах у ваш репозиторій
+on:
+  workflow_dispatch:
 
 jobs:
   build:
