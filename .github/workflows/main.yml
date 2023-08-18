@@ -18,4 +18,4 @@ jobs:
       - name: Build and test  # Команди для збирання та запуску тестів
         run: |
           cd overAll  # Перехід до модулю з тестами
-          mvn clean test -Dtest=LoginTest
+          mvn clean test -Dtest=LoginTestWithPageObject#validLogin -DdefaultLogin=qaauto
