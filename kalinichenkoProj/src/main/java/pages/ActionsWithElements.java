@@ -3,14 +3,14 @@ package pages;
 import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.Set;
 
 public class ActionsWithElements {
 
@@ -33,6 +33,56 @@ public class ActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    // how to add new window in browser and switch to it
+    public void addNewWindow() {
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        Set<String> handles = webDriver.getWindowHandles();
+        String currentHandle = webDriver.getWindowHandle();
+        handles.remove(currentHandle);
+        String nextHandle = handles.iterator().next();
+        webDriver.switchTo().window(nextHandle);
+    }
+
+    // how to switch to previous window
+    public void switchToPreviousWindow() {
+        Set<String> handles = webDriver.getWindowHandles();
+        String currentHandle = webDriver.getWindowHandle();
+        handles.remove(currentHandle);
+        String nextHandle = handles.iterator().next();
+        webDriver.switchTo().window(nextHandle);
+    }
+
+    //how to refresh page
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
+
+    //how to switch to next field in form
+    public ActionsWithElements switchToNextField() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.TAB).build().perform();
+        return this;
+    }
+
+    public ActionsWithElements enterTextIntoInput(String text) {
+        try {
+            webDriver.switchTo().activeElement().clear();
+            webDriver.switchTo().activeElement().sendKeys(text);
+            logger.info(text + " was inputted into input" + getElementName(webDriver.switchTo().activeElement()));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return this;
+    }
+
+
+
+    // how to press enter
+    public void pressEnter() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.ENTER).build().perform();
     }
 
     public void clickOnElement(WebElement element) {

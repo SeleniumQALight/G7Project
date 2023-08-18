@@ -1,7 +1,6 @@
 package testWithBrowser;
 
 import org.junit.Test;
-import workWithBrowser.WorkWithBrowser;
 
 import static test_data.TestData.*;
 
@@ -11,26 +10,27 @@ public class LonInTestWithBrowser extends baseTest.BaseTest {
     @Test
 
     public void LonInTestWithBrowser() {
-        WorkWithBrowser workWithBrowser = new WorkWithBrowser(webDriver);
-
         pageProvider.getLoginPage().openLoginPage(); // open login page// enter password
-        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);// enter password
-        workWithBrowser.switchToNextField(); // switch to next field
-        workWithBrowser.enterTextIntoInput(PASSWORD_DEFAULT);// enter password
-        workWithBrowser.switchToNextField(); // switch to next field
-        workWithBrowser.pressEnter(); // click on button
+        pageProvider.getLoginPage().switchToNextField()
+                .enterTextIntoInput(LOGIN_DEFAULT)// enter password
+                .switchToNextField() // switch to next field
+                .enterTextIntoInput(PASSWORD_DEFAULT)// enter password
+                .switchToNextField() // switch to next field
+                .pressEnter(); // click on button
         pageProvider.getHomePage()
                 .getHeader()
                 .checkIsButtonSignOutVisible();
-        workWithBrowser.addNewWindow(); // add new window
+        pageProvider.getHomePage().addNewWindow(); // add new window
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getHomePage()
                 .getHeader()
                 .checkIsButtonSignOutVisible();
-        pageProvider.getHomePage().getHeader()
-                .clickOnButtonSignOut();
-        workWithBrowser.switchToPreviousWindow();
-        workWithBrowser.refreshPage();
+        pageProvider.getHomePage().switchToNextField() // switch to next field
+                .pressEnter(); // click on button
+        pageProvider.getLoginPage()
+                .checkButtonSignInVisible();
+        pageProvider.getHomePage().switchToPreviousWindow();
+        pageProvider.getHomePage().refreshPage();
         pageProvider.getLoginPage()
                 .checkButtonSignInVisible();
     }
