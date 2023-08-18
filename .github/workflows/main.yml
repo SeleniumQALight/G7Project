@@ -21,4 +21,4 @@ jobs:
           mvn clean test -Dtest=LoginTestWithPageObject#validLogin -DdefaultLogin=qaauto
       - name: Archive target folder  # Архівація папки target
         run: |
-          zip -r target.zip overAll/target
+          Compress-Archive -Path overAll/target -DestinationPath target.zip
