@@ -1,5 +1,6 @@
 package loginTests;
 
+import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.assertj.core.configuration.ConfigurationProvider;
 import org.junit.Test;
@@ -16,8 +17,8 @@ public class LoginTest extends baseTest.BaseTest {
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterUserName(LOGIN_DEFAULT);
-        pageProvider.getLoginPage().enterPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterUserName(ConfigProvider.configHiddenProperties.login());
+        pageProvider.getLoginPage().enterPassword(ConfigProvider.configHiddenProperties.password());
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
