@@ -12,6 +12,7 @@ public class LonInTestWithBrowser extends baseTest.BaseTest {
     public void LonInTestWithBrowser() {
         pageProvider.getLoginPage().openLoginPage(); // open login page// enter password
         pageProvider.getLoginPage().switchToNextField()
+                .switchToNextField()
                 .enterTextIntoInput(LOGIN_DEFAULT)// enter password
                 .switchToNextField() // switch to next field
                 .enterTextIntoInput(PASSWORD_DEFAULT)// enter password
@@ -25,7 +26,11 @@ public class LonInTestWithBrowser extends baseTest.BaseTest {
         pageProvider.getHomePage()
                 .getHeader()
                 .checkIsButtonSignOutVisible();
-        pageProvider.getHomePage().switchToNextField() // switch to next field
+        pageProvider.getHomePage().switchToNextField()
+                .switchToNextField()
+                .switchToNextField()
+                .switchToNextField()
+                .switchToNextField()// switch to next field
                 .pressEnter(); // click on button
         pageProvider.getLoginPage()
                 .checkButtonSignInVisible();
