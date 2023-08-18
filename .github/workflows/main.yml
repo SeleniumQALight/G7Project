@@ -1,0 +1,21 @@
+name: Automated Tests
+
+on: [push]  # Тести будуть запускатися при коммітах у ваш репозиторій
+
+jobs:
+  build:
+    runs-on: windows-latest  # Запуск на Windows
+
+    steps:
+      - uses: actions/checkout@v2  # Клонування репозиторію
+      - name: Set up JDK  # Налаштування JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'  # Можете змінити на інший дистрибутив
+          java-version: '11'
+      - name: Set up Chrome  # Налаштування Chrome
+        uses: browser-actions/setup-chrome@latest
+      - name: Build and test  # Команди для збирання та запуску тестів
+        run: |
+          cd overAll  # Перехід до модулю з тестами
+          mvn clean test -Dtest=LoginTest
