@@ -63,7 +63,7 @@ public class PostPage extends ParentPageWithHeader {
     }
 
     public PostPage checkTextInThisPostWasWrittenFor(String text) {
-        Assert.assertEquals("Text in message", text, postBodyThisPostWasWrittenFor.getText());
+        Assert.assertEquals("Text in message", text, postBodyThisPostWasWrittenFor.getText().trim().replace("  ", " "));
         return this;
     }
 
