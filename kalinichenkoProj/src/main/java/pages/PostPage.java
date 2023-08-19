@@ -38,7 +38,7 @@ public class PostPage extends ParentPageWithHeader {
 
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
-        //TODO check unique element
+        checkElementDisplay(buttonEdit);
         return this;
     }
 
