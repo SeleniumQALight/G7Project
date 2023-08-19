@@ -1,9 +1,14 @@
 package LoginTests;
 
 import data.TestData;
+import libs.ExcelDriver;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.Map;
+
 import static data.TestData.*;
+import static libs.ConfigProvider.configProperties;
 
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
@@ -51,6 +56,16 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonChatNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonProfileNotVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostNotVisible();
+    }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoInputUserPassword(dataForValidLogin.get("pass"));
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
 
 }

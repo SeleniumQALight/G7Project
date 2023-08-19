@@ -16,16 +16,20 @@ public class PostPage extends ParentPageWithHeader {
     WebElement selectedValueFromDropDown;
     @FindBy(xpath = "//div[not(@*)]//p")
     WebElement uniquePostMessage;
-    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
-    private WebElement buttonDelete;
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    WebElement buttonDelete;
+    @FindBy(xpath = "//a[@class='text-primary mr-2']")
+    WebElement editButton;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
     @Override
     protected String getRelativeUrl() {
         return "/post/[a-zA-Z0-9]*";
     }
+
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
         //TODO unique elements
@@ -65,5 +69,10 @@ public class PostPage extends ParentPageWithHeader {
     public MyProfilePage clickOnDeletePostButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(editButton);
+        return new EditPostPage(webDriver);
     }
 }

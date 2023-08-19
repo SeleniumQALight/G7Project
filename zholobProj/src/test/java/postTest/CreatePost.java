@@ -33,9 +33,9 @@ public class CreatePost extends BaseTest {
 
 
 // перевіряє повідомлення в профайлі
-        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage()
-                .checkpostWithTitleIsPresent(title)
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()//
+                .checkIsRedirectToMyProfilePage()// перевірка чи ми на сторінці профайлу
+                .checkpostWithTitleIsPresent(title) // перевырка  чи є пост з таким заголовком
         ;
     }
 

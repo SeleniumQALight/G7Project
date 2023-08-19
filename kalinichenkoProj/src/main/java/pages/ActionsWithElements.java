@@ -3,15 +3,14 @@ package pages;
 import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import java.util.Set;
 
 public class ActionsWithElements {
 
@@ -30,17 +29,68 @@ public class ActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    // how to add new window in browser and switch to it
+    public void addNewWindow() {
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        Set<String> handles = webDriver.getWindowHandles();
+        String currentHandle = webDriver.getWindowHandle();
+        handles.remove(currentHandle);
+        String nextHandle = handles.iterator().next();
+        webDriver.switchTo().window(nextHandle);
+    }
+
+    // how to switch to previous window
+    public void switchToPreviousWindow() {
+        Set<String> handles = webDriver.getWindowHandles();
+        String currentHandle = webDriver.getWindowHandle();
+        handles.remove(currentHandle);
+        String nextHandle = handles.iterator().next();
+        webDriver.switchTo().window(nextHandle);
+    }
+
+    //how to refresh page
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
+
+    //how to switch to next field in form
+    public ActionsWithElements switchToNextField() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.TAB).build().perform();
+        return this;
+    }
+
+    public ActionsWithElements enterTextIntoInput(String text) {
+        try {
+            webDriver.switchTo().activeElement().clear();
+            webDriver.switchTo().activeElement().sendKeys(text);
+            logger.info(text + " was inputted into input" + getElementName(webDriver.switchTo().activeElement()));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return this;
+    }
+
+
+
+    // how to press enter
+    public void pressEnter() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.ENTER).build().perform();
+    }
+
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + "Element was clicked" );
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -58,19 +108,19 @@ public class ActionsWithElements {
         try {
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(element) + "Element is displayed");
             } else {
-                logger.info("Element is not displayed");
+                logger.info(getElementName(element) + "Element is not displayed");
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed");
+            logger.info(getElementName(element) + " Element is not displayed");
             return false;
         }
     }
 
     public void checkElementDisplay(WebElement element) {
-        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+        Assert.assertTrue(getElementName(element) + "Element is not displayed ", isElementDisplayed(element));
     }
 
     public void selectTextInDropDown(WebElement dropDown, String text) {
@@ -94,7 +144,7 @@ public class ActionsWithElements {
     }
 
     public void checkElementNotDisplay(WebElement element) {
-        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
+        Assert.assertFalse(getElementName(element) + "Element is displayed ", isElementDisplayed(element));
     }
 
     public void selectTextInDropDownByUI(WebElement dropDown, String text) {
@@ -111,10 +161,10 @@ public class ActionsWithElements {
         try {
             if (!element.isSelected()) {
                 element.click();
-                logger.info("Checkbox state was changed to set");
+                logger.info(getElementName(element) +"Checkbox state was changed to set");
                 return true;
             } else {
-                logger.info("Checkbox state was not changed it is already set");
+                logger.info(getElementName(element) + "Checkbox state was not changed it is already set");
                 return false;
             }
         } catch (Exception e) {
@@ -127,10 +177,10 @@ public class ActionsWithElements {
         try {
             if (element.isSelected()) {
                 element.click();
-                logger.info("Checkbox state was changed to unset");
+                logger.info(getElementName(element) + "Checkbox state was changed to unset");
                 return true;
             } else {
-                logger.info("Checkbox state was not changed it is already unset");
+                logger.info(getElementName(element) + "Checkbox state was not changed it is already unset");
                 return false;
             }
         } catch (Exception e) {
@@ -145,7 +195,15 @@ public class ActionsWithElements {
         clickOnElement(String.format(locator, title));
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    private String getElementName (WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
         Assert.fail("Can not work with element" + e);
     }

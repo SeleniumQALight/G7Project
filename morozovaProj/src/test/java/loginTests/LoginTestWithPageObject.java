@@ -5,6 +5,8 @@ package loginTests;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import libs.Util;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,7 +25,9 @@ import pages.LoginPage;
 //import java.sql.SQLOutput;
 //import java.util.concurrent.TimeUnit;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static data.TestData.*;
 
@@ -53,10 +57,12 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         };
     }
     @Test
-    public void validLogin() {
+    public void validLogin() throws IOException {//getData- немає обробки ексепшина
+        Map<String,String> dataForValidLogin =
+                ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
-        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputUserName(dataForValidLogin.get("login"));//LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));//PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
