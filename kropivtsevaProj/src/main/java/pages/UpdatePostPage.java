@@ -89,15 +89,6 @@ public class UpdatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    private List<WebElement> getPostsList(String title) {
-        return webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
-    }
-
-
-    public UpdatePostPage checkIsPostTitleUpdated(String title) {
-        Assert.assertEquals("Count of posts with title " + title, 0, getPostsList(title).size());
-        return this;
-    }
 
     public UpdatePostPage checkIsTextIntoInputBody(String bodyOfUpdatedPost) {
         Assert.assertEquals("Text in input body", bodyOfUpdatedPost, inputBody.getAttribute("value"));
