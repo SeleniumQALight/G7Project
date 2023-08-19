@@ -34,9 +34,6 @@ public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSave;
 
-    @FindBy(xpath = "//a[@href and @class='text-primary mr-2']")
-    private WebElement buttonEdit;
-
 
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
@@ -44,11 +41,6 @@ public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = "//button[text()='Save Post']")
     private WebElement buttonSavePost;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary']")
-    private WebElement buttonSaveUpdatedPost;
-
-    @FindBy(xpath = "//a[@class='small font-weight-bold' and contains(@href, '/post/')]")
-    private WebElement buttonViewPost;
     private String postTitleLocator = ".//*[text()='%s']";
 
     public PostPage(WebDriver webDriver) {
@@ -156,15 +148,6 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public PostPage clickOnButtonSaveUpdatedPost() {
-        clickOnElement(buttonSaveUpdatedPost);
-        return this;
-    }
-
-    public PostPage clickOnButtonEdit() {
-        clickOnElement(buttonEdit);
-        return this;
-    }
 
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
@@ -178,81 +161,12 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
-
-    public PostPage isButtonViewPostDisplayed() {
-        Assert.assertTrue("Button View Post is not displayed", isElementDisplayed(buttonViewPost));
+    public PostPage clickOnPostByTitle(String title) {
+        By postLocator = By.xpath(String.format(postTitleLocator, title));
+        WebElement postElement = webDriver.findElement(postLocator);
+        clickOnElement(postElement);
         return this;
     }
 
-    public PostPage isButtonUpdatePostDisplayed() {
-        Assert.assertTrue("Button Update Post is not displayed", isElementDisplayed(buttonSaveUpdatedPost));
-        return this;
-    }
-
-    public List<WebElement> getPostList(String title) {
-
-        return webDriver.findElements(By.xpath(
-                String.format(postTitleLocator, title
-                )));
-    }
-
-    public boolean isPostWithTitlePresent(String title) {
-        List<WebElement> postTitleElements = getPostList(title);
-        return !postTitleElements.isEmpty();
-    }
-
-    public boolean isOnlyOnePostWithTitlePresent(String title) {
-        List<WebElement> postTitleElements = getPostList(title);
-        return postTitleElements.size() == 1;
-    }
-
-    public PostPage assertPostWithTitleIsPresent(String title) {
-        Assert.assertTrue("Post with title '" + title + "' is not present", isPostWithTitlePresent(title));
-        return this;
-    }
-
-    public PostPage assertOnlyOnePostWithTitlePresent(String title) {
-        Assert.assertTrue("More than one post with title '" + title + "' is present", isOnlyOnePostWithTitlePresent(title));
-        return this;
-    }
-
-    public PostPage assertPostWithTitlesIsNotPresent(String title) {
-        Assert.assertFalse("Post with title '" + title + "' is present, but should not", isPostWithTitlePresent(title));
-        return this;
-    }
-    public PostPage findAndClickOnPostByTitle(String title) {
-        List<WebElement> postList = webDriver.findElements(By.xpath(
-                String.format(postTitleLocator, title)
-        ));
-
-        for (WebElement post : postList) {
-            if (post.getText().contains(title)) {
-                clickOnElement(post);
-                break;
-            }
-        }
-
-        return this;
-    }
-
-    public void deletePostByTitle(String title) {
-        List<WebElement> postList = getPostList(title);
-        int counter = 0;
-        while (!postList.isEmpty() && counter < 100) {
-            clickOnElement(postList.get(0));
-            new PostPage(webDriver).checkIsRedirectOnPostPage()
-                    .clickOnDeleteButton()
-                    .checkIsRedirectToMyProfilePage();
-            logger.info("Post with title " + title + " was deleted");
-            postList = getPostList(title);
-            counter++;
-        }
-
-        if (counter >= 100) {
-            Assert.fail("There are more than 100 posts with title " + title + " or delete button does not work");
-        }
-
-
-    }
 }
 

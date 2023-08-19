@@ -40,6 +40,16 @@ public class MyProfilePage  extends  ParentPageWithHeader {
         return this;
     }
 
+    public MyProfilePage checkPostWithTitleNotPresent(String title) {
+        Assert.assertEquals(" Count of posts with title " + title, 0, getPostList(title).size());
+
+        return this;
+    }
+    public boolean isOnlyOnePostWithTitlePresent(String title) {
+        List<WebElement> postTitleElements = getPostList(title);
+        return postTitleElements.size() == 1;
+    }
+
     public MyProfilePage deletePostTillPresent(String title) {
     List<WebElement> postlist = getPostList(title);
         int counter = 0;

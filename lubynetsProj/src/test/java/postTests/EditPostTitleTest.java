@@ -4,6 +4,7 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import pages.EditPostPage;
 import pages.PageProvider;
 import pages.PostPage;
 
@@ -13,6 +14,7 @@ public class EditPostTitleTest extends baseTest.BaseTest {
     private String newTitle;
     private String body;
     private PostPage postPage;
+    private EditPostPage EditPostPage;
 
 
     @Before
@@ -35,28 +37,30 @@ public class EditPostTitleTest extends baseTest.BaseTest {
     @Test
     public void editPostTitle() {
         postPage = new PostPage(webDriver);
+        EditPostPage = new EditPostPage(webDriver);
 
         newTitle = "Edited Post Title " + Util.getDateAndTimeFormatted();
         pageProvider.getHomePage()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage();
 
-        postPage.findAndClickOnPostByTitle(initialTitle)
-                .clickOnButtonEdit()
+        postPage.clickOnPostByTitle(initialTitle);
+        EditPostPage.clickOnButtonEdit()
                 .isButtonViewPostDisplayed()
-                .isButtonUpdatePostDisplayed()
-                .enterTextIntoInputTitle(newTitle)
-                .clickOnButtonSaveUpdatedPost()
-                .checkTextInSuccessMessage("Post successfully updated.");
+                .isButtonUpdatePostDisplayed();
+        postPage.enterTextIntoInputTitle(newTitle);
+        EditPostPage.clickOnButtonSaveUpdatedPost();
+        postPage.checkTextInSuccessMessage("Post successfully updated.");
 
 
         pageProvider.getPostPage()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage();
 
-        postPage.assertPostWithTitleIsPresent(newTitle)
-                .assertOnlyOnePostWithTitlePresent(newTitle)
-                .assertPostWithTitlesIsNotPresent(initialTitle);
+        pageProvider.getMyProfilePage().checkPostWithTitleIsPresent(newTitle)
+                .checkPostWithTitleNotPresent(initialTitle)
+                .isOnlyOnePostWithTitlePresent(newTitle);
+
 
     }
     @After
@@ -64,8 +68,8 @@ public class EditPostTitleTest extends baseTest.BaseTest {
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeeded()
                 .getHeader().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage();
-        postPage.deletePostByTitle(newTitle);
-        postPage.deletePostByTitle(initialTitle);
+                .checkIsRedirectToMyProfilePage()
+                .deletePostTillPresent(initialTitle)
+                .deletePostTillPresent(newTitle);
     }
 }
