@@ -1,11 +1,9 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.util.List;
 
 public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
@@ -40,6 +38,8 @@ public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = "//button[text()='Save Post']")
     private WebElement buttonSavePost;
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
+    private WebElement buttonSaveUpdatedPost;
 
     private String postTitleLocator = ".//*[text()='%s']";
 
@@ -161,10 +161,13 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public PostPage clickOnPostByTitle(String title) {
-        By postLocator = By.xpath(String.format(postTitleLocator, title));
-        WebElement postElement = webDriver.findElement(postLocator);
-        clickOnElement(postElement);
+    public PostPage isButtonUpdatePostDisplayed() {
+        Assert.assertTrue("Button Update Post is not displayed", isElementDisplayed(buttonSaveUpdatedPost));
+        return this;
+    }
+
+    public PostPage clickOnButtonSaveUpdatedPost() {
+        clickOnElement(buttonSaveUpdatedPost);
         return this;
     }
 

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class MyProfilePage  extends  ParentPageWithHeader {
+public class MyProfilePage extends ParentPageWithHeader {
 
     private String postTitleLocator = ".//*[text()='%s']";
 
@@ -45,34 +45,35 @@ public class MyProfilePage  extends  ParentPageWithHeader {
 
         return this;
     }
-    public boolean isOnlyOnePostWithTitlePresent(String title) {
-        List<WebElement> postTitleElements = getPostList(title);
-        return postTitleElements.size() == 1;
-    }
+
 
     public MyProfilePage deletePostTillPresent(String title) {
-    List<WebElement> postlist = getPostList(title);
+        List<WebElement> postlist = getPostList(title);
         int counter = 0;
-    while (!postlist.isEmpty()  && counter < 100 ){
+        while (!postlist.isEmpty() && counter < 100) {
 
-        clickOnElement(postlist.get(0));
-        new PostPage(webDriver).checkIsRedirectOnPostPage()
-                .clickOnDeleteButton()
-                .checkIsRedirectToMyProfilePage();
-        logger.info("Post with title " + title + " was deleted");
-        postlist = getPostList(title);
+            clickOnElement(postlist.get(0));
+            new PostPage(webDriver).checkIsRedirectOnPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage();
+            logger.info("Post with title " + title + " was deleted");
+            postlist = getPostList(title);
 
-        counter++;
+            counter++;
+        }
+
+        if (counter >= 100) {
+            Assert.fail("There are more than 100 posts with title " + title + "or delete button does not work");
+        }
+        return this;
     }
 
-    if (counter >= 100){
-        Assert.fail("There are more than 100 posts with title " + title + "or delete button does not work");
-    }
+    public MyProfilePage clickOnPostByTitle(String title) {
+        String postLocator = String.format(postTitleLocator, title);
+        clickOnElement(postLocator);
         return this;
     }
 
 
-
-
-    }
+}
 

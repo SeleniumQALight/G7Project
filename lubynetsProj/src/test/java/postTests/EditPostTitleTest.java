@@ -22,6 +22,8 @@ public class EditPostTitleTest extends baseTest.BaseTest {
         pageProvider = new PageProvider(webDriver);
         initialTitle = "HW6 - New post Lubynets " + Util.getDateAndTimeFormatted();
         body = "Body text";
+        postPage = pageProvider.getPostPage();
+        EditPostPage = pageProvider.getEditPostPage();
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeeded()
                 .getHeader().clickOnButtonCreatePost()
@@ -36,30 +38,26 @@ public class EditPostTitleTest extends baseTest.BaseTest {
 
     @Test
     public void editPostTitle() {
-        postPage = new PostPage(webDriver);
-        EditPostPage = new EditPostPage(webDriver);
 
         newTitle = "Edited Post Title " + Util.getDateAndTimeFormatted();
         pageProvider.getHomePage()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage();
 
-        postPage.clickOnPostByTitle(initialTitle);
+        pageProvider.getMyProfilePage().clickOnPostByTitle(initialTitle);
         EditPostPage.clickOnButtonEdit()
-                .isButtonViewPostDisplayed()
-                .isButtonUpdatePostDisplayed();
-        postPage.enterTextIntoInputTitle(newTitle);
-        EditPostPage.clickOnButtonSaveUpdatedPost();
-        postPage.checkTextInSuccessMessage("Post successfully updated.");
+                .isButtonViewPostDisplayed();
+        postPage.isButtonUpdatePostDisplayed()
+                .enterTextIntoInputTitle(newTitle)
+                .clickOnButtonSaveUpdatedPost()
+                .checkTextInSuccessMessage("Post successfully updated.");
 
 
         pageProvider.getPostPage()
                 .getHeader().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage();
-
-        pageProvider.getMyProfilePage().checkPostWithTitleIsPresent(newTitle)
-                .checkPostWithTitleNotPresent(initialTitle)
-                .isOnlyOnePostWithTitlePresent(newTitle);
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(newTitle)
+                .checkPostWithTitleNotPresent(initialTitle);
 
 
     }
