@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import java.sql.SQLException;
 
 public class HomePage extends ParentPageWithHeader {
     public HomePage(WebDriver webDriver) {
@@ -17,6 +18,14 @@ public class HomePage extends ParentPageWithHeader {
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.loginWithValidCreds();
+        checkIsRedirectToHomePage();
+        return this;
+
+    }
+
+    public HomePage openHomePageDB () throws SQLException, ClassNotFoundException {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.loginWithValidCredsFromDB();
         checkIsRedirectToHomePage();
         return this;
 
