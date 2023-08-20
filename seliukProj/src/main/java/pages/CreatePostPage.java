@@ -9,6 +9,11 @@ public class CreatePostPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     //elements
     @FindBy(id = "post-title")
     private WebElement inputTitle;
@@ -50,7 +55,7 @@ public class CreatePostPage extends ParentPageWithHeader {
 
     //checks
     public CreatePostPage checkIsRedirectOnCreatePostPage() {
-        //TODO: check url
+        checkUrl();
         //TODO: check some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;

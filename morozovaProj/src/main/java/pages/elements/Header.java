@@ -7,7 +7,6 @@ import pages.ActionsWithElements;
 import pages.CreatePostPage;
 import pages.MyProfilePage;
 
-
 public class Header extends ActionsWithElements {
     @FindBy(xpath = "//img[@alt='My profile']")
     private WebElement profileButton;
@@ -44,13 +43,17 @@ public class Header extends ActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public void clickOnButtonSignOut() { clickOnElement(buttonSignOut); }
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+    }
 
     public void checkIsButtonSignOutNotVisible() {
         checkElementNotDisplayed(buttonSignOut);
     }
 
-    public void checkIsButtonSearchVisible() {checkElementDisplayed(searchIcon); }
+    public void checkIsButtonSearchVisible() {
+        checkElementDisplayed(searchIcon);
+    }
 
     public void checkIsButtonSearchNotVisible() {
         checkElementNotDisplayed(searchIcon);
@@ -82,7 +85,7 @@ public class Header extends ActionsWithElements {
 
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
-     return new MyProfilePage(webDriver);
+        return new MyProfilePage(webDriver);
     }
 
     public boolean IsButtonSignOutVisible() {

@@ -27,12 +27,20 @@ public class PostPage extends ParentPageWithHeader {
     @FindBy(xpath = "//p/*[text()=' Note: This post was written for ']")
     private WebElement postAccessText;
 
+   @FindBy(xpath = "//*[@data-icon='edit']")
+   private WebElement buttonEdit;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check url
+        checkUrlWithPattern();
         //TODO some unique element
         return this;
     }
@@ -72,5 +80,10 @@ public class PostPage extends ParentPageWithHeader {
         Assert.assertEquals("Is created post status is unique", text, postIsUnique.getText());
         return this;
 
+    }
+
+    public CreatePostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new CreatePostPage(webDriver);
     }
 }

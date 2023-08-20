@@ -20,6 +20,11 @@ public class PostPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     //actions
     public MyProfilePage clickOnDeletePostButton() {
         clickOnElement(buttonDelete);
@@ -28,7 +33,7 @@ public class PostPage extends ParentPageWithHeader {
 
     //checks
     public PostPage checkIsRedirectOnPostPage() {
-        //TODO check url
+        checkUrlWithPattern();
         //TODO unique elements
         return this;
     }

@@ -5,6 +5,8 @@ import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -24,6 +26,7 @@ public class BaseTest {
 
     @Before
     public void setUp() {
+        logger.info("__________________" + testName.getMethodName()  + " was started_________________________");
         WebDriverManager.chromedriver().setup();
   //      webDriver = new ChromeDriver();
    //     webDriver.manage().window().maximize();
@@ -37,7 +40,11 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info("__________________" + testName.getMethodName() + " end _________________________");
     }
+
+    @Rule
+    public TestName testName = new TestName();
 
     private WebDriver initDriver () { // метод для ініціалізації драйвера
         String browser = System.getProperty("browser");

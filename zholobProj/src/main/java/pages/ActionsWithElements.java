@@ -169,6 +169,13 @@ public void toMarkAndToUnMarkCheckBoxByUI(WebElement element, String text) { // 
         printErrorAndStopTest(e);
     }
 }
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
-//sw
+
     }
