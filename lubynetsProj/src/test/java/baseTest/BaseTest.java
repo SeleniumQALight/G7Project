@@ -27,6 +27,7 @@ public class BaseTest {
     @Before
     public void setUp() {
         WebDriver webDriver = initDriver();
+        pageProvider = new PageProvider(webDriver);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
         WebDriverWait wait = new WebDriverWait(webDriver, ofSeconds(5));

@@ -38,8 +38,7 @@ public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = "//button[text()='Save Post']")
     private WebElement buttonSavePost;
-    @FindBy(xpath = "//button[@class='btn btn-primary']")
-    private WebElement buttonSaveUpdatedPost;
+
     @FindBy(xpath = "//a[@href and @class='text-primary mr-2']")
     private WebElement buttonEdit;
 
@@ -163,15 +162,9 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
-    public PostPage isButtonUpdatePostDisplayed() {
-        Assert.assertTrue("Button Update Post is not displayed", isElementDisplayed(buttonSaveUpdatedPost));
-        return this;
-    }
 
-    public PostPage clickOnButtonSaveUpdatedPost() {
-        clickOnElement(buttonSaveUpdatedPost);
-        return this;
-    }
+
+
     public PostPage clickOnButtonEdit() {
         clickOnElement(buttonEdit);
         return new PostPage(webDriver);

@@ -4,26 +4,19 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import pages.EditPostPage;
 import pages.PageProvider;
-import pages.PostPage;
+
 
 public class EditPostTitleTest extends baseTest.BaseTest {
 
     private String initialTitle;
     private String newTitle;
     private String body;
-    private PostPage postPage;
-    private EditPostPage EditPostPage;
-
 
     @Before
     public void prepareTestData() {
-        pageProvider = new PageProvider(webDriver);
         initialTitle = "HW6 - New post Lubynets " + Util.getDateAndTimeFormatted();
         body = "Body text";
-        postPage = pageProvider.getPostPage();
-        EditPostPage = pageProvider.getEditPostPage();
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeeded()
                 .getHeader().clickOnButtonCreatePost()
@@ -38,28 +31,27 @@ public class EditPostTitleTest extends baseTest.BaseTest {
 
     @Test
     public void editPostTitle() {
-
         newTitle = "Edited Post Title " + Util.getDateAndTimeFormatted();
         pageProvider.getHomePage()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage();
         pageProvider.getMyProfilePage().clickOnPostByTitle(initialTitle);
-        postPage.clickOnButtonEdit();
+        pageProvider.getPostPage().clickOnButtonEdit();
         pageProvider.getEditPostPage().isButtonViewPostDisplayed();
-        postPage.isButtonUpdatePostDisplayed()
-                .enterTextIntoInputTitle(newTitle)
-                .clickOnButtonSaveUpdatedPost()
-                .checkTextInSuccessMessage("Post successfully updated.");
+        pageProvider.getPostPage()
+                .enterTextIntoInputTitle(newTitle);
+        pageProvider.getEditPostPage().isButtonUpdatePostDisplayed()
+                .clickOnButtonSaveUpdatedPost();
 
+        pageProvider.getPostPage().checkTextInSuccessMessage("Post successfully updated.");
 
         pageProvider.getPostPage()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(newTitle)
                 .checkPostWithTitleNotPresent(initialTitle);
-
-
     }
+
     @After
     public void deleteEditedPost() {
         pageProvider.getHomePage()
