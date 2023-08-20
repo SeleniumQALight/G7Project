@@ -7,12 +7,14 @@ public class PageProvider {
 
     public PageProvider(WebDriver webDriver) {
         this.webDriver = webDriver;
+        postPage = new PostPage(webDriver);
     }
 
     public LoginPage getloginPage() {
         return new LoginPage(webDriver);
 
     }
+    private PostPage postPage;
 
     public HomePage getHomePage() {
         return new HomePage(webDriver);
@@ -32,4 +34,5 @@ public class PageProvider {
     {
         return new EditPostPage(webDriver);
     }
+
 }

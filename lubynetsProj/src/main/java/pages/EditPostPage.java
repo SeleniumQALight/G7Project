@@ -9,8 +9,7 @@ public class EditPostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = "//a[@class='small font-weight-bold' and contains(@href, '/post/')]")
     private WebElement buttonViewPost;
-    @FindBy(xpath = "//a[@href and @class='text-primary mr-2']")
-    private WebElement buttonEdit;
+
     public EditPostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -19,13 +18,11 @@ public class EditPostPage extends ParentPageWithHeader {
     protected String getRelativeUrl() {
         return "/edit-post";
     }
+
     public EditPostPage isButtonViewPostDisplayed() {
         Assert.assertTrue("Button View Post is not displayed", isElementDisplayed(buttonViewPost));
         return this;
     }
 
-    public EditPostPage clickOnButtonEdit() {
-        clickOnElement(buttonEdit);
-        return this;
-    }
+
 }

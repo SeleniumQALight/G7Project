@@ -43,10 +43,9 @@ public class EditPostTitleTest extends baseTest.BaseTest {
         pageProvider.getHomePage()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage();
-
         pageProvider.getMyProfilePage().clickOnPostByTitle(initialTitle);
-        EditPostPage.clickOnButtonEdit()
-                .isButtonViewPostDisplayed();
+        postPage.clickOnButtonEdit();
+        pageProvider.getEditPostPage().isButtonViewPostDisplayed();
         postPage.isButtonUpdatePostDisplayed()
                 .enterTextIntoInputTitle(newTitle)
                 .clickOnButtonSaveUpdatedPost()

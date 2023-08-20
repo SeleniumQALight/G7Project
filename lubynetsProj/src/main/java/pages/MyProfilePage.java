@@ -71,7 +71,7 @@ public class MyProfilePage extends ParentPageWithHeader {
     public MyProfilePage clickOnPostByTitle(String title) {
         String postLocator = String.format(postTitleLocator, title);
         clickOnElement(postLocator);
-        return this;
+        return new MyProfilePage(webDriver);
     }
 
 

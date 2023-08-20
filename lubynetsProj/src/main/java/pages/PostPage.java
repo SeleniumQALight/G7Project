@@ -40,6 +40,8 @@ public class PostPage extends ParentPageWithHeader {
     private WebElement buttonSavePost;
     @FindBy(xpath = "//button[@class='btn btn-primary']")
     private WebElement buttonSaveUpdatedPost;
+    @FindBy(xpath = "//a[@href and @class='text-primary mr-2']")
+    private WebElement buttonEdit;
 
     private String postTitleLocator = ".//*[text()='%s']";
 
@@ -169,6 +171,10 @@ public class PostPage extends ParentPageWithHeader {
     public PostPage clickOnButtonSaveUpdatedPost() {
         clickOnElement(buttonSaveUpdatedPost);
         return this;
+    }
+    public PostPage clickOnButtonEdit() {
+        clickOnElement(buttonEdit);
+        return new PostPage(webDriver);
     }
 
 }
