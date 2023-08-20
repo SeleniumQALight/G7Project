@@ -41,7 +41,7 @@ public class ActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            System.out.println(text + " was inputted into input");
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -49,9 +49,10 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait_10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            System.out.println("Element was clicked");
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -160,6 +161,14 @@ public class ActionsWithElements {
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
+        }
+    }
+
+    private String getElementName(WebElement element){
+        try{
+            return element.getAccessibleName();
+        } catch (Exception e){
+            return "";
         }
     }
 

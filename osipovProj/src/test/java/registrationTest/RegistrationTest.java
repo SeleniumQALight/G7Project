@@ -16,6 +16,7 @@ public class RegistrationTest extends BaseTest {
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
+    final static String ERROR_CYRILLIC_USERNAME = "Username can only contain letters and numbers.";
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
@@ -32,7 +33,15 @@ public class RegistrationTest extends BaseTest {
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtrtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "trtr@tr.com", "123", ERROR_PASSWORD}
+                {SHORT_USER_NAME, "trtrtr", "123456789012", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL},
+                {SHORT_USER_NAME, "trtr@tr.com", "123456", ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD},
+                {"test", "trtrtr", "123456", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {SHORT_USER_NAME, "trtr@tr.com", "123456789012", ERROR_USERNAME},
+                {"тест", "trtr@tr.com", "123456789012", ERROR_CYRILLIC_USERNAME},
+                {"qaauto", "trtr@tr.com", "123456789012", ERROR_ALREADY_EXIST},
+                {"test", "trtrtr", "123456789012", ERROR_EMAIL},
+                {"test", "trtr@tr.com", "123456", ERROR_PASSWORD}
+                //, {"test", "trtr@tr.com", "123456789012345678901234567890", ERROR_PASSWORD}
         };
     }
 }
