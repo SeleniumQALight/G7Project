@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
@@ -19,9 +20,13 @@ public class MyProfilePage extends ParentPageWithHeader {
 
     private String postTitleLocator = ".//*[text()='%s']";
 
+    @FindBy(xpath = ".//*[contains(text(),'Followers')]")
+    private WebElement followerButton;
+
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
-        //todo check unique element
+        checkElementDisplay(followerButton);
         return this;
     }
 

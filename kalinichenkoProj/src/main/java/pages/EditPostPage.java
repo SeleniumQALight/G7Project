@@ -17,7 +17,7 @@ public class EditPostPage extends commonCreatePostAndEditPost  {
 
     public EditPostPage checkIsRedirectToEditPostPage() {
         checkUrlWithPattern();
-        //TODO check unique element
+        checkElementDisplay(buttonSaveUpdates);
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }

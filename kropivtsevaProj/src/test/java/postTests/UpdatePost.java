@@ -35,7 +35,6 @@ public class UpdatePost extends BaseTest {
     }
 
     @Test
-
     public void updatePost() {
         pageProvider.getHomePage()
                 .getHeader().clickOnMyProfileButton()
@@ -46,16 +45,16 @@ public class UpdatePost extends BaseTest {
                 .checkIsRedirectToUpdatePostPage()
                 .enterTextIntoInputTitle(title + update)
                 .enterTextIntoInputBody("Body of updated post")
-//                .workWithCheckBox() - прибрала цей степ, тому-що там бага
-//                .checkOrUncheckCheckBoxDependingOnText("check") - прибрала цей степ, тому-що там бага
-//                .selectTextInDropDownByUI() - прибрала цей степ, тому-що там бага
                 .clickOnButtonSaveUpdates()
                 .checkIsSuccessMessageDisplayed("Post successfully updated.")
-                .checkIsPostTitleUpdated(title + update)
-                .checkIsTextIntoInputBody("Body of updated post")
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .checkPostWithTitleIsPresent(title + update);
+                .clickOnPostWithTitle(title + update)
+                .checkIsPostTitleDisplayed(title + update)
+                .checkIsPostBodyDisplayed("Body of updated post")
+        ;
+
+
     }
 
 
