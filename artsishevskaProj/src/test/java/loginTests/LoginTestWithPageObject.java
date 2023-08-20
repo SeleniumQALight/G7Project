@@ -1,15 +1,23 @@
 package loginTests;
 
 import data.TestData;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
 
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
+
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
 
-public class LoginTestWithPageObject extends baseTest.BaseTest{
+
+@RunWith(JUnitParamsRunner.class)
+public class LoginTestWithPageObject extends baseTest.BaseTest {
+    final static String ERROR_LOGIN = "Invalid username / pasword";
+
     @Test
-    public  void validLogin(){
+    public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
@@ -17,18 +25,20 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
+
     @Test
-    public void inValidLogin(){
+    public void inValidLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
-       pageProvider.getHomePage().getHeader().checkIsButtonMyProfileVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonMyProfileVisible();
     }
+
     @Test
-    public void checkingSignOut(){
+    public void checkingSignOut() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
@@ -55,5 +65,25 @@ public class LoginTestWithPageObject extends baseTest.BaseTest{
         pageProvider.getLoginPage().checkIsFieldPasswordVisible();
 
 
+    }
+
+    @Test
+    @Parameters(method = "parametersForInvalidLoginErrorsTest")
+    public void invalidLoginErrorsTest(String userName, String password, String expectedMessages) {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().checkIsMessageInvalidUserNameOrPasswordVisible();
+
+    }
+
+    public Object[][] parametersForInvalidLoginErrorsTest() {
+        return new Object[][]{
+                {"", "123456qwerty", ERROR_LOGIN},
+                {"quaauto", "123", ERROR_LOGIN},
+                {"qaauto", "", ERROR_LOGIN},
+                {"", "", ERROR_LOGIN},
+        };
     }
 }
