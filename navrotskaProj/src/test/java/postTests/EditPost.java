@@ -22,7 +22,7 @@ public class EditPost extends BaseTest {
                 .clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage("Post successfully updated.").getHeader()
                 .clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage().checkTitleOnMyProfilePage(editedTitle);
+                .checkIsRedirectToMyProfilePage().checkIsPostWasAdded(editedTitle);
 
     }
 
@@ -49,12 +49,22 @@ public class EditPost extends BaseTest {
     }
 
     @After
-    public void deletePosts() {
+    public void deleteEditedPosts() {
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeed()
                 .getHeader().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsTillPresent(editedTitle)
+
+        ;
+    }
+    @After
+    public void deletePosts() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeed()
+                .getHeader().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(title)
 
         ;
     }

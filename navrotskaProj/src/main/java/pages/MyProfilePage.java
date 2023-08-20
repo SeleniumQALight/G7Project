@@ -65,8 +65,4 @@ public class MyProfilePage extends ParentPageWithHeader {
         return this;
     }
 
-    public MyProfilePage checkTitleOnMyProfilePage(String title) {
-        Assert.assertEquals("Title is not present", 1, getPostList(title).size());
-        return this;
-    }
 }
