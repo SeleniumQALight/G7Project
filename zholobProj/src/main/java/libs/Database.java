@@ -27,13 +27,13 @@ public class Database {
      *  relevant connection string including "_USER"  and "_PASSWORD"
      */
     public Database(String dbDriver, String bdUrl, String user_name, String user_pass)
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException { // конструктор, задаємо параметри для підключення до БД
 
         // Load driver for JDBC class
-        Class.forName(dbDriver);
+        Class.forName(dbDriver); // "com.mysql.cj.jdbc.Driver" завантажує драйвер під час виконання програми
 
         // Create a connection to the database
-        connection = DriverManager.getConnection(bdUrl, user_name, user_pass);
+        connection = DriverManager.getConnection(bdUrl, user_name, user_pass); //створюємо з'єднання з БД
 
     }
 
@@ -109,7 +109,7 @@ public class Database {
      * returns result set as List of Strings
      */
     public ArrayList<ArrayList<String>> selectTable(String query) throws SQLException { // коли скрипт повертає багато рядочків
-        // Create statement for connection, execute query and save outcome in ResultSet
+        // Create statement for connection, execute query and save outcome in ResultSet //універсальний метод
         Statement stm = connection.createStatement();
         //System.out.println(query);
         ResultSet rSet = stm.executeQuery(query);
@@ -173,7 +173,7 @@ public class Database {
         // Create statement for connection, execute query and save outcome in ResultSet
         Statement stm = connection.createStatement(); // створюємо зв'язок з БД
         //System.out.println(query);
-        ResultSet rSet = stm.executeQuery(query);// виконуємо запит
+        ResultSet rSet = stm.executeQuery(query);// виконуємо запит, результат зберігаємо в ResultSet
 
         // Get ResultSet's meta data
         ResultSetMetaData meta = rSet.getMetaData(); // отримуємо метадані
@@ -214,13 +214,13 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    //
-    public int changeTable(String query, String... params) throws SQLException { // для UPDATE, DELETE, INSERT
-        Statement statement = connection.createStatement();
-        int effectedRows = statement.executeUpdate(String.format(query,params));
-        printQuery(query);
-        statement.close();
-        return effectedRows;
+    // підставляємо параметри в скрипт через %s, тобто скільки параметрів стільки %s, будуть  вставлені в срипт попорядку
+    public int changeTable(String query, String... params) throws SQLException { // для UPDATE, DELETE, INSERT повертає кількість змінених рядків
+        Statement statement = connection.createStatement();// створюємо зв'язок з БД
+        int effectedRows = statement.executeUpdate(String.format(query,params)); // змінна для кількості змінених рядків
+        printQuery(query); // виводимо скрипт в консоль
+        statement.close();// закриваємо зв'язок з БД
+        return effectedRows;//
     }
 
 
@@ -232,10 +232,11 @@ public class Database {
     }
 
     private void printQuery(String query) { // виводить скрип в консоль
-        String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query :
-                (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "...");
-        log.info("Query for execute: \"" + queryForOutput +"\"\n");
+        String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query : // якщо довжина скрипта менша за 100 символів, то виводимо скрипт
+                (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "..."); // якщо довжина скрипта більша за 100 символів, то виводимо перші 100 символів
+        log.info("Query for execute: \"" + queryForOutput +"\"\n"); // виводимо скрипт в консоль
     }
+// ? - замість if
 
 
 }

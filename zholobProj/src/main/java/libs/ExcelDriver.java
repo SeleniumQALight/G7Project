@@ -20,17 +20,18 @@ public class ExcelDriver {
 	 * as Map collection of key-value pairs. Column Number indicates number of data set. Note, please, that returned values
 	 * are String. We should take care of value's type by himself when will use
 	 * data values in the test.
-	 * шлях до файлу з даними назва листа, номер колонки
+	 * метод приймає на вхід шлях до файлу з даними, назва листа, номер колонки
+	 * і повертає мапу з ключем і значенням
 	 */
 
 	public static Map getMultipleData(String dataFileName, String sheetName, int columnNumber) throws IOException {
 		Map<String, String> testData = new HashMap<>();
 		// Create stream for reading from file
-		InputStream input = new FileInputStream(dataFileName); // створюємо конекшен для читання з файлу
+		InputStream input = new FileInputStream(dataFileName); // створюємо конекшен для читання з файлу записуємо в інпутстрім
 		// Get Excel WorkBook from input stream
-		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(input)); // створюємо ворк бук структура хлс
+		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(input)); // створюємо ворк бук структура аналогічна хлс
 		// Get Excel sheet from WorkBook
-		HSSFSheet sheet = wb.getSheet(sheetName);
+		HSSFSheet sheet = wb.getSheet(sheetName);//зчитуємо лист і записуємо в змінну
 
 		// Get number of data values
         int dataSize = sheet.getPhysicalNumberOfRows() - 1; // зчитуємо кількість рядків в таблиці
@@ -42,7 +43,7 @@ public class ExcelDriver {
 			testData.put(keyCell.getStringCellValue(), valueCell.getStringCellValue()); //додаємо в мапу ключ і значення
 		}
 
-		input.close();
+		input.close(); // закриваємо конекшен до файлу
 		return testData;
 	}
 
@@ -52,7 +53,9 @@ public class ExcelDriver {
       * as Map collection of key-value pairs. Note, please, that returned values
       * are String. We should take care of value's type by himself when will use
       * data values in the test.
+      * метод приймає на вхід шлях до файлу з даними, назва листа
       * з першої колонки ключ з другої значення
+      * викликаємо попередній метод
       */
     public static Map<String, String> getData(String dataFileName, String sheetName) throws IOException {
         return getMultipleData(dataFileName, sheetName, 1);
