@@ -46,7 +46,6 @@ public class DBTest {
 
 
 
-
         logger.info("---------------");
         DB_Util_seleniumTable db_util_seleniumTable = new DB_Util_seleniumTable();
         logger.info(db_util_seleniumTable.getPassForLogin("G5_taras"));
