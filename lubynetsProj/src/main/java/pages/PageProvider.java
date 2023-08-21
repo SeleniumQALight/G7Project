@@ -14,12 +14,25 @@ public class PageProvider {
 
     }
 
+
     public HomePage getHomePage() {
         return new HomePage(webDriver);
     }
 
-    public PostPage getPostPage()
+
+
+    public MyProfilePage getMyProfilePage()
     {
+        return new MyProfilePage(webDriver);
+    }
+
+
+    public PostPage getPostPage() {
         return new PostPage(webDriver);
     }
+
+    public EditPostPage getEditPostPage() {
+        return new EditPostPage(webDriver);
+    }
+
 }

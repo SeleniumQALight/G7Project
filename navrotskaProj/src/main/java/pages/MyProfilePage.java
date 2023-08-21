@@ -10,6 +10,7 @@ import java.util.List;
 public class MyProfilePage extends ParentPageWithHeader {
 
     private String postTitleLocator = ".//*[text()='%s']";
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -26,23 +27,29 @@ public class MyProfilePage extends ParentPageWithHeader {
     }
 
 
-    private List<WebElement> getPostList(String title){
+    private List<WebElement> getPostList(String title) {
         return webDriver.findElements(By.xpath(
                 String.format(postTitleLocator, title)
         ));
 
     }
 
+    public void clickOnPostWithTitle(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(
+                String.format(postTitleLocator, title)
+        )));
+    }
+
     public MyProfilePage checkIsPostWasAdded(String title) {
-Assert.assertEquals("Count of posts with title "
-        + title, 1, getPostList(title).size());
+        Assert.assertEquals("Count of posts with title "
+                + title, 1, getPostList(title).size());
         return this;
     }
 
     public MyProfilePage deletePostsTillPresent(String title) {
         List<WebElement> postsList = getPostList(title);
         int counter = 0;
-        while (!postsList.isEmpty() && counter < 100){
+        while (!postsList.isEmpty() && counter < 100) {
             clickOnElement(postsList.get(0));
             new PostPage(webDriver).checkIsRedirectToPostPage()
                     .clickOnDeleteButton()
@@ -51,10 +58,11 @@ Assert.assertEquals("Count of posts with title "
             postsList = getPostList(title);
             counter++;
         }
-        if (counter >= 100){
+        if (counter >= 100) {
             Assert.fail("There are more than 100 posts with title " + title);
         }
 
         return this;
     }
+
 }

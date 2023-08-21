@@ -2,7 +2,10 @@ package LoginTests;
 
 import data.TestData;
 import libs.ExcelDriver;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Map;
@@ -10,8 +13,10 @@ import java.util.Map;
 import static data.TestData.*;
 import static libs.ConfigProvider.configProperties;
 
+@RunWith(JUnitParamsRunner.class)
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
+
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
@@ -30,6 +35,25 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getLoginPage().checkMessageInvalidUsernamePasswordIsDisplayed();
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
+    }
+
+    @Test
+    @Parameters(method = "parametersForLogin")
+    public void checkErrorsTest(String userName, String password) {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoInputUserPassword(password);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().checkMessageInvalidUsernamePasswordIsDisplayed();
+
+    }
+
+    public Object[][] parametersForLogin() {
+        return new Object[][]{
+                {LOGIN_DEFOULT, PASSWORD_invalid},
+                {LOGIN_invalid, PASSWORD_DEFOULT},
+                {LOGIN_invalid, PASSWORD_invalid}
+        };
     }
 
     @Test
