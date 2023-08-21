@@ -20,7 +20,7 @@ public class CreatePostPage extends commonCreatePostAndEditPost {
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         checkUrl();
-        //TODO check unique element
+        checkElementDisplay(buttonSave);
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }

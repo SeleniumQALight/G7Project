@@ -1,11 +1,16 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends ParentPageWithHeader{
-    public HomePage (WebDriver webDriver) {
+public class HomePage extends ParentPageWithHeader {
+    public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @FindBy(xpath = ".//p[@class='lead text-muted']")
+    private WebElement textOnHomePage;
 
     @Override
     protected String getRelativeUrl() {
@@ -21,7 +26,7 @@ public class HomePage extends ParentPageWithHeader{
 
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
-        //TODO check unique element
+        checkElementDisplay(textOnHomePage);
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }
