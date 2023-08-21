@@ -66,7 +66,7 @@ public class ActionsWithElements {
 
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(element) + " Element is displayed");
             } else {
                 logger.info("Element is not displayed");
             }

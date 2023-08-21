@@ -10,5 +10,6 @@ public class TestData {
     public final static String SHORT_USER_NAME = "tr";
     public final static String INVALID_EMAIL = "@inv@Email";
     public final static String PASSWORD_INVALID_SHORT = "1";
+    public final static String LOGIN_DEFAULT1 = "qaauto";
 
 }

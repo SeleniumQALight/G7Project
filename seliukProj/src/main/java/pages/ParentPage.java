@@ -1,13 +1,12 @@
 package pages;
 
-import libs.ConfigProperties;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import static libs.ConfigProvider.configProperties;
+
 abstract public class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa");
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class); //2:31:57
     String BASE_URL;
 
 
@@ -38,24 +37,19 @@ abstract public class ParentPage extends ActionsWithElements {
         checkUrl(getRelativeUrl());
     }
 
-
-
-
     //https://aqa-complexapp.onrender.com/post/64dac18b2eafa800337c3b25
     //regex on 64dac18b2eafa800337c3b25
     //[a-z0-9]{24}
     //https://aqa-complexapp.onrender.com/post/[a-z0-9]
     protected void checkUrlWithPattern(String relativeUrl) {
         Assert.assertTrue("Url is not expected \n"
-                + "Expected result: " + BASE_URL + relativeUrl + "\n"
-                + "Actual result: " + webDriver.getCurrentUrl()
+                        + "Expected result: " + BASE_URL + relativeUrl + "\n"
+                        + "Actual result: " + webDriver.getCurrentUrl()
                 , webDriver.getCurrentUrl().matches(BASE_URL + relativeUrl));
     }
 
     protected void checkUrlWithPattern() {
         checkUrlWithPattern(getRelativeUrl());
     }
-
-
 
 }
