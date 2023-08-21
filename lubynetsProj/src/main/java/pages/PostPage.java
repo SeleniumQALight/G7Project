@@ -33,10 +33,16 @@ public class PostPage extends ParentPageWithHeader {
     private WebElement buttonSave;
 
 
-
-    @FindBy (xpath = ".//button[@class='delete-post-button text-danger']")
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
+    @FindBy(xpath = "//button[text()='Save Post']")
+    private WebElement buttonSavePost;
+
+    @FindBy(xpath = "//a[@href and @class='text-primary mr-2']")
+    private WebElement buttonEdit;
+
+    private String postTitleLocator = ".//*[text()='%s']";
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -143,10 +149,26 @@ public class PostPage extends ParentPageWithHeader {
         return this;
     }
 
+
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
 
     }
+
+    public PostPage enterTextIntoInputTitle(String title) {
+        postTitle.clear();
+        postTitle.sendKeys(title);
+        return this;
+    }
+
+
+
+
+    public PostPage clickOnButtonEdit() {
+        clickOnElement(buttonEdit);
+        return new PostPage(webDriver);
+    }
+
 }
 
