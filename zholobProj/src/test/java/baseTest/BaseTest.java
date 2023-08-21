@@ -26,7 +26,7 @@ public class BaseTest {
 
     @Before
     public void setUp() {
-        logger.info("__________________" + testName.getMethodName()  + " was started_________________________");
+        logger.info("__________________" + testName.getMethodName()  + " was started_________________________"); // для того щоб виводило назву тесту в логах
         WebDriverManager.chromedriver().setup();
   //      webDriver = new ChromeDriver();
    //     webDriver.manage().window().maximize();
@@ -40,11 +40,12 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
-        logger.info("__________________" + testName.getMethodName() + " end _________________________");
+        logger.info("__________________" + testName.getMethodName() + " end _________________________");// для того щоб виводило назву тесту в логах
     }
 
     @Rule
-    public TestName testName = new TestName();
+    public TestName testName = new TestName();// для того щоб виводило назву тесту в логах
+
 
     private WebDriver initDriver () { // метод для ініціалізації драйвера
         String browser = System.getProperty("browser");
