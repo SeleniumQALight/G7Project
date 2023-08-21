@@ -98,7 +98,7 @@ public class LoginPage extends ParentPage {
 
     public void loginWithValidCreds() {
         openLoginPage();
-        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT1);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
