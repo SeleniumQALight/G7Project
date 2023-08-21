@@ -72,10 +72,16 @@ public class CreatePostWithExcel extends BaseTest { //
                 .checkIsRedirectToCreatePostPage() //певірка чи ми на сторінці CreatePost
                 .enterTextIntoInputTitle(title)// вводимо текст в поле Title
                 .enterTextIntoInputBody(body) //
-                .selectTextInDropDown2("Приватне повідомлення") // вибираємо значення з дропдауну по тексту
-                .selectOnCheckBoxIs("check") // вибираємо чекбокс
+                .selectTextInDropDown2(dropdownValue) // вибираємо значення з дропдауну по тексту
+                .selectOnCheckBoxIs(checkBoxValue) // вибираємо чекбокс
                 .clickOnButtonSaveNewPost()// клік на кнопку SaveNewPost
                 .checkTextInSuccessMessage("New post successfully created."); // перевірка
+
+
+        // перевіряє повідомлення в профайлі
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()//
+                .checkIsRedirectToMyProfilePage()// перевірка чи ми на сторінці профайлу
+                .checkpostWithTitleIsPresent(title); // перевырка  чи є пост з таким заголовкомж
 
     }
 
