@@ -30,11 +30,12 @@ public class BaseTest {
     public void setUp() {
         logger.info("-----------" + testName.getMethodName() + " was started ------------");
        WebDriver webDriver = initDriver();
+        pageProvider = new PageProvider(webDriver);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
         WebDriverWait wait = new WebDriverWait(webDriver, ofSeconds(5));
         logger.info("Browser was opened");
-        pageProvider = new PageProvider(webDriver);
+
     }
 
     @After
