@@ -6,7 +6,7 @@ import org.aeonbits.owner.ConfigFactory;
 public class MySQL_Database {
     private static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
-    public static Database getDataBase() throws SQLException, ClassNotFoundException {
+    public static Database getDataBase() throws SQLException, ClassNotFoundException {// метод для конекшена до БД
         return new Database(
                 configProperties.MySQL()
                 , configProperties.MySQL_DB()

@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
 
-public class DB_Util_seleniumTable {
-    private Database mySQL_DataBase;
+public class DB_Util_seleniumUsers {
+    private  Database mySQL_DataBase;
     Logger logger = Logger.getLogger(getClass());
 
     public String getPassForLogin(String login) throws SQLException, ClassNotFoundException { // метод для витягування паролю з БД
@@ -13,7 +13,7 @@ public class DB_Util_seleniumTable {
         logger.info("--- Connected to DB -------");
 
         String pass = mySQL_DataBase.selectValue(
-                String.format("select passWord from seleniumTable where login = '%s'", login)
+                String.format("select passWord from seleniumUsers where login = '%s'", login)
                                                 );
         mySQL_DataBase.quit();
         logger.info("--- Disconnected from DB -------");
