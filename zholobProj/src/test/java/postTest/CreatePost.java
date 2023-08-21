@@ -6,9 +6,12 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
+
 public class CreatePost extends BaseTest {
     private String title = "TC01 - New Post Inna" + Util.getDateAndTimeFormatted();
     private String body = "Body of Post Inna";
+
+
 
     @Test
     public void createNewPost() {

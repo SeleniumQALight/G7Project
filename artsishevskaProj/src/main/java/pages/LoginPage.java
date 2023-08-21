@@ -42,6 +42,7 @@ public class LoginPage extends ParentPage{
     // private List<WebElement> alertDanger;
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -84,6 +85,9 @@ public class LoginPage extends ParentPage{
     }
     public void checkNotIsFieldPasswordVisible(){
         checkElementNotDisplayed(inputPassword);
+    }
+    public void checkIsMessageInvalidUserNameOrPasswordVisible(){
+        checkElementDisplayed(messageInvalidUserNameOrPassword);
     }
 
     public LoginPage getLoginPage(){

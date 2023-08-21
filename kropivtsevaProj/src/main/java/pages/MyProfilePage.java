@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
@@ -55,5 +54,10 @@ public class MyProfilePage extends ParentPageWithHeader {
             Assert.fail("There are more than 100 posts with title " + title + " or Delete button was not found");
         }
         return this;
+    }
+
+    public PostPage clickOnPostWithTitle(String title) {
+        clickOnElement(getPostsList(title).get(0));
+        return new PostPage(webDriver);
     }
 }

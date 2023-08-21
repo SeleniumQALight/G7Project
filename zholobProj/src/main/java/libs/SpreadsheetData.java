@@ -18,7 +18,8 @@ public class SpreadsheetData {
 
     private transient Collection<Object[]> data;
 
-    public SpreadsheetData(final InputStream excelInputStream, final String sheetName) throws IOException {
+//встановити конекшен до файлу і вказати назву листа з якого брати дані
+    public SpreadsheetData(final InputStream excelInputStream, final String sheetName) throws IOException { // конструктор
         this.data = loadFromSpreadsheet(excelInputStream, sheetName);
     }
 
@@ -50,7 +51,7 @@ public class SpreadsheetData {
                 rows.add(rowData.toArray());
             }
         }
-        return rows;
+        return rows; // повертаємо колекцію обєктів
     }
 
     private boolean isEmpty(final Row row) {
