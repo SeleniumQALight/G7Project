@@ -5,6 +5,8 @@ import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -26,7 +28,8 @@ public class BaseTest {
 
     @Before
     public void setUp() {
-        WebDriver webDriver = initDriver();
+        logger.info("-----------" + testName.getMethodName() + " was started ------------");
+       WebDriver webDriver = initDriver();
         pageProvider = new PageProvider(webDriver);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
@@ -39,7 +42,11 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info("-----------" + testName.getMethodName() + " was ended ------------");
     }
+
+    @Rule
+    public TestName testName = new TestName();
 
     private WebDriver initDriver() {
         String browser = System.getProperty("browser");
@@ -49,20 +56,23 @@ public class BaseTest {
         } else if ("firefox".equals(browser.toLowerCase())) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        } else if ("iedriver".equals(browser.toLowerCase())) {
+        } else if("iedriver".equals(browser.toLowerCase())) {
             WebDriverManager.iedriver().setup(); // zoom 100%
             webDriver = new InternetExplorerDriver();//level of security - Medium
-        } else if ("edgedriver".equals(browser.toLowerCase())) {
+        }
+        else if("edgedriver".equals(browser.toLowerCase())) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        } else if ("safari".equals(browser.toLowerCase())) {
+        }
+        else if ("safari".equals(browser.toLowerCase())) {
             WebDriverManager.getInstance(SafariDriver.class).setup();
             webDriver = new SafariDriver();
-        } else {
+        }
+        else {
             throw new IllegalArgumentException("Can't init driver for browser " + browser);
         }
 
-        return webDriver;
+        return  webDriver;
     }
 
 
