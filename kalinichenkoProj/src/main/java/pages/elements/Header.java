@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,59 +34,67 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']")
     private WebElement searchIcon;
 
-
+    @Step
     public void checkIsButtonSignOutVisible() {
         checkElementDisplay(buttonSignOut);
     }
 
+    @Step
     public void checkIsButtonSignOutNotVisible() {
         checkElementNotDisplay(buttonSignOut);
     }
 
+    @Step
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
 
+    @Step
     public void checkHomePageButtonVisible() {
         checkElementDisplay(homePageButton);
     }
 
+    @Step
     public void checkAddNewPostButtonVisible() {
         checkElementDisplay(addNewPostButton);
     }
 
+    @Step
     public void checkAddNewPostButtonNotVisible() {
         checkElementNotDisplay(addNewPostButton);
     }
 
-
+    @Step
     public void checkUserNameVisible() {
         checkElementDisplay(userName);
     }
 
+    @Step
     public void checkUserNameNotVisible() {
         checkElementNotDisplay(userName);
     }
 
-
+    @Step
     public void checkUserIconVisible() {
         checkElementDisplay(buttonMyProfile);
     }
 
+    @Step
     public void checkUserIconNotVisible() {
         checkElementNotDisplay(buttonMyProfile);
     }
 
-
+    @Step
     public void checkChatIconVisible() {
         checkElementDisplay(chatIcon);
     }
 
+    @Step
     public void checkChatIconNotVisible() {
         checkElementNotDisplay(chatIcon);
     }
 
-
+    @Step
     public void checkSearchIconVisible() {
         checkElementDisplay(searchIcon);
     }
@@ -98,6 +107,7 @@ public class Header extends ActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
