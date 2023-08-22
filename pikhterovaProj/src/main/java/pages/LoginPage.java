@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -48,23 +49,28 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         openPage(baseUrl);
         checkUrl();
     }
 
+    @Step
     public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public void loginWithValidCreds() {
         openLoginPage();
         enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
@@ -72,21 +78,25 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
         String [] errors = expectedMessages.split(";");
         // wait until all errors are visible
