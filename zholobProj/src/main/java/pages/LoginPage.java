@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -11,7 +12,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -61,20 +61,24 @@ public class LoginPage extends ParentPage {
         return "/"; // повертаємо шлях до сторінки
     }
 
+    @Step //
     public void openLoginPage() { // метод для відкриття сторінки
         openPage(BASE_URL);
         checkUrl();
     } // метод для відкриття сторінки
 
+    @Step
     public void enterTextIntoInputUserNane(String UserNane) { // метод для вводу юзернейм в поле
         enterTextIntoInput(inputUserNane, UserNane);
     } //
 
+    @Step
     public void enterTextIntoInputPassword(String Password) { // метод для вводу пароля в поле
 
         enterTextIntoInput(inputPassword, Password);
     }
 
+    @Step
     public void clickOnButtonSignIn() { // метод для кліку на кнопку Sign In
         clickOnElement(buttonSignIn);
     }
