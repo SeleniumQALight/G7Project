@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -52,47 +53,61 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         openPage(BASE_URL);
         checkUrl();
     }
+    @Step
     public void enterTextIntoInputUserName(String userName){
         enterTextIntoInput(inputUserName, userName);
     }
+    @Step
     public void enterTextIntoInputPassword(String password){
         enterTextIntoInput(inputPassword, password);
     }
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
+    @Step
     public void clickOnButtonSignOut(){
         clickOnElement(buttonSignOut);
     }
+    @Step
     public void checkIsButtonSignInVisible(){
         checkElementDisplayed(buttonSignIn);
     }
+    @Step
     public void checkIsFieldLoginVisible(){
         checkElementDisplayed(inputUserName);
     }
+    @Step
     public void checkIsFieldPasswordVisible(){
         checkElementDisplayed(inputPassword);
     }
+    @Step
     public void checkNotIsButtonSignInVisible(){
         checkElementNotDisplayed(buttonSignIn);
     }
+    @Step
     public void checkNotIsFieldLoginVisible(){
         checkElementNotDisplayed(inputUserName);
     }
+    @Step
     public void checkNotIsFieldPasswordVisible(){
         checkElementNotDisplayed(inputPassword);
     }
+    @Step
     public void checkIsMessageInvalidUserNameOrPasswordVisible(){
         checkElementDisplayed(messageInvalidUserNameOrPassword);
     }
+    @Step
 
     public LoginPage getLoginPage(){
         return new LoginPage(webDriver);
     }
+    @Step
 
     public void loginWithValidCreds() {
         openLoginPage();
@@ -100,20 +115,24 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
+    @Step
 
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
+    @Step
 
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
+    @Step
 
     public LoginPage checkErrorsMessages(String expectedMessages) {
         String[] errors = expectedMessages.split(";");
@@ -136,6 +155,7 @@ public class LoginPage extends ParentPage{
         softAssertions.assertAll();
         return this;
     }
+    @Step
 
     private List<WebElement> getListOfErrors() {
         return  webDriver.findElements(By.xpath(listErrorsMessagesLocator));
