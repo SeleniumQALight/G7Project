@@ -234,7 +234,7 @@ public class Database {
     }
 
     private void printQuery(String query) {
-        String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query ://умова виконується, то запиши, інакше наступний рядок
+        String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query :// тринарний оператор(типу іф/елс)умова виконується, то запиши, інакше наступний рядок
                 (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "...");
         log.info("Query for execute: \"" + queryForOutput +"\"\n");
     }
