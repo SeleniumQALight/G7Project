@@ -3,41 +3,42 @@ package loginTests;
 //import io.github.bonigarcia.wdm.WebDriverManager;
 //import org.junit.Assert;
 
+import categories.SmokeTestFilter;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
-import libs.Util;
-import org.junit.Assert;
+
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.LoginPage;
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.support.FindBy;
-//
-//import java.sql.SQLOutput;
-//import java.util.concurrent.TimeUnit;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import static data.TestData.*;
+@Epic("Allure examples")
+@Feature("Junit 4 support")
+
 
 @RunWith(JUnitParamsRunner.class) //позволяет использовать параметризацию
+@Category(SmokeTestFilter.class)
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
-
     final static String ERROR_USERNAME_OR_PASSWORD = "Invalid username / pasword";
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
 
     @Test //проверка входа с невалидными данными
+    @Ignore
+    @Category(SmokeTestFilter.class)
     @Parameters(method = "parametersForCheckInvalidLoginPassword") //параметризация
     public void checkInvalidLoginPassword(String userName, String password, String expectedMessages) {//перевірка невалідного логіну
         pageProvider.getLoginPage().openLoginPage();
@@ -57,6 +58,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         };
     }
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() throws IOException {//getData- немає обробки ексепшина
         Map<String,String> dataForValidLogin =
                 ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
