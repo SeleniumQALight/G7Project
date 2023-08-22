@@ -66,15 +66,12 @@ public class ActionsWithElements {
         }
     }
 
+//click on drop down and click on value
+    public void selectTextInDropDown  (WebElement dropDown, String text){
+        clickOnElement( dropDown);
+        clickOnElement(webDriver.findElement(org.openqa.selenium.By.xpath(".//option[text()='" + text + "']")));
 
-    public void selectTextInDropDown(WebElement dropDown, String text) {
-        try {
-            Select select = new Select(dropDown);
-            select.selectByVisibleText(text);
-            logger.info(text + " was selected in DropDown");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+
     }
 
     public void selectValueInDropDown(WebElement dropDown, String value) {
@@ -101,6 +98,18 @@ public class ActionsWithElements {
         }
     }
 
+    public void deactivateCheckBox (WebElement element, boolean state) {
+        try {
+            if (element.isSelected() == state) {
+                element.click();
+                logger.info("CheckBox was deactivated");
+            } else {
+                logger.info("CheckBox is already deactivated");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
     public void activateCheckBox(WebElement element, boolean state) {
         try {
@@ -112,6 +121,14 @@ public class ActionsWithElements {
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
+        }
+    }
+
+    public void changeCheckBoxState(WebElement element, boolean state) {
+        if (state) {
+            activateCheckBox(element, true);
+        } else {
+            deactivateCheckBox(element, false);
         }
     }
 }
