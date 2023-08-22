@@ -37,7 +37,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Story("Base support for bdd annotations")
 
     @Test //проверка входа с невалидными данными
-    @Ignore
+    //@Ignore
     @Category(SmokeTestFilter.class)
     @Parameters(method = "parametersForCheckInvalidLoginPassword") //параметризация
     public void checkInvalidLoginPassword(String userName, String password, String expectedMessages) {//перевірка невалідного логіну
