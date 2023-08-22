@@ -9,7 +9,7 @@ public class PageProvider {
         this.webDriver = webDriver;
     }
 
-    public LoginPage getloginPage() {
+    public LoginPage getLoginPage() {
         return new LoginPage(webDriver);
     }
 
@@ -21,5 +21,6 @@ public class PageProvider {
         return new PostPage(webDriver);
     }
 
+    public EditPostPage getPostEditPage() {return new EditPostPage(webDriver);}
 }
 

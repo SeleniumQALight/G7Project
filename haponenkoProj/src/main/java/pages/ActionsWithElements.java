@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,14 +22,14 @@ public class ActionsWithElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // this - means all elements from this class will be initialized (elements in @FindBy)
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -36,9 +37,18 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("The element was clicked");
+            logger.info(elementName + " element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void clickOnElement(String locator) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -48,30 +58,30 @@ public class ActionsWithElements {
         try {
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info("The element is displayed");
+                logger.info(getElementName(element) + " element is displayed");
             } else {
-                logger.info("The element is not displayed");
+                logger.info(getElementName(element) + " element is not displayed");
             }
             return state;
         } catch (Exception e) {
-            logger.info("The element is not displayed");
+            logger.info(getElementName(element) + " element is not displayed");
             return false;
         }
     }
 
     public void checkElementIsDisplayed(WebElement element) {
-        Assert.assertTrue("The element is not displayed", isElementDisplayed(element));
+        Assert.assertTrue(getElementName(element) + " element is not displayed", isElementDisplayed(element));
     }
 
     public void checkElementIsNotDisplayed(WebElement element) {
-        Assert.assertFalse("The element is displayed", isElementDisplayed(element));
+        Assert.assertFalse(getElementName(element) + " element is displayed", isElementDisplayed(element));
     }
 
     public void selectTextInDropDown(WebElement dropDown, String text) {
         try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(text);
-            logger.info(text + " was selected in DropDown");
+            logger.info(text + " was selected in DropDown " + getElementName(dropDown));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -81,7 +91,7 @@ public class ActionsWithElements {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
-            logger.info(value + " was selected in DropDown");
+            logger.info(value + " was selected in DropDown" + getElementName(dropDown));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -91,7 +101,7 @@ public class ActionsWithElements {
         try {
             clickOnElement(dropDown);
             clickOnElement(dropDown.findElement(By.xpath("//select[@id = 'select1']//*[contains(text(),'Загальнодоступне')]")));
-            logger.info(text + " was selected in DropDown");
+            logger.info(text + " was selected in DropDown " + getElementName(dropDown));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -101,9 +111,9 @@ public class ActionsWithElements {
         try {
             if (!checkboxUniquePost.isSelected()) {
                 clickOnElement(checkboxUniquePost);
-                logger.info("Checkbox was marked 'Yes'");
+                logger.info(getElementName(checkboxUniquePost) + " checkbox was marked 'Yes'");
             } else {
-                logger.info("Checkbox is already marked 'Yes'");
+                logger.info(getElementName(checkboxUniquePost) + " checkbox is already marked 'Yes'");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -145,6 +155,13 @@ public class ActionsWithElements {
         }
     }
 
+    private String getElementName (WebElement element) {
+        try{
+           return element.getAccessibleName();
+        }catch (Exception e){
+            return "";
+        }
+    }
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element " + e);
         Assert.fail("Can't work with element " + e);

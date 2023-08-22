@@ -17,13 +17,19 @@ public class MyProfilePage extends ParentPageWithHeder {
 
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";// символів може бути від 1 до безлічі
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        // TODO url
+        checkUrlWithPattern();
         // TODO unique element
 
         return this;
     }
-    private List<WebElement> getPostslist(String title){
+
+    private List<WebElement> getPostslist(String title) {
         return webDriver.findElements(By.xpath(
                 String.format(postTitleLocator, title)
         ));
@@ -40,8 +46,7 @@ public class MyProfilePage extends ParentPageWithHeder {
     public MyProfilePage deletePostsTillPresent(String title) {
         List<WebElement> postsList = getPostslist(title);
         int counter = 0;
-        while (!postsList.isEmpty() && counter<100) {// роби поки список не пустий
-
+        while (!postsList.isEmpty() && counter < 100) {// роби поки список не пустий
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -51,11 +56,16 @@ public class MyProfilePage extends ParentPageWithHeder {
             postsList = getPostslist(title);
             counter++;
         }
-        if (counter>=100) {
+        if (counter >= 100) {
             Assert.fail("There are more than 100 posts with title " + title);
         }
         //TODO check that posts with title not present
 
         return this;
+    }
+
+    public PostPage clickOnPostWithTitle(String title) {
+        clickOnElement(getPostslist(title).get(0));
+        return new PostPage(webDriver);
     }
 }

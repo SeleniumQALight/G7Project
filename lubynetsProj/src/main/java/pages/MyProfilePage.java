@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class MyProfilePage  extends  ParentPageWithHeader {
+public class MyProfilePage extends ParentPageWithHeader {
 
     private String postTitleLocator = ".//*[text()='%s']";
 
@@ -15,8 +15,13 @@ public class MyProfilePage  extends  ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check url
+        checkUrlWithPattern();
         // TODO check unique element
 
         return this;
@@ -35,29 +40,40 @@ public class MyProfilePage  extends  ParentPageWithHeader {
         return this;
     }
 
-    public MyProfilePage deletePostTillPresent(String title) {
-    List<WebElement> postlist = getPostList(title);
-        int counter = 0;
-    while (!postlist.isEmpty()  && counter < 100 ){
+    public MyProfilePage checkPostWithTitleNotPresent(String title) {
+        Assert.assertEquals(" Count of posts with title " + title, 0, getPostList(title).size());
 
-        clickOnElement(postlist.get(0));
-        new PostPage(webDriver).checkIsRedirectOnPostPage()
-                .clickOnDeleteButton()
-                .checkIsRedirectToMyProfilePage();
-        logger.info("Post with title " + title + " was deleted");
-        postlist = getPostList(title);
-
-        counter++;
-    }
-
-    if (counter >= 100){
-        Assert.fail("There are more than 100 posts with title " + title + "or delete button does not work");
-    }
         return this;
     }
 
 
+    public MyProfilePage deletePostTillPresent(String title) {
+        List<WebElement> postlist = getPostList(title);
+        int counter = 0;
+        while (!postlist.isEmpty() && counter < 100) {
 
+            clickOnElement(postlist.get(0));
+            new PostPage(webDriver).checkIsRedirectOnPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage();
+            logger.info("Post with title " + title + " was deleted");
+            postlist = getPostList(title);
 
+            counter++;
+        }
+
+        if (counter >= 100) {
+            Assert.fail("There are more than 100 posts with title " + title + "or delete button does not work");
+        }
+        return this;
     }
+
+    public MyProfilePage clickOnPostByTitle(String title) {
+        String postLocator = String.format(postTitleLocator, title);
+        clickOnElement(postLocator);
+        return new MyProfilePage(webDriver);
+    }
+
+
+}
 

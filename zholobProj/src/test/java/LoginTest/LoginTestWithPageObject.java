@@ -1,7 +1,11 @@
 package LoginTest;
 
-import data.TestData;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Map;
 
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
@@ -17,6 +21,19 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible(); // перевірка чи є кнопка SignOut
     }
+
+    @Test
+    public void validLoginWithExcel() throws IOException { // тест з даними з екселю
+        Map<String,String> dataForValidLogin =// створюємо мапу з даними з екселю
+                ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(),"validLogOn");// шлях до екселю і назва листа
+        pageProvider.getloginPage().openLoginPage();//
+        pageProvider.getloginPage().enterTextIntoInputUserNane(dataForValidLogin.get("login")); // заповнюємо з мапки значення по ключу логін//замість LOGIN_DEFAULT
+        pageProvider.getloginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass")); // заповнюємо з мапки значення по ключу пасс //замість PASSWORD_DEFAULT
+        pageProvider.getloginPage().clickOnButtonSignIn(); // клік на кнопку Sign In
+
+        pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible(); // перевірка чи є кнопка SignOut
+    }
+
 
     @Test
     public void inValidLogin() {

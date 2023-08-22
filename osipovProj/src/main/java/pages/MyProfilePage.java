@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
@@ -14,12 +15,17 @@ public class MyProfilePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO
+        checkUrlWithPattern();
         return this;
     }
 
-    private List<WebElement> getPostsList(String title) {
+    public List<WebElement> getPostsList(String title) {
         return webDriver.findElements(By.xpath(String.format(postTitleLocator, title)));
     }
 
@@ -27,6 +33,11 @@ public class MyProfilePage extends ParentPageWithHeader {
         Assert.assertEquals("Count of posts with title " + title,
                 1, getPostsList(title).size());
         return this;
+    }
+
+    public PostPage clickOnPostFromTheList(String title) {
+        clickOnElement(getPostsList(title).get(0));
+        return new PostPage(webDriver);
     }
 
     public MyProfilePage deletePostWithTitle(String postTitle) {

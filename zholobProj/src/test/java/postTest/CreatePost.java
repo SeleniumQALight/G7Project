@@ -6,9 +6,12 @@ import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
+
 public class CreatePost extends BaseTest {
     private String title = "TC01 - New Post Inna" + Util.getDateAndTimeFormatted();
     private String body = "Body of Post Inna";
+
+
 
     @Test
     public void createNewPost() {
@@ -33,9 +36,9 @@ public class CreatePost extends BaseTest {
 
 
 // перевіряє повідомлення в профайлі
-        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage()
-                .checkpostWithTitleIsPresent(title)
+        pageProvider.getPostPage().getHeader().clickOnMyProfileButton()//
+                .checkIsRedirectToMyProfilePage()// перевірка чи ми на сторінці профайлу
+                .checkpostWithTitleIsPresent(title) // перевырка  чи є пост з таким заголовком
         ;
     }
 

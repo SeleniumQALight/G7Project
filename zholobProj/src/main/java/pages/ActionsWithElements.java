@@ -1,11 +1,11 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -25,7 +25,7 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this); //initialization of elements
 // element in @FindBy
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10)); // чекаємо макс 10с поки елемент буде клікабельний
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW())); // чекаємо макс 15с поки елемент буде клікабельний
     }
 
 
@@ -36,19 +36,29 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) { //method for clicking on element
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element)); // чекаємо поки елемент буде клікабельний
             element.click();
+            logger.info(getElementName(element) + "Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void clickOnElement(String locator) { //ме метод для кліку по елементу
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(locator)));
             logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    public void enterTextIntoInput(WebElement element, String text) { //method for inputting text
+    public void enterTextIntoInput(WebElement  input , String text) { // метод для вводу тексту в інпут
         try {
-            element.clear();
-            element.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            input.clear();
+            input.sendKeys(text);
+            logger.info(text + " was inputted into input" + getElementName(input)); // виводимо в консоль інформацію про те що ввели в інпут
         } catch (Exception e) {
 
 
@@ -159,4 +169,13 @@ public void toMarkAndToUnMarkCheckBoxByUI(WebElement element, String text) { // 
         printErrorAndStopTest(e);
     }
 }
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+
     }

@@ -14,8 +14,13 @@ public class MyProfilePage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check URL
+        checkUrlWithPattern();
         //TODO check unique element
         return this;
     }
@@ -31,6 +36,11 @@ public class MyProfilePage extends ParentPageWithHeader{
                 1, getPostList(title).size());
         return this;
 
+    }
+    public PostPage selectPostByTitle(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(
+                String.format(postTitleLocator, title))));
+       return new PostPage(webDriver);
     }
 
     public MyProfilePage deletePostsTillPresent(String title) {

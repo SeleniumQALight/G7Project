@@ -23,14 +23,23 @@ public class PostPage extends ParentPageWithHeder {
     @FindBy(xpath = "//*/p[contains(text(),'unique')] ") // повыдомлення про унікальність поста на сторінці Post Page (no)
     private WebElement postUniqueOnPostPageElement;
 
+    @FindBy(xpath = "//*[@data-icon ='edit'] ") // кнопка редагування поста на сторінці Post Page
+    private WebElement buttonEditPostOnPostPageElement;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+
+    }
+
     public PostPage checkIsRedirectToPostPage() { // перевірка чи ми на сторінці Post Page
-//TODO check URL
-// TODO unique elements
+
+        checkUrlWithPattern();//TODO check URL
+
         return this;
     }
 
@@ -67,10 +76,16 @@ public class PostPage extends ParentPageWithHeder {
 
 
 
-    public MyProfilePage clickOnDeletePostButton() {
+    public MyProfilePage clickOnDeletePostButton() { // метод для видалення поста
         clickOnElement(buttonDelit);
         return new  MyProfilePage(webDriver);
     }
+
+    public PostEditPage clickOnEditPostButton() { // метод для натискання кнопки редагування поста
+        clickOnElement(buttonEditPostOnPostPageElement);
+        return new PostEditPage(webDriver);
+    }
+
 }
 
 

@@ -20,16 +20,25 @@ public class PostPage extends ParentPageWithHeader {
 
     @FindBy(xpath = ".//p[contains(text(),'this post')]")
     private WebElement postBodyThisPostUnique;
+
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+
+    @FindBy(xpath = ".//.//a[@class='text-primary mr-2']")
+    private WebElement buttonEdit;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check url
-        //TODO check unique element
+        checkUrlWithPattern();
+        checkElementDisplay(buttonEdit);
         return this;
     }
 
@@ -54,7 +63,7 @@ public class PostPage extends ParentPageWithHeader {
     }
 
     public PostPage checkTextInThisPostWasWrittenFor(String text) {
-        Assert.assertEquals("Text in message", text, postBodyThisPostWasWrittenFor.getText());
+        Assert.assertEquals("Text in message", text, postBodyThisPostWasWrittenFor.getText().trim().replace("  ", " "));
         return this;
     }
 
@@ -66,5 +75,10 @@ public class PostPage extends ParentPageWithHeader {
     public MyProfilePage clickOnDeletePostButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public EditPostPage clickOnEditPostButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
     }
 }

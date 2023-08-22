@@ -17,7 +17,11 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
-    public ParentPageWithHeader getPostPage() {
-        return new ParentPageWithHeader(webDriver);
+    public PostPage getPostPage() {
+        return new PostPage(webDriver);
+    }
+
+    public EditPostPage getEditPostPage() {
+        return new EditPostPage(webDriver);
     }
 }

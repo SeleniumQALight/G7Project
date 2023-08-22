@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
@@ -15,8 +16,13 @@ public class MyProfilePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check URL
+        checkUrlWithPattern();
         //TODO check some unique element
         return this;
     }
@@ -51,5 +57,10 @@ public class MyProfilePage extends ParentPageWithHeader {
             Assert.fail("There are more than 100 posts with title " + title);
         }
         return this;
+    }
+
+    public PostPage selectPostByTitle(String title) {
+        clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
+        return new PostPage(webDriver);
     }
 }

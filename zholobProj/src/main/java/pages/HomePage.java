@@ -7,6 +7,11 @@ public class HomePage extends ParentPageWithHeder { //
         super (webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public  HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver); // створюємо об'єкт класу LoginPage
         loginPage.loginWithValidCreds(); // викликаємо метод loginWithValidCreds() класу LoginPage
@@ -15,13 +20,14 @@ public class HomePage extends ParentPageWithHeder { //
     }
 
     public HomePage checkIsRedirectToHomePage() { // перевірка чи ми на домашній сторінці
-        //TODO check url
+        checkUrl(); //TODO check url
+
         //TODO some unique element
         getHeader().checkIsButtonSignOutVisible(); // перевірка чи є кнопка SignOut
         return this;
     }
 
-    public HomePage openHomePageAndLoginifNeeded() {
+    public HomePage openHomePageAndLoginifNeeded() {//
         LoginPage loginPage = new LoginPage(webDriver); // створюємо об'єкт класу LoginPage
         loginPage.openLoginPage();
         if(this.getHeader().isButtonSignOutVisible()) { // перевірка чи є кнопка SignOut
