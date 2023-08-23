@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -43,54 +44,56 @@ public class LoginPage extends ParentPage {
     protected String getRelativeUrl() {
         return "/";
     }
-
+@Step
     public void openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
     }
-
+    @Step
     public LoginPage enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
     }
 
+    @Step
     public LoginPage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
         return this;
     }
-
+    @Step
     public void checkIsButtonSignInVisible() {
         checkElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public void checkIsButtonSignInNotVisible() {
         checkElementIsNotDisplayed(buttonSignIn);
     }
-
+    @Step
     public void checkIsUserNameInputDisplayed() {
         checkElementDisplayed(inputUserName);
     }
-
+    @Step
     public void checkIsPasswordInputDisplayed() {
         checkElementDisplayed(inputPassword);
     }
-
+    @Step
     public void checkIsInvalidLoginMessageDisplayed() {
         checkElementDisplayed(invalidLoginMessage);
     }
-
+    @Step
     public void loginWithValidCred() {
         openLoginPage();
         enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
-
+    @Step
     public String createValidPostAndCheckIfExist() {
         loginWithValidCred();
         Header header = new Header(webDriver);
@@ -106,22 +109,22 @@ public class LoginPage extends ParentPage {
                 .checkPostWithTitleIsPresent(POST_TITLE);
         return POST_TITLE;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
         String[] errors = expectedMessages.split(";");
         //wait until number of errors will be equal to expected
@@ -142,7 +145,7 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
+    @Step
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
