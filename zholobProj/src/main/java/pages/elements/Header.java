@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,6 +38,7 @@ public class Header extends ActionsWithElements { // клас для робот�
 
     // Методи перевірки присутності елементів на сторінці :
 
+    @Step
     public void checkIsButtonSignOutVisible() { // метод для перевірки чи кнопка Sign Out присутня на сторінці
         checkElementDisplayed(buttonSignOut);
     }
