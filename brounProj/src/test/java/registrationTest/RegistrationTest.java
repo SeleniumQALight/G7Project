@@ -1,13 +1,15 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class) // для запуска декілька разів одного тесту з різними параметрами
-
+@Category(SmokeTestFilter.class)
 public class RegistrationTest extends BaseTest {
 //    String userName = "test";
 //    String email = "trtr";
@@ -37,7 +39,7 @@ public class RegistrationTest extends BaseTest {
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "tr@tr.com", "123", ERROR_PASSWORD},
+                {"test", "tr56@tr.com", "123", ERROR_PASSWORD},
                 {"Тест_Логін", "ТестЕмейл", "ТестПасс", ERROR_USERNAME_LATIN_LETTERS_NUMBERS + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
                 {"test", "trtr", "123456", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
 
