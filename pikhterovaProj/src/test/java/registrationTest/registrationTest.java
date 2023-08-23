@@ -1,12 +1,15 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilters;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilters.class)
 public class registrationTest extends BaseTest {
 
    // String userName = "test";
