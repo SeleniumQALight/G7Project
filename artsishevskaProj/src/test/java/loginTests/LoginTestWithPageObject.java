@@ -1,6 +1,8 @@
 package loginTests;
 
+import categories.SmokeTestFilter;
 import data.TestData;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ConfigProvider;
@@ -10,16 +12,27 @@ import org.junit.Test;
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
 
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class LoginTestWithPageObject extends baseTest.BaseTest {
     final static String ERROR_LOGIN = "Invalid username / pasword";
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
 
 
 

@@ -15,8 +15,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.PageProvider;
-
-import java.time.Duration;
+import pages.PostPage;
 
 import static java.time.Duration.ofSeconds;
 
@@ -25,11 +24,12 @@ public class BaseTest {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
+    protected PostPage postPage;
 
     @Before
     public void setUp() {
         logger.info("-----------" + testName.getMethodName() + " was started ------------");
-       WebDriver webDriver = initDriver();
+        WebDriver webDriver = initDriver();
         pageProvider = new PageProvider(webDriver);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
@@ -56,23 +56,20 @@ public class BaseTest {
         } else if ("firefox".equals(browser.toLowerCase())) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        } else if("iedriver".equals(browser.toLowerCase())) {
+        } else if ("iedriver".equals(browser.toLowerCase())) {
             WebDriverManager.iedriver().setup(); // zoom 100%
             webDriver = new InternetExplorerDriver();//level of security - Medium
-        }
-        else if("edgedriver".equals(browser.toLowerCase())) {
+        } else if ("edgedriver".equals(browser.toLowerCase())) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        }
-        else if ("safari".equals(browser.toLowerCase())) {
+        } else if ("safari".equals(browser.toLowerCase())) {
             WebDriverManager.getInstance(SafariDriver.class).setup();
             webDriver = new SafariDriver();
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Can't init driver for browser " + browser);
         }
 
-        return  webDriver;
+        return webDriver;
     }
 
 

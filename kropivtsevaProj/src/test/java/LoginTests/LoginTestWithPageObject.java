@@ -1,10 +1,13 @@
 package LoginTests;
 
+import categories.SmokeTestFilters;
 import data.TestData;
+import io.qameta.allure.*;
 import libs.ExcelDriver;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
@@ -13,11 +16,19 @@ import java.util.Map;
 import static data.TestData.*;
 import static libs.ConfigProvider.configProperties;
 
-@RunWith(JUnitParamsRunner.class)
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
-
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
     @Test
+    @Category(SmokeTestFilters.class)
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFOULT);

@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,20 +23,23 @@ public class Header extends ActionsWithElements {
         super(webDriver);
     }
 
+    @Step
     public void checkIsButtonSignOutVisible() {
         checkElementDisplayed(buttonSignOut);
     }
-
+    @Step
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
 
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
