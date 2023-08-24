@@ -1,8 +1,10 @@
 package registrationTest;
 
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import data.TestData;
 import org.openqa.selenium.WebElement;
@@ -11,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static java.time.Duration.ofSeconds;
 
-
+@Category(SmokeTestFilter.class)
 @RunWith(JUnitParamsRunner.class)
 public class RegistrationTest extends baseTest.BaseTest {
     //    String userName = "test";
