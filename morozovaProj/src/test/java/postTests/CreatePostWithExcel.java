@@ -67,8 +67,8 @@ public class CreatePostWithExcel extends BaseTest {
     @Test
     public void createNewPostWithExel() {
         pageProvider.getHomePage()
-                .getHeader().clickOnButtonCreatePost()
-                .checkIsRedirectToCreatePostPage()
+                .getHeader().clickOnButtonCreatePost() // клік CreatePost
+                .checkIsRedirectToCreatePostPage() //певірка чи ми на CreatePost
                 .enterTextIntoInputTitle(title)
                 .enterTextIntoInputBody(body)
                 //  .selectTextInDropDown("Групове повідомлення")
