@@ -1,13 +1,14 @@
 package LoginTests;
 
 import data.TestData;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.grid.config.Config;
+
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,13 +17,22 @@ import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
 
 @RunWith(JUnitParamsRunner.class)
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 
 public class LoginTestWithPageObject extends baseTest.BaseTest {
+    @Description("Login with valid credentials")
+    @Link("https://qa-complexapp.onrender.com")
+    @Link(name = "Base URL", type = "myLink")
+    @Issue("Issue-1")
+    @Issue("Issue-2")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
 
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextInputUserName("LOGIN_DEFAULT");
         pageProvider.getLoginPage().enterTextInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
@@ -32,7 +42,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 
     @Test
     public void validLoginWithExel() throws IOException {
-        Map<String,String> dataForValidLogin =
+        Map<String, String> dataForValidLogin =
                 ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextInputUserName(dataForValidLogin.get("login"));

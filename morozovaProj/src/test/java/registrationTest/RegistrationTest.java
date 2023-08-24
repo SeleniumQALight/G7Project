@@ -1,13 +1,15 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import junitparams.JUnitParamsRunner;
 
 @RunWith(JUnitParamsRunner.class) // завантажуэмо декілька разів
-
+@Category(SmokeTestFilter.class)
 
 public class RegistrationTest extends BaseTest {
 //    String userName = "test";
@@ -27,6 +29,7 @@ public class RegistrationTest extends BaseTest {
 
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
+
     public void checkErrorsTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);

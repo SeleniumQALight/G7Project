@@ -1,12 +1,19 @@
 package LoginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import data.TestData;
+import junitparams.JUnitParamsRunner;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+
+@RunWith(JUnitParamsRunner.class)
 
 public class SignOutTest extends BaseTest {
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void signOut() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextInputUserName(TestData.LOGIN_DEFAULT);
