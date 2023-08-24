@@ -1,9 +1,11 @@
 package loginTests;
 
+import categories.SmokeTestFilter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +16,7 @@ public class LoginTest {
     WebDriver webDriver;
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLoginIn() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import junit.framework.Assert;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -32,13 +33,13 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[text()='Invalid username / pasword']")
     private WebElement messageInvalidUsernamePassword;
 
-    @FindBy (id = "username-register")
+    @FindBy(id = "username-register")
     private WebElement inputUserNameRegistration;
 
-    @FindBy (id = "email-register")
+    @FindBy(id = "email-register")
     private WebElement inputEmailRegistration;
 
-    @FindBy (id = "password-register")
+    @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
     final String listErrorsMessagesLocator = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -54,52 +55,63 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         openPage(baseUrl);
         checkUrl();
     }
 
+    @Step
     public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
     }
 
+    @Step
     public void enterTextIntoInputUserPassword(String userPassword) {
         enterTextIntoInput(inputUserPassword, userPassword);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public void checkMessageInvalidUsernamePasswordIsDisplayed() {
         checkElementDisplay(messageInvalidUsernamePassword);
     }
 
+    @Step
     public void checkIsButtonSignInVisible() {
         checkElementDisplay(buttonSignIn);
     }
 
+    @Step
     public void checkIsButtonSignInNotVisible() {
         checkElementNotDisplay(buttonSignOut);
     }
 
+    @Step
     public void checkIsInputUserNameVisible() {
         checkElementDisplay(inputUserName);
     }
 
+    @Step
     public void checkIsInputUserNameNotVisible() {
         checkElementNotDisplay(inputUserName);
     }
 
+    @Step
     public void checkIsInputUserPasswordVisible() {
         checkElementDisplay(inputUserPassword);
     }
 
+    @Step
     public void checkIsInputUserPasswordNotVisible() {
         checkElementNotDisplay(inputUserPassword);
     }
 
-
+    @Step
     public void loginWithValidCred() {
         openLoginPage();
         enterTextIntoInputUserName(LOGIN_DEFOULT);
@@ -107,21 +119,25 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
         // error1:error2 -> [error1, error2]
         String[] errors = expectedMessages.split(";");
@@ -151,6 +167,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(
                 By.xpath(listErrorsMessagesLocator));
