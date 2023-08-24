@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -53,24 +54,24 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-
+@Step //хочемо бачити в репорті
     public void openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
     }
-
+    @Step //хочемо бачити в репорті
     public void enterTextIntoInputUserName(String UserName) {
         enterTextIntoInput(inputUserName, UserName);
     }
-
+    @Step //хочемо бачити в репорті
     public void enterTextIntoInputPassword(String Password) {
         enterTextIntoInput(inputPassword, Password);
     }
-
+    @Step //хочемо бачити в репорті
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-
+    @Step //хочемо бачити в репорті
     public void loginWithValidCreds() {
         openLoginPage();
         enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
@@ -80,7 +81,7 @@ public class LoginPage extends ParentPage {
     public void checkIsInputUserNameVisible() {
         checkElementDisplayed(inputUserName);
     }
-
+    @Step //хочемо бачити в репорті
     public void checkIsInputUserNameNotVisible() {
         checkElementNotDisplayed(inputUserName);
     }
