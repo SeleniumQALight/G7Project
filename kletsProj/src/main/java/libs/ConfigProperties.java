@@ -2,7 +2,7 @@ package libs;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources(value = "file:D:\\Natali\\JavaLearn2023\\G7_TAF\\G7Project\\kletsProj\\src\\main\\resources\\config.properties")
+@Config.Sources(value = "file:D:./src/main/resources/config.properties")
 public interface ConfigProperties extends Config {
 	long TIME_FOR_DEFAULT_WAIT();
 	long TIME_FOR_EXPLICIT_WAIT_LOW();
