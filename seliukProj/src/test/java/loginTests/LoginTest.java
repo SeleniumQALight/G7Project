@@ -1,8 +1,10 @@
 package loginTests;
 
+import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.assertj.core.configuration.ConfigurationProvider;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.security.auth.login.Configuration;
@@ -11,18 +13,34 @@ import java.util.Map;
 
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
-
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTest extends baseTest.BaseTest {
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
 
     @Test
+    //@Ignore
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterUserName(ConfigProvider.configHiddenProperties.login());
+        pageProvider.getLoginPage().enterUserName(/*"LOGIN_DEFAULT"*/ConfigProvider.configHiddenProperties.login());
         pageProvider.getLoginPage().enterPassword(ConfigProvider.configHiddenProperties.password());
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
 
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
     @Test
     /**
      * Додати тест кейс на недвалідний логін (але тепер вже з пейдж обжектом),
