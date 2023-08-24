@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.DB_Util_seleniumUsers;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -53,84 +54,89 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step  //Allure
     public void openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
     }
-
+    @Step
     public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
     }
-
+    @Step
     public void checkIsInputUserNameNotVisible() {
         checkElementNotDisplayed(inputUserName);
     }
-
+    @Step
     public void checkIsInputUserNameVisible() {
         checkElementDisplayed(inputUserName);
     }
-
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
-
+    @Step
     public void checkIsInputPasswordVisible() {
         checkElementDisplayed(inputPassword);
     }
-
+    @Step
     public void checkIsInputPasswordNotVisible() {
         checkElementNotDisplayed(inputPassword);
     }
-
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public void checkIsButtonSignInVisible() {
         checkElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public void checkIsButtonSignInNotVisible() {
         checkElementNotDisplayed(buttonSignIn);
     }
 
+    @Step
     public void isInvalidCredsErrorVisible() {
         checkElementDisplayed(InvalidCredsError);
     }
+    @Step
     public void loginWithValidCreds() {
         openLoginPage();
         enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
+    @Step
     public void loginWithValidCredsFromDB() throws SQLException, ClassNotFoundException  {
         openLoginPage();
         enterTextIntoInputUserName("newqaauto");
         enterTextIntoInputPassword(PasswordFromDB("newqaauto"));
         clickOnButtonSignIn();
     }
-
+    @Step
     public String PasswordFromDB(String login) throws SQLException, ClassNotFoundException {
         DB_Util_seleniumUsers dbUtilSeleniumUsers = new DB_Util_seleniumUsers();
         String pass = dbUtilSeleniumUsers.getPassForLogin(login);
         return pass;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
         // error1;error2 -> [error1, error2]
         String[] errors = expectedMessages.split(";");

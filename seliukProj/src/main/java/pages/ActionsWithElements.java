@@ -31,7 +31,7 @@ public class ActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info("'" + text + "' was inputted into input");
+            logger.info("'" + text + "' was inputted into input " + getElementName(input));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -39,9 +39,10 @@ public class ActionsWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info(getElementName(element) + " was clicked");
+            logger.info("Element \"" + elementName + "\"" + " was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

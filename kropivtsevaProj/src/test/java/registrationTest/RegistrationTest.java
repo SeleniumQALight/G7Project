@@ -1,13 +1,15 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilters;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-
+@Category(SmokeTestFilters.class)
 public class RegistrationTest extends BaseTest {
 //    String userName = "test";
 //    String email = "trtr";
@@ -23,9 +25,10 @@ public class RegistrationTest extends BaseTest {
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
+
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
-    public void checkErrorsTest(String userName, String email, String password, String expectedMessages){
+    public void checkErrorsTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);
         pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
@@ -40,6 +43,6 @@ public class RegistrationTest extends BaseTest {
                 {"test", "tr@tr.com", "123456", ERROR_PASSWORD},
                 {"тест", "test", "123456", ERROR_USERNAME_NOT_ENGLISH + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
                 {"test", "test", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm1234567890", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD_LONGEST}}
-        ;
+                ;
     }
 }

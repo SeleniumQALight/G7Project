@@ -1,11 +1,14 @@
 package registrationTest;
 
+import categories.SmokeTestFilter;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import junitparams.JUnitParamsRunner;
 
 @RunWith(JUnitParamsRunner.class) // тест буде запускатись кылька раз з різними параметрами
+@Category(SmokeTestFilter.class) // категорія тесту фільтр для запуску тестів
 
 public class RegistrationTest extends baseTest.BaseTest {
 

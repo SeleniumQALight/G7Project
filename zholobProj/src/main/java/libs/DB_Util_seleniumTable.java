@@ -1,13 +1,14 @@
 package libs;
 
-import java.sql.SQLException;
 import org.apache.log4j.Logger;
+
+import java.sql.SQLException;
 
 public class DB_Util_seleniumTable {
     private Database mySQL_DataBase;
     Logger logger = Logger.getLogger(getClass());
 
-    public String getPassForLogin(String login) throws SQLException, ClassNotFoundException {
+    public String getPassForLogin(String login) throws SQLException, ClassNotFoundException { // метод для витягування паролю з БД
         mySQL_DataBase = MySQL_Database.getDataBase();
         logger.info("--- Connected to DB -------");
 

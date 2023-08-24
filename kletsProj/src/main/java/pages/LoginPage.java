@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -53,52 +54,53 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
     }
 
-
+    @Step
     public void enterTextInputUserName(String userName) {
         enterTextIntoInput(inputUsername, userName);
     }
-
+    @Step
     public void enterTextInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public void checkButtonSignInDisplayed() {
         checkIsElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public void checkErrorMessageIsDisplayed() {
         checkIsElementDisplayed(errorMessage);
     }
-
+    @Step
     public void checkIsInputUsernameLoginVisible() {
         checkIsElementDisplayed(inputUsername);
     }
-
+    @Step
     public void checkIsInputPasswordLoginVisible() {
         checkIsElementDisplayed(inputPassword);
     }
-
+    @Step
     public void checkIsButtonSignInVisible() {
         checkIsElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public void checkIsButtonSignInNotVisible() {
         checkIsElementNotDisplayed(buttonSignIn);
     }
-
+    @Step
     public void checkIsInputUsernameLoginNotVisible() {
         checkIsElementNotDisplayed(inputUsername);
     }
-
+    @Step
     public void checkIsInputPasswordLoginNotVisible() {
         checkIsElementNotDisplayed(inputPassword);
     }
@@ -106,29 +108,29 @@ public class LoginPage extends ParentPage {
     public void checkIsErrorMessageNotVisible() {
         checkIsElementNotDisplayed(errorMessage);
     }
-
+    @Step
     public void loginWithValidCreds() {
         openLoginPage();
         enterTextInputUserName(TestData.LOGIN_DEFAULT);
         enterTextInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
         // error1;error2; - > [error1, error2]
         String[] errors = expectedMessages.split(";");

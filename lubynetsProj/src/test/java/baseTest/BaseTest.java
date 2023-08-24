@@ -5,6 +5,8 @@ import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,8 +15,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.PageProvider;
-
-import java.time.Duration;
+import pages.PostPage;
 
 import static java.time.Duration.ofSeconds;
 
@@ -23,9 +24,11 @@ public class BaseTest {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
+    protected PostPage postPage;
 
     @Before
     public void setUp() {
+        logger.info("-----------" + testName.getMethodName() + " was started ------------");
         WebDriver webDriver = initDriver();
         pageProvider = new PageProvider(webDriver);
         webDriver.manage().window().maximize();
@@ -39,7 +42,11 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info("-----------" + testName.getMethodName() + " was ended ------------");
     }
+
+    @Rule
+    public TestName testName = new TestName();
 
     private WebDriver initDriver() {
         String browser = System.getProperty("browser");

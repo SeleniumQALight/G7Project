@@ -32,7 +32,7 @@ public class ActionWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input" +getElementName(input));
         } catch (Exception e) {
 //            logger.error("Can not work with element " + e);
 //            Assert.fail("Can not work with element " + e);
@@ -84,9 +84,10 @@ public class ActionWithElements {
 
     public void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + "Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -137,6 +138,14 @@ public class ActionWithElements {
         } else {
             logger.error("Invalid state provided. Please use 'check' or 'uncheck'.");
         }
+    }
+
+    private String getElementName(WebElement element) {
+      try {
+          return element.getAccessibleName();
+      } catch (Exception e) {
+          return "";
+      }
     }
     public void checkCheckbox(WebElement checkBoxElement) {
         if (!checkBoxElement.isSelected()) {
