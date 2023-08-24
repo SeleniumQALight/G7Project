@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,6 +39,7 @@ public class Header extends ActionsWithElements {
     }
 
     //checks
+    @Step
     public void checkIsButtonSignOutVisible() {
         checkElementDisplayed(buttonSignOut);
     }

@@ -32,7 +32,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName("LOGIN_DEFAULT");
+        pageProvider.getLoginPage().enterTextInputUserName(LOGIN_DEFAULT);
         pageProvider.getLoginPage().enterTextInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 

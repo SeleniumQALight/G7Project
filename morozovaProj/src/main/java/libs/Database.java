@@ -27,21 +27,21 @@ public class Database {
      *  relevant connection string including "_USER"  and "_PASSWORD"
      */
     public Database(String dbDriver, String bdUrl, String user_name, String user_pass)
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException { // конструктор, задаємо параметри для підключення до БД
 
-        // Load driver for JDBC class під час роботи програми
-        Class.forName(dbDriver);//com.mysql.cj.jdbc.Driver
+        // Load driver for JDBC class
+        Class.forName(dbDriver); // "com.mysql.cj.jdbc.Driver" завантажує драйвер під час виконання програми
 
         // Create a connection to the database
-        connection = DriverManager.getConnection(bdUrl, user_name, user_pass);
+        connection = DriverManager.getConnection(bdUrl, user_name, user_pass); //створюємо з'єднання з БД
 
     }
 
     /*
      *  That method gets SQL [Select COLUMN_NAME from TABLE_NAME where ...] query as parameter and returns result as
-     * String 1 ячейка
+     * String
      */
-    public String selectValue(String query) throws SQLException {
+    public String selectValue(String query) throws SQLException { // коли скрипт повертає тільки одне значення
         // Create statement for connection, execute query and save outcome in ResultSet
         Statement stm = connection.createStatement();
         ResultSet rSet = stm.executeQuery(query);
@@ -68,9 +68,9 @@ public class Database {
 
     /*
      *  That method gets SQL [Select COLUMN_NAME from TABLE_NAME where ...] query as parameter and returns result set
-     *  as List of Strings до 1 рядочок
+     *  as List of Strings
      */
-    public List selectResultSet(String query) throws SQLException {
+    public List selectResultSet(String query) throws SQLException { // коли скрипт повертає тільки один рядочок
         // Create statement for connection, execute query and save outcome in ResultSet
         Statement stm = connection.createStatement();
         ResultSet rSet = stm.executeQuery(query);
@@ -106,10 +106,10 @@ public class Database {
     // taras1 | 325
     /*
      *  That method gets SQL [Select COLUMN_NAME_1,COLUMN_NAME_2 from TABLE_NAME where ...] query as parameter and
-     * returns result set as List of Strings може повернути багато рядочків
+     * returns result set as List of Strings
      */
-    public ArrayList<ArrayList<String>> selectTable(String query) throws SQLException {
-        // Create statement for connection, execute query and save outcome in ResultSet
+    public ArrayList<ArrayList<String>> selectTable(String query) throws SQLException { // коли скрипт повертає багато рядочків
+        // Create statement for connection, execute query and save outcome in ResultSet //універсальний метод
         Statement stm = connection.createStatement();
         //System.out.println(query);
         ResultSet rSet = stm.executeQuery(query);
@@ -169,61 +169,59 @@ public class Database {
      *  That method gets SQL [Select COLUMN_NAME_1,COLUMN_NAME_2 from TABLE_NAME where ...] query as parameter and
      * returns result set as List<Map>
      */
-    public ArrayList<Map<String, String>> selectTableAsMap(String query) throws SQLException {
+    public ArrayList<Map<String, String>> selectTableAsMap(String query) throws SQLException { // повертає динамічний список
         // Create statement for connection, execute query and save outcome in ResultSet
-        Statement stm = connection.createStatement();
+        Statement stm = connection.createStatement(); // створюємо зв'язок з БД
         //System.out.println(query);
-        ResultSet rSet = stm.executeQuery(query);//резалт сет є дані та методані
+        ResultSet rSet = stm.executeQuery(query);// виконуємо запит, результат зберігаємо в ResultSet
 
         // Get ResultSet's meta data
-        ResultSetMetaData meta = rSet.getMetaData();
-        int columnNumber = meta.getColumnCount();
+        ResultSetMetaData meta = rSet.getMetaData(); // отримуємо метадані
+        int columnNumber = meta.getColumnCount();// дізнаємось кількість колонок
 
-        ArrayList<Map<String, String>> resultTable = new ArrayList<>();
+        ArrayList<Map<String, String>> resultTable = new ArrayList<>(); // створюємо список мапок
 
-        while (rSet.next()) {//якщо є наступний запис- виконуй
+        while (rSet.next()) { // поки є наступний рядок
             HashMap<String, String> resultSet = new HashMap<>();
 
             for (int k = 1; k < (columnNumber + 1); k++) {
                 String value = "";
 
-                if (rSet.getObject(k) != null) {
-                    value = rSet.getObject(k).toString();// вичитать ячейку перевести в стрінг
+                if (rSet.getObject(k) != null) { // якщо значення не нульове
+                    value = rSet.getObject(k).toString(); // отримуємо значення переводимо в стрінгу
 
-                    if (meta.getColumnType(k) == 93) {
-                        value = value.substring(0, value.length() - 2);//вирізає 2 останні символи
+                    if (meta.getColumnType(k) == 93) { // якщо тип колонки дата
+                        value = value.substring(0, value.length() - 2); // видаляємо з кінця два службові символи
                     }
                 }
 
-                value = value.trim();// трім- прибирає пробіли на початку та в кінці
-                resultSet.put(meta.getColumnName(k), value);//формування пари ключ-значення
+                value = value.trim(); // видаляємо пробіли
+                resultSet.put(meta.getColumnName(k), value); // додаємо в мапу значення, назву колонки
             }
 
-            resultTable.add(resultSet);
+            resultTable.add(resultSet); // додаємо мапу в список
         }
 
         // Close the statement
-        stm.close();//закриття сесії
+        stm.close();
         printQuery(query);
         return resultTable;
     }
 
     /**
-     * Метод for UPDATE INSERT DELETE
+     * метод для UPDATE, DELETE, INSERT
      * @param query
      * @return
+     * @throws SQLException
      */
-
-    //changeTable(String query, String.., String ->params)
-    public int changeTable(String query, String...params) throws SQLException {//може бути багато стрінгів записувати в парамс
-       Statement statement = connection.createStatement();
-       int effectedRows = statement.executeUpdate(String.format(query,params)); //виконує UPDATE INSERT DELETE
-        statement.close();
-        return effectedRows;
-
+    // підставляємо параметри в скрипт через %s, тобто скільки параметрів стільки %s, будуть  вставлені в срипт попорядку
+    public int changeTable(String query, String... params) throws SQLException { // для UPDATE, DELETE, INSERT повертає кількість змінених рядків
+        Statement statement = connection.createStatement();// створюємо зв'язок з БД
+        int effectedRows = statement.executeUpdate(String.format(query,params)); // змінна для кількості змінених рядків
+        printQuery(query); // виводимо скрипт в консоль
+        statement.close();// закриваємо зв'язок з БД
+        return effectedRows;//
     }
-
-
 
 
     /*
@@ -233,11 +231,10 @@ public class Database {
         connection.close();
     }
 
-    private void printQuery(String query) {
-        String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query ://умова виконується, то запиши, інакше наступний рядок
-                (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "...");
-        log.info("Query for execute: \"" + queryForOutput +"\"\n");
+    private void printQuery(String query) { // виводить скрип в консоль
+        String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query : // якщо довжина скрипта менша за 100 символів, то виводимо скрипт
+                (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "..."); // якщо довжина скрипта більша за 100 символів, то виводимо перші 100 символів
+        log.info("Query for execute: \"" + queryForOutput +"\"\n"); // виводимо скрипт в консоль
     }
-
-
+// ? - замість if
 }
