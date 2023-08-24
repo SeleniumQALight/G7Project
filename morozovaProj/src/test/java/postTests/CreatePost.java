@@ -2,15 +2,18 @@ package postTests;
 
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class CreatePost extends BaseTest {
     private String title = "TC01 - New Post Maryna " + Util.getDateAndTimeFormatted();
     private String checkboxState = "check"; // "uncheck";
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void createNewPost() {
         pageProvider.getHomePage().openHomePage().checkIsRedirectToHomePage()
                 .getHeader().clickOnButtonCreatePost().checkIsRedirectToCreatePostPage()
