@@ -53,4 +53,8 @@ public class MyProfilePage extends ParentPageWithHeader{
         }
         return this;
     }
+    public PostPage clickOnPostWithTitle(String title){
+        clickOnElement(getPostsList(title).get(0));
+        return new PostPage(webDriver);
+    }
 }

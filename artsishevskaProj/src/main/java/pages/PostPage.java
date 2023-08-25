@@ -22,6 +22,8 @@ public class PostPage extends ParentPageWithHeader{
 
     @FindBy(xpath ="//*/p[contains(text(),'unique')]")
     private WebElement postIsUnique;
+    @FindBy(xpath = "//*[@data-icon ='edit']")
+    private WebElement buttonEditPostPageElement;
 
 
     public PostPage(WebDriver webDriver) {super(webDriver);
@@ -67,5 +69,10 @@ public class PostPage extends ParentPageWithHeader{
     public MyProfilePage clickOnDeletePostButton() {
        clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostEditPage clickOnEditPostButton() {
+        clickOnElement(buttonEditPostPageElement);
+        return new PostEditPage(webDriver);
     }
 }
