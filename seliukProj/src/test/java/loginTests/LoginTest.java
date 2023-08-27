@@ -1,5 +1,6 @@
 package loginTests;
 
+import data.TestData;
 import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
@@ -28,8 +29,8 @@ public class LoginTest extends baseTest.BaseTest {
     //@Ignore
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterUserName(/*"LOGIN_DEFAULT"*/ConfigProvider.configHiddenProperties.login());
-        pageProvider.getLoginPage().enterPassword(ConfigProvider.configHiddenProperties.password());
+        pageProvider.getLoginPage().enterUserName(LOGIN_DEFAULT/*ConfigProvider.configHiddenProperties.login()*/);
+        pageProvider.getLoginPage().enterPassword(PASSWORD_DEFAULT/*ConfigProvider.configHiddenProperties.password()*/);
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
