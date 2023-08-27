@@ -30,8 +30,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Category(SmokeTestFilter.class) // для того щоб запустити тільки тест з цією категорією
     public void validLogin() {
         pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserNane(LOGIN_DEFAULT);
-        pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+       pageProvider.getloginPage().enterTextIntoInputUserNane(LOGIN_DEFAULT);
+         pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getloginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible(); // перевірка чи є кнопка SignOut
