@@ -26,7 +26,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Category(SmokeTestFilter.class)
     public void validLogin() {
         pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_DEFAULT1);
+        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
         pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getloginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
