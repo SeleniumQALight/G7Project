@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,61 +32,61 @@ public class Header extends ActionWithElements {
         super(webDriver);
 
     }
-
+    @Step
     public void checkIsButtonSignOutVisible() {
         checkElementDisplayed(buttonSignOut);
     }
-
+    @Step
     public void checkIsButtonSignOutNotVisible() {
         checkElementNotDisplayed(buttonSignOut);
     }
-
+    @Step
     public void checkIsMassageInvalidDisplayed() {
         checkElementNotDisplayed(invalidMessage);
     }
 
-
+    @Step
     public void checkIsButtonCreatePostVisible() {
         checkElementDisplayed(buttonCreatePost);
     }
 
-
+    @Step
     public void checkIsButtonCreatePostNotVisible() {
         checkElementNotDisplayed(buttonCreatePost);
     }
-
+    @Step
     public void checkIsButtonProfileVisible() {
         checkElementDisplayed(buttonProfile);
     }
-
+    @Step
     public void checkIsButtonProfileNotVisible() {
         checkElementNotDisplayed(buttonProfile);
     }
-
+    @Step
     public void checkIsButtonChatVisible() {
         checkElementDisplayed(buttonChat);
     }
-
+    @Step
     public void checkIsButtonChatNotVisible() {
         checkElementNotDisplayed(buttonChat);
     }
-
+    @Step
     public void checkIsButtonSearchVisible() {
         checkElementDisplayed(buttonSearch);
     }
-
+    @Step
     public void checkIsButtonSearchNotVisible() {
         checkElementNotDisplayed(buttonSearch);
     }
-
+    @Step
     public void checkIsButtonLogoVisible() {
         checkElementDisplayed(buttonLogo);
     }
-
+    @Step
     public void checkIsButtonLogoNotVisible() {
         checkElementNotDisplayed(buttonLogo);
     }
-
+    @Step
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
