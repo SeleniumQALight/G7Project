@@ -17,4 +17,11 @@ public class PageProvider {
     public PostPage getPostPage() {
         return new PostPage(webDriver);
     }
+
+   public PostEditPage enterTextIntoInputTitle() {
+      return new PostEditPage(webDriver);
+ }
+ public PostEditPage getPostEditPage() {
+     return new PostEditPage(webDriver);
+ }
 }

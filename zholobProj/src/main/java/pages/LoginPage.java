@@ -63,7 +63,8 @@ public class LoginPage extends ParentPage {
 
     @Step //
     public void openLoginPage() { // метод для відкриття сторінки
-        openPage(BASE_URL);
+      openPage(BASE_URL);
+  //      openPage("https://aqa-complexapp.onrender.com");
         checkUrl();
     } // метод для відкриття сторінки
 
