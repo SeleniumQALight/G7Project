@@ -57,4 +57,7 @@ public class MyProfilePage extends ParentPageWithHeader{
         clickOnElement(getPostsList(title).get(0));
         return new PostPage(webDriver);
     }
+   
+
+
 }

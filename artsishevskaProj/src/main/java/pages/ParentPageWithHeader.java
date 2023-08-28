@@ -16,8 +16,8 @@ abstract public class ParentPageWithHeader extends ParentPage {
     }
 
 
-    public PostEditPage getPostEditPage() {
-        return new PostEditPage(webDriver);
-    }
+//    public PostEditPage getPostEditPage() {
+//        return new PostEditPage(webDriver);
+//    }
 }
 
