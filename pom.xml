@@ -31,6 +31,8 @@
     <module>pikhterovaProj</module>
     <module>prydkyiProj</module>
     <module>seliukProj</module>
+    <module>transkyyProj</module>
+    <module>kolbasinProj</module>
   </modules>
 
   <properties>
