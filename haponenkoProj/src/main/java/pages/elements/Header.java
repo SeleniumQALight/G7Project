@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,14 +31,17 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//a[@class = 'btn btn-sm btn-success mr-2']")
     private WebElement createPostButton;
 
+    @Step
     public void checkIsButtonSignOutVisible() {
         checkElementIsDisplayed(buttonSignOut);
     }
 
+    @Step
     public void checkIsSearchButtonVisible() {
         checkElementIsDisplayed(searchButton);
     }
 
+    @Step
     public void checkIsChatButtonVisible() {
         checkElementIsDisplayed(chatButton);
     }
@@ -74,6 +78,7 @@ public class Header extends ActionsWithElements {
         checkElementIsNotDisplayed(buttonSignOut);
     }
 
+    @Step
     public CreatePostPage clickOnButtonCreatePost(){
         clickOnElement(createPostButton);
         return new CreatePostPage(webDriver);
