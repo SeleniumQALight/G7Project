@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -52,23 +53,28 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
     }
 
+    @Step
     public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public void checkIsButtonSignInVisible() {
         checkElementIsDisplayed(buttonSignIn);
     }
@@ -78,26 +84,32 @@ public class LoginPage extends ParentPage {
         checkElementIsDisplayed(errorMessage);
     }
 
+    @Step
     public void checkIsInputUserNameVisible() {
         checkElementIsDisplayed(inputUserName);
     }
 
+    @Step
     public void checkIsInputPasswordVisible() {
         checkElementIsDisplayed(inputPassword);
     }
 
+    @Step
     public void checkIsButtonSignInNotVisible() {
         checkElementIsNotDisplayed(buttonSignIn);
     }
 
+    @Step
     public void checkIsInputUserNameNotVisible() {
         checkElementIsNotDisplayed(inputUserName);
     }
 
+    @Step
     public void checkIsInputPasswordNotVisible() {
         checkElementIsNotDisplayed(inputPassword);
     }
 
+    @Step
     public void loginWithValidCreds() {
         openLoginPage();
         enterTextIntoInputUserName(LOGIN_DEFAULT);
@@ -105,16 +117,19 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserName(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmail(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPassword(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
