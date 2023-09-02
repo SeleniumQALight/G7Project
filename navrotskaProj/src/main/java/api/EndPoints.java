@@ -1,4 +1,4 @@
-package apiTests;
+package api;
 
 public interface EndPoints {
     final String BASE_URL = "http://aqa-complexapp.onrender.com";
