@@ -10,6 +10,9 @@ import privatBankApi.dto.pbResponseDto.CurrencyDto;
 import privatBankApi.dto.pbResponseDto.ExchangeRateDto;
 
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import static io.restassured.RestAssured.given;
 
 public class PrivatBankApiTest {
@@ -73,7 +76,6 @@ public class PrivatBankApiTest {
         };
 
         CurrencyDto expectedCurrencyDto = new CurrencyDto(DATE, "PB", 980, "UAH", expectedExchangeRates);
-//       питання: чому якщо перенести рядок 75 перед рядком 47, то expectedExchangeRates з 75 рядка починає світитись червоним?
 
         SoftAssertions softAssertions = new SoftAssertions();
 
@@ -99,80 +101,38 @@ public class PrivatBankApiTest {
                 .assertThat()
                 .extract().body().as(CurrencyDto.class);
         logger.info(currencyResponseAsDto.toString());
+        logger.info(currencyResponseAsDto.getExchangeRate().length);
 
-        for (ExchangeRateDto exchangeRate : currencyResponseAsDto.getExchangeRate()) {
-            double saleRateNB = exchangeRate.getSaleRateNB();
-            double purchaseRateNB = exchangeRate.getPurchaseRateNB();
-            double saleRate = exchangeRate.getSaleRate();
-            double purchaseRate = exchangeRate.getPurchaseRate();
+        SoftAssertions softAssertions = new SoftAssertions();
 
-            if (saleRateNB > 0 && purchaseRateNB > 0 && saleRate > 0 && purchaseRate > 0) {
-                // Display the exchangeRate object where all rates are greater than zero
-                logger.info("Validating exchange rates for currency: " + exchangeRate.getCurrency());
-                logger.info("SaleRateNB: " + saleRateNB);
-                logger.info("PurchaseRateNB: " + purchaseRateNB);
-                logger.info("SaleRate: " + saleRate);
-                logger.info("PurchaseRate: " + purchaseRate);
-            }
+        if (currencyResponseAsDto.getExchangeRate() != null) {
+            Arrays.stream(currencyResponseAsDto.getExchangeRate())
+                    .filter(Objects::nonNull) // Filter out null rates
+                    .forEach(rate -> {
+                        if (rate.getSaleRate() != null && rate.getPurchaseRate() != null &&
+                                rate.getSaleRateNB() != null && rate.getPurchaseRateNB() != null) {
+                            if (rate.getSaleRate() > 0 && rate.getPurchaseRate() > 0 &&
+                                    rate.getSaleRateNB() > 0 && rate.getPurchaseRateNB() > 0) {
+                                // Log non-null rates using the provided format
+                                logger.info("Non-null Rate - Currency: " + rate.getCurrency() +
+                                        ", Sale Rate: " + rate.getSaleRate() +
+                                        ", Purchase Rate: " + rate.getPurchaseRate() +
+                                        ", Sale Rate NB: " + rate.getSaleRateNB() +
+                                        ", Purchase Rate NB: " + rate.getPurchaseRateNB());
+                            } else {
+                                // Log rates that are not greater than zero
+                                logger.warn("Rate(s) with values not greater than zero found - Currency: " + rate.getCurrency() +
+                                        ", Sale Rate: " + rate.getSaleRate() +
+                                        ", Purchase Rate: " + rate.getPurchaseRate() +
+                                        ", Sale Rate NB: " + rate.getSaleRateNB() +
+                                        ", Purchase Rate NB: " + rate.getPurchaseRateNB());
+                            }
+                        } else {
+                            // Log rates with null values
+                            logger.warn("Rate(s) with null values found - Currency: " + rate.getCurrency());
+                        }
+                    });
         }
-
-
-//      test pass but currencies with rate less than 0 is logged in the console
-//        for (ExchangeRateDto exchangeRate : currencyResponseAsDto.getExchangeRate()) {
-//            if (exchangeRate.getSaleRate() <= 0) {
-//                logger.error(String.format("Validation failed: SaleRate should be greater than zero for currency: %s", exchangeRate.getCurrency()));
-//            }
-//
-//            if (exchangeRate.getPurchaseRate() <= 0) {
-//                logger.error(String.format("Validation failed: PurchaseRate should be greater than zero for currency: %s", exchangeRate.getCurrency()));
-//            }
-//
-//            if (exchangeRate.getSaleRateNB() <= 0) {
-//                logger.error(String.format("Validation failed: SaleRateNB should be greater than zero for currency: %s", exchangeRate.getCurrency()));
-//            }
-//
-//            if (exchangeRate.getPurchaseRateNB() <= 0) {
-//                logger.error(String.format("Validation failed: PurchaseRateNB should be greater than zero for currency: %s", exchangeRate.getCurrency()));
-//            }
-//        }
-//                      Case when test fails, but specific currency for which the rates are not greater than zero is logged in console
-//        SoftAssertions softAssertions = new SoftAssertions();
-//
-//        for (ExchangeRateDto exchangeRate : currencyResponseAsDto.getExchangeRate()) {
-//            if (exchangeRate.getSaleRate() <= 0) {
-//                softAssertions.assertThat(exchangeRate.getSaleRate())
-//                        .as("SaleRate should be greater than zero in #")
-//                        .isGreaterThan(0);
-//                logger.info(String.format("Validating exchange SaleRate for currency: %s ", exchangeRate.getCurrency()));
-//            }
-//
-//            if (exchangeRate.getPurchaseRate() <= 0) {
-//                softAssertions.assertThat(exchangeRate.getPurchaseRate())
-//                        .as("PurchaseRate should be greater than zero")
-//                        .isGreaterThan(0);
-//                logger.info(String.format("Validating exchange PurchaseRate for currency: %s ", exchangeRate.getCurrency()));
-//            }
-//
-//            if (exchangeRate.getSaleRateNB() <= 0) {
-//                softAssertions.assertThat(exchangeRate.getSaleRateNB())
-//                        .as("SaleRateNB should be greater than zero")
-//                        .isGreaterThan(0);
-//                logger.info(String.format("Validating exchange SaleRateNB for currency: %s ", exchangeRate.getCurrency()));
-//            }
-//
-//            if (exchangeRate.getPurchaseRateNB() <= 0) {
-//                softAssertions.assertThat(exchangeRate.getPurchaseRateNB())
-//                        .as("PurchaseRateNB should be greater than zero")
-//                        .isGreaterThan(0);
-//                logger.info(String.format("Validating exchange PurchaseRateNB for currency: %s ", exchangeRate.getCurrency()));
-//            }
-//        }
-//
-//        softAssertions.assertAll();
+        softAssertions.assertAll();
     }
 }
-
-
-
-
-

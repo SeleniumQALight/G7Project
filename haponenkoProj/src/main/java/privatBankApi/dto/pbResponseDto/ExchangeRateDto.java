@@ -3,10 +3,10 @@ package privatBankApi.dto.pbResponseDto;
 public class ExchangeRateDto {
     String baseCurrency;
     String currency;
-    double saleRateNB;
-    double purchaseRateNB;
-    double saleRate;
-    double purchaseRate;
+    Double saleRateNB;
+    Double purchaseRateNB;
+    Double saleRate;
+    Double purchaseRate;
 
     public ExchangeRateDto() {
     }
@@ -32,7 +32,7 @@ public class ExchangeRateDto {
         this.currency = currency;
     }
 
-    public double getSaleRateNB() {
+    public Double getSaleRateNB() {
         return saleRateNB;
     }
 
@@ -40,7 +40,7 @@ public class ExchangeRateDto {
         this.saleRateNB = saleRateNB;
     }
 
-    public double getPurchaseRateNB() {
+    public Double getPurchaseRateNB() {
         return purchaseRateNB;
     }
 
@@ -48,7 +48,7 @@ public class ExchangeRateDto {
         this.purchaseRateNB = purchaseRateNB;
     }
 
-    public double getSaleRate() {
+    public Double getSaleRate() {
         return saleRate;
     }
 
@@ -56,7 +56,7 @@ public class ExchangeRateDto {
         this.saleRate = saleRate;
     }
 
-    public double getPurchaseRate() {
+    public Double getPurchaseRate() {
         return purchaseRate;
     }
 
