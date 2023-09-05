@@ -179,6 +179,7 @@ public class PrivatBankApiTest {
                 logger.info("Purchase Rate NB for Currency: " + exchangeRate.getCurrency() + " is " + exchangeRate.getPurchaseRateNB());
             }
         }
+
         softAssertions.assertAll();
     }
 }
