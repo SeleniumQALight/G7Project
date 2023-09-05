@@ -5,6 +5,7 @@ import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostDto;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.Argument;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -128,6 +130,21 @@ public class APITest {
         softAssertions.assertAll();
 
     }
+
+    @Test
+    public void getAllPostsByUserSchema(){
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POSTS_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("response.json"));
+    }
+
 
 
 }
