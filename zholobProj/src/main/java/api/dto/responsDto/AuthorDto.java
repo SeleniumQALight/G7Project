@@ -8,10 +8,11 @@ public class AuthorDto {
     public AuthorDto() { // пустий конструктор
     }
 
-    public AuthorDto(String username) { // конструктор
+    public AuthorDto(String username) { // конструктор тільки по юзернейму
         this.username = username;
     }
 
+    // гетери і сетери для всіх полів описаних вище
     public String getUsername() {
         return username;
     }
@@ -29,7 +30,7 @@ public class AuthorDto {
     }
 
     @Override
-    public String toString() {
+    public String toString() { // перевизначаємо метод toString для виводу в консоль
         return "AuthorDto{" +
                 "username='" + username + '\'' +
                 ", avatar='" + avatar + '\'' +

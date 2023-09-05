@@ -2,7 +2,7 @@ package api.dto.responsDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PostDto {
+public class PostDto {  //тут описуємо поля які повертає респонс для рест апі
     @JsonProperty("_id")
     String id;
     String title;
@@ -12,12 +12,12 @@ public class PostDto {
     String select;
     String uniquePost;
     String createdDate;
-    AuthorDto author;
+    AuthorDto author; // обєкт автора він має свої поля, які описані в класі AuthorDto
     Boolean isVisitorOwner;
 
     public PostDto() { // пустий конструктор
     }
-
+   //констуктор по обраним полям ( права кнопка миші -> Generate -> Constructor -> вибираємо поля які хочемо включити в конструктор)
     public PostDto(String title, String body, String select, String uniquePost, AuthorDto author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
@@ -26,7 +26,7 @@ public class PostDto {
         this.author = author;
         this.isVisitorOwner = isVisitorOwner;
     }
-
+// гетери і сетери для всіх полів описаних вище
     public String getId() {
         return id;
     }
@@ -92,7 +92,7 @@ public class PostDto {
     }
 
     @Override
-    public String toString() {
+    public String toString() {  // перевизначаємо метод toString для виводу в консоль
         return "PostDto{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
