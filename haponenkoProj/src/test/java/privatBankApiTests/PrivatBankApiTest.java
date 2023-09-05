@@ -2,6 +2,7 @@ package privatBankApiTests;
 
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -103,35 +104,80 @@ public class PrivatBankApiTest {
         logger.info(currencyResponseAsDto.toString());
         logger.info(currencyResponseAsDto.getExchangeRate().length);
 
+        ExchangeRateDto[] expectedExchangeRates = {
+                new ExchangeRateDto(BASE_CURRENCY, "AUD"),
+                new ExchangeRateDto(BASE_CURRENCY, "AZN"),
+                new ExchangeRateDto(BASE_CURRENCY, "BYN"),
+                new ExchangeRateDto(BASE_CURRENCY, "CAD"),
+                new ExchangeRateDto(BASE_CURRENCY, "CHF"),
+                new ExchangeRateDto(BASE_CURRENCY, "CNY"),
+                new ExchangeRateDto(BASE_CURRENCY, "CZK"),
+                new ExchangeRateDto(BASE_CURRENCY, "DKK"),
+                new ExchangeRateDto(BASE_CURRENCY, "EUR"),
+                new ExchangeRateDto(BASE_CURRENCY, "GBP"),
+                new ExchangeRateDto(BASE_CURRENCY, "GEL"),
+                new ExchangeRateDto(BASE_CURRENCY, "HUF"),
+                new ExchangeRateDto(BASE_CURRENCY, "ILS"),
+                new ExchangeRateDto(BASE_CURRENCY, "JPY"),
+                new ExchangeRateDto(BASE_CURRENCY, "KZT"),
+                new ExchangeRateDto(BASE_CURRENCY, "MDL"),
+                new ExchangeRateDto(BASE_CURRENCY, "NOK"),
+                new ExchangeRateDto(BASE_CURRENCY, "PLN"),
+                new ExchangeRateDto(BASE_CURRENCY, "SEK"),
+                new ExchangeRateDto(BASE_CURRENCY, "SGD"),
+                new ExchangeRateDto(BASE_CURRENCY, "TMT"),
+                new ExchangeRateDto(BASE_CURRENCY, "TRY"),
+                new ExchangeRateDto(BASE_CURRENCY, "UAH"),
+                new ExchangeRateDto(BASE_CURRENCY, "USD"),
+                new ExchangeRateDto(BASE_CURRENCY, "UZS")
+        };
+
+        CurrencyDto expectedCurrencyDto = new CurrencyDto(DATE, "PB", 980, "UAH", expectedExchangeRates);
+
+        for (int i = 0; i < expectedExchangeRates.length; i++) {
+            Assertions.assertThat(currencyResponseAsDto.getExchangeRate()).as("Number of exchange rates should match the expected length").hasSize(expectedCurrencyDto.getExchangeRate().length);
+        }
+
         SoftAssertions softAssertions = new SoftAssertions();
 
-        if (currencyResponseAsDto.getExchangeRate() != null) {
-            Arrays.stream(currencyResponseAsDto.getExchangeRate())
-                    .filter(Objects::nonNull) // Filter out null rates
-                    .forEach(rate -> {
-                        if (rate.getSaleRate() != null && rate.getPurchaseRate() != null &&
-                                rate.getSaleRateNB() != null && rate.getPurchaseRateNB() != null) {
-                            if (rate.getSaleRate() > 0 && rate.getPurchaseRate() > 0 &&
-                                    rate.getSaleRateNB() > 0 && rate.getPurchaseRateNB() > 0) {
-                                // Log non-null rates using the provided format
-                                logger.info("Non-null Rate - Currency: " + rate.getCurrency() +
-                                        ", Sale Rate: " + rate.getSaleRate() +
-                                        ", Purchase Rate: " + rate.getPurchaseRate() +
-                                        ", Sale Rate NB: " + rate.getSaleRateNB() +
-                                        ", Purchase Rate NB: " + rate.getPurchaseRateNB());
-                            } else {
-                                // Log rates that are not greater than zero
-                                logger.warn("Rate(s) with values not greater than zero found - Currency: " + rate.getCurrency() +
-                                        ", Sale Rate: " + rate.getSaleRate() +
-                                        ", Purchase Rate: " + rate.getPurchaseRate() +
-                                        ", Sale Rate NB: " + rate.getSaleRateNB() +
-                                        ", Purchase Rate NB: " + rate.getPurchaseRateNB());
-                            }
-                        } else {
-                            // Log rates with null values
-                            logger.warn("Rate(s) with null values found - Currency: " + rate.getCurrency());
-                        }
-                    });
+        for (ExchangeRateDto exchangeRate : currencyResponseAsDto.getExchangeRate()) {
+            softAssertions.assertThat(exchangeRate.getSaleRateNB())
+                    .as("Sale Rate NB for Currency: " + exchangeRate.getCurrency())
+                    .isNotNull();
+
+            softAssertions.assertThat(exchangeRate.getPurchaseRateNB())
+                    .as("Purchase Rate NB for Currency: " + exchangeRate.getCurrency())
+                    .isNotNull();
+
+            if (exchangeRate.getSaleRate() == null) {
+                logger.warn("Sale Rate is null for Currency: " + exchangeRate.getCurrency());
+            } else {
+                softAssertions.assertThat(exchangeRate.getSaleRate())
+                        .as("Sale Rate for Currency: " + exchangeRate.getCurrency())
+                        .isGreaterThan(0);
+                logger.info("Sale Rate for Currency: " + exchangeRate.getCurrency() + " is " + exchangeRate.getSaleRate());
+            }
+
+            if (exchangeRate.getPurchaseRate() == null) {
+                logger.warn("Purchase Rate is null for Currency: " + exchangeRate.getCurrency());
+            } else {
+                softAssertions.assertThat(exchangeRate.getPurchaseRate())
+                        .as("Purchase Rate for Currency: " + exchangeRate.getCurrency())
+                        .isGreaterThan(0);
+                logger.info("Purchase Rate for Currency: " + exchangeRate.getCurrency() + " is " + exchangeRate.getPurchaseRate());
+            }
+
+            if (exchangeRate.getSaleRateNB() != null && exchangeRate.getPurchaseRateNB() != null) {
+                softAssertions.assertThat(exchangeRate.getSaleRateNB())
+                        .as("Sale Rate NB for Currency: " + exchangeRate.getCurrency())
+                        .isGreaterThan(0);
+                logger.info("Sale Rate NB for Currency: " + exchangeRate.getCurrency() + " is " + exchangeRate.getSaleRateNB());
+
+                softAssertions.assertThat(exchangeRate.getPurchaseRateNB())
+                        .as("Purchase Rate NB for Currency: " + exchangeRate.getCurrency())
+                        .isGreaterThan(0);
+                logger.info("Purchase Rate NB for Currency: " + exchangeRate.getCurrency() + " is " + exchangeRate.getPurchaseRateNB());
+            }
         }
         softAssertions.assertAll();
     }
