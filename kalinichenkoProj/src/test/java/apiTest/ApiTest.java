@@ -67,12 +67,17 @@ public class ApiTest {
 
         SoftAssertions softAssertions = new SoftAssertions();
 
-for (int i = 0; i < responseAsDto.length; i++) {
-            softAssertions.assertThat(responseAsDto[i])
-                    .isEqualToIgnoringGivenFields(expectedPostDto[i], "id", "createdDate", "author");
-            softAssertions.assertThat(responseAsDto[i].getAuthor())
-                    .isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar");
-        }
+//        for (int i = 0; i < responseAsDto.length; i++) {
+//            softAssertions.assertThat(responseAsDto[i])
+//                    .isEqualToIgnoringGivenFields(expectedPostDto[i], "id", "createdDate", "author");
+//            softAssertions.assertThat(responseAsDto[i].getAuthor())
+//                    .isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar");
+//        } // 2nd way with loop
+
+        softAssertions.assertThat(responseAsDto)
+                .usingRecursiveComparison()
+                .ignoringFields("id", "createdDate", "author.avatar")
+                .isEqualTo(expectedPostDto);
 
         softAssertions.assertAll();
 
