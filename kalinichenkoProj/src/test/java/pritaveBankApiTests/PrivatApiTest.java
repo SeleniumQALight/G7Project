@@ -14,6 +14,7 @@ import static io.restassured.RestAssured.given;
 
 public class PrivatApiTest {
     Logger logger = Logger.getLogger(getClass());
+    final String DATE = "22.03.2022";
     final String BASE_CURRENCY = "UAH";
 
     @Test
@@ -22,14 +23,14 @@ public class PrivatApiTest {
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
-                .given().queryParam(EndPoints.DATE_STING, EndPoints.DATE)
+                .given().queryParam("date", DATE)
                 .get(EndPoints.BASE_URL)
                 .then()
                 .log().all()
                 .extract().body().as(ArchiveCursPrivatDto.class);
         logger.info(responsAsDto.toString());
         SoftAssertions softAssertions = new SoftAssertions();
-        Assert.assertEquals("Date is not expected", EndPoints.DATE, responsAsDto.getDate());
+        Assert.assertEquals("Date is not expected", DATE, responsAsDto.getDate());
         Assert.assertEquals("Bank is not expected", "PB", responsAsDto.getBank());
         Assert.assertEquals("Base currencyLit is not expected", BASE_CURRENCY, responsAsDto.getBaseCurrencyLit());
         for (int i = 0; i < expectedExchangeRatesList.length; i++) {
@@ -77,7 +78,7 @@ public class PrivatApiTest {
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
-                .given().queryParam(EndPoints.DATE_STING, EndPoints.DATE)
+                .given().queryParam("date", DATE)
                 .get(EndPoints.BASE_URL)
                 .then()
                 .log().all()
