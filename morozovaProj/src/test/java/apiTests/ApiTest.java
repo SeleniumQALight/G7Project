@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -116,10 +117,20 @@ public class ApiTest {
         for (int i = 0; i < actualAuthorList.size(); i++) {
             softAssertions.assertThat(actualAuthorList.get(i).get("username"))
                     .as("Item number "+i).isEqualTo(USER_NAME);
-
         }
         softAssertions.assertAll();
+    }
+    @Test
+    public void getAllPostsByUserSchema(){
+        given()
+                .contentType(ContentType.JSON)//додали хедер аплікейшина
+                .log().all()//виводимо в колсоль весь запит
+                .when()// дія
+                .get(EndPoints.POSTS_BY_USER, USER_NAME)//URL= ресташуред USER_NAME ={0} працює аналогічно стрінгформату
+                .then()
+                .statusCode(200)//перевір, що повернуло потрібний статус
+                .log().all()//виводимо в колсоль весь запит
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
+    }
 
-
-        }
 }
