@@ -38,12 +38,19 @@ public class ApiTest {
         logger.info("Username: " + responseAsDto[0].getAuthor().getUsername());
 
         for (int i = 0; i < responseAsDto.length; i++) { // loop through array of posts
-            Assert.assertEquals("Username is not matched in the post ", USER_NAME, responseAsDto[i].getAuthor().getUsername());
+            Assert.assertEquals("Username is not matched in the post ", USER_NAME, responseAsDto[i].getAuthor()
+                    .getUsername());
         }
 
         PostDto[] expectedPostDto = { // create array of expected posts
-                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false ),
-                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false )
+//                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false ),
+//                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false )
+                PostDto.builder().title("test2").body("test body2").select("All Users").uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build()).isVisitorOwner(false)
+                        .build(),
+                PostDto.builder().title("test").body("test body").select("All Users").uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build()).isVisitorOwner(false)
+                        .build()
 
         };
 
@@ -58,13 +65,7 @@ public class ApiTest {
                     .getAuthor()).isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar"); // compare authors by fields
         }
 
-
-
         softAssertions.assertAll(); // soft assertion
-
-
-
-
 
     }
 
