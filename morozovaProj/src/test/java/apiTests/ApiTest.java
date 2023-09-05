@@ -58,12 +58,17 @@ public class ApiTest {
         Assert.assertEquals("Number of posts ", expectedPostDto.length, responseAsDto.length);
 
         SoftAssertions softAssertions = new SoftAssertions();//напоклює помилки до assertAll();
-        for (int i = 0; i < responseAsDto.length; i++) {
-            softAssertions.assertThat(responseAsDto[i])
-                    .isEqualToIgnoringGivenFields(expectedPostDto[i], "id", "createdDate", "author");
-            softAssertions.assertThat(responseAsDto[i].getAuthor())
-                    .isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar");
-        }
+        //    for (int i = 0; i < responseAsDto.length; i++) {
+//            softAssertions.assertThat(responseAsDto[i])
+//                    .isEqualToIgnoringGivenFields(expectedPostDto[i], "id", "createdDate", "author");
+//            softAssertions.assertThat(responseAsDto[i].getAuthor())
+//                    .isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar");
+        //        }
+        softAssertions.assertThat(responseAsDto)
+                .usingRecursiveComparison()
+                .ignoringFields("id", "createdDate", "author.avatar")
+                .isEqualTo(expectedPostDto);
+
         softAssertions.assertAll();
 
     }
