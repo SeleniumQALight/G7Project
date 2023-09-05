@@ -43,8 +43,17 @@ public class APITest {
         }
 
         PostDto[] expectedPostDto = {
-              new PostDto("test2", "test body2", "All Users", "no", new AuthorDTO(USER_NAME), false),
-                new PostDto("test", "test body", "All Users", "no", new AuthorDTO(USER_NAME), false)
+//              new PostDto("test2", "test body2", "All Users", "no", new AuthorDTO(USER_NAME), false),
+//                new PostDto("test", "test body", "All Users", "no", new AuthorDTO(USER_NAME), false)
+            PostDto.builder().title("test2").body("test body2").select("All Users")
+                    .uniquePost("no").isVisitorOwner(false)
+                    .author(AuthorDTO.builder().username(USER_NAME).build())
+                    .build(),
+                PostDto.builder().title("test").body("test body").select("All Users")
+                        .uniquePost("no").isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build()
+
         };
 
         Assert.assertEquals("Number of posts", expectedPostDto.length, responseAsDto.length);
