@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -136,5 +138,19 @@ public class ApiTest {
 
         softAssertions.assertAll();
 
+    }
+
+    @Test
+    public void getAllPostsByUserSchema() {
+        given()
+                .contentType(ContentType.JSON)//додали хедер аплікейшина
+                .log().all()//виводимо в колсоль весь запит
+                .when()// дія
+                .get(EndPoints.GET_POSTS_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("response.json"));
     }
 }
