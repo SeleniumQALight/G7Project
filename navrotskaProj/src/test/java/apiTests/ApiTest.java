@@ -40,10 +40,24 @@ public class ApiTest {
 
         }
         PostDto[] expectedPostDto = {
-                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME),false),
-                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME),false)
-
-
+    //                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME),false),
+    //                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME),false)
+                PostDto.builder()
+                        .title("test2")
+                        .body("test body2")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build())
+                        .isVisitorOwner(false)
+                        .build(),
+                PostDto.builder()
+                        .title("test")
+                        .body("test body")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build())
+                        .isVisitorOwner(false)
+                        .build()
         };
         Assert.assertEquals("Number of posts",expectedPostDto.length,responseAsDto.length);
         SoftAssertions softAssertions = new SoftAssertions();
