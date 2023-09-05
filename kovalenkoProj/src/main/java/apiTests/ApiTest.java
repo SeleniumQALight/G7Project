@@ -41,20 +41,28 @@ public class ApiTest {
         }
 
         PostDto[] expectedPostDto = {
-                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
-                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
+//                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
+//                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
+                PostDto.builder().title("test2").body("test body2").select("All Users").uniquePost("no")
+                        .isVisitorOwner(false).author(AuthorDto.builder().username(USER_NAME).build()).build(),
+                PostDto.builder().title("test").body("test body").select("All Users").uniquePost("no")
+                        .isVisitorOwner(false).author(AuthorDto.builder().username(USER_NAME).build()).build()
         };
 
         Assert.assertEquals("Number of posts ", expectedPostDto.length, responseAsDto.length);
 
         SoftAssertions softAssertions = new SoftAssertions();
 
-        for (int i = 0; i < expectedPostDto.length; i++) {
-            softAssertions.assertThat(responseAsDto[i])
-                    .isEqualToIgnoringGivenFields(expectedPostDto[i], "id", "createdDate", "author");
-            softAssertions.assertThat(responseAsDto[i].getAuthor())
-                    .isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar");
-        }
+//        for (int i = 0; i < expectedPostDto.length; i++) {
+//            softAssertions.assertThat(responseAsDto[i])
+//                    .isEqualToIgnoringGivenFields(expectedPostDto[i], "id", "createdDate", "author");
+//            softAssertions.assertThat(responseAsDto[i].getAuthor())
+//                    .isEqualToIgnoringGivenFields(expectedPostDto[i].getAuthor(), "avatar");
+            softAssertions.assertThat(responseAsDto)
+                    .usingRecursiveComparison()
+                    .ignoringFields("id", "createdDate", "author.avatar")
+                    .isEqualTo(expectedPostDto);
+//        }
 
         softAssertions.assertAll();
     }
