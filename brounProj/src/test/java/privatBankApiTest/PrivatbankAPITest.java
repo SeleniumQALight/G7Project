@@ -2,6 +2,7 @@ package privatBankApiTest;
 
 import api.EndPoints;
 import org.apache.log4j.Logger;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 import privatBankApi.PrimaryDto;
@@ -26,6 +27,7 @@ public class PrivatbankAPITest {
                 .statusCode(200)
                 .log().all()
                 .assertThat()
+                .statusCode(Matchers.either(Matchers.is(200)).or(Matchers.is(201))) // Перевірте, чи статус-код рівний 200 або 201
                 .body("date", equalTo(DATE))
                 .body("bank", equalTo("PB"))
                 .body("baseCurrency", equalTo(980))
