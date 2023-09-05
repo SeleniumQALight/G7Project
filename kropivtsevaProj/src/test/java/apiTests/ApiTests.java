@@ -1,17 +1,17 @@
 package apiTests;
 
-        import api.EndPoints;
-        import api.dto.responseDto.AuthorDto;
-        import api.dto.responseDto.PostDto;
-        import io.restassured.http.ContentType;
-        import org.apache.log4j.Logger;
-        import org.assertj.core.api.SoftAssertions;
-        import org.junit.Assert;
-        import org.junit.Test;
+import api.EndPoints;
+import api.dto.responseDto.AuthorDto;
+import api.dto.responseDto.PostDto;
+import io.restassured.http.ContentType;
+import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
+import org.junit.Test;
 
-        import static io.restassured.RestAssured.given;
-        import static org.hamcrest.CoreMatchers.equalTo;
-        import static org.hamcrest.CoreMatchers.everyItem;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.everyItem;
 
 public class ApiTests {
     final String USER_NAME = "autoapi";
@@ -43,8 +43,24 @@ public class ApiTests {
         }
 
         PostDto[] expectedPostDto = {
-                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME),false),
-                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME),false)
+                PostDto.builder()
+                        .title("test2")
+                        .body("test body2")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build())
+                        .isVisitorOwner(false)
+                        .build(),
+                PostDto.builder()
+                        .title("test")
+                        .body("test body")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build())
+                        .isVisitorOwner(false)
+                        .build(),
+//                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME),false),
+//                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME),false)
         };
 
         Assert.assertEquals("Number of posts ", expectedPostDto.length, responseAsDto.length);
