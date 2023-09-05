@@ -33,6 +33,7 @@ public class PrivatApiTest {
         Assert.assertEquals("Date is not expected", DATE, responsAsDto.getDate());
         Assert.assertEquals("Bank is not expected", "PB", responsAsDto.getBank());
         Assert.assertEquals("Base currencyLit is not expected", BASE_CURRENCY, responsAsDto.getBaseCurrencyLit());
+        Assert.assertEquals("Number currency in list", expectedExchangeRatesList.length, responsAsDto.getExchangeRate().length);
         for (int i = 0; i < expectedExchangeRatesList.length; i++) {
             softAssertions.assertThat(responsAsDto.getExchangeRate()[i])
                     .isEqualToIgnoringGivenFields(expectedExchangeRatesList[i], "saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate");
@@ -83,6 +84,7 @@ public class PrivatApiTest {
                 .then()
                 .log().all()
                 .extract().body().as(ArchiveCursPrivatDto.class);
+        Assert.assertEquals("Number currency in list", expectedExchangeRatesList.length, responsAsDto.getExchangeRate().length);
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < responsAsDto.getExchangeRate().length; i++) {
 
