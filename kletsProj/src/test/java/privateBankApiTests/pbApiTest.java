@@ -41,7 +41,7 @@ public class pbApiTest {
                 currencyResponseAsDto.getBank());
         Assert.assertEquals("Base currency is not matched in the exchange rate ", 980,
                 currencyResponseAsDto.getBaseCurrency());
-        Assert.assertEquals("Base currency lit is not matched in the exchange rate ", "UAH",
+        Assert.assertEquals("Base currency lit is not matched in the exchange rate ", BASE_CURRENCY,
                 currencyResponseAsDto.getBaseCurrencyLit());
 
         for (int i = 0; i < currencyResponseAsDto.getExchangeRate().length; i++) {
@@ -78,8 +78,8 @@ public class pbApiTest {
 
         };
 
-        CurrencyDto expectedCurrencyDto = new CurrencyDto(DATE, "PB", 980, "UAH",
-                expectedExchangeRates);
+        Assert.assertEquals("Exchange rates are not matched", expectedExchangeRates.length,
+                currencyResponseAsDto.getExchangeRate().length);
 
         SoftAssertions softAssertions = new SoftAssertions();
 
