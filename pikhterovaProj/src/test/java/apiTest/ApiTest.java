@@ -4,10 +4,14 @@ import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -73,4 +77,56 @@ Assert.assertEquals("Number of posts", expectedPostDto.length, responseAsDto.len
 
         softAssertions.assertAll();
     }
+
+
+
+    @Test
+    public void getAllPostsByUserNegative(){
+        String actualResponse = given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POSTS_BY_USER, "NotValidUser")
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract().response().body().asString();
+        Assert.assertEquals("Message in response", "\"Sorry, invalid user requested.undefined\"", actualResponse);
+        Assert.assertEquals("Message in response", "Sorry, invalid user requested.undefined", actualResponse.replace("\"", ""));
+    }
+
+    @Test
+    public void getAllPostsByUserPath(){//in case we dont have dto and just want to check one field
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POSTS_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract().response();
+
+        List<String> actualTitlesList = response.jsonPath().getList("title", String.class);
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i < actualTitlesList.size(); i++) {
+            softAssertions.assertThat(actualTitlesList.get(i))
+                    .as("TItem number" + i)
+                    .contains("test");
+        }
+
+        List<Map> actualAutorList = response.jsonPath().getList("author", Map.class);
+
+        for (int i = 0; i < actualAutorList.size(); i++) {
+            softAssertions.assertThat(actualAutorList.get(i).get("username"))
+                    .as("Item number" + i)
+                    .isEqualTo(USER_NAME);
+        }
+
+        softAssertions.assertAll();
+
+    }
+
 }
