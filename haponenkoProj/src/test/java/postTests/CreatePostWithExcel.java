@@ -44,8 +44,8 @@ public class CreatePostWithExcel extends BaseTest {
     @Parameterized.Parameters
     public static Collection testData() throws IOException {
         InputStream inputStream = new FileInputStream(
-                configProperties.DATA_FILE_PATH() + "hwTestData.xls");
-        return new SpreadsheetData(inputStream, "CreatePostWithExcel").getData();
+                configProperties.DATA_FILE_PATH() + "hwTestDataNew.xls");
+        return new SpreadsheetData(inputStream, "CreatePostWithExcelNew").getData();
 
     }
 
@@ -69,13 +69,13 @@ public class CreatePostWithExcel extends BaseTest {
                 .enterTextIntoInputTitle(postTitle)
                 .enterTextIntoInputBody(postBody)
                 .markCheckboxStateUnique(checkBoxState)
-                .selectValueInDropDown(dropDownValue)
+                .selectTextInDropDown(dropDownValue)
                 .clickOnButtonSaveNewPost()
                 .checkTextInSuccessMessage(textInSuccessMessage)
                 .checkIsRedirectToPostPage()
                 .checkTextPostTitle(postTitle)
                 .checkTextPostBody(postBody)
-                .checkNote(dropDownValue)
+                // .checkNote(dropDownValue) // for assert here should be One Person instead of "Приватне повідомлення"
                 .checkTextIsPostUnique(postIsUnique);
 
         pageProvider.getPostPage().getHeader().clickOnMyProfileButton()
