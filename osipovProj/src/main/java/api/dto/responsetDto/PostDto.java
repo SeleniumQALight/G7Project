@@ -1,31 +1,28 @@
-package api.dto.responsDto;
+package api.dto.responsetDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Builder
-
 public class PostDto {
     @JsonProperty("_id")
     String id;
     String title;
     String body;
     @JsonProperty("select1")
-
     String select;
     String uniquePost;
     String createdDate;
     AuthorDto author;
     Boolean isVisitorOwner;
 
-//    public PostDto() { // пустий конструктор
- //   }
-
+//    public PostDto(){
+//    }
 //    public PostDto(String title, String body, String select, String uniquePost, AuthorDto author, Boolean isVisitorOwner) {
 //        this.title = title;
 //        this.body = body;
@@ -59,12 +56,12 @@ public class PostDto {
 //        this.body = body;
 //    }
 //
-//    public String getSelect1() {
+//    public String getSelect() {
 //        return select;
 //    }
 //
-//    public void setSelect1(String select1) {
-//        this.select = select1;
+//    public void setSelect(String select) {
+//        this.select = select;
 //    }
 //
 //    public String getUniquePost() {
@@ -99,18 +96,17 @@ public class PostDto {
 //        isVisitorOwner = visitorOwner;
 //    }
 
-    @Override
-    public String toString() {
-        return "PostDto{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", select='" + select + '\'' +
-                ", uniquePost='" + uniquePost + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", author=" + author +
-                ", isVisitorOwner=" + isVisitorOwner +
-                '}';
-    }
-
+//    @Override
+//    public String toString() {
+//        return "PostDto{" +
+//                "id='" + id + '\'' +
+//                ", title='" + title + '\'' +
+//                ", body='" + body + '\'' +
+//                ", select='" + select + '\'' +
+//                ", uniquePost='" + uniquePost + '\'' +
+//                ", createDate='" + createdDate + '\'' +
+//                ", author=" + author +
+//                ", isVisitorOwner=" + isVisitorOwner +
+//                '}';
+//    }
 }

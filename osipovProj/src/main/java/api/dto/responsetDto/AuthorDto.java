@@ -1,21 +1,20 @@
-package api.dto.responseDto;
+package api.dto.responsetDto;
 
 import lombok.*;
 
-@NoArgsConstructor //generate constructor
-@AllArgsConstructor //generate constructor with parameter
-@Getter //generate getter and setter
-@Setter //generate getter and setter
-@ToString //generate toString
-@Builder //generate builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class AuthorDto {
     String username;
     String avatar;
 
-//    public AuthorDto() { // default constructor
-//    }
+//    public AuthorDto(){}
 
-//    public AuthorDto(String username) { // constructor with parameter
+//    public AuthorDto(String username) {
 //        this.username = username;
 //    }
 
@@ -34,7 +33,7 @@ public class AuthorDto {
 //    public void setAvatar(String avatar) {
 //        this.avatar = avatar;
 //    }
-
+//
 //    @Override
 //    public String toString() {
 //        return "AuthorDto{" +
