@@ -12,11 +12,13 @@ import static privatBankApi.PrivatBankEndpoints.*;
 
 public class PrivatBankApiTest {
     final String BASE_CURRENCY = "UAH";
+    final String DATE = "22.03.2022";
 
     @Test
     public void getCurrencyRateTest() {
         PrivatDto privatDto = given()
                 .contentType(ContentType.JSON)
+                .queryParam("date", DATE)
                 .log().all()
                 .get(EXCHANGE_RATE_URL)
                 .then()
@@ -25,10 +27,12 @@ public class PrivatBankApiTest {
                 .assertThat()
                 .extract().body().as(PrivatDto.class);
 
-        Assert.assertEquals("", privatDto.getDate(), "22.03.2022");
-        Assert.assertEquals("", privatDto.getBank(), "PB");
-        Assert.assertEquals("", privatDto.getBaseCurrency(), 980);
-        Assert.assertEquals("", privatDto.getBaseCurrencyLit(), "UAH");
+        Assert.assertEquals("Number of currency is not expected", 25, privatDto.getExchangeRate().length);
+
+        Assert.assertEquals("Date is not expected", DATE, privatDto.getDate());
+        Assert.assertEquals("Bank is not expected", "PB", privatDto.getBank());
+        Assert.assertEquals("BaseCurrency is not expected", 980, privatDto.getBaseCurrency());
+        Assert.assertEquals("BaseAlphabeticCurrencyCode is not expected", BASE_CURRENCY, privatDto.getBaseCurrencyLit());
 
         ExchangeRateDto[] expectedCurrency = { //25
                 new ExchangeRateDto(BASE_CURRENCY, "AUD"),
