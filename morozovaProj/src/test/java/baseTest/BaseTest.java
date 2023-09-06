@@ -105,7 +105,7 @@ public class BaseTest {
     private WebDriver initDriver() {
         String browser = System.getProperty("browser");//передаємо з командної стрічки параметр -Dbrowser=chrome
         if ((browser == null) ||("edge".equals(browser.toLowerCase()))) {   //edge
-            WebDriverManager.edgedriver().setup();
+            WebDriverManager.edgedriver().clearDriverCache().setup();
             webDriver = new EdgeDriver();
         } else if ("firefox".equals(browser.toLowerCase())) {
             WebDriverManager.firefoxdriver().setup();
@@ -114,7 +114,7 @@ public class BaseTest {
             WebDriverManager.iedriver().setup(); //zoom 100%
              webDriver = new InternetExplorerDriver();//security level medium
         } else if  ("chrome".equals(browser.toLowerCase())) {//якщо нічого не передали або передали chrome, дефолтний браузер
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().clearDriverCache().setup();
         webDriver = new ChromeDriver();
         } else {
             throw new IllegalArgumentException("Browser" + browser + "is not supported");//якщо передали невірний браузер
