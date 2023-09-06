@@ -87,20 +87,13 @@ public class PrivatApiTest {
         Assert.assertEquals("Number currency in list", expectedExchangeRatesList.length, responsAsDto.getExchangeRate().length);
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < responsAsDto.getExchangeRate().length; i++) {
+            softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getSaleRateNB()).isNotNull();
+            softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getSaleRateNB()).isGreaterThan(0);
+            logger.info("The saleRateNB is " + responsAsDto.getExchangeRate()[i].getSaleRateNB());
+            softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getPurchaseRateNB()).isNotNull();
+            softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getPurchaseRateNB()).isGreaterThan(0);
+            logger.info("The purchaseRateNB is " + responsAsDto.getExchangeRate()[i].getPurchaseRateNB());
 
-            if (responsAsDto.getExchangeRate()[i].getSaleRateNB() != null) {
-                softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getSaleRateNB()).isGreaterThan(0);
-                logger.info("The saleRateNB is " + responsAsDto.getExchangeRate()[i].getSaleRateNB());
-            } else {
-                logger.info("The saleRateNB is null");
-            }
-
-            if (responsAsDto.getExchangeRate()[i].getPurchaseRateNB() != null) {
-                softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getPurchaseRateNB()).isGreaterThan(0);
-                logger.info("The purchaseRateNB is " + responsAsDto.getExchangeRate()[i].getPurchaseRateNB());
-            } else {
-                logger.info("The purchaseRateNB is null");
-            }
 
             if (responsAsDto.getExchangeRate()[i].getSaleRate() != null) {
                 softAssertions.assertThat(responsAsDto.getExchangeRate()[i].getSaleRate()).isGreaterThan(0);
