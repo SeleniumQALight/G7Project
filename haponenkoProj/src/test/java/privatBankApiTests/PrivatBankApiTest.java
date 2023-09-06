@@ -134,9 +134,7 @@ public class PrivatBankApiTest {
 
         CurrencyDto expectedCurrencyDto = new CurrencyDto(DATE, "PB", 980, "UAH", expectedExchangeRates);
 
-        for (int i = 0; i < expectedExchangeRates.length; i++) {
-            Assertions.assertThat(currencyResponseAsDto.getExchangeRate()).as("Number of exchange rates should match the expected length").hasSize(expectedCurrencyDto.getExchangeRate().length);
-        }
+        Assertions.assertThat(currencyResponseAsDto.getExchangeRate()).as("Number of exchange rates should match the expected length").hasSize(expectedCurrencyDto.getExchangeRate().length);
 
         SoftAssertions softAssertions = new SoftAssertions();
 
