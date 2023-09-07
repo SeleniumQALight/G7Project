@@ -19,7 +19,6 @@ public class PostDto {
     String uniquePost;
     String createdDate;
     AuthorDto author;
-
     Boolean isVisitorOwner;
 
 //    public PostDto() {
@@ -38,63 +37,63 @@ public class PostDto {
 //        return id;
 //    }
 //
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public String getBody() {
-//        return body;
-//    }
-//
-//    public String getSelect() {
-//        return select;
-//    }
-//
-//    public String getUniquePost() {
-//        return uniquePost;
-//    }
-//
-//    public String getCreatedDate() {
-//        return createdDate;
-//    }
-//
-//    public AuthorDto getAuthor() {
-//        return author;
-//    }
-//
-//    public Boolean getIsVisitorOwner() {
-//        return isVisitorOwner;
-//    }
-//
 //    public void setId(String id) {
 //        this.id = id;
+//    }
+//
+//    public String getTitle() {
+//        return title;
 //    }
 //
 //    public void setTitle(String title) {
 //        this.title = title;
 //    }
 //
+//    public String getBody() {
+//        return body;
+//    }
+//
 //    public void setBody(String body) {
 //        this.body = body;
+//    }
+//
+//    public String getSelect() {
+//        return select;
 //    }
 //
 //    public void setSelect(String select) {
 //        this.select = select;
 //    }
 //
+//    public String getUniquePost() {
+//        return uniquePost;
+//    }
+//
 //    public void setUniquePost(String uniquePost) {
 //        this.uniquePost = uniquePost;
 //    }
 //
-//    public void setCreatedDate(String createdDate) {
-//        this.createdDate = createdDate;
+//    public String getCreatedDate() {
+//        return createdDate;
+//    }
+//
+//    public void setCreatedDate(String createDate) {
+//        this.createdDate = createDate;
+//    }
+//
+//    public AuthorDto getAuthor() {
+//        return author;
 //    }
 //
 //    public void setAuthor(AuthorDto author) {
 //        this.author = author;
 //    }
 //
-//    public void setIsVisitorOwner(Boolean visitorOwner) {
+//    public Boolean getisVisitorOwner() {
+//        return isVisitorOwner;
+//    }
+//
+//    public void setisVisitorOwner(Boolean visitorOwner) {
 //        isVisitorOwner = visitorOwner;
 //    }
 
@@ -108,7 +107,7 @@ public class PostDto {
 //                ", uniquePost='" + uniquePost + '\'' +
 //                ", createdDate='" + createdDate + '\'' +
 //                ", author=" + author +
-//                ", isVisiterOwner=" + isVisitorOwner +
+//                ", isVisitorOwner=" + isVisitorOwner +
 //                '}';
 //    }
 }
