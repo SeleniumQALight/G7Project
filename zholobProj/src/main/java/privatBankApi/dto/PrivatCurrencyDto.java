@@ -6,11 +6,14 @@ public class PrivatCurrencyDto {
 
     String date;
     String bank;
-    String baseCurrency;
+    Integer baseCurrency;
     String baseCurrencyLit;
     ExchangeRateDto[] exchangeRate;
 
-    public PrivatCurrencyDto(String date, String bank, String baseCurrency, String baseCurrencyLit, ExchangeRateDto[] exchangeRate) {
+    public PrivatCurrencyDto() { // пустий конструктор
+    }
+
+    public PrivatCurrencyDto(String date, String bank, Integer baseCurrency, String baseCurrencyLit, ExchangeRateDto[] exchangeRate) {
         this.date = date;
         this.bank = bank;
         this.baseCurrency = baseCurrency;
@@ -34,11 +37,11 @@ public class PrivatCurrencyDto {
         this.bank = bank;
     }
 
-    public String getBaseCurrency() {
+    public Integer getBaseCurrency() {
         return baseCurrency;
     }
 
-    public void setBaseCurrency(String baseCurrency) {
+    public void setBaseCurrency(Integer baseCurrency) {
         this.baseCurrency = baseCurrency;
     }
 
@@ -50,7 +53,7 @@ public class PrivatCurrencyDto {
         this.baseCurrencyLit = baseCurrencyLit;
     }
 
-    public ExchangeRateDto[] getExchangeRate() {
+    public  ExchangeRateDto[] getExchangeRate() {
         return exchangeRate;
     }
 
@@ -63,14 +66,13 @@ public class PrivatCurrencyDto {
         return "PrivatCurrencyDto{" + "\n" +
                 "date='" + date + '\'' + "\n" +
                 ", bank='" + bank + '\'' + "\n" +
-                ", baseCurrency='" + baseCurrency + '\'' + "\n" +
+                ", baseCurrency=" + baseCurrency +  "\n" +
                 ", baseCurrencyLit='" + baseCurrencyLit + '\'' + "\n" +
                 ", exchangeRate=" + Arrays.toString(exchangeRate) + "\n" +
                 '}';
     }
 
-    public PrivatCurrencyDto() { // пустий конструктор
-    }
+
 
 }
 
