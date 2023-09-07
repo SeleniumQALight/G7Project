@@ -1,4 +1,4 @@
-package apiTests;
+package privatBankApiTests;
 
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
