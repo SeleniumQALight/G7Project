@@ -67,12 +67,12 @@ public class ExchangeRateDto {
     @Override
     public String toString() {   // перевизначаємо метод toString для виводу в консоль
         return "ExchangeRateDto{" +
-                "baseCurrency='" + baseCurrency + '\'' +
-                ", currency='" + currency + '\'' +
-                ", saleRateNB=" + saleRateNB +
-                ", purchaseRateNB=" + purchaseRateNB +
-                ", saleRate=" + saleRate +
-                ", purchaseRate=" + purchaseRate +
+                "baseCurrency='" + baseCurrency + '\'' + "\n" +
+                ", currency='" + currency + '\'' + "\n" +
+                ", saleRateNB=" + saleRateNB + "\n" +
+                ", purchaseRateNB=" + purchaseRateNB + "\n" +
+                ", saleRate=" + saleRate + "\n" +
+                ", purchaseRate=" + purchaseRate + "\n" +
                 '}';
     }
 }
