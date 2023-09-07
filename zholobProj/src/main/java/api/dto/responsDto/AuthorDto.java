@@ -1,39 +1,49 @@
 package api.dto.responsDto;
 
+
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
+
+
 public class AuthorDto {
 
     String username;
     String avatar;
 
-    public AuthorDto() { // пустий конструктор
-    }
+ //   public AuthorDto() { // пустий конструктор
+ //   }
 
-    public AuthorDto(String username) { // конструктор тільки по юзернейму
-        this.username = username;
-    }
+   public AuthorDto(String username) { // конструктор
+       this.username = username;
+   }
+//
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
+//
+//    public String getAvatar() {
+//        return avatar;
+//    }
+//
+//    public void setAvatar(String avatar) {
+//        this.avatar = avatar;
+//    }
 
-    // гетери і сетери для всіх полів описаних вище
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    @Override
-    public String toString() { // перевизначаємо метод toString для виводу в консоль
-        return "AuthorDto{" +
-                "username='" + username + '\'' +
-                ", avatar='" + avatar + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "AuthorDto{" +
+//                "username='" + username + '\'' +
+//                ", avatar='" + avatar + '\'' +
+//                '}';
+//    }
 }
