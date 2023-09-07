@@ -50,9 +50,9 @@ public class ApiTests {
 
         }
 
-        PostDto[] expectedPostDto = { // створюємо масив з обєктів які мають бути в респонсі
-                new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
-                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
+//        PostDto[] expectedPostDto = { // створюємо масив з обєктів які мають бути в респонсі
+ //               new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
+//                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
         PostDto[] expectedPostDto = { // створюємо масив з обєктів
  //               new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
  //               new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
