@@ -53,7 +53,7 @@ public class PrivatCurrencyDto {
         this.baseCurrencyLit = baseCurrencyLit;
     }
 
-    public  ExchangeRateDto[] getExchangeRate() {
+    public  ExchangeRateDto[] getExchangeRate() { 
         return exchangeRate;
     }
 

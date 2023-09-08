@@ -29,10 +29,8 @@ public class ApiTests {
                 .contentType(ContentType.JSON)
                 .log().all() //виводимо в колсоль весь реквест
                 .when() //дія
-                .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  вказуємо ендпоінт і тип запиту
-                .log().all()
-                .when()
-                .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
+                .get(EndPoints.POSTS_BY_USER, USER_NAME) //  вказуємо ендпоінт і тип запиту
+
                 .then()
                 .statusCode(200)//перевір, що повернуло потрібний статус
                 .log().all()//виводимо в колсоль весь респонс
@@ -138,7 +136,7 @@ public void getAllPostsByUserPatch() {
             .contentType(ContentType.JSON)
             .log().all()
             .when()
-            .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  URL
+            .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
             .then()
             .statusCode(200)//перевір, що повернуло потрібний статус
             .log().all()//виводимо в колсоль весь респонс

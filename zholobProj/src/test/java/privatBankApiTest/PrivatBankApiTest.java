@@ -91,7 +91,8 @@ public class PrivatBankApiTest {
         }
     }
 
-    PrivatCurrencyDto expectedCurrencyDto = new PrivatCurrencyDto(DATE, "PB", 980, "UAH", expectedExchangeRates);
+    PrivatCurrencyDto expectedCurrencyDto = new PrivatCurrencyDto(DATE, "PB", BASE_CURRENCY, "UAH", expectedExchangeRates);
+
 
     }
 
