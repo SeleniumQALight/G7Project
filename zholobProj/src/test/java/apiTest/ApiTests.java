@@ -29,7 +29,7 @@ public class ApiTests {
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
-                .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  URL
+                .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
                 .then()
                 .statusCode(200)//перевір, що повернуло потрібний статус
                 .log().all()//виводимо в колсоль весь респонс
@@ -86,7 +86,7 @@ public class ApiTests {
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
-                        .get(EndPoints.PPOSTS_BY_USER, "NOtVaidUser") //  URL
+                        .get(EndPoints.POSTS_BY_USER, "NOtVaidUser") //  URL
                         .then()
                         .statusCode(200)//перевір, що повернуло потрібний статус
                         .log().all()//виводимо в колсоль весь респонс
@@ -103,7 +103,7 @@ public void getAllPostsByUserPatch() {
            .contentType(ContentType.JSON)//додали хедер аплікейшина
             .log().all()
             .when()
-           .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  URL
+           .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
             .then()
             .statusCode(200)//перевір, що повернуло потрібний статус
             .log().all()//виводимо в колсоль весь респонс
@@ -135,7 +135,7 @@ public void getAllPostsByUserPatch() {
             .contentType(ContentType.JSON)
             .log().all()
             .when()
-            .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  URL
+            .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
             .then()
             .statusCode(200)//перевір, що повернуло потрібний статус
             .log().all()//виводимо в колсоль весь респонс
