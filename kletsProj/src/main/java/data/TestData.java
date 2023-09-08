@@ -10,4 +10,8 @@ public class TestData {
     public final static String PASSWORD_INVALID = "testtesttetesttesttetesttesttetesttesttetesttesttet";
     public final static String ERROR_MESSAGE = "Invalid username / pasword";
 
+    public final static String LOGIN_API_DEFAULT = "newKlets".toLowerCase();
+    public final static String PASSWORD_API_DEFAULT = "test12345678910";
+
+
 }
