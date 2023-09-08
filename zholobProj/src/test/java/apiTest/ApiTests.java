@@ -30,18 +30,21 @@ public class ApiTests {
                 .log().all() //виводимо в колсоль весь реквест
                 .when() //дія
                 .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  вказуємо ендпоінт і тип запиту
+                .log().all()
+                .when()
+                .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
                 .then()
                 .statusCode(200)//перевір, що повернуло потрібний статус
                 .log().all()//виводимо в колсоль весь респонс
-                .assertThat() //перевірки
-                .body("[0].title",equalTo("test2")) //перевыка що пост з індексом 0 має тайтл test2
-                .body("author.username", everyItem(equalTo(USER_NAME)))//пройти по всім айтем і перевірити поле юзернейм
+                .assertThat()
+                .body("[0].title", equalTo("test2"))
+                .body("author.username", everyItem(equalTo(USER_NAME)))//пройти по всім айтем і перевірити поле
                 .extract().body().as(PostDto[].class)//витягнути тіло і перетворити в масив обєктів
                 ;
         logger.info(responseAsDto[0].toString());
-        logger.info(responseAsDto.length); // питаємо скільки елементів в масиві
-        logger.info(responseAsDto[0].getTitle()); //
-        logger.info(responseAsDto[0].getAuthor().getUsername()); //питаємо юзернейм автора першого поста
+        logger.info(responseAsDto.length);
+        logger.info(responseAsDto[0].getTitle());
+        logger.info(responseAsDto[0].getAuthor().getUsername());
 
         for (int i = 0; i < responseAsDto.length; i++) {
             Assert.assertEquals("Username is not matched in post  " + i
@@ -50,9 +53,6 @@ public class ApiTests {
 
         }
 
-//        PostDto[] expectedPostDto = { // створюємо масив з обєктів які мають бути в респонсі
- //               new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
-//                new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
         PostDto[] expectedPostDto = { // створюємо масив з обєктів
  //               new PostDto("test2", "test body2", "All Users", "no", new AuthorDto(USER_NAME), false),
  //               new PostDto("test", "test body", "All Users", "no", new AuthorDto(USER_NAME), false)
@@ -89,7 +89,7 @@ public class ApiTests {
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
-                        .get(EndPoints.PPOSTS_BY_USER, "NOtVaidUser") //  URL
+                        .get(EndPoints.POSTS_BY_USER, "NOtVaidUser") //  URL
                         .then()
                         .statusCode(200)//перевір, що повернуло потрібний статус
                         .log().all()//виводимо в колсоль весь респонс
@@ -106,7 +106,7 @@ public void getAllPostsByUserPatch() {
            .contentType(ContentType.JSON)//додали хедер аплікейшина
             .log().all()
             .when()
-           .get(EndPoints.PPOSTS_BY_USER, USER_NAME) //  URL
+           .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
             .then()
             .statusCode(200)//перевір, що повернуло потрібний статус
             .log().all()//виводимо в колсоль весь респонс

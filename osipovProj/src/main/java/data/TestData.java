@@ -12,4 +12,7 @@ public class TestData {
     public final static String POST_BODY = "Body Of New Post Ivan";
     public final static String CHECK_CHECKBOX = "check";
     public final static String UNCHECK_CHECKBOX = "uncheck";
+
+    public final static String LOGIN_API_DEFAULT = "testg7o";
+    public final static String PASSWORD_API_DEFAULT = "123456qwerty";
 }
