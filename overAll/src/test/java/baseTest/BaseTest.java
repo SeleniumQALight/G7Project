@@ -15,13 +15,19 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import pages.PageProvider;
 
 import java.io.ByteArrayInputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -112,7 +118,41 @@ public class BaseTest {
         } else if ("edge".equalsIgnoreCase(browser)) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        }  else {
+        }  else if ("remote".equalsIgnoreCase(browser)){
+            WebDriverManager.chromedriver().clearDriverCache().setup();
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName("chrome");
+            //capabilities.setVersion("87.0");
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.merge(capabilities);
+            chromeOptions.addArguments("--remote-allow-origins=*");
+            try {
+                webDriver = new RemoteWebDriver(
+                        new URL("http://localhost:4444/wd/hub"), chromeOptions);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+            logger.info("Remote Chrome driver was started");
+
+
+        } else if ("remote_f".equalsIgnoreCase(browser)){
+            WebDriverManager.firefoxdriver().clearDriverCache().setup();
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName("firefox");
+            //capabilities.setVersion("87.0");
+            FirefoxOptions chromeOptions = new FirefoxOptions();
+            chromeOptions.merge(capabilities);
+//            chromeOptions.addArguments("--remote-allow-origins=*");
+            try {
+                webDriver = new RemoteWebDriver(
+                        new URL("http://localhost:4444/wd/hub"), chromeOptions);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+            logger.info("Remote FireFox driver was started");
+
+        }
+        else {
             throw new IllegalArgumentException("Browser " + browser + " is not supported");
         }
         return webDriver;

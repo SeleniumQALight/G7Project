@@ -6,20 +6,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverHelper {
-   private static WebDriver webDriver;
+   private  WebDriver webDriver;
 
    // init driver
     public WebDriverHelper() {
-        webDriver = initDriver();
+        if (webDriver == null) {
+            webDriver = initDriver();
+        }
     }
 
     // get driver
-    public static WebDriver getWebDriver() {
+    public WebDriver getWebDriver() {
         return webDriver;
     }
 
     //close driver
-    public static void closeDriver() {
+    public void closeDriver() {
         webDriver.quit();
     }
 

@@ -11,8 +11,8 @@ Feature: Login feature added
       | loginTaras | passwordTaras |
       | taras      | 123456        |
 
-  @smoke
-  Scenario: Login with valid credentials3
+  @smoke1
+  Scenario: Login with valid credentials1.2
     Given I am on the login page
     When I enter valid credentials
     Then I should see error message

@@ -8,16 +8,20 @@ import io.qameta.allure.Step;
 import pages.PageProvider;
 
 
-public class MyStepdefs {
+public class MyStepdefs extends MainSteps{
+
+    public MyStepdefs(TestUser testUser, WebDriverHelper webDriverHelper) {
+        super(testUser, webDriverHelper);
+    }
 
 
-
-    PageProvider pageProvider = new PageProvider(WebDriverHelper.getWebDriver());
 
     @Given("I am on the login page")
     @Step("I am on the login page")
     public void iAmOnTheLoginPage() {
 //        pageProvider.getLoginPage().openLoginPage();
+        testUser.setName("name_test");
+        System.out.println("User name is " + testUser.getName());
     }
 
     @When("I enter valid credentials")
@@ -32,10 +36,5 @@ public class MyStepdefs {
        pageProvider.getHomePage().checkIsRedirectToHomePage();
     }
 
-    @Then("I should see error message")
-    @Step("I should see error message")
-    public void iEnterValidLoginCredentials() {
-        pageProvider.getLoginPage().checkIsButtonSignInDisplayed();
 
-    }
 }
