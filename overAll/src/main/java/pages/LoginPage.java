@@ -120,4 +120,9 @@ public class LoginPage extends ParentPage{
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
+
+    //chek button SighIn is displayed
+    public void checkIsButtonSignInDisplayed(){
+       checkElementDisplayed(buttonSignIn);
+    }
 }
