@@ -10,6 +10,7 @@ import privatBankApi.PrivatbankEndpoints;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class PrivatbankAPITest {
@@ -79,5 +80,19 @@ public class PrivatbankAPITest {
         }
     }
 
+    @Test
+    public void getExchangeRateSchemaTest() {
+        given()
+                .contentType("application/json")
+                .queryParam("date", DATE)
+                .log().all()
+                .when()
+                .get(PrivatbankEndpoints.EXCHANGE_RATES)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("responsePrivatbank.json"));
 
+    }
 }
