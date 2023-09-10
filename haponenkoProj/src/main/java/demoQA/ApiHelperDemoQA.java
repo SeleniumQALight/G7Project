@@ -1,12 +1,10 @@
 package demoQA;
 
-import api.dto.responseDto.AuthorDto;
 import io.restassured.http.ContentType;
-import io.restassured.response.ResponseBody;
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
 
-import java.awt.print.Book;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -19,6 +17,7 @@ public class ApiHelperDemoQA {
     }
 
     public static UserInfoDTO getUserInfo(String login, String password) {
+        SoftAssertions softAssertions = new SoftAssertions();
         JSONObject requestParams = new JSONObject();
         requestParams.put("userName", login);
         requestParams.put("password", password);
@@ -39,6 +38,11 @@ public class ApiHelperDemoQA {
         userInfo.setToken(apiResponseDTO.getToken());
         userInfo.setUserId(apiResponseDTO.getUserId());
 
+        softAssertions.assertThat(userInfo.getUserId()).as("User ID is empty").isNotEmpty();
+        softAssertions.assertThat(userInfo.getToken()).as("Token is empty").isNotEmpty();
+
+        softAssertions.assertAll();
+
         return userInfo;
     }
 
@@ -58,33 +62,33 @@ public class ApiHelperDemoQA {
 //        return getAllBooksByUser(TestDataDemoQA.LOGIN_DEFAULT);
 //    }
 
-    public BooksDTO getAllBooksByUser(String userId) {
-        ProfileDto profileDTO =
-         given()
-                .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + getUserInfo().getToken())
-                .log().all()
-                .when()
-                .get(EndPointsDemoQA.PROFILE, userId)
-                .then()
-                .statusCode(200)
-                .log().all()
-                .extract().response().getBody().as(ProfileDto.class);
+//    public BookDTO getAllBooksByUser(String userId) {
+//        UserProfileDto profileDTO =
+//         given()
+//                .contentType(ContentType.JSON)
+//                .header("Authorization", "Bearer " + getUserInfo().getToken())
+//                .log().all()
+//                .when()
+//                .get(EndPointsDemoQA.PROFILE, userId)
+//                .then()
+//                .statusCode(200)
+//                .log().all()
+//                .extract().response().getBody().as(UserProfileDto.class);
+//
+//        BookDTO userBooks = new BookDTO();
+//        if (!profileDTO.getBooks().isEmpty()) {
+//            userBooks.setIsbn(profileDTO.getBooks().get(0).getIsbn());
+//        } else {
+//            // Handle the case where there are no userBooks in the list
+//            logger.info("No userBooks found in the list.");
+//            // You can set a default value for isbn or handle it as needed
+//        }
+//
+//        return userBooks;
+//    }
 
-        BooksDTO books = new BooksDTO();
-        if (!profileDTO.getBooks().isEmpty()) {
-            books.setIsbn(profileDTO.getBooks().get(0).getIsbn());
-        } else {
-            // Handle the case where there are no books in the list
-            logger.info("No books found in the list.");
-            // You can set a default value for isbn or handle it as needed
-        }
-
-        return books;
-    }
-
-    public int getNumberOfBooks(String userId) {
-        ProfileDto profileDTO =
+    public Integer getNumberOfUserBooks(String userId) {
+        UserProfileDto profileDTO =
                 given()
                         .contentType(ContentType.JSON)
                         .header("Authorization", "Bearer " + getUserInfo().getToken())
@@ -94,13 +98,40 @@ public class ApiHelperDemoQA {
                         .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(ProfileDto.class);
+                        .extract().response().getBody().as(UserProfileDto.class);
 
-        List<BooksDTO> booksList = profileDTO.getBooks();
+        List<BookDTO> booksList = profileDTO.getBooks();
 
-        // Get the number of books in the list
-        int numberOfBooks = booksList.size();
+        int numberOfUserBooks = booksList.size();
 
-        return numberOfBooks;
+        return numberOfUserBooks;
     }
+
+    public static AllBooksDTO getAllBooks() {
+        SoftAssertions softAssertions = new SoftAssertions();
+        AllBooksDTO allBooksResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPointsDemoQA.BOOKS)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().as(AllBooksDTO.class);
+
+        List<BookDTO> books = allBooksResponse.getBooks();
+
+        // Check if books are present in the response
+        softAssertions.assertThat(books)
+                .as("List of books is empty")
+                .isNotEmpty();
+
+        softAssertions.assertAll();
+        return allBooksResponse;
+    }
+
 }
+
+
+

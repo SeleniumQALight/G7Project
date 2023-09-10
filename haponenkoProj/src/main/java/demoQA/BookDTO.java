@@ -2,16 +2,13 @@ package demoQA;
 
 import lombok.*;
 
-import java.awt.print.Book;
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class BooksDTO {
+public class BookDTO {
     String isbn;
     String title;
     String subTitle;
