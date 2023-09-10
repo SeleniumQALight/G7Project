@@ -38,8 +38,10 @@ public class PrivatbankAPITest {
 
         List<String> listOfCurrency = List.of("AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP",
                 "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD", "TMT", "TRY", "UAH", "USD", "UZS");
+
         if (primaryDto.getExchangeRate().length != listOfCurrency.size()) {
-            logger.error("Number of currency is not matched");
+            throw new AssertionError("Number of currency is not matched");
+
         } else {
             logger.info("Number of currency is matched");
 
@@ -67,15 +69,15 @@ public class PrivatbankAPITest {
                             .as("Sale rate is not positive")
                             .isGreaterThan(0);
 
-               if (primaryDto.getExchangeRate()[i].getPurchaseRate() != null)
-                softAssertions.assertThat(primaryDto.getExchangeRate()[i].getPurchaseRate())
-                        .as("Purchase rate is not positive")
-                        .isGreaterThan(0);
+                if (primaryDto.getExchangeRate()[i].getPurchaseRate() != null)
+                    softAssertions.assertThat(primaryDto.getExchangeRate()[i].getPurchaseRate())
+                            .as("Purchase rate is not positive")
+                            .isGreaterThan(0);
             }
             softAssertions.assertAll();
 
         }
-        }
+    }
 
 
 }
