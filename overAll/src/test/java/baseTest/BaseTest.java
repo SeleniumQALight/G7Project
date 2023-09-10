@@ -103,6 +103,7 @@ public class BaseTest {
 
     private WebDriver initDriver(){
         String browser = System.getProperty("browser");
+        String ip = System.getProperty("ip", "localhost");
         if ((browser == null) || ("chrome".equals(browser.toLowerCase()))){ // default browser -Dbrowser=chrome
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
@@ -128,7 +129,7 @@ public class BaseTest {
             chromeOptions.addArguments("--remote-allow-origins=*");
             try {
                 webDriver = new RemoteWebDriver(
-                        new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                        new URL("http://"+ip+":4444/wd/hub"), chromeOptions);
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
@@ -145,7 +146,7 @@ public class BaseTest {
 //            chromeOptions.addArguments("--remote-allow-origins=*");
             try {
                 webDriver = new RemoteWebDriver(
-                        new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                        new URL("http://"+ip+":4444/wd/hub"), chromeOptions);
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
