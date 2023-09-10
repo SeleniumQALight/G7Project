@@ -22,3 +22,10 @@
       -e SE_EVENT_BUS_PUBLISH_PORT=4442 \
       -e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 \
       selenium/node-firefox:latest
+
+docker-compose up --scale selenium-node-chrome=3 -d
+
+      docker ps
+      // get id from selenium-hub
+
+      docker inspect <id selenium hub> | grep "IPAddress"
