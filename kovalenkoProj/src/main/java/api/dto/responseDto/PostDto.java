@@ -1,7 +1,14 @@
 package api.dto.responseDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class PostDto {
     @JsonProperty("_id")
     String id;
@@ -13,9 +20,6 @@ public class PostDto {
     String createdDate;
     AuthorDto author;
     Boolean isVisitorOwner;
-
-    public PostDto() {
-    }
 
     public PostDto(String title, String body, String select1, String uniquePost, AuthorDto author, Boolean isVisitorOwner) {
         this.title = title;
@@ -30,9 +34,6 @@ public class PostDto {
         return id;
     }
 
-    public void setId(String _id) {
-        this.id = _id;
-    }
 
     public String getTitle() {
         return title;
@@ -50,57 +51,9 @@ public class PostDto {
         this.body = body;
     }
 
-    public String getSelect1() {
-        return select1;
-    }
-
-    public void setSelect1(String select1) {
-        this.select1 = select1;
-    }
-
-    public String getUniquePost() {
-        return uniquePost;
-    }
-
-    public void setUniquePost(String uniquePost) {
-        this.uniquePost = uniquePost;
-    }
-
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public AuthorDto getAuthor() {
         return author;
     }
 
-    public void setAuthor(AuthorDto author) {
-        this.author = author;
-    }
 
-    public Boolean getIsVisitorOwner() {
-        return isVisitorOwner;
-    }
-
-    public void setIsVisitorOwner(Boolean visitorOwner) {
-        isVisitorOwner = visitorOwner;
-    }
-
-    @Override
-    public String toString() {
-        return "PostDto{" +
-                "_id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", select1='" + select1 + '\'' +
-                ", uniquePost='" + uniquePost + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", author=" + author +
-                ", isVisitorOwner=" + isVisitorOwner +
-                '}';
-    }
 }
