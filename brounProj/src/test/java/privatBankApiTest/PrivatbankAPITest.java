@@ -48,6 +48,11 @@ public class PrivatbankAPITest {
             Assert.assertEquals("Currency is not matched in post " + i,
                     listOfCurrency.get(i),
                     primaryDto.getExchangeRate()[i].getCurrency());
+
+            Assert.assertTrue("Sale rateNB is not positive", primaryDto.getExchangeRate()[i].getSaleRateNB() > 0);
+            Assert.assertTrue("Purchase rateNB is not positive", primaryDto.getExchangeRate()[i].getPurchaseRateNB() > 0);
+//            Assert.assertTrue("Sale rate is not positive", primaryDto.getExchangeRate()[i].getSaleRate() > 0 || primaryDto.getExchangeRate()[i].getSaleRate() != null);
+//            Assert.assertTrue("Purchase rate is not positive", primaryDto.getExchangeRate()[i].getPurchaseRate() > 0 || primaryDto.getExchangeRate()[i].getPurchaseRate() != null);
         }
 
 
