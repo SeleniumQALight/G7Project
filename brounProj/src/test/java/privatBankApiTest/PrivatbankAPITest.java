@@ -1,8 +1,8 @@
 package privatBankApiTest;
 
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Test;
 import privatBankApi.PrimaryDto;
 import privatBankApi.PrivatbankEndpoints;
@@ -38,25 +38,44 @@ public class PrivatbankAPITest {
 
         List<String> listOfCurrency = List.of("AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP",
                 "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD", "TMT", "TRY", "UAH", "USD", "UZS");
+        if (primaryDto.getExchangeRate().length != listOfCurrency.size()) {
+            logger.error("Number of currency is not matched");
+        } else {
+            logger.info("Number of currency is matched");
 
-        for (int i = 0; i < primaryDto.getExchangeRate().length; i++) {
 
-            Assert.assertEquals("Base currency is not matched in post " + i,
-                    "UAH",
-                    primaryDto.getExchangeRate()[i].getBaseCurrency());
+            SoftAssertions softAssertions = new SoftAssertions();
+            for (int i = 0; i < primaryDto.getExchangeRate().length; i++) {
+                softAssertions.assertThat(primaryDto.getExchangeRate()[i].getBaseCurrency())
+                        .as("Base currency is not matched in post " + i)
+                        .isEqualTo("UAH");
 
-            Assert.assertEquals("Currency is not matched in post " + i,
-                    listOfCurrency.get(i),
-                    primaryDto.getExchangeRate()[i].getCurrency());
+                softAssertions.assertThat(primaryDto.getExchangeRate()[i].getCurrency())
+                        .as("Currency is not matched in post " + i)
+                        .isEqualTo(listOfCurrency.get(i));
 
-            Assert.assertTrue("Sale rateNB is not positive", primaryDto.getExchangeRate()[i].getSaleRateNB() > 0);
-            Assert.assertTrue("Purchase rateNB is not positive", primaryDto.getExchangeRate()[i].getPurchaseRateNB() > 0);
-//            Assert.assertTrue("Sale rate is not positive", primaryDto.getExchangeRate()[i].getSaleRate() > 0 || primaryDto.getExchangeRate()[i].getSaleRate() != null);
-//            Assert.assertTrue("Purchase rate is not positive", primaryDto.getExchangeRate()[i].getPurchaseRate() > 0 || primaryDto.getExchangeRate()[i].getPurchaseRate() != null);
+                softAssertions.assertThat(primaryDto.getExchangeRate()[i].getSaleRateNB())
+                        .as("Sale rateNB is not positive")
+                        .isGreaterThan(0);
+
+                softAssertions.assertThat(primaryDto.getExchangeRate()[i].getPurchaseRateNB())
+                        .as("Purchase rateNB is not positive")
+                        .isGreaterThan(0);
+
+                if (primaryDto.getExchangeRate()[i].getSaleRate() != null)
+                    softAssertions.assertThat(primaryDto.getExchangeRate()[i].getSaleRate())
+                            .as("Sale rate is not positive")
+                            .isGreaterThan(0);
+
+               if (primaryDto.getExchangeRate()[i].getPurchaseRate() != null)
+                softAssertions.assertThat(primaryDto.getExchangeRate()[i].getPurchaseRate())
+                        .as("Purchase rate is not positive")
+                        .isGreaterThan(0);
+            }
+            softAssertions.assertAll();
+
         }
-
-
-    }
+        }
 
 
 }
