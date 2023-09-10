@@ -1,15 +1,15 @@
 package privatBankApi.getDto.responseDto;
 
-public class GetDto {
+public class GetDtoPrivatBank {
     String date;
     String bank;
-    int baseCurrency;
+    Integer baseCurrency;
     String baseCurrencyLit;
-    ExchangeRateDto [] exchangeRate;
+    ExchangeRateDtoPrivatBank[] exchangeRate;
 
-    public GetDto(){};
+    public GetDtoPrivatBank(){};
 
-    public GetDto(String date, String bank, int baseCurrency, String baseCurrencyLit, ExchangeRateDto [] exchangeRate) {
+    public GetDtoPrivatBank(String date, String bank, Integer baseCurrency, String baseCurrencyLit, ExchangeRateDtoPrivatBank[] exchangeRate) {
         this.date = date;
         this.bank = bank;
         this.baseCurrency = baseCurrency;
@@ -49,11 +49,11 @@ public class GetDto {
         this.baseCurrencyLit = baseCurrencyLit;
     }
 
-    public ExchangeRateDto [] getExchangeRate() {
+    public ExchangeRateDtoPrivatBank[] getExchangeRate() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(ExchangeRateDto [] exchangeRate) {
+    public void setExchangeRate(ExchangeRateDtoPrivatBank[] exchangeRate) {
         this.exchangeRate = exchangeRate;
     }
 
