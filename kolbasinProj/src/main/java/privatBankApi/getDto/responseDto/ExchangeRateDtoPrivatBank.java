@@ -26,8 +26,9 @@ public class ExchangeRateDtoPrivatBank {
         this.purchaseRate = purchaseRate;
     }
 
-    public ExchangeRateDtoPrivatBank(String baseCurrency) {
+    public ExchangeRateDtoPrivatBank(String baseCurrency, String currency) {
         this.baseCurrency = baseCurrency;
+        this.currency = currency;
     }
 
     public ExchangeRateDtoPrivatBank(){};
