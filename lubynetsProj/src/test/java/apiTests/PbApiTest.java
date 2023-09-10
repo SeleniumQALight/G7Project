@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.Assert.*;
 
 
@@ -125,5 +126,21 @@ public class PbApiTest {
         }
 
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void validateExchangeRatesWithSchema(){ // HW with schema
+        String date = "22.03.2022";
+        final String BASE_CURRENCY = "UAH";
+                    given()
+                .contentType(ContentType.JSON)
+                .queryParam("date", date)
+                .when()
+                .get(HwEndPoints.PB_EXCHANGE_RATES)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("pbExchangeRatesSchema.json"));
+
     }
 }
