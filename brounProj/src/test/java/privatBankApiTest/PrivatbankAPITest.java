@@ -36,7 +36,8 @@ public class PrivatbankAPITest {
                 .body("baseCurrencyLit", equalTo("UAH"))
                 .extract().body().as(PrimaryDto.class);
 
-        List<String> listOfCurrency = List.of("AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD", "TMT", "TRY", "UAH", "USD", "UZS");
+        List<String> listOfCurrency = List.of("AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP",
+                "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD", "TMT", "TRY", "UAH", "USD", "UZS");
 
         for (int i = 0; i < primaryDto.getExchangeRate().length; i++) {
 
