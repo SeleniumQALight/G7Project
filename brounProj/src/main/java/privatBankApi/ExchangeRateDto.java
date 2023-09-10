@@ -1,6 +1,6 @@
 package privatBankApi;
 
-public class ExchangeRateDto {
+public class   ExchangeRateDto {
 
     String baseCurrency;
     String currency;
