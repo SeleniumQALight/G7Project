@@ -1,15 +1,15 @@
 package suits;
 
-import LoginTests.LoginTestWithPageObject;
-import apiTests.ApiTests;
+import apiTests.ApiTest;
+import apiTests.ApiTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import postTests.CreatePost;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        LoginTestWithPageObject.class,
-        CreatePost.class
+        CreatePost.class,
+        ApiTest.class
 })
 public class SmokeSuite {
 }
