@@ -32,6 +32,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PrivatApiTest {
     String date = "22.03.2022";
@@ -103,5 +104,19 @@ public class PrivatApiTest {
                     .isEqualToIgnoringGivenFields(expectedCurrencyDto.getExchangeRate()[i], "saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate");
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void validateResponseWithSchemaHW2() { // HW2 with schema for lesson 5.9.2023 https://jsonformatter.org/json-to-jsonschema
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("date", date)
+                .when()
+                .get(EndPoints.PRIVAT_URL)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("responsePRIVAT.json"));
+
     }
 }
