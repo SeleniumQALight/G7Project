@@ -12,4 +12,7 @@ public class TestData {
     public final static String PASSWORD_INVALID_SHORT = "1";
     public final static String LOGIN_DEFAULT1 = "qaauto";
 
+    public final static String LOGIN_API_DEFAULT = "vladqaauto";
+    public final static String PASSWORD_API_DEFAULT = "vladqaautovladqaauto";
+
 }
