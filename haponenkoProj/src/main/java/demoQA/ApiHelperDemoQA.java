@@ -31,9 +31,6 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().as(LoginApiResponseDTO.class);
 
-//        UserLoginInfoDTO userInfo = new UserLoginInfoDTO();
-//        userInfo.setToken(apiResponseDTO.getToken());
-//        userInfo.setUserId(apiResponseDTO.getUserId());
 
         softAssertions.assertThat(apiResponseDTO.getUserId()).as("User ID is empty").isNotEmpty();
         softAssertions.assertThat(apiResponseDTO.getToken()).as("Token is empty").isNotEmpty();
