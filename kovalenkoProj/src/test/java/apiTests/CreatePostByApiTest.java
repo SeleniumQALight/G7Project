@@ -55,7 +55,7 @@ public class CreatePostByApiTest {
                 PostDto.builder()
                         .title(createPostBody.getTitle())
                         .body(createPostBody.getBody())
-                        .select1(createPostBody.getSelect1())
+                        .select(createPostBody.getSelect1())
                         .uniquePost(createPostBody.getUniquePost())
                         .isVisitorOwner(false)
                         .author(AuthorDto.builder().username(TestData.LOGIN_API_DEFAULT).build())
