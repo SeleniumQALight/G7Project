@@ -1,6 +1,7 @@
 package suits;
 
 import LoginTest.LoginTestWithPageObject;
+import apiTest.ApiTests;
 import categories.SmokeTestFilter;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
@@ -13,7 +14,8 @@ import registrationTest.RegistrationTest;
 @Suite.SuiteClasses({
         LoginTestWithPageObject.class,
         RegistrationTest.class,
-       CreatePost.class
+       CreatePost.class,
+        ApiTests.class
 
 })
 public class SmokeSuiteWithCategories {
