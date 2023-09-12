@@ -4,25 +4,22 @@ import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
-
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperDemoQA {
     Logger logger = Logger.getLogger(getClass());
 
-    public static UserInfoDTO getUserInfo() {
+    public static LoginApiResponseDTO getUserInfo() {
         return getUserInfo(TestDataDemoQA.LOGIN_DEFAULT, TestDataDemoQA.PASSWORD_DEFAULT);
     }
 
-    public static UserInfoDTO getUserInfo(String login, String password) {
+    public static LoginApiResponseDTO getUserInfo(String login, String password) {
         SoftAssertions softAssertions = new SoftAssertions();
         JSONObject requestParams = new JSONObject();
         requestParams.put("userName", login);
         requestParams.put("password", password);
 
-        ApiResponseDTO apiResponseDTO =
+        LoginApiResponseDTO apiResponseDTO =
                 given()
                         .contentType(ContentType.JSON)
                         .log().all()
@@ -32,18 +29,18 @@ public class ApiHelperDemoQA {
                         .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(ApiResponseDTO.class);
+                        .extract().response().getBody().as(LoginApiResponseDTO.class);
 
-        UserInfoDTO userInfo = new UserInfoDTO();
-        userInfo.setToken(apiResponseDTO.getToken());
-        userInfo.setUserId(apiResponseDTO.getUserId());
+//        UserLoginInfoDTO userInfo = new UserLoginInfoDTO();
+//        userInfo.setToken(apiResponseDTO.getToken());
+//        userInfo.setUserId(apiResponseDTO.getUserId());
 
-        softAssertions.assertThat(userInfo.getUserId()).as("User ID is empty").isNotEmpty();
-        softAssertions.assertThat(userInfo.getToken()).as("Token is empty").isNotEmpty();
+        softAssertions.assertThat(apiResponseDTO.getUserId()).as("User ID is empty").isNotEmpty();
+        softAssertions.assertThat(apiResponseDTO.getToken()).as("Token is empty").isNotEmpty();
 
         softAssertions.assertAll();
 
-        return userInfo;
+        return apiResponseDTO;
     }
 
     public void deleteAllBooksByUser(String token, String userId) {
@@ -58,40 +55,11 @@ public class ApiHelperDemoQA {
                 .log().all();
     }
 
-//    public ProfileDto getAllBooksByUser() {
-//        return getAllBooksByUser(TestDataDemoQA.LOGIN_DEFAULT);
-//    }
-
-//    public BookDTO getAllBooksByUser(String userId) {
-//        UserProfileDto profileDTO =
-//         given()
-//                .contentType(ContentType.JSON)
-//                .header("Authorization", "Bearer " + getUserInfo().getToken())
-//                .log().all()
-//                .when()
-//                .get(EndPointsDemoQA.PROFILE, userId)
-//                .then()
-//                .statusCode(200)
-//                .log().all()
-//                .extract().response().getBody().as(UserProfileDto.class);
-//
-//        BookDTO userBooks = new BookDTO();
-//        if (!profileDTO.getBooks().isEmpty()) {
-//            userBooks.setIsbn(profileDTO.getBooks().get(0).getIsbn());
-//        } else {
-//            // Handle the case where there are no userBooks in the list
-//            logger.info("No userBooks found in the list.");
-//            // You can set a default value for isbn or handle it as needed
-//        }
-//
-//        return userBooks;
-//    }
-
-    public Integer getNumberOfUserBooks(String userId) {
-        UserProfileDto profileDTO =
+    public UserProfileDto getUserProfile(String userId, String token) {
+        return
                 given()
                         .contentType(ContentType.JSON)
-                        .header("Authorization", "Bearer " + getUserInfo().getToken())
+                        .header("Authorization", "Bearer " + token)
                         .log().all()
                         .when()
                         .get(EndPointsDemoQA.PROFILE, userId)
@@ -100,11 +68,6 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().as(UserProfileDto.class);
 
-        List<BookDTO> booksList = profileDTO.getBooks();
-
-        int numberOfUserBooks = booksList.size();
-
-        return numberOfUserBooks;
     }
 
     public static AllBooksDTO getAllBooks() {
@@ -120,17 +83,79 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().as(AllBooksDTO.class);
 
-        List<BookDTO> books = allBooksResponse.getBooks();
 
         // Check if books are present in the response
-        softAssertions.assertThat(books)
+        softAssertions.assertThat(allBooksResponse.getBooks())
                 .as("List of books is empty")
                 .isNotEmpty();
 
         softAssertions.assertAll();
+
         return allBooksResponse;
     }
 
+//    public void addBookToUserByApi() {
+//        String response = given()
+//                .contentType(ContentType.JSON)
+//                .log().all()
+//                .when()
+//                .get(EndPointsDemoQA.ADD_BOOK)
+//                .then()
+//                .statusCode(200)
+//                .log().all()
+//                .extract().response().getBody().asString();
+//
+//        JSONObject jsonObjectForAllBooks = new JSONObject(response);
+//        JSONArray jsonArray = jsonObjectForAllBooks.getJSONArray("books");
+//        List<String> isbn = new ArrayList<>();
+//
+//        for (int i = 0; i < jsonArray.length(); i++) {
+//            JSONObject temp = jsonArray.getJSONObject(i);
+//            isbn.add(temp.getString("isbn"));
+//        }
+//
+//        CollectionOfIsbnsDto[] collectionOfIsbnsDto = {new CollectionOfIsbnsDto(isbn.get(0))};
+//
+//        AddBookDTO addBookDTO = AddBookDTO.builder()
+//                .userId(getUserInfo().userId)
+//                .collectionOfIsbns(collectionOfIsbnsDto)
+//                .build();
+//
+//        given()
+//                .contentType(ContentType.JSON)
+//                .header("Authorization", "Bearer " + getUserInfo().getToken())
+//                .log().all()
+//                .body(addBookDTO)
+//                .when()
+//                .post(EndPointsDemoQA.ADD_BOOK)
+//                .then()
+//                .statusCode(201)
+//                .log().all();
+//    }
+
+    public void addBooksToUser(String userId, String isbns, String token) {
+        // Create the request payload as a Map
+//        Map<String, Object> payload = new HashMap<>();
+//        payload.put("userId", userId);
+//        payload.put("collectionOfIsbns", isbns);
+        CollectionOfIsbnsDto[] collectionOfIsbnsDto = {new CollectionOfIsbnsDto(isbns)};
+        AddBookDTO payload = AddBookDTO.builder()
+                .userId(userId)
+                .collectionOfIsbns(collectionOfIsbnsDto)
+                .build();
+
+        // Send the POST request with the payload
+        given()
+                .contentType(ContentType.JSON)
+                .auth().oauth2(token)
+                .body(payload)
+                .log().all()
+                .when()
+                .post(EndPointsDemoQA.ADD_BOOK)
+                .then()
+                .statusCode(201)
+                .log().all();
+    }
 }
 
 

@@ -1,6 +1,5 @@
 package demoQA;
 
-
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,7 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class UserInfoDTO {
-    String userId;
-    String token;
+public class CollectionOfIsbnsDto {
+    String isbn;
 }

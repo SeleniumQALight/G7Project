@@ -1,6 +1,5 @@
 package demoQA;
 
-
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class ApiResponseDTO {
+public class LoginApiResponseDTO {
     String userId;
     String username;
     String password;
