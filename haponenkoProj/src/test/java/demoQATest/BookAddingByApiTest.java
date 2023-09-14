@@ -2,7 +2,6 @@ package demoQATest;
 
 import demoQA.*;
 import org.apache.log4j.Logger;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

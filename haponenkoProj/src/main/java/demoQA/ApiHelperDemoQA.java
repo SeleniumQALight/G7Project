@@ -31,7 +31,6 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().as(LoginApiResponseDTO.class);
 
-
         softAssertions.assertThat(apiResponseDTO.getUserId()).as("User ID is empty").isNotEmpty();
         softAssertions.assertThat(apiResponseDTO.getToken()).as("Token is empty").isNotEmpty();
 
@@ -80,8 +79,6 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().as(AllBooksDTO.class);
 
-
-        // Check if books are present in the response
         softAssertions.assertThat(allBooksResponse.getBooks())
                 .as("List of books is empty")
                 .isNotEmpty();
@@ -91,57 +88,14 @@ public class ApiHelperDemoQA {
         return allBooksResponse;
     }
 
-//    public void addBookToUserByApi() {
-//        String response = given()
-//                .contentType(ContentType.JSON)
-//                .log().all()
-//                .when()
-//                .get(EndPointsDemoQA.ADD_BOOK)
-//                .then()
-//                .statusCode(200)
-//                .log().all()
-//                .extract().response().getBody().asString();
-//
-//        JSONObject jsonObjectForAllBooks = new JSONObject(response);
-//        JSONArray jsonArray = jsonObjectForAllBooks.getJSONArray("books");
-//        List<String> isbn = new ArrayList<>();
-//
-//        for (int i = 0; i < jsonArray.length(); i++) {
-//            JSONObject temp = jsonArray.getJSONObject(i);
-//            isbn.add(temp.getString("isbn"));
-//        }
-//
-//        CollectionOfIsbnsDto[] collectionOfIsbnsDto = {new CollectionOfIsbnsDto(isbn.get(0))};
-//
-//        AddBookDTO addBookDTO = AddBookDTO.builder()
-//                .userId(getUserInfo().userId)
-//                .collectionOfIsbns(collectionOfIsbnsDto)
-//                .build();
-//
-//        given()
-//                .contentType(ContentType.JSON)
-//                .header("Authorization", "Bearer " + getUserInfo().getToken())
-//                .log().all()
-//                .body(addBookDTO)
-//                .when()
-//                .post(EndPointsDemoQA.ADD_BOOK)
-//                .then()
-//                .statusCode(201)
-//                .log().all();
-//    }
-
     public void addBooksToUser(String userId, String isbns, String token) {
-        // Create the request payload as a Map
-//        Map<String, Object> payload = new HashMap<>();
-//        payload.put("userId", userId);
-//        payload.put("collectionOfIsbns", isbns);
+
         CollectionOfIsbnsDto[] collectionOfIsbnsDto = {new CollectionOfIsbnsDto(isbns)};
         AddBookDTO payload = AddBookDTO.builder()
                 .userId(userId)
                 .collectionOfIsbns(collectionOfIsbnsDto)
                 .build();
 
-        // Send the POST request with the payload
         given()
                 .contentType(ContentType.JSON)
                 .auth().oauth2(token)
