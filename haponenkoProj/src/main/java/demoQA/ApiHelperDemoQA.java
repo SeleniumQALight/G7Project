@@ -43,9 +43,10 @@ public class ApiHelperDemoQA {
         given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
+                .queryParam("UserId", userId)
                 .log().all()
                 .when()
-                .delete(EndPointsDemoQA.DELETE_ALL_BOOKS, userId)
+                .delete(EndPointsDemoQA.BOOKS)
                 .then()
                 .statusCode(204)
                 .log().all();
@@ -102,7 +103,7 @@ public class ApiHelperDemoQA {
                 .body(payload)
                 .log().all()
                 .when()
-                .post(EndPointsDemoQA.ADD_BOOK)
+                .post(EndPointsDemoQA.BOOKS)
                 .then()
                 .statusCode(201)
                 .log().all();
