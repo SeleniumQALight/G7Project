@@ -1,5 +1,6 @@
 package privatBankApiTests;
 
+import api.EndPoints;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -10,6 +11,7 @@ import privatBankApi.dto.responseDto.ExchangeAllRatesDto;
 import privatBankApi.dto.responseDto.ExchangeRateDto;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.*;
 
 
@@ -89,4 +91,21 @@ public class PrivatApiTests {
         softAssertions.assertAll();
 
     }
+    @Test
+    public void getAllRatesByDateSchema() {
+        given()
+                .contentType(ContentType.JSON)//додали хедер аплікейшина
+                .log().all()//виводимо в колсоль весь запит
+                .when()// дія
+                .queryParam("date", DATE)
+                .get(PrivatEndPoints.GET_EXCHANGE_RATE)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("data-container.json"));
+    }
+
+
+
 }
