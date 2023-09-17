@@ -1,36 +1,37 @@
 package demoQaApi;
 
 import data.TestData;
+import demoQaApi.dto.AuthorizationDto;
+import demoQaApi.dto.BooksDto;
+import demoQaApi.dto.CollectionOfIsbnsDto;
+import demoQaApi.dto.RequestDto;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
-import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.junit.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
 public class DemoQaApiHelper {
-    Logger logger = Logger.getLogger(getClass());
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
 
-    public List<String> authorization(){
+    public AuthorizationDto authorization() {
         return authorization(TestData.LOGIN_DEMOQA_API_DEFAULT, TestData.PASSWORD_DEMOQA_API_DEFAULT);
     }
-    public List<String> authorization(String userName, String password){
+
+    public AuthorizationDto authorization(String userName, String password) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userName", userName);
         jsonObject.put("password", password);
 
-        ResponseBody responseBody = given()
+        return given()
                 .spec(requestSpecification)
                 .body(jsonObject.toMap())
                 .when()
@@ -38,22 +39,55 @@ public class DemoQaApiHelper {
                 .then()
                 .statusCode(200)
                 .log().all()
-                .extract().response().getBody();
-
-        List<String > userIdAndToken = new ArrayList<>();
-        userIdAndToken.add(responseBody.jsonPath().get("userId"));
-        userIdAndToken.add(responseBody.jsonPath().get("token"));
-        return userIdAndToken;
+                .extract().body().as(AuthorizationDto.class);
     }
 
-    public void deleteAllBooks(List userIdAndToken){
+
+    public void deleteAllBooks(String token, String userId) {
         given()
                 .spec(requestSpecification)
-                .header("Authorization", "Bearer " + userIdAndToken.get(1))
+                .header("Authorization", "Bearer " + token)
+                .queryParam("UserId", userId)
                 .when()
-                .delete(DemoQaApiEndPoints.DELETE_BOOKS_BY_USER, userIdAndToken.get(0))
+                .delete(DemoQaApiEndPoints.ALL_BOOKS_URL)
                 .then()
                 .statusCode(204)
                 .log().all();
+    }
+
+    public RequestDto addingFirstBookAndFormRequestDto(String userId) {
+        BooksDto response = given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(DemoQaApiEndPoints.ALL_BOOKS_URL)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract().body().as(BooksDto.class);
+
+
+        CollectionOfIsbnsDto[] collectionOfIsbnsDto = {new CollectionOfIsbnsDto(response.getBooks()[0].getIsbn())};
+
+        return RequestDto.builder()
+                .userId(userId)
+                .collectionOfIsbns(collectionOfIsbnsDto)
+                .build();
+    }
+
+    public void checkIfUserHaveTheBookHeAddedInHisProfile(String token, String userId, String isbn) {
+        String booksOnProfilePage = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + token)
+                .log().all()
+                .when()
+                .get(DemoQaApiEndPoints.MY_BOOKS_URL, userId)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract().response().getBody().asString();
+
+        Assert.assertFalse("more then 1 book", booksOnProfilePage.contains("},"));
+        Assert.assertTrue("different books", booksOnProfilePage.contains(isbn));
     }
 }
