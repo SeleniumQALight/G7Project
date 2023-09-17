@@ -1,21 +1,18 @@
 package apiTests;
 
-import demoQAApi.AllBooksDto;
-import demoQAApi.ApiHelperDemoQA;
-import demoQAApi.BooksDetailsDto;
-import demoQAApi.LoginResponseDto;
+import demoQAApi.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.apache.log4j.Logger;
 
+import java.util.List;
 
 public class BookAddingByApiTestDemoQA {
 
     Logger logger = Logger.getLogger(getClass());
     ApiHelperDemoQA apiHelperDemoQA = new ApiHelperDemoQA();
     LoginResponseDto userInfo;
-
 
     @Before
     public void precondition() {
@@ -43,11 +40,12 @@ public class BookAddingByApiTestDemoQA {
         apiHelperDemoQA.addBookToCollection(userInfo.getUserId(), isbnBook, userInfo.getToken());
         logger.info(String.format("Book with ISBN %s is added to collection", isbnBook));
 
-        Assert.assertEquals("Book is not added to collection", 1, apiHelperDemoQA.getUserProfile(userInfo.getUserId(), userInfo.getToken()).getBooks().size());
-        Assert.assertEquals("Isbn of the first book is ", isbnBook, apiHelperDemoQA.getUserProfile(userInfo.getUserId(), userInfo.getToken()).getBooks().get(0).getIsbn());
+        List<BooksDetailsDto> booksDetailsDtoList = apiHelperDemoQA.getUserProfile(userInfo.getUserId(), userInfo.getToken()).getBooks();
+        logger.info(String.format("Count of books in collection: %s", booksDetailsDtoList.size()));
 
+        Assert.assertEquals("Count of books in collection: ", 1, booksDetailsDtoList.size());
+        Assert.assertEquals("Isbn of the first book is ", isbnBook, booksDetailsDtoList.get(0).getIsbn());
 
     }
-
 
 }
