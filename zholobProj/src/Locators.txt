@@ -64,3 +64,9 @@ page 7 Posts user    https://qa-complexapp.onrender.com/profile/qaauto          
 page 8 My profile
 
       My.profile.title.post = //strong[contains(text(),"<тема поста>")]
+
+
+
+//*[contains(text(),"Номер картки")]
+.//*[contains(text(),'MANGO')]
+<span class="name" id="id17f">MANGO</span>
