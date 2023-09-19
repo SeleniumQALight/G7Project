@@ -1,17 +1,54 @@
 package bdd.stepDefinitions;
 
+import bdd.helpers.WebDriverHelper;
+import data.TestData;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class LoginPageSteps {
-    @Given("I open Login page")
-    public void iOpenLoginPage() {
-        // TODO loginPage open
+public class LoginPageSteps extends MainSteps{
+    public LoginPageSteps(WebDriverHelper webDriverHelper) {
+        super(webDriverHelper);
     }
 
-    @When("I enter valid cred")
-    public void i_enter_valid_cred() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Given("I open Login page")
+    public void iOpenLoginPage() {
+        pageProvider.getloginPage().openLoginPage();
     }
+
+
+    @When("I login with valid cred")
+    public void i_login_with_valid_cred() {
+      pageProvider.getloginPage().enterTextIntoInputUserNane(TestData.LOGIN_DEFAULT);
+        pageProvider.getloginPage().enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
+        pageProvider.getloginPage().clickOnButtonSignIn();
+    }
+
+    @When("I enter {string} into input in Login form")
+    public void i_enter_into_input_in_login_form(String usermame) {
+        pageProvider.getloginPage().enterTextIntoInputUserNane(usermame);
+
+
+    }
+
+    @When("I enter {string} into input Password in Login form")
+    public void i_enter_into_input_password_in_login_form(String password) {
+        pageProvider.getloginPage().enterTextIntoInputPassword(password);
+
+
+    }
+
+    @When("I click on button SignIn in Login form")
+    public void i_click_on_button_sign_in_in_login_form() {
+        pageProvider.getloginPage().clickOnButtonSignIn();
+
+
+    }
+
+    @Then("I see alert message with text {string}")
+    public void i_see_alert_message_with_text(String textOfMessage) {
+        pageProvider.getloginPage().checkErrorsMessagesVisible(textOfMessage);
+
+    }
+
 }
