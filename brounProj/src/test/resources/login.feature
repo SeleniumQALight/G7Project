@@ -1,7 +1,8 @@
-
+  @LoginFeature @Regression
   Feature: Login feature
 
+    @R001 @Smoke
     Scenario: R001 Valid Login
       Given I open Login page
-        When I enter valid cred
-
+        When I login with valid cred
+        Then I see avatar on Home page
