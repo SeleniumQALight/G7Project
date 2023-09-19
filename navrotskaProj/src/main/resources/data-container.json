@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Generated schema for Root",
+    "type": "object",
+    "properties": {
+        "date": {
+            "type": "string"
+        },
+        "bank": {
+            "type": "string"
+        },
+        "baseCurrency": {
+            "type": "number"
+        },
+        "baseCurrencyLit": {
+            "type": "string"
+        },
+        "exchangeRate": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "baseCurrency": {
+                        "type": "string"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "saleRateNB": {
+                        "type": "number"
+                    },
+                    "purchaseRateNB": {
+                        "type": "number"
+                    },
+                    "saleRate": {
+                        "type": "number"
+                    },
+                    "purchaseRate": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "baseCurrency",
+                    "currency",
+                    "saleRateNB",
+                    "purchaseRateNB"
+                ]
+            }
+        }
+    },
+    "required": [
+        "date",
+        "bank",
+        "baseCurrency",
+        "baseCurrencyLit",
+        "exchangeRate"
+    ]
+}
