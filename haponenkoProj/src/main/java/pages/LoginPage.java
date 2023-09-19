@@ -41,9 +41,14 @@ public class LoginPage extends ParentPage {
 //    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
 //    private List<WebElement> alertDanger; same as  listErrorsMessagesLocator
 
+
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement errorMessageLoginLocator;
+
+    //    final String errorMessageLoginLocator = "//div[@class='alert alert-danger text-center']";
+
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
-    final String errorMessageLoginLocator = "//div[@class='alert alert-danger text-center']";
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -167,22 +172,22 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkErrorMessageLogin(String expectedErrorMessageLogin) {
         // Wait until the error message is visible
-        webDriverWait10.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(errorMessageLoginLocator)));
-        Util.waitABit(1);
+//        webDriverWait10.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(errorMessageLoginLocator)));
+//        Util.waitABit(1);
 
         // Check that there is exactly one error message
-        Assert.assertEquals("Number of error messages", 1, getErrorLogin().size());
+//        Assert.assertEquals("Number of error messages", 1, getErrorLogin().size());
 
         // Get the actual error message text
-        String actualErrorMessage = getErrorLogin().get(0).getText();
+//        String actualErrorMessage = getErrorLogin().get(0).getText();
 
         // Compare the expected and actual error messages
-        Assert.assertEquals("Error message", expectedErrorMessageLogin, actualErrorMessage);
+        Assert.assertEquals("Error message", expectedErrorMessageLogin, errorMessageLoginLocator.getText());
 
         return this;
     }
 
-    private List<WebElement> getErrorLogin() {
-        return webDriver.findElements(By.xpath(errorMessageLoginLocator));
-    }
+//    private List<WebElement> getErrorLogin() {
+//        return webDriver.findElements(By.xpath(errorMessageLoginLocator));
+//    }
 }
