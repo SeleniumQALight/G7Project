@@ -29,9 +29,10 @@ public class ApiTests {
                 .filter(new AllureRestAssured())
 
                 .contentType(ContentType.JSON)
-                .log().all()
-                .when()
-                .get(EndPoints.POSTS_BY_USER, USER_NAME) //  URL
+                .log().all() //виводимо в колсоль весь реквест
+                .when() //дія
+                .get(EndPoints.POSTS_BY_USER, USER_NAME) //  вказуємо ендпоінт і тип запиту
+
                 .then()
                 .statusCode(200)//перевір, що повернуло потрібний статус
                 .log().all()//виводимо в колсоль весь респонс
