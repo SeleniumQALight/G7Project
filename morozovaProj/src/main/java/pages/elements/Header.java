@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +18,8 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//span[@class=\"text-white mr-2 header-chat-icon\"]//*[@class=\"svg-inline--fa fa-comment fa-w-16\"]")
     private WebElement chatIcon;
 
-    @FindBy(xpath = "//img[@alt='My profile']")
-    private WebElement avatarIcon;
+//    @FindBy(xpath = "//img[@alt='My profile']")
+//    private WebElement avatarIcon;
 
     @FindBy(xpath = "//button[text()= 'Sign Out']")
     private WebElement buttonSignOut;
@@ -67,12 +68,13 @@ public class Header extends ActionsWithElements {
         checkElementNotDisplayed(chatIcon);
     }
 
-    public void checkIsButtonAvatarVisible() {
-        checkElementDisplayed(avatarIcon);
+    @Step
+    public void checkIsMyProfileVisible() {
+        checkElementDisplayed(profileButton);
     }
 
     public void checkIsButtonAvatarNotVisible() {
-        checkElementNotDisplayed(avatarIcon);
+        checkElementNotDisplayed(profileButton);
     }
 
     public void checkIsButtonCreatePostVisible() {
