@@ -32,8 +32,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName(LOGIN_DEFAULT);
-        pageProvider.getLoginPage().enterTextInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
@@ -45,8 +45,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         Map<String, String> dataForValidLogin =
                 ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName(dataForValidLogin.get("login"));
-        pageProvider.getLoginPage().enterTextInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.getLoginPage().enterTextIntoInputUserName(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
@@ -56,8 +56,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Test
     public void invalidLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName(TestData.LOGIN_INVALID);
-        pageProvider.getLoginPage().enterTextInputPassword(TestData.PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputUserName(TestData.LOGIN_INVALID);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkErrorMessageIsDisplayed();
@@ -76,8 +76,8 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Parameters(method = "parametersForInvalidLogin")
     public void invalidLoginParam(String userName, String password) {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName(userName);
-        pageProvider.getLoginPage().enterTextInputPassword(password);
+        pageProvider.getLoginPage().enterTextIntoInputUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkErrorMessageIsDisplayed();

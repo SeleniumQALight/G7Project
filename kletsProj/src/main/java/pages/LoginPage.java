@@ -61,11 +61,11 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public void enterTextInputUserName(String userName) {
+    public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUsername, userName);
     }
     @Step
-    public void enterTextInputPassword(String password) {
+    public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
     @Step
@@ -111,8 +111,8 @@ public class LoginPage extends ParentPage {
     @Step
     public void loginWithValidCreds() {
         openLoginPage();
-        enterTextInputUserName(TestData.LOGIN_DEFAULT);
-        enterTextInputPassword(TestData.PASSWORD_DEFAULT);
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
     @Step
