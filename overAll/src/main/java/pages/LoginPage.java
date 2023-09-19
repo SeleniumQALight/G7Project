@@ -34,6 +34,9 @@ public class LoginPage extends ParentPage{
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
     //same as webDriver.findElements(By.xpath(".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
   //  @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
   //  private List<WebElement> alertDanger;
@@ -119,5 +122,10 @@ public class LoginPage extends ParentPage{
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+
+    public LoginPage checkIsErroMessageVisible(String textOfMessage) {
+        Assert.assertEquals("Message in alert ", textOfMessage, alertInCenter.getText());
+        return this;
     }
 }
