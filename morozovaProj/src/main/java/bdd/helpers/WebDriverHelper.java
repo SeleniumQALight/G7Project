@@ -12,7 +12,7 @@ public class WebDriverHelper {
     WebDriver webDriver;
     Logger logger= Logger.getLogger(getClass());
 
-    public void WebDriverHelper(){
+    public WebDriverHelper(){
         if (webDriver == null){
             webDriver = initDriver();
         }
