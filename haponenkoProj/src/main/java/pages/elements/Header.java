@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
 import pages.CreatePostPage;
-import pages.LoginPage;
 import pages.MyProfilePage;
 
 public class Header extends ActionsWithElements {
@@ -46,7 +45,8 @@ public class Header extends ActionsWithElements {
         checkElementIsDisplayed(chatButton);
     }
 
-    public void checkIsProfileAvatarButtonVisible() {
+    @Step
+    public void checkIsButtonProfileAvatarVisible() {
         checkElementIsDisplayed(buttonMyProfile);
     }
 
