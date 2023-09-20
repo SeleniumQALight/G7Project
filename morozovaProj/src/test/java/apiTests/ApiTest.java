@@ -75,7 +75,6 @@ public class ApiTest {
                 .isEqualTo(expectedPostDto);
 
         softAssertions.assertAll();
-
     }
 
     @Test
