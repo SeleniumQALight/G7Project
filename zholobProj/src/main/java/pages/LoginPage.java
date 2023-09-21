@@ -44,6 +44,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register") // для реєстрації
     WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
    // @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     //private List<WebElement> alertDanger;
 
@@ -64,7 +67,7 @@ public class LoginPage extends ParentPage {
     @Step //
     public void openLoginPage() { // метод для відкриття сторінки
       openPage(BASE_URL);
-  //      openPage("https://aqa-complexapp.onrender.com");
+ //       openPage("https://aqa-complexapp.onrender.com");
         checkUrl();
     } // метод для відкриття сторінки
 
@@ -174,4 +177,9 @@ public class LoginPage extends ParentPage {
 
     private List<WebElement> getListOfErrors() { // метод для отримання списку помилок за локаторои
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+
+    public LoginPage checkErrorsMessagesVisible(String textOfMessage) {
+        Assert.assertEquals("Message in allert ", textOfMessage, alertInCenter.getText());
+        return this;
     }}
