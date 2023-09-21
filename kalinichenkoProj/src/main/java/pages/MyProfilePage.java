@@ -12,6 +12,8 @@ public class MyProfilePage extends ParentPageWithHeader {
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     @Override
     protected String getRelativeUrl() {
@@ -60,6 +62,11 @@ public class MyProfilePage extends ParentPageWithHeader {
                     + " or deleting takes too much time");
         }
 
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts", numberOfPosts, postsList.size());
         return this;
     }
 }

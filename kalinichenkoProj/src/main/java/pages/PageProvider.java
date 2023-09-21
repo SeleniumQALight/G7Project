@@ -19,4 +19,6 @@ public class PageProvider {
     public CreatePostPage getCreatePostPage() { return new CreatePostPage(webDriver); }
 
     public EditPostPage getEditPostPage() { return new EditPostPage(webDriver); }
+
+    public MyProfilePage getMyProfilePage() { return new MyProfilePage(webDriver); }
 }
