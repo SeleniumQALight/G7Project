@@ -23,7 +23,6 @@ public class Header extends ActionWithElements {
     private WebElement buttonSearch;
     @FindBy(xpath = "//a[contains(@class, 'text-white') and contains(text(), 'Complex app for testing - QA')]")
     private WebElement buttonLogo;
-
     @FindBy(xpath = "//img[@alt='My profile']")
     private WebElement buttonMyProfile;
 
@@ -101,8 +100,12 @@ public class Header extends ActionWithElements {
         return new MyProfilePage(webDriver);
         
     }
-
+@Step
     public boolean IsButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
+    }
+@Step
+    public void checkIsMyProfileVisible() {
+        checkElementDisplayed(buttonMyProfile);
     }
 }

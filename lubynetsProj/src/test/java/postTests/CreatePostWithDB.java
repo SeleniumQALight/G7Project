@@ -67,12 +67,12 @@ public class CreatePostWithDB extends baseTest.BaseTest {
 
     @Before
     public void validLogin() throws SQLException, ClassNotFoundException {//
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName("newqaauto");
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName("newqaauto");
         DB_Util_seleniumUsers db_util_seleniumUsers = new DB_Util_seleniumUsers();
-        pageProvider.getloginPage().enterTextIntoInputPassword(
+        pageProvider.getLoginPage().enterTextIntoInputPassword(
                 db_util_seleniumUsers.getPasswordForLogin("newqaauto"));
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
 
