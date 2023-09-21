@@ -43,8 +43,12 @@ public class LoginPage extends ParentPage {
 //            "    private WebElement messageInvalidUsernameAndPassword;")
 //    private List<WebElement> alertDanger;
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
     final String listErrorsMessagesLocator = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     final String errorMessageLogin = "//div[@class='alert alert-danger text-center']";
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -54,23 +58,27 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-@Step //хочемо бачити в репорті
+    @Step //хочемо бачити в репорті
     public void openLoginPage() {
         openPage(BASE_URL);
         checkUrl();
     }
+
     @Step //хочемо бачити в репорті
     public void enterTextIntoInputUserName(String UserName) {
         enterTextIntoInput(inputUserName, UserName);
     }
+
     @Step //хочемо бачити в репорті
     public void enterTextIntoInputPassword(String Password) {
         enterTextIntoInput(inputPassword, Password);
     }
+
     @Step //хочемо бачити в репорті
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
+
     @Step //хочемо бачити в репорті
     public void loginWithValidCreds() {
         openLoginPage();
@@ -78,9 +86,11 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
+
     public void checkIsInputUserNameVisible() {
         checkElementDisplayed(inputUserName);
     }
+
     @Step //хочемо бачити в репорті
     public void checkIsInputUserNameNotVisible() {
         checkElementNotDisplayed(inputUserName);
@@ -110,10 +120,12 @@ public class LoginPage extends ParentPage {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
+
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputUserEmailRegistration, email);
         return this;
     }
+
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputUserPasswordRegistration, password);
         return this;
@@ -121,7 +133,7 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkErrorsMessages(String expectedMessages) {
         //error1;error2;->[error1;error2]
-        String [] errors = expectedMessages.split(";");
+        String[] errors = expectedMessages.split(";");
         //wait util number or error will be expected
         webDriverWait10.until(
                 ExpectedConditions.numberOfElementsToBe(
@@ -138,16 +150,18 @@ public class LoginPage extends ParentPage {
         for (int i = 0; i < errors.length; i++) {
             softAssertions.assertThat(errors[i])//візьми очикуваний результат та виконай дію
                     .as("Error " + errors[i] + " was not found")//message if assertion is failed
-              //      .isEqualToIgnoringCase(atualTextFromErrors.get(i).toString());//порівняй очікуваний результат з фактичним
+                    //      .isEqualToIgnoringCase(atualTextFromErrors.get(i).toString());//порівняй очікуваний результат з фактичним
                     .isIn(atualTextFromErrors.get(i).toString());//порівняй очікуваний результат з фактичним, порядок не важливий
         }
         softAssertions.assertAll();//check all assertion, виведе, що не співпало
 
         return this;
     }
+
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
     }
+
     public LoginPage checkErrorMessageLogin(String expectedErrorMessageLogin) {
         // Очикування, поки повідомлення про помилку буде видимим
         webDriverWait10.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(errorMessageLogin)));
@@ -164,7 +178,13 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
     private List<WebElement> getErrorLogin() {
         return webDriver.findElements(By.xpath(errorMessageLogin));
+    }
+
+    public LoginPage checkErrorsMessagesVisible(String textOfMessage) {
+        Assert.assertEquals("Message in alert ", textOfMessage, alertInCenter.getText());
+        return this;
     }
 }
