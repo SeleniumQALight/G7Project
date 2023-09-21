@@ -1,7 +1,6 @@
 package suits;
 
 import LoginTests.LoginTestWithPageObject;
-import apiTests.ApiTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import postTests.CreatePost;
