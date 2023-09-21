@@ -39,6 +39,10 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
+
     //same as webDriver.findElements(By.xpath("//div[@class ='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
 //    @FindBy(xpath = "//div[@class ='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
 //    private List<WebElement> alertDanger;
@@ -61,45 +65,55 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public void enterTextInputUserName(String userName) {
+    public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUsername, userName);
     }
+
     @Step
-    public void enterTextInputPassword(String password) {
+    public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
+
     @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
+
     @Step
     public void checkButtonSignInDisplayed() {
         checkIsElementDisplayed(buttonSignIn);
     }
+
     @Step
     public void checkErrorMessageIsDisplayed() {
         checkIsElementDisplayed(errorMessage);
     }
+
     @Step
     public void checkIsInputUsernameLoginVisible() {
         checkIsElementDisplayed(inputUsername);
     }
+
     @Step
     public void checkIsInputPasswordLoginVisible() {
         checkIsElementDisplayed(inputPassword);
     }
+
     @Step
     public void checkIsButtonSignInVisible() {
         checkIsElementDisplayed(buttonSignIn);
     }
+
     @Step
     public void checkIsButtonSignInNotVisible() {
         checkIsElementNotDisplayed(buttonSignIn);
     }
+
     @Step
     public void checkIsInputUsernameLoginNotVisible() {
         checkIsElementNotDisplayed(inputUsername);
     }
+
     @Step
     public void checkIsInputPasswordLoginNotVisible() {
         checkIsElementNotDisplayed(inputPassword);
@@ -108,28 +122,33 @@ public class LoginPage extends ParentPage {
     public void checkIsErrorMessageNotVisible() {
         checkIsElementNotDisplayed(errorMessage);
     }
+
     @Step
     public void loginWithValidCreds() {
         openLoginPage();
-        enterTextInputUserName(TestData.LOGIN_DEFAULT);
-        enterTextInputPassword(TestData.PASSWORD_DEFAULT);
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
+
     @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
+
     @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
+
     @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
+
     @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
         // error1;error2; - > [error1, error2]
@@ -160,6 +179,12 @@ public class LoginPage extends ParentPage {
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+
+    public LoginPage checkIsErrorMessageVisible(String textOfErrorMessage) {
+        Assert.assertEquals("Text in Error message",
+                textOfErrorMessage, alertInCenter.getText());
+        return this;
     }
 }
 
