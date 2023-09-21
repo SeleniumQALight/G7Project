@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
@@ -13,6 +14,11 @@ public class MyProfilePage extends ParentPageWithHeder {
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
 
     @Override
     protected String getRelativeUrl() {
@@ -74,4 +80,8 @@ public class MyProfilePage extends ParentPageWithHeder {
     }
 
 
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Message number of post ", numberOfPosts, postsList.size());
+        return this;
+    }
 }
