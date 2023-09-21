@@ -87,4 +87,5 @@ public class Header extends ActionsWithElements {
         return isElementDisplayed(buttonSignOut);
 
     }
+
 }

@@ -27,7 +27,7 @@ public class Header extends ActionsWithElements { // клас для робот�
     @FindBy(xpath = " //*[@class='svg-inline--fa fa-comment fa-w-16']//*[@fill='currentColor']")
     private WebElement buttonChat;
 
-
+    @FindBy(xpath = "//img[@alt='My profile']")private WebElement avatarIcon;
 
 
     public Header(WebDriver webDriver) {
@@ -92,7 +92,14 @@ public class Header extends ActionsWithElements { // клас для робот�
 
     }
 
+
+
     public boolean isButtonSignOutVisible() {
-        return isElementDisplayed(buttonSignOut);
-    }
+       return isElementDisplayed(buttonSignOut);
+   }
+//
+//    public void checi() {
+//
+//        checkElementDisplayed(avatarIcon);
+//    }
 }

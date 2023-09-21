@@ -1,10 +1,6 @@
 package logOutTest;
 
-import loginTest.LoginTestWithPageObject;
 import org.junit.Test;
-
-import static data.TestData.LOGIN_DEFAULT;
-import static data.TestData.PASSWORD_DEFAULT;
 
 public class SignOutTest extends baseTest.BaseTest {
 
@@ -15,7 +11,7 @@ public class SignOutTest extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().getHeader().checkIsSearchButtonVisible();
         pageProvider.getHomePage().getHeader().checkIsChatButtonVisible();
-        pageProvider.getHomePage().getHeader().checkIsProfileAvatarButtonVisible();
+        pageProvider.getHomePage().getHeader().checkIsButtonProfileAvatarVisible();
         pageProvider.getHomePage().getHeader().checkIsCreatePostButtonVisible();
         pageProvider.getLoginPage().checkIsButtonSignInNotVisible();
         pageProvider.getLoginPage().checkIsInputUserNameNotVisible();

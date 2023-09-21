@@ -6,10 +6,10 @@ import org.junit.Test;
 public class AdditionalLoginTest extends baseTest.BaseTest {
     @Test
     public void checkValidLoginWithTabAndEnter() {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
-        pageProvider.getloginPage().enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
-        pageProvider.getloginPage().loginWithTabAndEnter();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().loginWithTabAndEnter();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
     }

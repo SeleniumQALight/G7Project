@@ -20,13 +20,13 @@ public class InvalidLoginTest extends baseTest.BaseTest {
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
     public void checkErrorsTest(String userName, String password) {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(userName);
-        pageProvider.getloginPage().enterTextIntoInputPassword(password);
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getHomePage().getHeader().checkIsMassageInvalidDisplayed();
-        pageProvider.getloginPage().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
     }
 
     public Object[][] parametersForCheckErrorsTest() {
