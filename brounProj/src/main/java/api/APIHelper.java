@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class APIHelper {
@@ -108,4 +111,24 @@ public class APIHelper {
         Assert.assertEquals("Message in response ", "\"Success\"", actualMessage);
     }
 
+    public void createPosts(String userName, String password,
+                            Map<String, String> mapForBody, int indexOfPost) {
+        String token = getToken(userName, password);
+
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", mapForBody.get("title") + indexOfPost);
+        requestBody.put("body", mapForBody.get("body"));
+        requestBody.put("select1", mapForBody.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .statusCode(200);
+
+    }
 }
