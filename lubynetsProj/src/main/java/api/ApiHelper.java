@@ -3,6 +3,7 @@ package api;
 
 import api.dto.responseDto.PostDto;
 import data.TestData;
+import io.cucumber.java.hu.Ha;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -12,6 +13,9 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -101,6 +105,27 @@ public class ApiHelper {
                    extract().response().getBody().asString();
         Assert.assertEquals("Message in response", "\"Success\"", actualMessage);
 
+
+    }
+
+    public void createPosts(String userName, String password,
+                            Map<String, String> mapForBody, int indexOfPost) {
+        String token = getToken(userName,password);
+
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", mapForBody.get("title") + indexOfPost );
+        requestBody.put("body", mapForBody.get("body"));
+        requestBody.put("select1", mapForBody.get("select"));
+        requestBody.put("uniquePost","no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .statusCode(200);
 
     }
 }
