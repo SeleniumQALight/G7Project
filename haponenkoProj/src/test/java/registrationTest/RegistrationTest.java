@@ -40,7 +40,7 @@ public class RegistrationTest extends BaseTest {
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
                 {SHORT_USER_NAME, "trtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "tr@tr.com", "123", ERROR_PASSWORD},
+                {"test", "td@tr.com", "123", ERROR_PASSWORD},
                 {"Ірина", "iryna@qa.auto", " ", ERROR_USERNAME_CYRILLIC + SEMICOLON + ERROR_EMAIL_EXIST + SEMICOLON + ERROR_PASSWORD},
                 {"qaauto", " ", "qwerty123456111111111111111111111111111111111111111", ERROR_ALREADY_EXIST + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD_TOO_LONG},
         };
