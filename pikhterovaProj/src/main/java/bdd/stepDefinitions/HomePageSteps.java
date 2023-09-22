@@ -1,9 +1,13 @@
 package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import testData.TestData;
 
 public class HomePageSteps extends MainSteps{
+    final String DEFAULT = "default";
     public HomePageSteps(WebDriverHelper webDriverHelper) {
         super(webDriverHelper);
     }
@@ -11,5 +15,25 @@ public class HomePageSteps extends MainSteps{
     @Then("I see avatar on Home page")
     public void iSeeAvatarOnHomePage() {
         pageProvider.getHomePage().getHeader().checkIsMyProfileVisible();
+    }
+
+    @Given("I open Home page as {string} user with {string} password")
+    public void iOpenHomePage(String userName, String password){
+                              if(DEFAULT.equalsIgnoreCase(userName)){
+                                  userName = TestData.LOGIN_API_DEFAULT;
+                              }
+                              if (DEFAULT.equalsIgnoreCase(password)){
+                                  password = TestData.PASSWORD_API_DEFAULT;
+                              }
+        pageProvider.getloginPage().openLoginPage();
+        pageProvider.getloginPage().enterTextIntoInputUserName(userName);
+        pageProvider.getloginPage().enterTextIntoInputPassword(password);
+        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+    }
+
+    @When("I click on MyProfile button")
+    public void iClickOnMyProfileButton() {
+        pageProvider.getHomePage().getHeader().clickOnMyProfileButton();
     }
 }
