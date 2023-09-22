@@ -26,7 +26,7 @@ public class Header extends ActionWitElements {
 
 
 
-   // @FindBy(xpath = "//*[@class='btn btn-sm btn-outline-secondary']")
+    // @FindBy(xpath = "//*[@class='btn btn-sm btn-outline-secondary']")
     public Header(WebDriver webDriver) {
         super(webDriver);
     }
@@ -42,7 +42,9 @@ public class Header extends ActionWitElements {
     public void checkIsButtonCreatePostVisible(){
         checkElementDisplayed(buttonCreatePost);
     }
-    public void checkIsButtonMyProfileVisible(){
+
+   @Step
+   public void checkIsButtonMyProfileVisible(){
         checkElementDisplayed(buttonMyProfile);
     }
     public void checkIsButtonChatVisible(){
@@ -78,4 +80,6 @@ public class Header extends ActionWitElements {
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
+
+
 }

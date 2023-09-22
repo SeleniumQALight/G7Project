@@ -4,10 +4,14 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class MyProfilePage extends ParentPage{
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     private String postTitleLocator = ".//*[text()='%s']";// %s ключ замість любого тексту
     public MyProfilePage(WebDriver webDriver) {
@@ -57,6 +61,11 @@ public class MyProfilePage extends ParentPage{
                     + "or delete button does not work");
         }
 
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of Posts", numberOfPosts, postsList.size());
         return this;
     }
 }

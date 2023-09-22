@@ -1,5 +1,4 @@
 package registrationTest;
-import libs.ConfigProvider;
 import libs.SpreadsheetData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,11 +33,11 @@ public class RegistrationTestWithExcel extends baseTest.BaseTest {
 
     @Test
     public void checkErrorsTest() {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoRegistrationUserName(userName);
-        pageProvider.getloginPage().enterTextIntoRegistrationEmail(email);
-        pageProvider.getloginPage().enterTextIntoRegistrationPassword(Password);
-        pageProvider.getloginPage().checkErrorsMessages(expectedMessages);
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmail(email);
+        pageProvider.getLoginPage().enterTextIntoRegistrationPassword(Password);
+        pageProvider.getLoginPage().checkErrorsMessages(expectedMessages);
     }
 
 }

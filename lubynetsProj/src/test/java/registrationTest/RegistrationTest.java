@@ -7,9 +7,6 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import data.TestData;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static java.time.Duration.ofSeconds;
 
@@ -36,11 +33,11 @@ public class RegistrationTest extends baseTest.BaseTest {
     @Test
     @Parameters(method = "parametersForCheckErrorsTest")
     public void checkErrorsTest(String userName, String email, String Password, String expectedMessages) {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoRegistrationUserName(userName);
-        pageProvider.getloginPage().enterTextIntoRegistrationEmail(email);
-        pageProvider.getloginPage().enterTextIntoRegistrationPassword(Password);
-        pageProvider.getloginPage().checkErrorsMessages(expectedMessages);
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserName(userName);
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmail(email);
+        pageProvider.getLoginPage().enterTextIntoRegistrationPassword(Password);
+        pageProvider.getLoginPage().checkErrorsMessages(expectedMessages);
     }
 
 
@@ -57,7 +54,7 @@ public class RegistrationTest extends baseTest.BaseTest {
     // Additional Homework
     @Test
     public void checkErrorMessagesWithTabAndEnter() {
-        pageProvider.getloginPage().openLoginPage()
+        pageProvider.getLoginPage().openLoginPage()
                 .enterTextIntoRegistrationUserName(TestData.SHORT_USER_NAME)
                 .pressTabKeyUserName()
                 .waitForEmailInputClickable()
@@ -69,6 +66,6 @@ public class RegistrationTest extends baseTest.BaseTest {
                 .pressEnterKeyPassword();
 
         String expectedMessages = ERROR_USERNAME + SEMICOLON + ERROR_PASSWORD;
-        pageProvider.getloginPage().checkErrorsMessages(expectedMessages);
+        pageProvider.getLoginPage().checkErrorsMessages(expectedMessages);
     }
 }

@@ -34,6 +34,10 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement messageInvalidUsernameAndPassword;
+
+
     final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
@@ -180,5 +184,11 @@ public class LoginPage extends ParentPage {
     public void loginWithTabAndEnter() {
         inputUserName.sendKeys(Keys.TAB);
         inputPassword.sendKeys(Keys.ENTER);
+    }
+
+    public LoginPage checkIsErrorMessageVisible(String textOfMessage) {
+       Assert.assertEquals("Message in alert ", textOfMessage, messageInvalidUsernameAndPassword.getText());
+
+        return this;
     }
 }
