@@ -1,5 +1,6 @@
 package bookStore;
 
+import bookStore.respossDto.AllBooksApiDto;
 import bookStore.respossDto.ApiLoginResponseDto;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -7,6 +8,9 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static test_data.TestData.*;
@@ -56,5 +60,19 @@ public class AppiHelper {
                 .log().all()
                 .statusCode(204);
 
+    }
+
+    public AllBooksApiDto getAllBooksList() {
+        AllBooksApiDto allBooksApiDtoList = given()
+                .spec(requestSpecification)
+                .log().all()
+                .when()
+                .get(EndPoints.BOOKS)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract().response().getBody()
+                .as(AllBooksApiDto.class);
+        return allBooksApiDtoList;
     }
 }
