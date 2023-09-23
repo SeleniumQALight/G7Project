@@ -8,6 +8,8 @@ public class ApiBookStoreTests {
 
     @Test
     public void getToken() {
-      String token = apiBookStoreTests.getToken();
+       String userId = apiBookStoreTests.getUser().getUserId();
+       String token = apiBookStoreTests.getUser().getToken();
+        apiBookStoreTests.deleteAllBooks(token, userId);
     }
 }
