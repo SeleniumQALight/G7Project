@@ -3,8 +3,6 @@ package api;
 
 import api.dto.responseDto.PostDto;
 import data.TestData;
-import io.cucumber.java.hu.Ha;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
