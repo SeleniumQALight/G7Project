@@ -1,9 +1,6 @@
 package bookStore;
 
-import bookStore.respossDto.AddBookDTo;
-import bookStore.respossDto.AllBooksApiDto;
-import bookStore.respossDto.ApiLoginResponseDto;
-import bookStore.respossDto.CollectionOfIsbnsDto;
+import bookStore.respossDto.*;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
@@ -98,5 +95,22 @@ public class AppiHelper {
                 .then()
                 .statusCode(201)
                 .log().all();
+    }
+
+
+    public userProfileDto getBooksInUserCollection(String token, String userId) {
+        userProfileDto userProfile =
+                given()
+                        .spec(requestSpecification)
+                        .header("Authorization", "Bearer " + token)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.Profile, userId)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody()
+                        .as(userProfileDto.class);
+        return userProfile;
     }
 }

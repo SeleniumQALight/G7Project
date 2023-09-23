@@ -3,14 +3,14 @@ package bookStore.respossDto;
 import lombok.*;
 
 import java.util.List;
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-
-public class AllBooksApiDto {
+public class userProfileDto {
+    String userId;
+    String username;
     List<AboutBooksDto> books;
 }

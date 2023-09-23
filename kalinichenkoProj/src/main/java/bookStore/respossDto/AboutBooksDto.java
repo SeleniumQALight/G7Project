@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Builder
 
-public class BooksListDto {
+public class AboutBooksDto {
     String isbn;
     String title;
     String subTitle;
