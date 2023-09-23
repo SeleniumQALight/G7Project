@@ -3,6 +3,8 @@ package apiTests;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -18,6 +20,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
+//@Step
+
 public class ApiTest {
     final String USER_NAME = "autoapi";
     Logger logger = Logger.getLogger(getClass());
@@ -25,6 +29,7 @@ public class ApiTest {
     @Test
     public void getPostsByUserTest() {
         PostDto[] responseAsDto = given()
+                .filter(new AllureRestAssured())//для виводу в звіт
                 .contentType(ContentType.JSON)//додали хедер аплікейшина
                 .log().all()//виводимо в колсоль весь запит
                 .when()// дія
@@ -75,13 +80,13 @@ public class ApiTest {
                 .isEqualTo(expectedPostDto);
 
         softAssertions.assertAll();
-
     }
 
     @Test
     public void getAllPostByUserNegative() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())//для виводу в звіт
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -98,6 +103,7 @@ public class ApiTest {
     @Test
     public void getAllPostsByUserPath() {
         Response response = given()
+                .filter(new AllureRestAssured())//для виводу в звіт
                 .contentType(ContentType.JSON)//додали хедер аплікейшина
                 .log().all()//виводимо в колсоль весь запит
                 .when()// дія
@@ -123,6 +129,7 @@ public class ApiTest {
     @Test
     public void getAllPostsByUserSchema(){
         given()
+                .filter(new AllureRestAssured())//для виводу в звіт
                 .contentType(ContentType.JSON)//додали хедер аплікейшина
                 .log().all()//виводимо в колсоль весь запит
                 .when()// дія

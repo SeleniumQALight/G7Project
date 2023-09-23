@@ -10,6 +10,9 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader {
 
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     private String postTitleLocator = ".//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
@@ -62,5 +65,10 @@ public class MyProfilePage extends ParentPageWithHeader {
     public PostPage selectPostByTitle(String title) {
         clickOnElement(webDriver.findElement(By.xpath(String.format(postTitleLocator, title))));
         return new PostPage(webDriver);
+    }
+
+    public MyProfilePage checkIsNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts ", numberOfPosts, postsList.size());
+        return this;
     }
 }

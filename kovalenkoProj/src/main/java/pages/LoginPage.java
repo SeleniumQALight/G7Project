@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,9 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = "//*[@class='alert alert-danger text-center']")
     private WebElement alertMessageWrongLoginOrPassword;
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -72,5 +76,10 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
+    }
+
+    public LoginPage checkIsErrorMessageVisible(String textOfMessage) {
+        Assert.assertEquals("Message in alert ", textOfMessage, alertInCenter.getText());
+        return this;
     }
 }

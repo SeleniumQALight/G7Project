@@ -30,4 +30,7 @@ public class PageProvider {
         return new PostEditPage(webDriver); // метод для створення об'єкту PostEditPage
     }
 
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver); // метод для створення об'єкту MyProfilePage
+    }
 }

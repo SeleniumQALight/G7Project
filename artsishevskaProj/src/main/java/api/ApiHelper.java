@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.bouncycastle.cms.RecipientId.password;
 
@@ -100,5 +103,24 @@ public class ApiHelper {
 
 
 
+    }
+
+    public void createPosts(String userName, String password, Map<String, String> mapForBody, int indexOfPosts) {
+//отримуємо токен
+        String token = getToken(userName, password);
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", mapForBody.get("title") + indexOfPosts);
+        requestBody.put("body", mapForBody.get("body"));
+        requestBody.put("select1", mapForBody.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .statusCode(200);
     }
 }

@@ -45,11 +45,11 @@ public class CreatePostWithExcel extends baseTest.BaseTest {
     @Before
     public void validLogin() throws SQLException, ClassNotFoundException {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName("newqaauto");
+        pageProvider.getLoginPage().enterTextIntoInputUserName("newqaauto");
 
         DB_Util_seleniumUsers db_util_seleniumUsers = new DB_Util_seleniumUsers();
 
-        pageProvider.getLoginPage().enterTextInputPassword(db_util_seleniumUsers.getPassForLogin("newqaauto"));
+        pageProvider.getLoginPage().enterTextIntoInputPassword(db_util_seleniumUsers.getPassForLogin("newqaauto"));
         pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
     }
