@@ -1,16 +1,15 @@
 package bookStore;
 
+import bookStore.respossDto.AddBookDTo;
 import bookStore.respossDto.AllBooksApiDto;
 import bookStore.respossDto.ApiLoginResponseDto;
+import bookStore.respossDto.CollectionOfIsbnsDto;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
-
-import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static test_data.TestData.*;
@@ -63,6 +62,7 @@ public class AppiHelper {
     }
 
     public AllBooksApiDto getAllBooksList() {
+        SoftAssertions softAssertions = new SoftAssertions();
         AllBooksApiDto allBooksApiDtoList = given()
                 .spec(requestSpecification)
                 .log().all()
@@ -73,6 +73,30 @@ public class AppiHelper {
                 .log().all()
                 .extract().response().getBody()
                 .as(AllBooksApiDto.class);
+
+        softAssertions.assertThat(allBooksApiDtoList.getBooks()).as("Books list is empty").isNotEmpty();
+        softAssertions.assertAll();
+
         return allBooksApiDtoList;
+    }
+
+    public void addBookToUserCollection(String userId, String token, String isbn) {
+        CollectionOfIsbnsDto[] collectionOfIsbns = {new CollectionOfIsbnsDto(isbn)};
+
+        AddBookDTo addBookDTo = AddBookDTo.builder()
+                .UserId(userId)
+                .collectionOfIsbns(collectionOfIsbns)
+                .build();
+
+        given()
+                .spec(requestSpecification)
+                .header("Authorization", "Bearer " + token)
+                .body(addBookDTo)
+                .log().all()
+                .when()
+                .post(EndPoints.BOOKS)
+                .then()
+                .statusCode(201)
+                .log().all();
     }
 }

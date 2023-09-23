@@ -13,5 +13,6 @@ public class ApiBookStoreTests {
         apiBookStoreTests.deleteAllBooks(token, userId);
        String isbn = apiBookStoreTests.getAllBooksList().getBooks().get(0).getIsbn();
         System.out.println(isbn);
+        apiBookStoreTests.addBookToUserCollection(userId, token, isbn);
     }
 }
