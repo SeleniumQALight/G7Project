@@ -10,6 +10,7 @@ import privatBankApi.getDto.responseDto.ExchangeRateDtoPrivatBank;
 import privatBankApi.getDto.responseDto.GetDtoPrivatBank;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTestPrivatBank {
     final String DATE_NOW = "05.09.2023";
@@ -151,5 +152,20 @@ public class ApiTestPrivatBank {
 
         softAssertions.assertAll();
 
+    }
+
+    @Test
+    public void getAllCurrencyPrivatBankSchema(){
+        String matchesJsonSchemaInClasspath;
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("date", DATE_NOW)
+                .log().all()
+                .when()
+                .get(PrivatBankEndpoints.EXCHANGE_RATE)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("responseApiPrivatBank.json"));
     }
 }
