@@ -135,12 +135,16 @@ public class ApiTestPrivatBank {
 
         SoftAssertions softAssertions = new SoftAssertions();
 
-        for (int i = 0; i < responseAsGtoPrivatBank.getExchangeRate().length; i++) {
-            softAssertions.assertThat(responseAsGtoPrivatBank.getExchangeRate()[i])
+//        for (int i = 0; i < responseAsGtoPrivatBank.getExchangeRate().length; i++) {
+//            softAssertions.assertThat(responseAsGtoPrivatBank.getExchangeRate()[i])
+//                    .usingRecursiveComparison()
+//                    .ignoringFields("saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate")
+//                    .isEqualTo(expectedGetDtoPrivatBank.getExchangeRate()[i]);
+            softAssertions.assertThat(responseAsGtoPrivatBank)
                     .usingRecursiveComparison()
-                    .ignoringFields("saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate")
-                    .isEqualTo(expectedGetDtoPrivatBank.getExchangeRate()[i]);
-        }
+                    .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB", "exchangeRate.saleRate", "exchangeRate.purchaseRate")
+                    .isEqualTo(expectedGetDtoPrivatBank);
+//        }
 
 
 
