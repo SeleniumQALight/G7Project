@@ -2,9 +2,11 @@ package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
 import data.TestData;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 
 public class LoginPageSteps extends MainSteps {
     public LoginPageSteps(WebDriverHelper webDriverHelper) {
@@ -39,4 +41,26 @@ public class LoginPageSteps extends MainSteps {
     public void i_see_error_message(String expectedErrorMessageLogin) {
         pageProvider.getLoginPage().checkErrorMessageLogin(expectedErrorMessageLogin);
     }
+
+    @When("I enter {string} into username input in Registration form")
+    public void iEnterIntoUsernameInputInRegistrationForm(String username) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserName(username);
+    }
+
+    @And("I enter {string} into Email input in Registration form")
+    public void iEnterIntoEmailInputInRegistrationForm(String email) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmail(email);
+    }
+
+    @And("I enter {string} into Password input in Registration form")
+    public void iEnterIntoPasswordInputInRegistrationForm(String password) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationPassword(password);
+    }
+
+    @Then("I see the following error messages: {string}")
+    public void iSeeErrorMessages(String errorMessages) {
+        pageProvider.getLoginPage().checkErrorsMessages(errorMessages);
+    }
+
 }
+
