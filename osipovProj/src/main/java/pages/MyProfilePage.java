@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader {
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     private String postTitleLocator = ".//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
@@ -57,5 +60,9 @@ public class MyProfilePage extends ParentPageWithHeader {
             Assert.fail("There are more than 100 posts with title " + postTitle);
         }
         return this;
+    }
+
+    public void checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("number of posts", numberOfPosts, postsList.size());
     }
 }
