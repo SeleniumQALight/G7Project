@@ -3,12 +3,14 @@ package apiTests;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +26,9 @@ public class ApiTest {
 
     @Test
     public void getPostByUserTest() {
-        PostDto[] responseAsDto = given().contentType(ContentType.JSON)
+        PostDto[] responseAsDto = given()
+                .filter(new AllureRestAssured())
+                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -75,6 +79,7 @@ public class ApiTest {
     public void getAllPostByUserNegative(){
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -91,7 +96,9 @@ public class ApiTest {
 
 @Test
     public void getAllPostsByUserPath(){
-   Response response = given().contentType(ContentType.JSON)
+   Response response = given()
+           
+           .contentType(ContentType.JSON)
             .log().all()
             .when()
             .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -123,6 +130,7 @@ public class ApiTest {
 @Test
     public void getAllPostsByUserSchema(){
     given().contentType(ContentType.JSON)
+            .filter(new AllureRestAssured())
             .log().all()
             .when()
             .get(EndPoints.POST_BY_USER, USER_NAME)

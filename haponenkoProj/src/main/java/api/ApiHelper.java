@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import org.junit.Assert;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper { // this class is used to send requests to the server before tests
@@ -96,5 +99,24 @@ public class ApiHelper { // this class is used to send requests to the server be
                 .log().all()
                 .extract().response().getBody().asString();
         Assert.assertEquals("Message in actualResponse", "\"Success\"", actualMessage);
+    }
+
+    public void createPosts(String userName, String password, Map<String, String> mapForBody, int indexOfPost) {
+        String token = getUserToken(userName, password);
+
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", mapForBody.get("title") + indexOfPost);
+        requestBody.put("body", mapForBody.get("body"));
+        requestBody.put("select1", mapForBody.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .statusCode(200);
     }
 }

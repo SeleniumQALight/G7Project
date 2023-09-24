@@ -4,7 +4,6 @@ import categories.SmokeTestFilter;
 import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -25,10 +24,10 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     @Test
     @Category(SmokeTestFilter.class)
     public void validLogin() {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
-        pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
     }
@@ -37,10 +36,10 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
     public void validLoginWithExcel() throws IOException {
         Map<String,String> dataForValidLogin =
                 ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(dataForValidLogin.get("login"));
-        pageProvider.getloginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
+        pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
 
@@ -48,13 +47,13 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
 
     @Test
     public void invalidLogin() {
-        pageProvider.getloginPage().openLoginPage();
-        pageProvider.getloginPage().enterTextIntoInputUserName(LOGIN_INVALID);
-        pageProvider.getloginPage().enterTextIntoInputPassword(PASSWORD_INVALID);
-        pageProvider.getloginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_INVALID);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_INVALID);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutNotVisible();
         pageProvider.getHomePage().getHeader().checkIsMassageInvalidDisplayed();
-        pageProvider.getloginPage().checkIsButtonSignInVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible();
     }
 
 }

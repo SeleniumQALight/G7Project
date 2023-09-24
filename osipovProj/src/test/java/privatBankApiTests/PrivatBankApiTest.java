@@ -1,13 +1,16 @@
 package privatBankApiTests;
 
+import api.EndPoints;
 import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+import privatBankApi.PrivatBankEndpoints;
 import privatBankApi.dto.ExchangeRateDto;
 import privatBankApi.dto.PrivatDto;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static privatBankApi.PrivatBankEndpoints.*;
 
 public class PrivatBankApiTest {
@@ -69,6 +72,20 @@ public class PrivatBankApiTest {
 
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getExchangeRateFromSchema(){
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("date", DATE)
+                .log().all()
+                .when()
+                .get(EXCHANGE_RATE_URL)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("privatJsonSchema.json"));
     }
 }
 

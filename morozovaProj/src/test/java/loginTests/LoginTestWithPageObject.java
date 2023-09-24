@@ -10,7 +10,6 @@ import junitparams.Parameters;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -113,7 +112,7 @@ public class LoginTestWithPageObject extends baseTest.BaseTest {
         pageProvider.getHomePage().getHeader().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonSearchVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonChatVisible();
-        pageProvider.getHomePage().getHeader().checkIsButtonAvatarVisible();
+        pageProvider.getHomePage().getHeader().checkIsMyProfileVisible();
         pageProvider.getHomePage().getHeader().checkIsButtonCreatePostVisible();
 
         pageProvider.getLoginPage().checkIsInputUserNameNotVisible();

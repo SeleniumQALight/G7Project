@@ -16,8 +16,8 @@ public class SignOutTest extends BaseTest {
     @Category(SmokeTestFilter.class)
     public void signOut() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInputUserName(TestData.LOGIN_DEFAULT);
-        pageProvider.getLoginPage().enterTextInputPassword(TestData.PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeader().checkIsLinkSearchVisible();

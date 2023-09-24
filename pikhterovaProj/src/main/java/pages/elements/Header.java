@@ -19,6 +19,7 @@ public class Header extends ActionsWithElements {
     @FindBy(xpath = "//img[@alt='My profile']")
     private WebElement buttonMyProfile;
 
+
     public Header(WebDriver webDriver) {
         super(webDriver);
     }
@@ -43,5 +44,10 @@ public class Header extends ActionsWithElements {
     @Step
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(signOutButton);
+    }
+
+    @Step
+    public void checkIsMyProfileVisible() {
+        checkElementDisplayed(buttonMyProfile);
     }
 }
