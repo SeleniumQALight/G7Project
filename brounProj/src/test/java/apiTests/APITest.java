@@ -3,6 +3,7 @@ package apiTests;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostDto;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.Argument;
@@ -25,6 +26,7 @@ public class APITest {
     @Test
     public void getPostsByUserTest() {
         PostDto[] responseAsDto = given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
@@ -86,6 +88,7 @@ public class APITest {
     public void getAllPostByUserNegative(){
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -103,6 +106,7 @@ public class APITest {
     @Test
     public void getAllPostsByUserPath(){
         Response response = given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
@@ -134,6 +138,7 @@ public class APITest {
     @Test
     public void getAllPostsByUserSchema(){
         given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()

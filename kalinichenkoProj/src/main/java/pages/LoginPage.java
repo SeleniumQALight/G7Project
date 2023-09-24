@@ -27,6 +27,7 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
     private WebElement alertMessageWrongLoginOrPassword;
+
     @FindBy(id = "username-register")
     private WebElement inputUserNameRegistration;
 
@@ -162,5 +163,10 @@ public class LoginPage extends ParentPage {
     @Step
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessageLocator));
+    }
+
+    public LoginPage checkIsErrorMassageVisible(String textOfMessage) {
+        Assert.assertEquals("Message is not visible", textOfMessage, alertMessageWrongLoginOrPassword.getText());
+        return this;
     }
 }

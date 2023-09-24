@@ -43,4 +43,9 @@ public class Header extends ActionsWithElements {
     public boolean isButtonSignOutVisible() {
         return isElementDisplayed(buttonSignOut);
     }
+
+    @Step
+    public void checkIsMyProfileVisible() {
+        checkElementDisplayed(buttonMyProfile);
+    }
 }

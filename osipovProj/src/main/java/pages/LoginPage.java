@@ -26,6 +26,8 @@ public class LoginPage extends ParentPage {
     private WebElement buttonSignIn;
     @FindBy(xpath = "//div[text()='Invalid username / pasword']")
     private WebElement invalidLoginMessage;
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement messageInvalidUsernameAndPassword;
     @FindBy(id = "username-register")
     private WebElement inputUserNameRegistration;
     @FindBy(id = "email-register")
@@ -143,6 +145,10 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll(); // this is needed to show all errors in report
 
 
+        return this;
+    }
+    public LoginPage checkIsErrorMessageVisible(String textMessage){
+        Assert.assertEquals("message in alert", textMessage, messageInvalidUsernameAndPassword.getText());
         return this;
     }
     @Step
