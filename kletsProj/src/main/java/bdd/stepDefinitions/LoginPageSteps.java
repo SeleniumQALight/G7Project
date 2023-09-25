@@ -32,7 +32,7 @@ public class LoginPageSteps extends MainSteps {
 
     @When("I enter {string} into input Password in Login form")
     public void i_enter_into_input_password_in_login_form(String password) {
-     pageProvider.getLoginPage().enterTextIntoInputPassword(password);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
 
     }
 
@@ -45,5 +45,29 @@ public class LoginPageSteps extends MainSteps {
     public void i_see_alert_message_with_text(String textOfErrorMessage) {
         pageProvider.getLoginPage().checkIsErrorMessageVisible(textOfErrorMessage);
     }
+
+    @When("I enter {string} into username field in Registration form")
+    public void i_enter_into_username_field_in_registration_form(String username) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(username);
+    }
+
+    @When("I enter {string} into Email field in Registration form")
+    public void i_enter_into_Email_field_in_registration_form(String email) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
+    }
+
+    @When("I enter {string} into password field in Registration form")
+    public void i_enter_into_password_field_in_registration_form(String password) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField(password);
+    }
+
+
+    @Then("I see the following error message {string}")
+    public void i_see_the_following_error_message(String errorMessage) {
+        pageProvider.getLoginPage().checkErrorsMessages(errorMessage);
+    }
+
 }
+
+
 
