@@ -7,6 +7,8 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.SoftAssertions;
 import org.json.JSONObject;
+import org.junit.Assert;
+import org.apache.log4j.Logger;
 
 import static io.restassured.RestAssured.given;
 import static test_data.TestData.*;
@@ -45,6 +47,8 @@ public class AppiHelper {
     }
 
     public void deleteAllBooks(String token, String userId) {
+        Logger logger = Logger.getLogger(getClass());
+        AppiHelper apiBookStoreTests = new AppiHelper();
         given()
                 .spec(requestSpecification)
                 .header("Authorization", "Bearer " + token)
@@ -55,7 +59,9 @@ public class AppiHelper {
                 .then()
                 .log().all()
                 .statusCode(204);
-
+        int booksInUserCollection = apiBookStoreTests.getBooksInUserCollection(token, userId).getBooks().size();
+        logger.info("books in user collection = " + booksInUserCollection);
+        Assert.assertEquals("Books in user collection is not 0 ", 0, booksInUserCollection);
     }
 
     public AllBooksApiDto getAllBooksList() {
