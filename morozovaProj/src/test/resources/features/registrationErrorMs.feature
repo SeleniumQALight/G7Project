@@ -1,8 +1,8 @@
-@LoginFeature @Regression
-Feature: Login feature
+@RegistrationFeature @Regression
+Feature: Registration feature
 
   @R004
-  Scenario Outline: R004 Login with invalid cred
+  Scenario Outline: R004 Registration with invalid data
     Given I open Login page
     When I enter '<login>' into input Login in Registration form
     And I enter '<email>' into input Email in Registration form
