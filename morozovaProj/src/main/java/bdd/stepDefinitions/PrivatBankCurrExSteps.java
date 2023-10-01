@@ -1,61 +1,42 @@
 package bdd.stepDefinitions;
 
-import api.EndPoints;
-import api.dto.responseDto.PrivatGET;
+import api.ApiHelperPrivatBankE;
+import data.TestData;
 import bdd.helpers.WebDriverHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.http.ContentType;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static io.restassured.RestAssured.given;
 
 public class PrivatBankCurrExSteps extends MainSteps {
     WebDriver webDriver;
+
     public PrivatBankCurrExSteps(WebDriverHelper webDriverHelper) {
         super(webDriverHelper);
     }
 
-    @Given("I get currency with API PB")
-    public void iGetCurrencyWithAPIPB() {
-        Logger logger = Logger.getLogger(getClass());
-            PrivatGET[] response = given()
-                    .filter(new AllureRestAssured())//для виводу в звіт
-                    .contentType(ContentType.JSON)//додали хедер аплікейшина
-                    .log().all()//виводимо в колсоль весь запит
-                    .when()// дія
-                    .get(EndPoints.PRIVATBANK_URL)
-                    .then()
-                    .statusCode(200)//перевір, що повернуло потрібний статус
-                    .log().all()//виводимо в колсоль весь респонс
-                    .extract().as(PrivatGET[].class);
-        }
+    @Given("I save currency {} rates with UI")
+    public void iSaveCurrencyRatesWithUI(String currency) {
+        pageProvider.getPrivatBankPage().openPrivatBankPageUI();
+        pageProvider.getPrivatBankPage().saveCurrencyRatesWithUI(currency);
+    }
 
-    @Given("I open PrivatBank page")
-    public void iOpenPrivatBankPage() {
-       // pageProvider.getPrivatBankPage().openPrivatBankPage();
-        WebDriverManager.edgedriver().setup();//maven run edqedriver
-        webDriver = new EdgeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        System.out.println("Browser was opened");
-        webDriver.get("https://privatbank.ua/");
-        System.out.println("Site was opened");
-        }
+    @Then("I get currency {} with API PB")
+    public void iGetCurrencyWithAPIPB(String currency) {
+        ApiHelperPrivatBankE apiHelperPrivatBankE = new ApiHelperPrivatBankE();
+        apiHelperPrivatBankE.getCurrencyWithAPIPB(currency);
 
-    @When("I save currency rates")
-    public List iSaveCurrencyRates() {
+    }
+
+    @When("I save currency rates with UI")
+    public void iSaveCurrencyRatesWithUI() {
+        pageProvider.getPrivatBankPage().openPrivatBankPageUI();
+
         List<String> currList = new ArrayList<>();
 
         WebElement element = webDriver.findElement(By.xpath("//*[@id='EUR_buy']"));
@@ -77,22 +58,32 @@ public class PrivatBankCurrExSteps extends MainSteps {
         curr = element.getText();
         System.out.println("USD_buy = " + curr);
         currList.add(curr);
-
-        element = webDriver.findElement(By.xpath("//*[@id='USD_sell']"));
-        System.out.println("Username was inputted");
-        // Получите текст из элемента
-        curr = element.getText();
-        System.out.println("USD_sell = " + curr);
-        currList.add(curr);
-
-        System.out.println("Username was inputted" + currList.toString());
-        return currList;
     }
 
-    @Then("I close browser")
-    public void iCloseBrowser() {
-        webDriver.quit();
-        System.out.println("Browser was closed");
+    @Then("I compare {} UI and API")
+    public void iCompareUIAndAPI(String currency) {
+        System.out.println("Порівнюємо курси для " + currency);
+
+        // Преобразование строки в число с плавающей точкой
+        double parsedDouble_buy_api = Double.parseDouble(TestData.curs_buy_api);
+        double parsedDouble_sale_api = Double.parseDouble(TestData.curs_sale_api);
+
+        double parsedDouble_buy_ui = Double.parseDouble(TestData.curs_buy_ui);
+        double parsedDouble_sale_ui = Double.parseDouble(TestData.curs_sale_ui);
+
+        // Порівняння чисел з плаваючою крапкою
+        int comparisonResult_buy = Double.compare(parsedDouble_buy_api, parsedDouble_buy_ui);
+
+        if (comparisonResult_buy == 0) {
+            System.out.println("Курс купівлі однаковий.");
+        } else {
+            System.out.println("Курс купівлі не однаковий");
+        }
+        int comparisonResult_sale = Double.compare(parsedDouble_sale_api, parsedDouble_sale_ui);
+        if (comparisonResult_sale == 0) {
+            System.out.println("Курс продажу однаковий.");
+        } else {
+            System.out.println("Курс продажу не однаковий");
+        }
     }
 }
-

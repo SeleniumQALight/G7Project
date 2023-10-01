@@ -33,18 +33,5 @@ public class PrivatBankGETApiTest {
                 .statusCode(200)//перевір, що повернуло потрібний статус
                 .log().all()//виводимо в колсоль весь респонс
                 .extract().as(PrivatGET[].class);
-
-//        List<String> actualCurrencyList = response.jsonPath().getList("ccy", String.class);
-//        SoftAssertions softAssertions = new SoftAssertions();
-//        for (int i = 0; i < actualCurrencyList.size(); i++) {
-//            softAssertions.assertThat(actualCurrencyList.get(i)).as("Item number " + i).contains("test");
-//        }
-//
-//        List<Map> actualAuthorList = response.jsonPath().getList("author", Map.class);
-//        for (int i = 0; i < actualAuthorList.size(); i++) {
-//            softAssertions.assertThat(actualAuthorList.get(i).get("username"))
-//                    .as("Item number " + i).isEqualTo(USER_NAME);
-//        }
-//        softAssertions.assertAll();
     }
 }
