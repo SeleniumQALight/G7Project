@@ -1,7 +1,7 @@
 @RegistrationFeature @Regression
 Feature: Registration feature
 
-  @R001
+  @R003
   Scenario Outline: R002 Login with invalid cred
     Given I open Login page
     When I enter '<invalid_login>' into input Login in Registration form
