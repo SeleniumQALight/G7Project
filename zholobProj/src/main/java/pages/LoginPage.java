@@ -154,7 +154,7 @@ public class LoginPage extends ParentPage {
         Util.waitABit(1); // чекаємо 1 секунду
 
 
-        Assert.assertEquals("Number of elements", errors.length, //
+        Assert.assertEquals("Number of elements", errors.length, // перевірка чи кількість помилок відповідає кількості помилок в масиві
                 getListOfErrors().size());
 
 
@@ -181,5 +181,11 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkErrorsMessagesVisible(String textOfMessage) {
         Assert.assertEquals("Message in allert ", textOfMessage, alertInCenter.getText());
-        return this;
-    }}
+        return this;//
+
+    }
+
+
+
+}
+
