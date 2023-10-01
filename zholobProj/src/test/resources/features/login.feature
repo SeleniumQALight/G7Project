@@ -19,3 +19,6 @@ Feature: Login feature
       | login     | password     |
       | quato     | not_valid    |
       | not_valid | 123456qwerty |
+
+
+
