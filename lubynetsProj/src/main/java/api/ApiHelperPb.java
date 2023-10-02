@@ -1,6 +1,6 @@
 package api;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import data.TestData;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -8,62 +8,41 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
+import static org.junit.Assert.assertEquals;
+
 public class ApiHelperPb {
     private Response apiResponse;
-    private String apiExchangeRateSell;
 
     public void sendGetRequestForCurrencyExchangeRates() {
-        apiResponse = RestAssured.get("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5");
+        apiResponse = RestAssured
+                .given()
+                .queryParam("json", "")
+                .queryParam("exchange", "")
+                .queryParam("coursid", "5")
+                .when()
+                .get("https://api.privatbank.ua/p24api/pubinfo");
         apiResponse.then().statusCode(200);
+        assertEquals("Response status code is not 200", 200, apiResponse.getStatusCode());
     }
 
-    public void extractExchangeRateForCurrency(String currency) {
-        String jsonResponse = apiResponse.getBody().asString();
+    private DecimalFormat getDecimalFormat() {
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        return new DecimalFormat("#.##", decimalFormatSymbols);
+    }
 
+    public void extractExchangeRatesForCurrency(String currency) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+            double buyValue = apiResponse.jsonPath().getDouble("find { it.ccy == '" + currency + "' }.buy");
+            double sellValue = apiResponse.jsonPath().getDouble("find { it.ccy == '" + currency + "' }.sale");
+            DecimalFormat decimalFormat = getDecimalFormat();
 
-            for (JsonNode currencyNode : jsonNode) {
-                String currencyCode = currencyNode.get("ccy").asText();
-
-                if (currencyCode.equalsIgnoreCase(currency)) {
-                    String saleValue = currencyNode.get("sale").asText();
-
-                    try {
-                        double parsedRate = Double.parseDouble(saleValue);
-                        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-                        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-
-                        apiExchangeRateSell = decimalFormat.format(parsedRate);
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            TestData.setApiExchangeRateBuy(decimalFormat.format(buyValue));
+            TestData.setApiExchangeRateSell(decimalFormat.format(sellValue));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-    public String getApiExchangeRateSell() {
-        return apiExchangeRateSell;
-
-
-
     }
 
-    public String rememberExchangeRateForCurrency(String currency, String transaction) {
-        String rate = apiResponse.jsonPath().getString("find { it.ccy == '" + currency + "' }." + transaction);
-        if (rate != null && !rate.isEmpty()) {
-            double parsedRate = Double.parseDouble(rate);
-            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-            return decimalFormat.format(parsedRate);
-        } else {
-            return null;
-        }
-    }
+
 }
-
-
