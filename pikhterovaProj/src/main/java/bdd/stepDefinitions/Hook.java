@@ -20,7 +20,7 @@ public class Hook {
 
     @After(order = 100)
     public void tearDown(){
-        webDriverHelper.quitDriver();
+        // webDriverHelper.quitDriver();
     }
     @Before(value = "@deleteAllPostsForDefaultUser")
     @After(value = "@deleteAllPostsForDefaultUser", order = 50)

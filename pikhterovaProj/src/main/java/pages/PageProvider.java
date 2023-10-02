@@ -24,4 +24,9 @@ public class PageProvider {
     public MyProfilePage getMyProfilePage() {
         return new MyProfilePage(webDriver);
     }
+
+    public PrivatBankCurrencyRatesPage getPrivatBankCurrencyRatesPage() {
+        return new PrivatBankCurrencyRatesPage(webDriver);
+    }
+
 }
