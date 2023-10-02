@@ -10,6 +10,7 @@ import privatbankApi.responsDto.ArchiveCursPrivatDto;
 import privatbankApi.responsDto.ExchangeRateDto;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
 public class PrivatApiTest {
@@ -111,5 +112,18 @@ public class PrivatApiTest {
             logger.info("The iteration is " + i);
         }
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void checkSchemaPrivatArchiveCurs() {
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .given().queryParam("date", DATE)
+                .get(EndPoints.BASE_URL)
+                .then()
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("response_privat.json"));
     }
 }
