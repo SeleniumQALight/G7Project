@@ -18,13 +18,16 @@ public class ApiHelperPrivateBank {
             .log(LogDetail.ALL)
             .build();
 
-    public PubInfoAllCurrencyDto[] getAllInfo() {
+    public PubInfoDto[] getAllInfo() {
         SoftAssertions softAssertions = new SoftAssertions();
 
-       PubInfoAllCurrencyDto[] responseDto =
+       PubInfoDto[] responseDto =
 
                 given()
                         .spec(requestSpecification)
+                        .queryParam("json", "")
+                        .queryParam("exchange", "")
+                        .queryParam("coursid", "5")
                         .when()
                         .get(PrivateBankEndPoints.PUBINFO)
                         .then()
@@ -32,11 +35,11 @@ public class ApiHelperPrivateBank {
                         .log().all()
                         .extract()
                         .response()
-                        .getBody().as(PubInfoAllCurrencyDto[].class);
+                        .getBody().as(PubInfoDto[].class);
 
-        List<PubInfoDto> pubInfoDtoList = new ArrayList<>();
 
-        for (PubInfoDto pubInfoDto : pubInfoDtoList) {
+
+        for (PubInfoDto pubInfoDto : responseDto) {
             softAssertions.assertThat(pubInfoDto.getCcy()).isNotEmpty();
             softAssertions.assertThat(pubInfoDto.getBase_ccy()).isNotEmpty();
             softAssertions.assertThat(pubInfoDto.getBuy()).isNotEmpty();
