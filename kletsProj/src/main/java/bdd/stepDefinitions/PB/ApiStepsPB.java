@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import privateBankApi.dto.responseDto.ApiHelperPrivateBank;
 import privateBankApi.dto.responseDto.PubInfoDto;
 
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 public class ApiStepsPB {
@@ -17,9 +18,14 @@ public class ApiStepsPB {
         PubInfoDto[] rateFromApi = apiHelperPrivateBank.getAllInfo();
         for (PubInfoDto pubInfoDto : rateFromApi) {
             if (pubInfoDto.getCcy().equals(expectedCurrency)) {
-                TestData.rate_sell_api = pubInfoDto.getSale();
                 TestData.rate_buy_api = pubInfoDto.getBuy();
-                logger.info("Rate from API: " + " " + TestData.rate_buy_api + " " + TestData.rate_sell_api );
+                TestData.rate_sell_api = pubInfoDto.getSale();
+
+                DecimalFormat decimalFormat = ApiHelperPrivateBank.getDecimalFormat();
+                TestData.rate_buy_api = decimalFormat.format(Double.parseDouble(TestData.rate_buy_api));
+                TestData.rate_sell_api = decimalFormat.format(Double.parseDouble(TestData.rate_sell_api));
+
+                logger.info("Rate from API: " + " " + TestData.rate_buy_api + " " + TestData.rate_sell_api);
 
             }
 

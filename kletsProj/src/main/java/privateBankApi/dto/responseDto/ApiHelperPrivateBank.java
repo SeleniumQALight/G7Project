@@ -7,8 +7,9 @@ import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.SoftAssertions;
 import privateBankApi.PrivateBankEndPoints;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
 
@@ -21,7 +22,7 @@ public class ApiHelperPrivateBank {
     public PubInfoDto[] getAllInfo() {
         SoftAssertions softAssertions = new SoftAssertions();
 
-       PubInfoDto[] responseDto =
+        PubInfoDto[] responseDto =
 
                 given()
                         .spec(requestSpecification)
@@ -38,7 +39,6 @@ public class ApiHelperPrivateBank {
                         .getBody().as(PubInfoDto[].class);
 
 
-
         for (PubInfoDto pubInfoDto : responseDto) {
             softAssertions.assertThat(pubInfoDto.getCcy()).isNotEmpty();
             softAssertions.assertThat(pubInfoDto.getBase_ccy()).isNotEmpty();
@@ -49,5 +49,12 @@ public class ApiHelperPrivateBank {
         return responseDto;
 
     }
+
+    public static DecimalFormat getDecimalFormat() { // method for formatting double values
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        return new DecimalFormat("#.##", decimalFormatSymbols);
+    }
+
 
 }
