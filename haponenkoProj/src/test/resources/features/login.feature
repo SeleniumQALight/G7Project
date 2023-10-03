@@ -1,4 +1,4 @@
-@loginFeature @Regression
+@LoginFeature @Regression
 Feature: Login feature
 
   @R001 @Smoke

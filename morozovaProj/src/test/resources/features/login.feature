@@ -9,7 +9,6 @@ Feature: Login feature
     Then I see avatar on Home Page
 
   @R002
-
   Scenario Outline: R002 Login with invalid cred
     Given I open Login page
     When I enter '<login>' into input Login in Login form
@@ -21,5 +20,4 @@ Feature: Login feature
       | login     | password     |
       | qaauto    | not_valid    |
       | not_valid | 123456qwerty |
-
 

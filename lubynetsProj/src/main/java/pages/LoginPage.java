@@ -2,7 +2,6 @@ package pages;
 
 import data.TestData;
 import io.qameta.allure.Step;
-import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -37,6 +36,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
     private WebElement messageInvalidUsernameAndPassword;
 
+    @FindBy(xpath = "//button[@class=\"py-3 mt-4 btn btn-lg btn-success btn-block\"]")
+    private WebElement buttonRegistration;
+
 
     final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -56,51 +58,61 @@ public class LoginPage extends ParentPage {
         checkUrl();
         return this;
     }
+
     @Step
     public LoginPage enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
         return this;
     }
+
     @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
     }
+
     @Step
     public LoginPage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
         return this;
     }
+
     @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkElementDisplayed(buttonSignIn);
         return this;
     }
+
     @Step
     public LoginPage checkIsButtonSignInNotVisible() {
         checkElementNotDisplayed(buttonSignIn);
         return this;
     }
+
     @Step
     public LoginPage checkIsInputUsernameVisible() {
         checkElementDisplayed(inputUserName);
         return this;
     }
+
     @Step
     public LoginPage checkIsInputUsernameNotVisible() {
         checkElementNotDisplayed(inputUserName);
         return this;
     }
+
     @Step
     public LoginPage checkIsInputPasswordVisible() {
         checkElementDisplayed(inputPassword);
         return this;
     }
+
     @Step
     public LoginPage checkIsInputPasswordNotVisible() {
         checkElementNotDisplayed(inputPassword);
         return this;
     }
+
     @Step
     public void loginWithValidCreds() {
         openLoginPage();
@@ -108,43 +120,44 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
+
     @Step
     public LoginPage enterTextIntoRegistrationUserName(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
+
     @Step
     public LoginPage enterTextIntoRegistrationEmail(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
+
     @Step
     public LoginPage enterTextIntoRegistrationPassword(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
+
     @Step
     public LoginPage checkErrorsMessages(String expectedMessages) {
-        // error1;error2 -> [error1, error2]
         String[] errors = expectedMessages.split(";");
-        // wait until numbers of errors messages will be expected
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
-                By.xpath(listErrorsMessagesLocator), errors.length));
-        Util.waitABit(1); // wait until Extra time will be displayed
-        Assert.assertEquals("Number of elements", errors.length,
-                getListOfErrors().size());
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), errors.length));
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        List<WebElement> errorElements = getListOfErrors();
 
-        ArrayList actualTextFromErrors = new ArrayList();
-        for (WebElement element : getListOfErrors()) {
-            actualTextFromErrors.add(element.getText());
+        for (int i = 0; i < errorElements.size(); i++) {
+            actualTextFromErrors.add(errorElements.get(i).getText());
         }
+
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < errors.length; i++) {
-            softAssertions.assertThat(errors[i])
-                    .as("Error text")
-                    .isIn(actualTextFromErrors);
+            String error = errors[i];
+            String errorMessage = actualTextFromErrors.get(i);
+            softAssertions.assertThat(error).as("Error " + i).isIn(errorMessage);
         }
-        softAssertions.assertAll(); // check all assertion
+        softAssertions.assertAll();
+
         return this;
     }
 
@@ -171,6 +184,7 @@ public class LoginPage extends ParentPage {
         pressTabKey(inputUserNameRegistration);
         return this;
     }
+
     public LoginPage pressTabKeyPassword() {
         pressTabKey(inputPasswordRegistration);
         return this;
@@ -187,7 +201,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkIsErrorMessageVisible(String textOfMessage) {
-       Assert.assertEquals("Message in alert ", textOfMessage, messageInvalidUsernameAndPassword.getText());
+        Assert.assertEquals("Message in alert ", textOfMessage, messageInvalidUsernameAndPassword.getText());
 
         return this;
     }
