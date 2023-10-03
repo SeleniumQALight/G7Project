@@ -12,4 +12,6 @@ abstract public class ParentPageWithHeder extends ParentPage {
     public Header getHeader() { // метод для створення об'єкту Header
         return new Header(webDriver);
     }
+
+
 }
