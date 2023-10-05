@@ -41,22 +41,27 @@ public class PBsteps extends MainSteps {
 
     @Then("I compare course {string} via API and site")
     public void i_compare_course_via_api_and_site(String currency) {
-        SoftAssertions softAssertions = new SoftAssertions();
+        //з стрінги в дабл
+     double exchangeRateBuyDouble = Double.parseDouble(TestData.exchangeRateBuy);
+     double exchangeRateSaleDouble = Double.parseDouble(TestData.exchangeRateSale);
+     double cursViaApiSaleDouble = Double.parseDouble(TestData.cursViaApiSale);
+     double cursViaApiBuiDouble = Double.parseDouble(TestData.cursViaApiBui);
 
+        SoftAssertions softAssertions = new SoftAssertions();
         // Порівнюємо курс продажу
-        if (!TestData.exchangeRateBuy.equals(TestData.cursViaApiBui)) {
+        if (exchangeRateBuyDouble != cursViaApiBuiDouble) {
             System.out.println("     Курси продажу валюти " + currency + " на сайті і отриманного через АРІ  НЕ співпадають");
-            softAssertions.assertThat(TestData.exchangeRateBuy)
-                    .isEqualTo(TestData.cursViaApiBui);
+            softAssertions.assertThat(exchangeRateBuyDouble)
+                    .isEqualTo(cursViaApiBuiDouble);
         } else {
             System.out.println("     Курс продажу валюти " + currency + " на сайті і отриманного через АРІ співпадають");
         }
 
         // Порівнюємо курс купівлі
-        if (!TestData.exchangeRateSale.equals(TestData.cursViaApiSale)) {
+        if (exchangeRateSaleDouble != cursViaApiSaleDouble) {
             System.out.println("     Курс купівлі валюти " + currency + " на сайті і отриманного через АРІ  НЕ співпадає.");
-            softAssertions.assertThat(TestData.exchangeRateSale)
-                    .isEqualTo(TestData.cursViaApiSale);
+            softAssertions.assertThat(exchangeRateSaleDouble)
+                    .isEqualTo(cursViaApiSaleDouble);
         } else {
             System.out.println("     Курс купівлі валюти " + currency + " на сайті і отриманного через АРІ співпадають");
         }
@@ -65,5 +70,5 @@ public class PBsteps extends MainSteps {
     }
 
 
-}
+    }
 

@@ -12,9 +12,12 @@ public class TestData {
 
     //Тут знову затесався приват банк
     // додаю сюди статичні змінні для курсів купівлі і продажу Веб і Апі, щоб вони були доступні в усіх класах
+
     public static String exchangeRateBuy;
     public static String exchangeRateSale;
 
     public static String cursViaApiSale;
     public static String cursViaApiBui;
+
+
 }
