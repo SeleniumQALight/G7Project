@@ -2,7 +2,7 @@ package libs;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources(value = "file:.\\src\\main\\resources\\config.properties")
+@Config.Sources(value = "file:./src/main/resources/config.properties")
 public interface ConfigProperties extends Config {
     long TIME_FOR_DEFAULT_WAIT();
 

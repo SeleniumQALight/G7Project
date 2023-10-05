@@ -3,47 +3,31 @@ package api;
 import api.dto.responseDto.PostDto;
 import data.TestData;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.config.RestAssuredConfig;
-import io.restassured.filter.Filter;
 import io.restassured.filter.log.LogDetail;
-import io.restassured.http.*;
-import io.restassured.mapper.ObjectMapper;
-import io.restassured.mapper.ObjectMapperType;
-import io.restassured.response.Response;
+import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
-import io.restassured.specification.*;
+import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.security.KeyStore;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-
 public class ApiHelper {
     Logger logger = Logger.getLogger(getClass());
+
     RequestSpecification requestSpecification = new RequestSpecBuilder()
-            .setBaseUri(EndPoints.BASE_URL).setContentType(ContentType.JSON)
+            .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
 
-
-    /**
-     * @return token for LOGIN_API_DEFAULT and PASSWORD_API_DEFAULT
-     */
     public String getToken() {
         return getToken(TestData.LOGIN_API_DEFAULT, TestData.PASSWORD_API_DEFAULT);
     }
 
-    //post request with body json
     public String getToken(String login, String password) {
         JSONObject requestBody = new JSONObject();
         requestBody.put("username", login);
@@ -61,7 +45,6 @@ public class ApiHelper {
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody();
-
         return responseBody.asString().replace("\"", "");
 
     }
@@ -70,19 +53,22 @@ public class ApiHelper {
         return getAllPostsByUser(TestData.LOGIN_API_DEFAULT);
     }
 
-    public PostDto[] getAllPostsByUser(String username) {
+    public PostDto[] getAllPostsByUser(String userName) {
         return given()
                 //.contentType(ContentType.JSON)
                 //.log().all()
                 .spec(requestSpecification)
                 .when()
-                .get(EndPoints.POSTS_BY_USER, username)
+                .get(EndPoints.POSTS_BY_USER, userName)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .extract().response().as(PostDto[].class);
+                .extract().response().getBody().as(PostDto[].class);
     }
 
+    public void deletePostsTillPresent() {
+        deletePostsTillPresent(TestData.LOGIN_API_DEFAULT, TestData.PASSWORD_API_DEFAULT);
+    }
 
     public void deletePostsTillPresent(String userName, String password) {
         PostDto[] listOfPosts = getAllPostsByUser(userName);
@@ -110,8 +96,28 @@ public class ApiHelper {
                 .then()
                 .statusCode(200)
                 .log().all()
-                .extract().response().asString();
-
+                .extract().response().getBody().asString();
         Assert.assertEquals("Message in response ", "\"Success\"", actualMessage);
+    }
+
+    public void createPosts(String userName, String password,
+                            Map<String, String> mapForBody, int indexOfPost) {
+        String token = getToken(userName, password);
+
+        HashMap<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", mapForBody.get("title") + indexOfPost);
+        requestBody.put("body", mapForBody.get("body"));
+        requestBody.put("select1", mapForBody.get("select"));
+        requestBody.put("uniquePost", "no");
+        requestBody.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestBody)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .statusCode(200);
+
     }
 }

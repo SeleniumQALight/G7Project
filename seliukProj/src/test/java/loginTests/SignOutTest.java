@@ -35,8 +35,8 @@ public class SignOutTest extends baseTest.BaseTest {
     public void validSignOut() {
         //SigningIn
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterUserName(LOGIN_DEFAULT);
-        pageProvider.getLoginPage().enterPassword(PASSWORD_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputUserName(LOGIN_DEFAULT);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         //Checking the availability of elements in Header (after signing in)

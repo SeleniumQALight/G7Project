@@ -4,10 +4,14 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class MyProfilePage extends ParentPageWithHeader {
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     private String postTitleLocator = ".//*[text()='%s']";
 
@@ -20,7 +24,7 @@ public class MyProfilePage extends ParentPageWithHeader {
         return "/profile/[a-zA-Z0-9]*";
     }
 
-    public MyProfilePage checkIsRedirectOnMyProfilePage() {
+    public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
         //TODO check unique element
         return this;
@@ -32,21 +36,23 @@ public class MyProfilePage extends ParentPageWithHeader {
         ));
     }
 
-    public MyProfilePage checkPostWithTitleIsDisplayed(String title) {
+    public MyProfilePage checkPostWithTitleIsPresent(String title) {
         Assert.assertEquals("Count of posts with title " + title,
                 1, getPostsList(title).size());
         return this;
     }
 
-    public MyProfilePage deletePostTillPresent(String title) {
+    public MyProfilePage deletePostsTillPresent(String title) {
         List<WebElement> postsList = getPostsList(title);
+
         int counter = 0;
         while (!postsList.isEmpty() && counter < 100) {
+
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
-                    .checkIsRedirectOnPostPage()
-                    .clickOnDeletePostButton()
-                    .checkIsRedirectOnMyProfilePage();
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage();
             logger.info("Post with title " + title + " was deleted");
             postsList = getPostsList(title);
             counter++;
@@ -54,6 +60,12 @@ public class MyProfilePage extends ParentPageWithHeader {
         if (counter >= 100) {
             Assert.fail("There are more than 100 posts with title " + title);
         }
+
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts", numberOfPosts, postsList.size());
         return this;
     }
 }

@@ -12,31 +12,29 @@ public class HomePage extends ParentPageWithHeader {
         return "/";
     }
 
-    //actions
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.openLoginPage();
-        loginPage.loginWithValidCredentials();
-        checkIsRedirectOnHomePage();
+        loginPage.loginWithValidCreds();
+        checkIsRedirectToHomePage();
         return this;
     }
 
-    //checks
-    public HomePage checkIsRedirectOnHomePage() {
+    public HomePage checkIsRedirectToHomePage() {
         checkUrl();
-        //TODO: check some unique element
+        //TODO some unique element
         getHeader().checkIsButtonSignOutVisible();
         return this;
     }
 
-    public HomePage openHomePageIfNeed() {
+    public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
         if (this.getHeader().isButtonSignOutVisible()) {
-            logger.info("User was already logged in");
+            logger.info("User is already logged in");
         } else {
-            loginPage.loginWithValidCredentials();
-            checkIsRedirectOnHomePage();
+            loginPage.loginWithValidCreds();
+            checkIsRedirectToHomePage();
+            logger.info("User was logged in");
         }
         return this;
     }
