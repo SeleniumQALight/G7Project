@@ -24,4 +24,9 @@ public class Currency {
         return sell;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Currency: %s. (Course to UAH: buy - %f, sell - %f)", name, buy, sell);
+    }
+
 }

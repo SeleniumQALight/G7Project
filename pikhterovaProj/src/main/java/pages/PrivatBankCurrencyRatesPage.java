@@ -1,7 +1,6 @@
 package pages;
 
 import bdd.helpers.privatbank.Currency;
-import bdd.helpers.privatbank.CurrencyStorage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -24,27 +23,36 @@ public class PrivatBankCurrencyRatesPage extends PrivatBankParentPage {
         return this;
     }
 
-    public Currency[] getCurrencyRates(String xpath) {
+    public Currency[] getCurrencyRates(String menuItemXpath, String widgetXpath) {
 
         ArrayList<Currency> currencies = new ArrayList<>();
 
-        clickOnElement(xpath);
+        clickOnElement(menuItemXpath);
 
-        List<WebElement> currencyPairs = webDriver.findElements(org.openqa.selenium.By.className("currency-pairs"));
+        WebElement widget = webDriver.findElement(org.openqa.selenium.By.xpath(widgetXpath));
+
+        List<WebElement> currencyPairs = widget.findElements(org.openqa.selenium.By.className("currency-pairs"));
 
         String currencyName;
         float buy, sell;
 
         for (WebElement currencyPair : currencyPairs) {
 
-            currencyName = currencyPair.findElement(org.openqa.selenium.By.className("names")).getText().trim();
+            WebElement currencyNameContainer = currencyPair.findElement(org.openqa.selenium.By.className("names"))
+                    .findElement(org.openqa.selenium.By.tagName("span"));
+
+            String nestedText = currencyNameContainer.findElement(org.openqa.selenium.By.tagName("span")).getText();
+
+            currencyName = currencyNameContainer.getText().replace(nestedText, "").trim();
 
             buy = Float.parseFloat(currencyPair.findElement(org.openqa.selenium.By.className("purchase")).findElement(org.openqa.selenium.By.tagName("span")).getText().trim());
             sell = Float.parseFloat(currencyPair.findElement(org.openqa.selenium.By.className("sale")).findElement(org.openqa.selenium.By.tagName("span")).getText().trim());
 
-            currencies.add(new Currency(currencyName, buy, sell));
+            Currency currency = new Currency(currencyName, buy, sell);
 
-            System.out.println(currencyName + " " + buy + " " + sell);
+            currencies.add(currency);
+
+            logger.info(String.format("Site currency: %s", currency));
 
         }
 
