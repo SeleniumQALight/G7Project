@@ -2,6 +2,9 @@ package data;
 
 import libs.ConfigProvider;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestData {
     public final static String LOGIN_DEFAULT = System.getProperty("defaultLogin", ConfigProvider.configHiddenProperties.login());
     public final static String PASSWORD_DEFAULT = "123456qwerty";
@@ -14,5 +17,47 @@ public class TestData {
 
     public final static String LOGIN_API_DEFAULT = "vladqaauto";
     public final static String PASSWORD_API_DEFAULT = "vladqaautovladqaauto";
+
+    private static String apiExchangeRateBuy;
+    private static String apiExchangeRateSell;
+
+    private static Map<String, String> exchangeRates = new HashMap<>();
+    private static Map<String, String> exchangeRateSell = new HashMap<>();
+
+
+    public static void saveExchangeRate(String currency, String rate) {
+        exchangeRates.put(currency, rate);
+
+    }
+
+    public static void saveExchangeRateSell(String currency, String rate) {
+        exchangeRateSell.put(currency, rate);
+
+    }
+
+
+    public static String getWebExchangeRateBuy(String currency) {
+        return exchangeRates.get(currency);
+    }
+
+    public static String getWebExchangeRateSell(String currency) {
+        return exchangeRateSell.get(currency);
+    }
+
+    public static String getApiExchangeRateBuy() {
+        return apiExchangeRateBuy;
+    }
+
+    public static void setApiExchangeRateBuy(String buyRate) {
+        apiExchangeRateBuy = buyRate;
+    }
+
+    public static String getApiExchangeRateSell() {
+        return apiExchangeRateSell;
+    }
+
+    public static void setApiExchangeRateSell(String sellRate) {
+        apiExchangeRateSell = sellRate;
+    }
 
 }
