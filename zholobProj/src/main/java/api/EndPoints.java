@@ -13,6 +13,6 @@ public interface EndPoints {
     final String DELETE_POST =BASE_URL + "/api/post/{0}";
 
 //сюди затесався приват банк
-    final String URL_PB = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+    final String URL_PB = "https://api.privatbank.ua/p24api/pubinfo";
 }
 

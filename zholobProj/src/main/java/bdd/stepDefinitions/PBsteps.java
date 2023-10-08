@@ -1,11 +1,12 @@
 package bdd.stepDefinitions;
 
-import api.ApiHelper;
+import api.ApiHelperPB;
 import bdd.helpers.WebDriverHelper;
 import data.TestData;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 //import org.apache.log4j.Logger;
@@ -27,7 +28,7 @@ public class PBsteps extends MainSteps {
     }
 
 
-    @io.cucumber.java.en.When("I getting a course {string} the site")
+    @When("I getting a course {string} the site")
     public void iGettingACourseTheSite(String currency) {
         pageProvider.getPBpage().getExchangeRateBuyOnTheWeb1(currency);
         pageProvider.getPBpage().getExchangeRateSaleOnTheWeb(currency);
@@ -35,7 +36,7 @@ public class PBsteps extends MainSteps {
 
     @And("I getting a course {string} via API")
     public void iGettingACourseViaAPI(String currency) {
-        ApiHelper.getCurseViaApi(currency);
+        ApiHelperPB.getCurseViaApi(currency);
 
     }
 
@@ -48,26 +49,42 @@ public class PBsteps extends MainSteps {
      double cursViaApiBuiDouble = Double.parseDouble(TestData.cursViaApiBui);
 
         SoftAssertions softAssertions = new SoftAssertions();
-        // Порівнюємо курс продажу
-        if (exchangeRateBuyDouble != cursViaApiBuiDouble) {
-            System.out.println("     Курси продажу валюти " + currency + " на сайті і отриманного через АРІ  НЕ співпадають");
-            softAssertions.assertThat(exchangeRateBuyDouble)
-                    .isEqualTo(cursViaApiBuiDouble);
-        } else {
-            System.out.println("     Курс продажу валюти " + currency + " на сайті і отриманного через АРІ співпадають");
-        }
+
+
+        softAssertions.assertThat(exchangeRateBuyDouble)
+                .as("Курс продажу валюти " + currency + " на сайті і отриманого через API не співпадають")
+                .isEqualTo(cursViaApiBuiDouble);
 
         // Порівнюємо курс купівлі
-        if (exchangeRateSaleDouble != cursViaApiSaleDouble) {
-            System.out.println("     Курс купівлі валюти " + currency + " на сайті і отриманного через АРІ  НЕ співпадає.");
-            softAssertions.assertThat(exchangeRateSaleDouble)
-                    .isEqualTo(cursViaApiSaleDouble);
-        } else {
-            System.out.println("     Курс купівлі валюти " + currency + " на сайті і отриманного через АРІ співпадають");
-        }
+        softAssertions.assertThat(exchangeRateSaleDouble)
+                .as("Курс купівлі валюти " + currency + " на сайті і отриманого через API не співпадають")
+                .isEqualTo(cursViaApiSaleDouble);
 
         softAssertions.assertAll();
     }
+
+
+        // Порівнюємо курс продажу
+
+//        if (exchangeRateBuyDouble != cursViaApiBuiDouble) {
+//            System.out.println("     Курси продажу валюти " + currency + " на сайті і отриманного через АРІ  НЕ співпадають");
+//            softAssertions.assertThat(exchangeRateBuyDouble)
+//                    .isEqualTo(cursViaApiBuiDouble);
+//        } else {
+//            System.out.println("     Курс продажу валюти " + currency + " на сайті і отриманного через АРІ співпадають");
+//        }
+//
+//        // Порівнюємо курс купівлі
+//        if (exchangeRateSaleDouble != cursViaApiSaleDouble) {
+//            System.out.println("     Курс купівлі валюти " + currency + " на сайті і отриманного через АРІ  НЕ співпадає.");
+//            softAssertions.assertThat(exchangeRateSaleDouble)
+//                    .isEqualTo(cursViaApiSaleDouble);
+//        } else {
+//            System.out.println("     Курс купівлі валюти " + currency + " на сайті і отриманного через АРІ співпадають");
+//        }
+//
+//        softAssertions.assertAll();
+//    }
 
 
     }

@@ -47,7 +47,7 @@ public class PBpage extends ParentPage {
         // Знаходимо елемент за локатором
         WebElement element = webDriver.findElement(By.xpath(exchangeRateBuyLocator));
         // Отримуємо текст елемента записуємо в статичну змінну
-        TestData.exchangeRateBuy = element.getText() ;
+        TestData.exchangeRateBuy = element.getText();
         // Виводимо в лог значення курсу купівлі
         logger.info("currency buying rate (WEBSITE) for " + currency + " is: " + TestData.exchangeRateBuy);
         // Повертаємо значення курсу купівлі
@@ -59,7 +59,7 @@ public class PBpage extends ParentPage {
     public String getExchangeRateSaleOnTheWeb(String currency) {
         String exchangeRateSaleLocator = String.format(exchangeRateSaleOnTheWeb, currency);
         WebElement element = webDriver.findElement(By.xpath(exchangeRateSaleLocator));
-        TestData.exchangeRateSale = element.getText() ;
+        TestData.exchangeRateSale = element.getText();
         logger.info("currency selling (WEBSITE) rate for " + currency + " is: " + TestData.exchangeRateSale);
         return TestData.exchangeRateSale;
     }
