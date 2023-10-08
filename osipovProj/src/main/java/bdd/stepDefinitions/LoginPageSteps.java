@@ -2,6 +2,7 @@ package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
 import data.TestData;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -37,5 +38,25 @@ public class LoginPageSteps extends MainSteps{
     @Then("I see alert message text with text {string}")
     public void i_see_alert_message_text_with_text(String textMessage) {
         pageProvider.getLoginPage().checkIsErrorMessageVisible(textMessage);
+    }
+
+    @When("I enter {string} into input Login in Registration form")
+    public void iEnterIntoInputLoginInRegistrationForm(String login) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(login);
+    }
+
+    @And("I enter {string} into input Email in Registration form")
+    public void iEnterIntoInputEmailInRegistrationForm(String email) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
+    }
+
+    @And("I enter {string} into input Password in Registration form")
+    public void iEnterIntoInputPasswordInRegistrationForm(String password) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField(password);
+    }
+
+    @Then("Check that {string} are displayed")
+    public void checkThatAreDisplayed(String errorMessage) {
+        pageProvider.getLoginPage().checkErrorsMessages(errorMessage);
     }
 }
