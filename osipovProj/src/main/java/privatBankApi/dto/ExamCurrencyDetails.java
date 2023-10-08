@@ -8,9 +8,9 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class ExamPrivat {
+public class ExamCurrencyDetails {
     String ccy;
     String base_ccy;
-    String buy;
-    String sale;
+    Double buy;
+    Double sale;
 }
