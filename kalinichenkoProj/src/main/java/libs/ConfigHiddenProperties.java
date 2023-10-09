@@ -8,6 +8,8 @@ public interface ConfigHiddenProperties extends Config {
     String password();
     String login_Api();
     String password_Api();
+    String login_Api_book();
+    String password_Api_book();
 
 
 }
