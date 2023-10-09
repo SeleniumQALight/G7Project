@@ -10,13 +10,14 @@ public class ApiHelper {
 
 
     public ActualCursPrivateDto[] getAllActualCurrency(){
-        final String coursid = "coursid=5";
-        ActualCursPrivateDto[] responsAsDto =
+                ActualCursPrivateDto[] responsAsDto =
                 given()
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
-                        .given().queryParam("exchange", coursid)
+                        .given().queryParam("json")
+                        .queryParam("exchange")
+                        .queryParam("coursid" , "5")
                         .get(EndPoints.TODAY_EXCHANGE_BASE_URL)
                         .then()
                         .log().all()

@@ -1,5 +1,6 @@
 package pages;
 
+import PrivatBank.HomePagePrivatBank;
 import org.openqa.selenium.WebDriver;
 
 public class PageProvider {
@@ -21,4 +22,6 @@ public class PageProvider {
     public EditPostPage getEditPostPage() { return new EditPostPage(webDriver); }
 
     public MyProfilePage getMyProfilePage() { return new MyProfilePage(webDriver); }
+
+    public HomePagePrivatBank getHomePagePrivatBank() { return new HomePagePrivatBank(webDriver); }
 }
