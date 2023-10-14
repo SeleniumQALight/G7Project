@@ -10,14 +10,37 @@ public class CurrencyApiHelper {
 
     Logger logger = Logger.getLogger(getClass());
 
+    private String url;
+    private final boolean withParams;
+
+    public CurrencyApiHelper() {
+
+        this.url = EndPoints.CURRENCY_RATES_API_ENDPOINT;
+        this.withParams = false;
+
+    }
+
+    public CurrencyApiHelper(String queryParams) {
+
+        this.url = EndPoints.CURRENCY_RATES_API_ENDPOINT + "?" + queryParams.replace(", ", "&");
+        this.withParams = true;
+
+    }
+
     public CurrencyDto[] getCurrencies(int courseId) {
+
+        if (withParams) {
+            url += String.format("&coursid=%s", courseId);
+        } else {
+            url += String.format("?coursid=%s", courseId);
+        }
 
         CurrencyDto[] responseBody =
                 given()
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
-                        .get(String.format(EndPoints.CURRENCY_RATES_TEMPLATE, courseId))
+                        .get(url)
                         .then()
                         .statusCode(200)
                         .log().all()

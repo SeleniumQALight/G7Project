@@ -3,6 +3,7 @@ package bdd.helpers.privatbank;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.cucumber.java.en.Then;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 
@@ -21,7 +22,11 @@ public class CurrencyStorage {
         apiCurrencies.put(currency.getName(), currency);
     }
 
+    // @Then("Currency rates on the site match with API with accuracy {}")
     public void checkCurrencies(float accuracy) {
+
+        Assert.assertTrue("No currencies from API", apiCurrencies.size() > 0);
+        // Assert.assertTrue("No currencies on the site", siteCurrencies.size() > 0);
 
         for (Map.Entry<String, Currency> set : siteCurrencies.entrySet()) {
 
