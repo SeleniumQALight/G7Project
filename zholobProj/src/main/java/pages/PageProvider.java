@@ -33,4 +33,8 @@ public class PageProvider {
     public MyProfilePage getMyProfilePage() {
         return new MyProfilePage(webDriver); // метод для створення об'єкту MyProfilePage
     }
+    //Для сторынки Приватбанка
+    public PBpage getPBpage() {
+        return new PBpage(webDriver); // метод для створення об'єкту PrivatPage
+    }
 }
