@@ -7,8 +7,6 @@ import static libs.ConfigProvider.configProperties;
 
 abstract public class ParentPage extends ActionsWithElements {
     String env = System.getProperty("env", "aqa");
-
-
     String BASE_URL;
 
     public ParentPage(WebDriver webDriver) {
