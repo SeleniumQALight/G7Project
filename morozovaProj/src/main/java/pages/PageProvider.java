@@ -13,6 +13,10 @@ public class PageProvider {
         return new LoginPage(webDriver);
     }
 
+    public PrivatBankE getPrivatBankPage() {
+        return new PrivatBankE(webDriver);
+    }
+
     public HomePage getHomePage() {
         return new HomePage(webDriver);
     }
