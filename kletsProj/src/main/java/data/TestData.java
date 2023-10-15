@@ -13,5 +13,8 @@ public class TestData {
     public final static String LOGIN_API_DEFAULT = "newKlets".toLowerCase();
     public final static String PASSWORD_API_DEFAULT = "test12345678910";
 
-
+    public static String rate_sell_api;
+    public static String rate_buy_api;
+    public static String rate_sell_ui;
+    public static String rate_buy_ui;
 }
