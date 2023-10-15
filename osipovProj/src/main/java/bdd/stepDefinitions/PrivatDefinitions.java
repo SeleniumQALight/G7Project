@@ -1,24 +1,25 @@
 package bdd.stepDefinitions;
 
+import bdd.helpers.WebDriverHelper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import privatBankApi.PrivatBankEndpoints;
 import privatBankApi.dto.ExamCurrencyDetails;
 
 import static data.TestData.*;
 import static io.restassured.RestAssured.given;
 
-public class PrivatDefinitions {
-    WebDriver webDriver;
+public class PrivatDefinitions extends MainSteps {
 
-    @When("I find out exchange rates from API")
-    public void iFindOutExchangeRatesFromAPI() {
+    public PrivatDefinitions(WebDriverHelper webDriverHelper) {
+        super(webDriverHelper);
+    }
+
+    @When("I find out exchange rates for {} from API")
+    public void iFindOutExchangeRatesForFromAPI(String currency) {
         ExamCurrencyDetails[] examPrivat = given()
                 .contentType(ContentType.JSON)
                 .log().all()
@@ -28,39 +29,23 @@ public class PrivatDefinitions {
                 .log().all()
                 .assertThat()
                 .extract().body().as(ExamCurrencyDetails[].class);
-        for (ExamCurrencyDetails examCurrencyDetails : examPrivat) {
-            apiCurrencyBuyRates.replace(examCurrencyDetails.getCcy(), examCurrencyDetails.getBuy());
-        }
-        System.out.println(apiCurrencyBuyRates);
-    }
-
-    @And("I find out exchange rates from UI")
-    public void iFindOutExchangeRatesFromUI() {
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.get("https://privatbank.ua/");
-        System.out.println(uiCurrencyBuyRates);
-        for (int i = 0; i < webDriver.findElements(By.xpath("//div[@class='wr_inner course_type_container']//tbody//tr")).size(); i++) {
-            uiCurrencyBuyRates.put(webDriver.findElement(By.xpath("//div[@class='wr_inner course_type_container']//tbody//tr[" + (i + 1) + "]//td[1]")).getText(),
-                    Double.valueOf(webDriver.findElement(By.xpath("//div[@class='wr_inner course_type_container']//tbody//tr[" + (i + 1) + "]//td[3]")).getText()));
-        }
-        System.out.println(uiCurrencyBuyRates);
-        webDriver.quit();
-    }
-
-    @Then("I compare results from API and UI")
-    public void iCompareResultsFromAPIAndUI() {
-        for (int i = 0; i < uiCurrencyBuyRates.size(); i++) {
-            for (int j = 0; j < apiCurrencyBuyRates.size(); j++) {
-                if (uiCurrencyBuyRates.keySet().toArray()[i].equals(apiCurrencyBuyRates.keySet().toArray()[j])) {
-                    Assert.assertEquals("", apiCurrencyBuyRates.values().toArray()[i], uiCurrencyBuyRates.values().toArray()[j]);
-                    System.out.println("Currency - " + apiCurrencyBuyRates.keySet().toArray()[j]
-                            + ", it's exchange rate that we get from API (" + apiCurrencyBuyRates.values().toArray()[i]
-                            + ") is equal to " + "exchange rate form UI ( " + uiCurrencyBuyRates.values().toArray()[j] + ")");
-                    break;
+        for (int i = 0; i < examPrivat.length; i++) {
+            if (examPrivat[i].getCcy().equals(currency)) {
+                apiCurrencyBuySaleRates[0] = examPrivat[i].getBuy();
+                apiCurrencyBuySaleRates[1] = examPrivat[i].getSale();
             }
         }
     }
-}
+
+    @And("I find out exchange rates for {} from UI")
+    public void iFindOutExchangeRatesForFromUI(String currency) {
+        pageProvider.getMainPrivatPage().openMainPage().discoverUiCurrencyBuySaleRate(currency);
     }
+
+    @Then("I compare results for {} from API and UI")
+    public void iCompareResultsForFromAPIAndUI(String currency) {
+        Assert.assertEquals("buy rates isn't equal", apiCurrencyBuySaleRates[0], uiCurrencyBuySaleRates[0]);
+        Assert.assertEquals("sell rates isn't equal", apiCurrencyBuySaleRates[1], uiCurrencyBuySaleRates[1]);
+    }
+}
 

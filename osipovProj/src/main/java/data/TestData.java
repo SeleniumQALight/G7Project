@@ -3,8 +3,6 @@ package data;
 import libs.ConfigProvider;
 import libs.Util;
 
-import java.util.*;
-
 
 public class TestData {
     public final static String LOGIN_DEFAULT = System.getProperty("defaultLogin", ConfigProvider.configHiddenProperties.login());
@@ -21,18 +19,7 @@ public class TestData {
 
     public final static String LOGIN_DEMOQA_API_DEFAULT = "test-g7-o";
     public final static String PASSWORD_DEMOQA_API_DEFAULT = "!23456qwertY";
-    public static Map<String, Double> apiCurrencyBuyRates = new LinkedHashMap<String, Double>() {{
-        put("USD", 0.0);
-        put("EUR", 0.0);
-        put("CHF", 0.0);
-        put("CZK", 0.0);
-        put("GBR", 0.0);
-        put("ILS", 0.0);
-        put("JPY", 0.0);
-        put("NOK", 0.0);
-        put("PLZ", 0.0);
-        put("SEK", 0.0);
-    }};
 
-    public static Map<String, Double> uiCurrencyBuyRates = new LinkedHashMap<>();
+    public static Double[] apiCurrencyBuySaleRates = new Double[10];
+    public static Double[] uiCurrencyBuySaleRates = new Double[10];
 }
