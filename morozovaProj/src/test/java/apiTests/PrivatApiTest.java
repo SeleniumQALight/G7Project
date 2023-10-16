@@ -44,6 +44,7 @@ public class PrivatApiTest {
         PrivatHW responseAsDto = given()
                 .contentType(ContentType.JSON)
                 .queryParam("date", date)
+                .log().all()
                 .when()
                 .get(EndPoints.PRIVAT_URL)
                 .then()

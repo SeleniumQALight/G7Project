@@ -104,8 +104,8 @@ public class ApiHelper {
 
         HashMap<String, String> requestBody = new HashMap<>();
         requestBody.put("title", mapForBody.get("title") + indexOfPost);
-        requestBody.put("body", mapForBody.get("body") );
-       requestBody.put("select1", mapForBody.get("select"));
+        requestBody.put("body", mapForBody.get("body"));
+        requestBody.put("select1", mapForBody.get("select"));
         requestBody.put("uniquePost", "no");
         requestBody.put("token", token);
 
@@ -118,6 +118,8 @@ public class ApiHelper {
                 .statusCode(200);
 
     }
-}
 
+
+
+}
 

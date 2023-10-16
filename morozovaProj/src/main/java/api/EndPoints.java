@@ -8,6 +8,11 @@ public interface EndPoints {
     final String DELETE_POST = BASE_URL + "/api/post/{0}";
 
     //    PrivatBankEndPoints
-    final String BASE_URL_PRIVAT = "https://api.privatbank.ua/p24api";
-    final String PRIVAT_URL = BASE_URL_PRIVAT +"/exchange_rates";
+    final String PRIVATBANK_UIURL = "https://privatbank.ua";// UI
+
+    final String BASE_URL_PRIVAT = "https://api.privatbank.ua/p24api";// тут з апі
+   // GET https://api.privatbank.ua/p24api/exchange_rates
+    final String PRIVAT_URL = BASE_URL_PRIVAT + "/exchange_rates";
+    //  https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5 - API get currency
+    final String PRIVATBANK_URL = BASE_URL_PRIVAT + "/pubinfo";
 }
