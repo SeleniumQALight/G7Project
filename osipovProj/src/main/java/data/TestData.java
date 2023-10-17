@@ -3,6 +3,7 @@ package data;
 import libs.ConfigProvider;
 import libs.Util;
 
+
 public class TestData {
     public final static String LOGIN_DEFAULT = System.getProperty("defaultLogin", ConfigProvider.configHiddenProperties.login());
     public final static String PASSWORD_DEFAULT = "123456qwerty";
@@ -18,4 +19,7 @@ public class TestData {
 
     public final static String LOGIN_DEMOQA_API_DEFAULT = "test-g7-o";
     public final static String PASSWORD_DEMOQA_API_DEFAULT = "!23456qwertY";
+
+    public static Double[] apiCurrencyBuySaleRates = new Double[10];
+    public static Double[] uiCurrencyBuySaleRates = new Double[10];
 }
