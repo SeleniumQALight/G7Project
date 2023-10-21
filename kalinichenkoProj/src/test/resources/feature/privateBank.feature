@@ -7,6 +7,7 @@ Feature: Private Bank get currency rates
         Then I compare rates from Private Bank API and rates from Private Bank site fore "<currency>" currency
 
     Examples:
-    | currency |
-    | USD      |
-    | EUR      |
+      | currency |
+      | USD      |
+      | EUR      |
+      | PLN      |

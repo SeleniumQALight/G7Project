@@ -2,27 +2,31 @@ package PrivatBank;
 
 
 import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.ParentPage;
 
 @Getter
 public class HomePagePrivatBank extends ParentPage {
 
-    @FindBy(xpath = ".//td[@id='EUR_buy']")
-    private WebElement eurBuy;
-    @FindBy(xpath = ".//td[@id='EUR_sell']")
-    private WebElement eurSell;
-    @FindBy(xpath = ".//td[@id='USD_buy']")
-    private WebElement usdBuy;
-    @FindBy(xpath = ".//td[@id='USD_sell']")
-    private WebElement usdSell;
-
     public HomePagePrivatBank(WebDriver webDriver) {
         super(webDriver);
 
     }
+
+    private final String locatorForBuy = ".//td[@id='%s_buy']";
+    private final String locatorForSell = ".//td[@id='%s_sell']";
+
+    public WebElement getCurrencyBuy(String currency) {
+        return webDriver.findElement(By.xpath(String.format(locatorForBuy, currency)));
+    }
+
+    public WebElement getCurrencySell(String currency) {
+        return webDriver.findElement(By.xpath(String.format(locatorForSell, currency)));
+    }
+
+
 
     @Override
     protected String getRelativeUrl() {
