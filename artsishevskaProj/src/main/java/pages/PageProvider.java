@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
+
+
 public class PageProvider {
     WebDriver webDriver;
     public PageProvider(WebDriver webDriver) {
@@ -27,5 +29,8 @@ public class PageProvider {
 
     public MyProfilePage getMyProfilePage() {
         return new MyProfilePage(webDriver);
+    }
+    public CurrencyPagePB getPrivatBankHomePage(){
+        return new CurrencyPagePB(webDriver);
     }
 }

@@ -1,8 +1,6 @@
 package pages;
 
-import libs.ConfigProperties;
 import libs.ConfigProvider;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
@@ -11,6 +9,7 @@ abstract public class ParentPage extends ActionsWithElements{
 //    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class); // створюємо об'єкт класу ConfigProperties з парами ключів і значень
 
  String BASE_URL; // final - це константа, яку не можна змінити
+    final String BASE_PB_URL = "https://privatbank.ua/"; // а тут приват банк затесався
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -19,6 +18,9 @@ abstract public class ParentPage extends ActionsWithElements{
 
     public void openPage(String url) { // метод для відкриття сторінки
         try {
+            // Робим выкно браузера максимального розміру, боюсь не буде видно курсыв на сторынцы
+            webDriver.manage().window().maximize();
+
             webDriver.get(url);
             logger.info("Page was opened " + url);
         } catch (Exception e) {

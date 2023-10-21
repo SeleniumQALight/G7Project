@@ -9,6 +9,10 @@ public interface ConfigProperties extends Config {
 	long TIME_FOR_EXPLICIT_WAIT_HIGH();
 
 	String base_url();
+
+	String PRIVAT_BANK_BASE_URL();
+	String PRIVAT_BANK_API_ENDPOINT();
+
 	String DATA_FILE();
 	String DATA_FILE_PATH();
 	String Oracle();
