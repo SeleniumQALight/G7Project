@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -8,29 +9,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static data.TestData.LOGIN_DEFAULT;
-import static data.TestData.PASSWORD_DEFAULT;
-
 public class LoginPage extends ParentPage {
-    @FindBy(xpath = "//input[@name='username' and @class='form-control form-control-sm input-dark']")
+    @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement inputUserName;
 
-    @FindBy(xpath = "//input[@name='password' and @class='form-control form-control-sm input-dark']")
+    @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary btn-sm']")
+    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
-
-    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']")
-    private WebElement messageInvalidUsernameAndPassword;
 
     @FindBy(id = "username-register")
     private WebElement inputUserNameRegistration;
@@ -41,9 +34,11 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
-    //the same as webDriver.findElements(By.xpath(".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
-    //@FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
-    //private WebElement alertDanger;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text() = 'Invalid username / pasword']")
+    private WebElement messageInvalidUsernameAndPassword;
 
     final String listErrorsMessagesLocator = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -56,7 +51,6 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-    //actions
     @Step
     public void openLoginPage() {
         openPage(BASE_URL);
@@ -64,12 +58,12 @@ public class LoginPage extends ParentPage {
     }
 
     @Step
-    public void enterUserName(String userName) {
+    public void enterTextIntoInputUserName(String userName) {
         enterTextIntoInput(inputUserName, userName);
     }
 
     @Step
-    public void enterPassword(String password) {
+    public void enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
     }
 
@@ -78,29 +72,30 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
-    public void loginWithValidCredentials() {
+    @Step
+    public void loginWithValidCreds() {
         openLoginPage();
-        enterUserName(LOGIN_DEFAULT);
-        enterPassword(PASSWORD_DEFAULT);
+        enterTextIntoInputUserName(TestData.LOGIN_DEFAULT);
+        enterTextIntoInputPassword(TestData.PASSWORD_DEFAULT);
         clickOnButtonSignIn();
     }
 
-    public LoginPage enterTextInroRegistrationUserNameField(String userName) {
+    @Step
+    public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistration, userName);
         return this;
     }
 
-    public LoginPage enterTextInroRegistrationEmailField(String email) {
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
         enterTextIntoInput(inputEmailRegistration, email);
         return this;
     }
 
-    public LoginPage enterTextInroRegistrationPasswordField(String password) {
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         enterTextIntoInput(inputPasswordRegistration, password);
         return this;
     }
 
-    //checks
     public void checkIsInputUserNameVisible() {
         checkElementDisplayed(inputUserName);
     }
@@ -130,37 +125,39 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkErrorsMessages(String expectedMessages) {
-        //error1;error2 -> [error1, error2]
+        // error1;error2 -> [error1, error2]
         String[] errors = expectedMessages.split(";");
-        //wait until number of errors will be expected
+        // wait until number of errors will be excepted
         webDriverWait10.until(
                 ExpectedConditions.numberOfElementsToBe(
-                        By.xpath(listErrorsMessagesLocator), errors.length
-
-                )
-        );
-        Util.waitABit(1);
+                        By.xpath(listErrorsMessagesLocator), errors.length));
+        Util.waitABit(1); // wait until EXTRA errors will be displayed
         Assert.assertEquals("Number of elements ", errors.length,
                 getListOfErrors().size());
 
-        ArrayList<String> actualTextFromErrors = new ArrayList();
+        ArrayList actualTextFromErrors = new ArrayList();
         for (WebElement element : getListOfErrors()) {
             actualTextFromErrors.add(element.getText());
         }
 
         SoftAssertions softAssertions = new SoftAssertions();
-
-        softAssertions.assertAll(); //check all soft assertions
         for (int i = 0; i < errors.length; i++) {
             softAssertions.assertThat(errors[i])
                     .as("Error " + i)
-                    .isEqualToIgnoringCase(actualTextFromErrors.get(i));
+                    .isIn(actualTextFromErrors);
         }
+
+        softAssertions.assertAll(); // check all soft assertions
 
         return this;
     }
 
     private List<WebElement> getListOfErrors() {
         return webDriver.findElements(By.xpath(listErrorsMessagesLocator));
+    }
+
+    public LoginPage checkIsErroMessageVisible(String textOfMessage) {
+        Assert.assertEquals("Message in alert ", textOfMessage, alertInCenter.getText());
+        return this;
     }
 }

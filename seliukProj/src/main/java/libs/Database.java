@@ -238,7 +238,7 @@ public class Database {
     private void printQuery(String query) {
         String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query :
                 (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "...");
-        log.info("Query for execute: \"" + queryForOutput + "\"\n");
+        log.info("Query for execute: \"" + queryForOutput +"\"\n");
     }
 
 

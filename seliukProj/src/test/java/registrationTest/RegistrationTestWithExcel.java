@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
+import static libs.ConfigProvider.configProperties;
+
 @RunWith(Parameterized.class)
 public class RegistrationTestWithExcel extends BaseTest {
     String userName;
@@ -27,17 +29,17 @@ public class RegistrationTestWithExcel extends BaseTest {
 
     @Parameterized.Parameters
     public static Collection testData() throws IOException {
-        InputStream inputStream = new FileInputStream(".//src//main//java//data//testDataSuit.xls");
+        InputStream inputStream = new FileInputStream(
+                configProperties.DATA_FILE_PATH() + "testDataSuit.xls");
         return new SpreadsheetData(inputStream, "registrationErrors").getData();
     }
 
     @Test
     public void checkErrorsTest() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInroRegistrationUserNameField(userName);
-        pageProvider.getLoginPage().enterTextInroRegistrationEmailField(email);
-        pageProvider.getLoginPage().enterTextInroRegistrationPasswordField(password);
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
+        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField(password);
         pageProvider.getLoginPage().checkErrorsMessages(expectedMessages);
     }
-
 }

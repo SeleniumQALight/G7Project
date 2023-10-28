@@ -5,6 +5,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPageWithHeader {
+
+    @FindBy(id = "post-title") // //*[@id='post-title']
+    private WebElement inputTitle;
+
+    @FindBy(name = "body") // //*[@name='body']
+    private WebElement inputBody;
+
+    @FindBy(xpath = "//button[text()='Save New Post']")
+    private WebElement buttonSave;
+
+    @FindBy(tagName = "select")
+    private WebElement dropDownSelectValue;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -14,32 +27,25 @@ public class CreatePostPage extends ParentPageWithHeader {
         return "/create-post";
     }
 
-    //elements
-    @FindBy(id = "post-title")
-    private WebElement inputTitle;
+    public CreatePostPage checkIsRedirectToCreatePostPage() {
+        checkUrl();
+        //TODO some unique element
+        getHeader().checkIsButtonSignOutVisible();
+        return this;
+    }
 
-    @FindBy(name = "body")
-    private WebElement inputBody;
-
-    @FindBy(xpath = "//button[text()='Save New Post']")
-    private WebElement buttonSaveNewPost;
-
-    @FindBy(tagName = "select")
-    private WebElement dropDownSelectValue;
-
-    //actions
-    public CreatePostPage enterTitle(String title) {
+    public CreatePostPage enterTextIntoInputTitle(String title) {
         enterTextIntoInput(inputTitle, title);
         return this;
     }
 
-    public CreatePostPage enterBody(String body) {
+    public CreatePostPage enterTextIntoInputBody(String body) {
         enterTextIntoInput(inputBody, body);
         return this;
     }
 
     public PostPage clickOnButtonSaveNewPost() {
-        clickOnElement(buttonSaveNewPost);
+        clickOnElement(buttonSave);
         return new PostPage(webDriver);
     }
 
@@ -53,7 +59,6 @@ public class CreatePostPage extends ParentPageWithHeader {
         return this;
     }
 
-    //checks
     public CreatePostPage checkIsRedirectOnCreatePostPage() {
         checkUrl();
         //TODO: check some unique element

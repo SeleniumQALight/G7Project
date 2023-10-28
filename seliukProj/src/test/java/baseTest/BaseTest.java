@@ -1,13 +1,5 @@
 package baseTest;
 
-//*
-// Class BaseTest is a parent class for all tests. It contains setUp() and tearDown() methods.
-// To set up the logger:
-//      1. Add log4j dependency to pom.xml
-//      2. Create log4j.properties file in src/main/resources
-//      3. Add logger to BaseTest.java
-// */
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import libs.ConfigProvider;
@@ -34,70 +26,65 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class BaseTest {
-    protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
     WebDriver webDriver;
     protected PageProvider pageProvider;
-    Logger logger = Logger.getLogger(getClass());
+
+    protected Logger logger = Logger.getLogger(getClass());
+    protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
 
     @Before
-    public void setUp() {
-        logger.info("---------------------");
-        logger.info("Test " + testName.getMethodName() + " was started");
-        //WebDriverManager.chromedriver().setup();
-        //webDriver = new ChromeDriver();
+    public void setUp(){
+        logger.info("----- " + testName.getMethodName() + " was started ------------");
         webDriver = initDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT())); //time to wait for work with particular element.
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
-
     }
-
-    @Rule
-    public TestName testName = new TestName();
 
 //    @After
-//    public void tearDown() {
-//        logger.info("Test " + testName.getMethodName() + " was finished");
+//    public void tearDown(){
 //        webDriver.quit();
 //        logger.info("Browser was closed");
-//        logger.info("---------------------");
+//        logger.info("----- " + testName.getMethodName() + " was ended ------------");
+//
 //    }
-@Rule()
-public final TestWatcher watchman = new TestWatcher() {
-    @Override
-    protected void failed(Throwable e, Description description) {
-        screenshot();
-    }
 
-    public void saveScreenshot(ArrayList<ScreenShot> screenShots) {
-        screenShots.forEach(screenShot -> Allure.addAttachment(screenShot.getName(),
-                new ByteArrayInputStream(screenShot.getScreenShotImg())));
-    }
-
-    public void screenshot() {
-        if (webDriver == null) {
-            logger.info("Driver for screenshot not found");
-            return;
+    @Rule()
+    public final TestWatcher watchman = new TestWatcher() {
+        @Override
+        protected void failed(Throwable e, Description description) {
+            screenshot();
         }
-        byte[] screen = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-        listOfScreenShots.add(new ScreenShot("Default screenShot after failed test", screen));
-        saveScreenshot(listOfScreenShots);
-    }
 
-    @Override
-    protected void finished(Description description) {
-        logger.info(
-                String.format("Finished test: %s::%s", description.getClassName(), description.getMethodName()));
-        try {
-            webDriver.quit();
-            logger.info("Browser was closed");
-        } catch (Exception e) {
-            logger.error(e);
+        public void saveScreenshot(ArrayList<ScreenShot> screenShots) {
+            screenShots.forEach(screenShot -> Allure.addAttachment(screenShot.getName(),
+                    new ByteArrayInputStream(screenShot.getScreenShotImg())));
         }
-    }
 
-};
+        public void screenshot() {
+            if (webDriver == null) {
+                logger.info("Driver for screenshot not found");
+                return;
+            }
+            byte[] screen = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+            listOfScreenShots.add(new ScreenShot("Default screenShot after failed test", screen));
+            saveScreenshot(listOfScreenShots);
+        }
+
+        @Override
+        protected void finished(Description description) {
+            logger.info(
+                    String.format("Finished test: %s::%s", description.getClassName(), description.getMethodName()));
+            try {
+                webDriver.quit();
+                logger.info("Browser was closed");
+            } catch (Exception e) {
+                logger.error(e);
+            }
+        }
+
+    };
 
     protected void takeScreenshot() {
         System.out.println("screenshot was taken");
@@ -105,30 +92,30 @@ public final TestWatcher watchman = new TestWatcher() {
         listOfScreenShots.add(new ScreenShot(testName.getMethodName() + "_after", screen));
     }
 
-    private WebDriver initDriver() {
+    @Rule
+    public TestName testName = new TestName();
+
+    private WebDriver initDriver(){
         String browser = System.getProperty("browser");
-        if ((browser == null) || browser.equalsIgnoreCase("chrome")) { //if browser is not specified or browser is chrome -Dbrowser=chrome
+        if ((browser == null) || ("chrome".equals(browser.toLowerCase()))){ // default browser -Dbrowser=chrome
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
-        } else if ("firefox".equals(browser.toLowerCase())) {
+        } else if ("firefox".equals(browser.toLowerCase())){ // -Dbrowser=firefox
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        } else if ("ie".equals(browser.toLowerCase())) {
-            WebDriverManager.iedriver().setup(); //zoom level should be 100%, security level - medium, protected mode should be enabled for all zones
-            webDriver = new InternetExplorerDriver();
-        } else if ("edge".equals(browser.toLowerCase())) {
+        } else if ("ie".equals(browser.toLowerCase())){
+            WebDriverManager.iedriver().setup(); //zoom 100%
+            webDriver = new InternetExplorerDriver(); //security level - Medium
+        } else if ("safari".equalsIgnoreCase(browser)) {
+            WebDriverManager.safaridriver().setup();
+            webDriver = new SafariDriver();
+        } else if ("edge".equalsIgnoreCase(browser)) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        } else if ("safari".equals(browser.toLowerCase())) {
-            WebDriverManager.safaridriver().setup(); //zoom level should be 100%, security level - medium, protected mode should be enabled for all zones
-            webDriver = new SafariDriver();
-        }
-        else {
+        }  else {
             throw new IllegalArgumentException("Browser " + browser + " is not supported");
         }
         return webDriver;
     }
-
-
 
 }

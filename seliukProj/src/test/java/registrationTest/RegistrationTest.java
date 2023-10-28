@@ -11,10 +11,7 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 @Category(SmokeTestFilter.class)
 public class RegistrationTest extends BaseTest {
-//    String userName = "test";
-//    String email = "trtr";
-//    String password = "123456";
-//    String expectedMessages = "You must provide a valid email address.;Password must be at least 12 characters.";
+
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
@@ -27,20 +24,17 @@ public class RegistrationTest extends BaseTest {
     @Parameters(method = "parametersForCheckErrorsTest")
     public void checkErrorsTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextInroRegistrationUserNameField(userName);
-        pageProvider.getLoginPage().enterTextInroRegistrationEmailField(email);
-        pageProvider.getLoginPage().enterTextInroRegistrationPasswordField(password);
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
+        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField(password);
         pageProvider.getLoginPage().checkErrorsMessages(expectedMessages);
     }
 
     public Object[][] parametersForCheckErrorsTest() {
         return new Object[][]{
-                {SHORT_USER_NAME, "trtr", "123456", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"test", "trtr@ukr.net", "123", ERROR_PASSWORD}
-
+                {"test", "trtr", "123456", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}
+                ,
+                {"test", "tr@tr.com", "123", ERROR_PASSWORD}
         };
-
-
     }
-
 }
